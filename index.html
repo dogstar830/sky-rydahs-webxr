@@ -140,6 +140,7 @@
   <b>X</b> trick · <b>Y</b> 180° · <b>RT</b> spray (hold at a pink spot) · <b>LT</b> camera reset ·
   <b>Squeeze L/R</b> snap turn 30°<br>
   <b>Settings:</b> SETTINGS in the menu or pause — INPUT MODE (AUTO / PAD / TOUCH / KEYS), TURN RATE, VOLUME (wind), MAX SPEED. Saved automatically.<br>
+  <b>VR pause:</b> left Touch <b>menu button</b> opens the in-world pause panel — thumbstick picks, <b>A</b> selects.<br>
   <b>Desktop:</b> <b>WASD/arrows</b> ride · <b>Mouse</b> camera (click scene to lock) · <b>Space</b> kick+jump ·
   <b>Shift</b> boost · <b>E</b> trick · <b>Q</b> 180° · <b>F</b> spray · <b>R</b> camera reset · <b>H</b> hide this card
 </div>
@@ -154,8 +155,9 @@
   <button id="vrbtn" class="menurow" disabled>ENTER VR</button>
   <button id="howbtn" class="menurow">HOW TO RIDE</button>
   <button id="setbtn" class="menurow">SETTINGS</button>
+  <button id="mapbtn" class="menurow">PALMA CITY MAP</button>
   <div id="vrnote">checking WebXR…</div>
-  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.4.1 · SETTINGS</div>
+  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.5 · PAUSE + CITY MAP</div>
 </div>
 <div id="padgate" class="panel" style="position:fixed;top:110px;left:50%;transform:translateX(-50%);text-align:center;z-index:40;max-width:520px;width:calc(100% - 48px)">
   <div style="font-size:19px;font-weight:900;color:#19E3FF">🎮 XBOX PAD FIRST</div>
@@ -163,6 +165,11 @@
   <button id="padskip" class="menurow" style="margin-top:8px">NO PAD — USE TOUCH / KEYS</button>
   <div style="margin-top:8px;font-size:12px;color:#9fdcff">2D XBOX MODE: the pad plays right here in the browser panel — that's exactly how Xbox Cloud Gaming runs on Quest. ENTER VR is optional (Touch controllers).</div>
   <div style="margin-top:6px;font-size:12.5px;color:#FFC21A">PAD MOVES MENUS BUT NOT THE RIDER? The Quest is steering it like a mouse. Fix: Quest Settings → Devices → Gamepad → turn OFF "Use the gaze cursor", then reload this page.</div>
+</div>
+<div id="citymap" class="panel" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:35;width:800px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow:auto"><span class="x" id="mapx">✕</span>
+  <div style="font-size:16px;font-weight:900;color:#19E3FF">🗺 PALMA CITY — MERGED MAP</div>
+  <canvas id="mapcv" width="760" height="500" style="width:100%;height:auto;display:block;margin-top:6px"></canvas>
+  <div style="font-size:12px;color:#9fdcff;margin-top:6px">7 districts · West Island + East Island + the North Shore · 3 grind bridges. Portside Terminal is built — the rest is Parts War road ahead.</div>
 </div>
 <div id="pause"><div class="pbox">
   <h2>PAUSED</h2>
@@ -1099,7 +1106,7 @@ function updateGrade(dt) {
 
 /* ---- campaign intro: freeze-frame character cards + story cards (brief Ch.1 setup) ---- */
 const CAST = [
-  { who: 'rookie', name: 'THE ROOKIE', tag: 'First Trecks. First kick. Everything to prove.', accent: '#2AFF4A' },
+  { who: 'rookie', name: 'CAALI — THE ROOKIE', tag: 'First Trecks. First kick. Everything to prove.', accent: '#2AFF4A' },
   { who: 'captain', name: 'THE CAPTAIN', tag: 'Runs the Terminal crew like a pit boss.', accent: '#FF2E88' },
   { who: 'ghost', name: 'THE GHOST', tag: 'You hear his wheels after he is gone.', accent: '#19E3FF' },
   { who: 'spark', name: 'THE SPARK', tag: 'Loud paint. Louder mouth. Fastest hands in Palma.', accent: '#FFC21A' },
@@ -1711,6 +1718,7 @@ function pollXR() {
     if (hand === 'left') {
       if (Math.abs(ax[1]) > 0.12) inp.throttle = -ax[1];
       if (Math.abs(ax[0]) > 0.12) inp.steer = ax[0];
+      if (edge(6) && G.state === 'ride') togglePause();        // menu button — VR pause
       if (edge(4)) doTrick();                                  // X — trick
       if (edge(5)) doTurn180();                                // Y — 180°
       if (edge(1)) doSnap(1);                                  // squeeze L — snap left
@@ -1926,7 +1934,7 @@ document.getElementById('setbtn').onclick = () => openSettings('menu');
 document.getElementById('setx').onclick = () => closeSettings();
 
 /* ---- focus navigation (Xbox XY-focus, simplified to a vertical list) ---- */
-const MENU_ITEMS = ['campbtn', 'startbtn', 'vrbtn', 'howbtn', 'setbtn'];
+const MENU_ITEMS = ['campbtn', 'startbtn', 'vrbtn', 'howbtn', 'setbtn', 'mapbtn'];
 const PAUSE_ITEMS = ['resumeBtn', 'restartBtn', 'pcontrolsBtn', 'psetBtn', 'quitBtn'];
 let menuFocus = 1, pauseFocus = 0;
 function paintFocus(list, idx) {
@@ -2021,11 +2029,162 @@ function pollPadPause() {
   if (nav.bEdge) togglePause();
   consumePadEdges(gp);
 }
+/* ---- Palma City merged map (2026-10-27: Grok's two-island layout merged into our 7 districts) ---- */
+function drawCityMap() {
+  const cv = document.getElementById('mapcv'); if (!cv) return;
+  const g = cv.getContext('2d'), W = 760, H = 500;
+  if (!g.roundRect) g.roundRect = function(x, y, w, h) { this.rect(x, y, w, h); };
+  g.fillStyle = '#070A1A'; g.fillRect(0, 0, W, H);
+  const rr = (x, y, w, h, fill, line) => { g.beginPath(); g.roundRect(x, y, w, h, 10); g.fillStyle = fill; g.fill(); if (line) { g.strokeStyle = line; g.lineWidth = 2; g.stroke(); } };
+  const T = (x, y, t, sz, col, bold = true) => { g.fillStyle = col; g.font = (bold ? '900 ' : '') + sz + 'px "Arial Black", Arial, sans-serif'; g.textAlign = 'center'; g.fillText(t, x, y); };
+  const bridge = (x1, y1, x2, y2, label, lx, ly) => { g.strokeStyle = '#FFD21A'; g.lineWidth = 5; g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.stroke(); g.strokeStyle = '#FFF096'; g.lineWidth = 1; g.beginPath(); g.moveTo(x1, y1 - 5); g.lineTo(x2, y2 - 5); g.stroke(); T(lx, ly, label, 9, '#FFE678'); };
+  rr(180, 18, 400, 58, '#402814', '#FF9660'); T(380, 44, 'THE HEIGHTS', 16, '#FFBE5A'); T(380, 64, 'terraced north shore · Wire Descent · Hill crew', 9, '#E6B482', false);
+  rr(38, 118, 262, 282, '#1A2236', '#3C5A8C'); T(169, 134, 'WEST ISLAND · PORTSIDE ISLE', 9, '#78AADC', false);
+  rr(50, 146, 112, 74, '#462C28', '#C8785A'); T(106, 176, 'THE COVE', 12, '#FFAA82'); T(106, 194, 'marina · Fisher crew', 8, '#E6BEAA', false); T(106, 208, 'Ch. 4', 8, '#E6BEAA', false);
+  rr(170, 192, 124, 38, '#32323C', '#C8C878'); T(232, 208, 'THE YARD', 10, '#F0E6A0'); T(232, 222, 'garage hub · save point', 7, '#E6DCAA', false);
+  rr(150, 238, 138, 150, '#2C283A', '#FF783C'); T(219, 266, 'PORTSIDE', 13, '#FFD2AA'); T(219, 284, 'TERMINAL', 13, '#FFD2AA'); T(219, 304, 'Downtown Core · home turf', 8, '#E6C8B4', false); T(219, 320, 'Ch. 1–2 · BUILT (prototype)', 8, '#8CFFAA', false); T(219, 354, '★ TERMINAL TOWER 22m', 9, '#FFDC5A');
+  T(96, 324, '⚓ PORT', 10, '#78DCFF'); T(80, 340, 'cranes · containers', 7, '#A0C8E6', false);
+  rr(432, 128, 288, 282, '#1A2236', '#3C5A8C'); T(576, 144, 'EAST ISLAND · PALMA ISLE', 9, '#78AADC', false);
+  rr(452, 158, 240, 42, '#342E1E', '#FFC83C'); T(572, 176, 'THE 98 — BILLBOARD MILE', 10, '#FFDC78'); T(572, 192, 'Highway crew · Ch. 3', 8, '#FFDC96', false);
+  rr(452, 214, 132, 132, '#1E283C', '#5A78AA'); T(518, 276, 'EAST BLOCKS', 10, '#96BEDC'); T(518, 294, 'wall-ride cuts', 8, '#96B4DC', false);
+  rr(596, 214, 112, 132, '#24343E', '#8CE6FF'); T(652, 262, 'THE DRIVE', 11, '#BEF0FF'); T(652, 282, 'condo towers', 8, '#BEE6F5', false); T(652, 296, 'Condo Cascade', 8, '#BEE6F5', false); T(652, 312, 'Precision crew · Ch. 3', 8, '#BEE6F5', false);
+  rr(444, 356, 264, 42, '#3A1A36', '#FF50C8'); T(576, 374, 'THE STRIP · NIGHT STRIP', 11, '#FFAAE6'); T(576, 390, 'neon connector · Beach crew · Ch. 2 · ★ hotel tower', 8, '#FFC8F0', false);
+  bridge(288, 330, 444, 368, 'SHORE BRIDGE', 366, 330);
+  bridge(272, 238, 332, 76, 'CAUSEWAY — 400M GRIND', 368, 138);
+  bridge(560, 158, 520, 76, '98 BRIDGE', 596, 112);
+  T(380, 452, 'P A L M A   B A Y', 11, '#285078', false);
+  T(380, 482, '— THE GULF · SOUTH —', 12, '#5AA0DC');
+  g.beginPath(); g.arc(732, 36, 16, 0, 6.29); g.strokeStyle = '#C8DCFF'; g.lineWidth = 2; g.stroke(); T(732, 41, 'N', 11, '#DCEBFF');
+}
+let mapOpen = false;
+function toggleCityMap(force) {
+  mapOpen = force !== undefined ? force : !mapOpen;
+  const el = document.getElementById('citymap'); if (!el) return;
+  el.style.display = mapOpen ? 'block' : 'none';
+  if (mapOpen) drawCityMap();
+}
+{ const mb = document.getElementById('mapbtn'); if (mb) mb.onclick = () => toggleCityMap();
+  const mx = document.getElementById('mapx'); if (mx) mx.onclick = () => toggleCityMap(false); }
+
+/* ---- VR world-space pause menu (Grok build, 2026-10-27, completed + adapted) ----
+   Grok's snippet arrived with makeText() undefined and the function cut off at
+   "Pause.group =". Completed here: makeText is a canvas-texture plane (same
+   canvasTex family as the graffiti art); selection paint, show/hide, per-frame
+   placement in front of the headset, and Touch navigation are wired to the
+   game's existing togglePause()/pauseAction() so the VR panel and the 2D DOM
+   pause can never disagree. Options are Grok's exactly: RESUME / QUIT.
+   Adaptation: Grok placed the panel at a fixed (0, 1.55, -1.8) — fine for a
+   menu scene, wrong mid-ride — so here it floats 1.8 m in front of the camera. */
+function makeText(text, size, color) {
+  const hex = '#' + color.toString(16).padStart(6, '0');
+  const tex = canvasTex(512, 128, (g, w, h) => {
+    g.clearRect(0, 0, w, h);
+    g.fillStyle = hex; g.font = '900 64px "Arial Black", sans-serif';
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(text, w / 2, h / 2 + 2);
+  });
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(size * 4, size),
+    new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }));
+  m.userData.texWhite = null; m.userData.texGold = null;
+  return m;
+}
+const Pause = {
+  active: false,
+  selected: 0,
+  options: ["RESUME", "QUIT"],
+  group: null,
+  optionMeshes: [],
+};
+function createPauseMenu() {
+  const group = new THREE.Group();
+  group.visible = false;
+  const bg = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.6, 0.7),
+    new THREE.MeshBasicMaterial({ color: 0x0a0a0a, transparent: true, opacity: 0.92 })
+  );
+  group.add(bg);
+  const bar = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.6, 0.05),
+    new THREE.MeshBasicMaterial({ color: 0xffd700 })
+  );
+  bar.position.y = 0.28;
+  group.add(bar);
+  const title = makeText("PAUSED", 0.14, 0xffd700);
+  title.position.set(0, 0.18, 0.01);
+  group.add(title);
+  Pause.optionMeshes = [];
+  Pause.options.forEach((text, i) => {
+    const mesh = makeText(text, 0.09, 0xffffff);
+    mesh.position.set(0, -0.02 - i * 0.16, 0.01);
+    /* pre-build the gold (selected) twin texture for instant swaps */
+    mesh.userData.texGold = canvasTex(512, 128, (g, w, h) => {
+      g.clearRect(0, 0, w, h);
+      g.fillStyle = '#ffd700'; g.font = '900 64px "Arial Black", sans-serif';
+      g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.fillText('▸ ' + text + ' ◂', w / 2, h / 2 + 2);
+    });
+    mesh.userData.texWhite = mesh.material.map;
+    group.add(mesh);
+    Pause.optionMeshes.push(mesh);
+  });
+  scene.add(group);
+  Pause.group = group;
+  return group;
+}
+function paintPause3D() {
+  Pause.optionMeshes.forEach((m, i) => {
+    const sel = i === Pause.selected;
+    m.material.map = sel ? m.userData.texGold : m.userData.texWhite;
+    m.material.needsUpdate = true;
+    const sc = sel ? 1.15 : 1.0; m.scale.set(sc, sc, 1);
+  });
+}
+function showPause3D(v) {
+  Pause.active = v;
+  if (!Pause.group) createPauseMenu();
+  if (v) { Pause.selected = 0; paintPause3D(); }
+  Pause.group.visible = v && renderer.xr.isPresenting;
+}
+const _pv = new THREE.Vector3(), _pd = new THREE.Vector3();
+function positionPause3D() {
+  if (!Pause.group) return;
+  Pause.group.visible = G.paused && renderer.xr.isPresenting;
+  if (!Pause.group.visible) return;
+  camera.getWorldPosition(_pv); camera.getWorldDirection(_pd);
+  Pause.group.position.copy(_pv).addScaledVector(_pd, 1.8);
+  Pause.group.lookAt(_pv);
+}
+function pollXRPause() {
+  const session = renderer.xr.getSession(); if (!session) return;
+  for (const src of session.inputSources) {
+    if (!src.gamepad) continue;
+    const gp = src.gamepad, hand = src.handedness;
+    const prev = G.xrBtn[hand] || (G.xrBtn[hand] = []);
+    const btn = i => (gp.buttons[i] ? gp.buttons[i].pressed : false);
+    const edge = i => btn(i) && !prev[i];
+    const axY = gp.axes.length >= 4 ? (gp.axes[3] || 0) : (gp.axes[1] || 0);
+    if (Math.abs(axY) > 0.6 && !prev.stickLock) {
+      Pause.selected = (Pause.selected + (axY > 0 ? 1 : Pause.options.length - 1)) % Pause.options.length;
+      paintPause3D(); prev.stickLock = true;
+    }
+    if (Math.abs(axY) <= 0.3) prev.stickLock = false;
+    if (hand === 'left' && edge(6)) togglePause();                       // menu button closes it too
+    else if (edge(4) || edge(0)) {                                       // A / trigger = select
+      if (Pause.options[Pause.selected] === 'RESUME') togglePause();
+      else { showPause3D(false); pauseAction('quitBtn'); }
+    }
+    else if (hand === 'right' && edge(5)) togglePause();                 // B = resume (world menu, not DOM)
+    for (let i = 0; i < gp.buttons.length; i++) prev[i] = btn(i);
+  }
+}
+createPauseMenu();
+
 /* ---- pause (Xbox shell: Menu button freezes the run, focus list, B resumes) ---- */
 function togglePause() {
   if (G.state !== 'ride') return;
   G.paused = !G.paused;
   document.getElementById('pause').style.display = G.paused ? 'block' : 'none';
+  showPause3D(G.paused);
   if (G.paused) { pauseFocus = 0; paintFocus(PAUSE_ITEMS, 0); saveGame(); }
 }
 function pauseAction(id) {
@@ -2041,6 +2200,7 @@ function resetRun() {
 }
 function quitToMenu() {
   G.paused = false; document.getElementById('pause').style.display = 'none';
+  showPause3D(false);
   resetRun(); G.state = 'menu'; titlePanel.visible = true; cardPanel.visible = false;
   document.getElementById('status').textContent = 'MENU — rider on the turntable';
 }
@@ -2283,7 +2443,7 @@ function animate() {
   let inp = { throttle: 0, steer: 0, spraying: false };
   if (setOpen) { pollPadSettings(); }
   else if (G.state === 'padgate') { pollPadGate(); }
-  else if (G.paused) { pollPadPause(); }
+  else if (G.paused) { pollPadPause(); if (presenting) pollXRPause(); }
   else if (G.state === 'ride') {
     if (presenting) {
       inp = SET.input === 'PAD' ? { throttle: 0, steer: 0, spraying: false } : pollXR();
@@ -2336,6 +2496,7 @@ function animate() {
   }
   updateSparks(dt); updateCans(now / 1000);
   updateCamera(dt);
+  if (G.paused) positionPause3D();
   updateWind();
   /* comfort vignette (both modes) */
   const cf = comfortFrame(hSpeed(), Math.abs(G.turnRate));
