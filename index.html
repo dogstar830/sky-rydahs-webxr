@@ -27,6 +27,10 @@
   #controls { bottom:12px; left:50%; transform:translateX(-50%); max-width:640px; width:calc(100% - 40px);
     font-size:12.5px; line-height:1.65; }
   #controls b { color:#19E3FF; }
+  #setpanel { bottom:12px; left:50%; transform:translateX(-50%); max-width:520px; width:calc(100% - 40px); z-index:60; text-align:center; }
+  #setpanel .srow { display:flex; justify-content:space-between; align-items:center; width:100%; margin:4px 0; }
+  #setpanel .sval { color:#FFC21A; font-weight:900; }
+  #setpanel .x { position:absolute; top:4px; right:10px; cursor:pointer; color:#FF2E88; }
   #controls .x { position:absolute; top:4px; right:10px; cursor:pointer; color:#FF2E88;
     font-weight:900; font-size:15px; }
   #vrwrap { position:fixed; z-index:10; bottom:30px; left:30px; text-align:left; }
@@ -46,7 +50,7 @@
   #footer { margin-top:14px; font-size:11px; letter-spacing:1.5px; color:#8fa8c8;
     text-shadow:1px 1px 0 rgba(10,10,18,.9); }
   body.riding #title { display:none; }
-  body.riding #startbtn, body.riding #campbtn, body.riding #howbtn, body.riding #footer, body.riding #vrnote { display:none; }
+  body.riding #startbtn, body.riding #campbtn, body.riding #howbtn, body.riding #setbtn, body.riding #footer, body.riding #vrnote { display:none; }
   body.intro #title, body.intro #vrwrap, body.digitize #title, body.digitize #vrwrap { display:none; }
   body.intro #hudline, body.digitize #hudline { opacity:0; }
   #hudline { transition: opacity .35s ease; }
@@ -135,16 +139,23 @@
   <b>VR (Touch):</b> Left stick ride/steer · <b>A</b> kick+jump (hold = higher) · <b>B</b> Boost Dash (10 cans) ·
   <b>X</b> trick · <b>Y</b> 180° · <b>RT</b> spray (hold at a pink spot) · <b>LT</b> camera reset ·
   <b>Squeeze L/R</b> snap turn 30°<br>
+  <b>Settings:</b> SETTINGS in the menu or pause — INPUT MODE (AUTO / PAD / TOUCH / KEYS), TURN RATE, VOLUME (wind), MAX SPEED. Saved automatically.<br>
   <b>Desktop:</b> <b>WASD/arrows</b> ride · <b>Mouse</b> camera (click scene to lock) · <b>Space</b> kick+jump ·
   <b>Shift</b> boost · <b>E</b> trick · <b>Q</b> 180° · <b>F</b> spray · <b>R</b> camera reset · <b>H</b> hide this card
+</div>
+<div id="setpanel" class="panel" style="display:none"><span class="x" id="setx">✕</span>
+  <div style="font-size:16px;font-weight:900;color:#19E3FF">⚙ SETTINGS</div>
+  <div id="setrows"></div>
+  <div style="font-size:11.5px;color:#9fdcff;margin-top:6px">Up/down pick · left/right or A changes · B closes. Saved automatically.</div>
 </div>
 <div id="vrwrap">
   <button id="campbtn" class="menurow">START CAMPAIGN</button>
   <button id="startbtn" class="menurow">START RIDE</button>
   <button id="vrbtn" class="menurow" disabled>ENTER VR</button>
   <button id="howbtn" class="menurow">HOW TO RIDE</button>
+  <button id="setbtn" class="menurow">SETTINGS</button>
   <div id="vrnote">checking WebXR…</div>
-  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.4 · MANGA DIMENSION</div>
+  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.4.1 · SETTINGS</div>
 </div>
 <div id="padgate" class="panel" style="position:fixed;top:110px;left:50%;transform:translateX(-50%);text-align:center;z-index:40;max-width:520px;width:calc(100% - 48px)">
   <div style="font-size:19px;font-weight:900;color:#19E3FF">🎮 XBOX PAD FIRST</div>
@@ -159,6 +170,7 @@
   <button id="resumeBtn" class="menurow">RESUME</button>
   <button id="restartBtn" class="menurow">RESTART RUN</button>
   <button id="pcontrolsBtn" class="menurow">CONTROLS</button>
+  <button id="psetBtn" class="menurow">SETTINGS</button>
   <button id="quitBtn" class="menurow">QUIT TO MENU</button>
 </div></div>
 <div id="errbar" class="panel"><span class="x" id="errx">✕</span><b>⚠ LAST ERROR</b><pre id="errtxt"></pre></div>
@@ -1645,12 +1657,12 @@ function nearestSpot(maxD) {
 function gameLogic(dt) {
   /* boost dash: raised ceiling + shove (Kotlin) */
   if (G.boostTime > 0) {
-    G.boostTime -= dt; E.maxKickSpeed = 36;
+    G.boostTime -= dt; E.maxKickSpeed = SET.speed + 12;
     let dx = fwdX(), dz = fwdZ();
     if (E.contact === 'WALL' && (E.wdx || E.wdz)) { dx = E.wdx; dz = E.wdz; }
     E.vx += dx * 34 * dt; E.vz += dz * 34 * dt;
-    const h = hSpeed(); if (h > 42) { const s = 42 / h; E.vx *= s; E.vz *= s; }
-  } else E.maxKickSpeed = 24;
+    const h = hSpeed(); if (h > SET.speed + 18) { const s = (SET.speed + 18) / h; E.vx *= s; E.vz *= s; }
+  } else E.maxKickSpeed = SET.speed;
   /* spray: hold RT at a spot ~0.6s to claim it (Kotlin) */
   const spot = nearestSpot(4.2);
   G.nearSpot = spot;
@@ -1800,13 +1812,14 @@ function saveGame() {
   try {
     const claimed = []; TAG_SPOTS.forEach((t, i) => { if (t.claimed) claimed.push(i); });
     G.bestChain = Math.max(G.bestChain || 0, E.chain);
-    localStorage.setItem(SAVE_KEY, JSON.stringify({ best: G.bestChain, claimed }));
+    localStorage.setItem(SAVE_KEY, JSON.stringify({ best: G.bestChain, claimed, set: SET }));
   } catch (e) { /* storage unavailable — session-only play */ }
 }
 function loadGame() {
   try {
     const sv = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); if (!sv) return;
     G.bestChain = sv.best || 0;
+    if (sv.set) ['input', 'turn', 'vol', 'speed'].forEach(k => { if (sv.set[k] != null) SET[k] = sv.set[k]; });
     (sv.claimed || []).forEach(i => {
       const t = TAG_SPOTS[i];
       if (t && !t.claimed) {
@@ -1818,9 +1831,103 @@ function loadGame() {
     if (G.tags) setFlash('TURF RESTORED — ' + G.tags + '/16 TAGS STILL YOURS', 2.6);
   } catch (e) { /* fresh start */ }
 }
+/* ---- settings (Grok's list, wired into the real systems; saved with the game) ---- */
+const SET = { input: 'AUTO', turn: 3.8, vol: 0.8, speed: 24 };
+const SET_ITEMS = ['set-in', 'set-turn', 'set-vol', 'set-speed', 'set-back'];
+const SET_INPUTS = ['AUTO', 'PAD', 'TOUCH', 'KEYS'];
+let setOpen = false, setFocus = 0, setReturn = 'menu';
+const SET_DEFS = [
+  { id: 'set-in', label: 'INPUT MODE', fmt: () => SET.input },
+  { id: 'set-turn', label: 'TURN RATE', fmt: () => SET.turn.toFixed(1) },
+  { id: 'set-vol', label: 'VOLUME', fmt: () => Math.round(SET.vol * 100) + '%' },
+  { id: 'set-speed', label: 'MAX SPEED', fmt: () => String(SET.speed) },
+  { id: 'set-back', label: '← BACK', fmt: () => '' },
+];
+function buildSetRows() {
+  const host = document.getElementById('setrows'); if (!host) return;
+  host.innerHTML = '';
+  SET_DEFS.forEach(d => {
+    const b = document.createElement('button');
+    b.className = 'menurow srow'; b.id = d.id;
+    b.innerHTML = '<span>' + d.label + '</span><span class="sval"></span>';
+    b.onclick = () => { setFocus = SET_ITEMS.indexOf(d.id); paintSettings(); adjustSetting(1); };
+    host.appendChild(b);
+  });
+  paintSettings();
+}
+function paintSettings() {
+  SET_DEFS.forEach(d => {
+    const el = document.getElementById(d.id);
+    if (el) { const v = el.querySelector('.sval'); if (v) v.textContent = d.fmt() ? '‹ ' + d.fmt() + ' ›' : ''; }
+  });
+  paintFocus(SET_ITEMS, setFocus);
+}
+function adjustSetting(dir) {
+  const id = SET_ITEMS[setFocus];
+  if (id === 'set-in') { let i = SET_INPUTS.indexOf(SET.input); i = (i + dir + SET_INPUTS.length) % SET_INPUTS.length; SET.input = SET_INPUTS[i]; }
+  else if (id === 'set-turn') SET.turn = clamp(Math.round((SET.turn + dir * 0.2) * 10) / 10, 2.0, 5.0);
+  else if (id === 'set-vol') SET.vol = clamp(Math.round((SET.vol + dir * 0.1) * 10) / 10, 0, 1);
+  else if (id === 'set-speed') SET.speed = clamp(SET.speed + dir * 2, 16, 36);
+  else if (id === 'set-back') { closeSettings(); return; }
+  paintSettings(); saveGame();
+}
+function openSettings(from) {
+  setOpen = true; setReturn = from; setFocus = 0;
+  document.getElementById('setpanel').style.display = '';
+  paintSettings();
+}
+function closeSettings() {
+  setOpen = false;
+  document.getElementById('setpanel').style.display = 'none';
+  if (setReturn === 'pause') paintFocus(PAUSE_ITEMS, pauseFocus); else paintFocus(MENU_ITEMS, menuFocus);
+}
+const setPrev = { lxL: false, lxR: false };
+function pollPadSettings() {
+  const gp = padRead(); if (!gp) return;
+  const nav = navStep(gp, G.padBtn, SET_ITEMS, setFocus); setFocus = nav.idx;
+  const btn = i => (gp.buttons[i] ? gp.buttons[i].pressed : false);
+  const lx = gp.axes[0] || 0;
+  const lEdge = (btn(14) && !G.padBtn[14]) || (lx < -0.6 && !setPrev.lxL);
+  const rEdge = (btn(15) && !G.padBtn[15]) || (lx > 0.6 && !setPrev.lxR);
+  setPrev.lxL = lx < -0.6; setPrev.lxR = lx > 0.6;
+  if (lEdge) adjustSetting(-1);
+  else if (rEdge) adjustSetting(1);
+  else if (nav.aEdge) adjustSetting(1);
+  if (nav.bEdge && setOpen) closeSettings();
+  consumePadEdges(gp);
+}
+/* wind audio — what VOLUME drives (WebAudio noise through a bandpass; starts on first gesture) */
+let AC = null, windGain = null, windFilter = null;
+function ensureAudio() {
+  if (AC) { if (AC.state === 'suspended') AC.resume(); return; }
+  try {
+    AC = new (window.AudioContext || window.webkitAudioContext)();
+    const len = AC.sampleRate * 2, buf = AC.createBuffer(1, len, AC.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+    const src = AC.createBufferSource(); src.buffer = buf; src.loop = true;
+    windFilter = AC.createBiquadFilter(); windFilter.type = 'bandpass'; windFilter.frequency.value = 400; windFilter.Q.value = 0.6;
+    windGain = AC.createGain(); windGain.gain.value = 0;
+    src.connect(windFilter); windFilter.connect(windGain); windGain.connect(AC.destination);
+    src.start();
+  } catch (e) { AC = null; }
+}
+function updateWind() {
+  if (!AC || !windGain) return;
+  const riding = G.state === 'ride' && !G.paused;
+  const sp = clamp(hSpeed() / 24, 0, 1.6);
+  const target = riding ? SET.vol * (0.015 + sp * 0.11) : 0;
+  windGain.gain.setTargetAtTime(target, AC.currentTime, 0.12);
+  if (windFilter) windFilter.frequency.setTargetAtTime(300 + sp * 700, AC.currentTime, 0.2);
+}
+window.addEventListener('pointerdown', ensureAudio);
+window.addEventListener('keydown', ensureAudio);
+buildSetRows();
+document.getElementById('setbtn').onclick = () => openSettings('menu');
+document.getElementById('setx').onclick = () => closeSettings();
+
 /* ---- focus navigation (Xbox XY-focus, simplified to a vertical list) ---- */
-const MENU_ITEMS = ['campbtn', 'startbtn', 'vrbtn', 'howbtn'];
-const PAUSE_ITEMS = ['resumeBtn', 'restartBtn', 'pcontrolsBtn', 'quitBtn'];
+const MENU_ITEMS = ['campbtn', 'startbtn', 'vrbtn', 'howbtn', 'setbtn'];
+const PAUSE_ITEMS = ['resumeBtn', 'restartBtn', 'pcontrolsBtn', 'psetBtn', 'quitBtn'];
 let menuFocus = 1, pauseFocus = 0;
 function paintFocus(list, idx) {
   list.forEach((id, i) => { const el = document.getElementById(id); if (el) el.classList.toggle('padfocus', i === idx); });
@@ -1925,6 +2032,7 @@ function pauseAction(id) {
   if (id === 'resumeBtn') togglePause();
   else if (id === 'restartBtn') { resetRun(); togglePause(); }
   else if (id === 'pcontrolsBtn') { const c = document.getElementById('controls'); c.style.display = c.style.display === 'none' ? '' : 'none'; }
+  else if (id === 'psetBtn') openSettings('pause');
   else if (id === 'quitBtn') quitToMenu();
 }
 function resetRun() {
@@ -1936,7 +2044,7 @@ function quitToMenu() {
   resetRun(); G.state = 'menu'; titlePanel.visible = true; cardPanel.visible = false;
   document.getElementById('status').textContent = 'MENU — rider on the turntable';
 }
-['resumeBtn', 'restartBtn', 'pcontrolsBtn', 'quitBtn'].forEach(id => {
+['resumeBtn', 'restartBtn', 'pcontrolsBtn', 'psetBtn', 'quitBtn'].forEach(id => {
   const el = document.getElementById(id); if (el) el.onclick = () => pauseAction(id);
 });
 paintFocus(MENU_ITEMS, menuFocus);
@@ -1957,6 +2065,14 @@ const KEYS = {};
 window.addEventListener('keydown', e => {
   if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) e.preventDefault();
   if (e.repeat) return; KEYS[e.code] = true;
+  if (setOpen) {
+    if (e.code === 'ArrowDown') setFocus = moveFocus(SET_ITEMS, setFocus, 1);
+    else if (e.code === 'ArrowUp') setFocus = moveFocus(SET_ITEMS, setFocus, -1);
+    else if (e.code === 'ArrowLeft') adjustSetting(-1);
+    else if (e.code === 'ArrowRight' || e.code === 'Enter' || e.code === 'Space') adjustSetting(1);
+    else if (e.code === 'Escape') closeSettings();
+    return;
+  }
   if (e.code === 'Escape' || e.code === 'KeyP') { togglePause(); return; }
   if (G.state === 'menu' && e.code === 'ArrowDown') { menuFocus = moveFocus(MENU_ITEMS, menuFocus, 1); return; }
   if (G.state === 'menu' && e.code === 'ArrowUp') { menuFocus = moveFocus(MENU_ITEMS, menuFocus, -1); return; }
@@ -2165,23 +2281,25 @@ function animate() {
   const presenting = renderer.xr.isPresenting;
   /* input */
   let inp = { throttle: 0, steer: 0, spraying: false };
-  if (G.state === 'padgate') { pollPadGate(); }
+  if (setOpen) { pollPadSettings(); }
+  else if (G.state === 'padgate') { pollPadGate(); }
   else if (G.paused) { pollPadPause(); }
   else if (G.state === 'ride') {
     if (presenting) {
-      inp = pollXR();
-      const pv = pollPadRide(dt, true);
-      if (pv && pv.active) inp = pv;                     // pad wins in VR whenever the browser passes it through
+      inp = SET.input === 'PAD' ? { throttle: 0, steer: 0, spraying: false } : pollXR();
+      if (SET.input !== 'TOUCH' && SET.input !== 'PAD') { const pv = pollPadRide(dt, true); if (pv && pv.active) inp = pv; }   // AUTO/KEYS: pad wins in VR whenever the browser passes it through
       E.throttle = inp.throttle; G.spraying = inp.spraying;
       const prevYaw = E.yaw;
-      E.yaw -= inp.steer * 2.4 * dt * (1 - clamp(hSpeed() / 90, 0, 0.45));
+      E.yaw -= inp.steer * (2.4 * SET.turn / 3.8) * dt * (1 - clamp(hSpeed() / 90, 0, 0.45));
       G.turnRate = dt > 0 ? (E.yaw - prevYaw) / dt : 0;
     } else {
       if (document.activeElement !== renderer.domElement) renderer.domElement.focus();   // keep the pad flowing to the game (Grok review)
-      const drive = pollPadRide(dt, false) || keyboardDrive();
+      const drive = SET.input === 'PAD' ? pollPadRide(dt, false)
+        : SET.input === 'KEYS' || SET.input === 'TOUCH' ? keyboardDrive()
+        : (pollPadRide(dt, false) || keyboardDrive());
       if (drive) {
         if (drive.mag > 0.02) {
-          const turnRate = 3.8 - clamp(hSpeed() / 40, 0, 0.6) * 1.6;
+          const turnRate = SET.turn - clamp(hSpeed() / 40, 0, 0.6) * 1.6;
           E.yaw = angStep(E.yaw, drive.yaw, turnRate * dt);
           E.throttle = drive.mag;
           if (drive.mag > 0.22) objDone('ride');
@@ -2218,6 +2336,7 @@ function animate() {
   }
   updateSparks(dt); updateCans(now / 1000);
   updateCamera(dt);
+  updateWind();
   /* comfort vignette (both modes) */
   const cf = comfortFrame(hSpeed(), Math.abs(G.turnRate));
   vigQuad.material.opacity = G.state === 'ride' ? cf.vignette : 0;
