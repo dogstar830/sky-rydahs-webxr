@@ -111,6 +111,8 @@
     text-shadow:3px 3px 0 #2AFF4A; }
   #pause .psub { font-size:12px; letter-spacing:2px; color:#FFC21A; margin-bottom:16px; }
   #pause .menurow { width:100%; max-width:none; font-size:23px; }
+  #padstat { top:12px; right:12px; z-index:12; font-family:ui-monospace,Menlo,monospace; font-size:11.5px;
+    font-weight:400; letter-spacing:0; color:#BFFFC9; max-width:46vw; white-space:nowrap; overflow:hidden; }
 </style>
 </head>
 <body>
@@ -124,10 +126,11 @@
 </div>
 <div id="hudline" class="panel">CANS 20/35 · TAGS 0/16<span class="flash" id="domflash"></span></div>
 <div id="objective" class="panel"></div>
+<div id="padstat" class="panel">PAD: —</div>
 <div id="controls" class="panel" style="display:none"><span class="x" id="ctrlx">✕</span>
   <b>Xbox pad (2D Xbox mode):</b> Left stick ride (push where you want to go) · Right stick camera ·
   <b>A</b> kick+jump (hold = higher) · <b>B</b> Boost Dash (10 cans) · <b>X</b> trick · <b>Y</b> 180° ·
-  <b>RT</b> spray · <b>LT</b> camera reset · <b>LB/RB</b> snap turn · <b>Menu</b> pause · D-pad works too.
+  <b>RT</b> spray · <b>LT</b> camera reset · <b>LB/RB</b> snap turn · <b>Menu</b> pause · Boost also on stick-click (the Quest may eat B as Back) · D-pad works too.
   Menus: stick/D-pad moves the green focus, <b>A</b> selects, <b>B</b> goes back<br>
   <b>VR (Touch):</b> Left stick ride/steer · <b>A</b> kick+jump (hold = higher) · <b>B</b> Boost Dash (10 cans) ·
   <b>X</b> trick · <b>Y</b> 180° · <b>RT</b> spray (hold at a pink spot) · <b>LT</b> camera reset ·
@@ -141,13 +144,14 @@
   <button id="vrbtn" class="menurow" disabled>ENTER VR</button>
   <button id="howbtn" class="menurow">HOW TO RIDE</button>
   <div id="vrnote">checking WebXR…</div>
-  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.3 · XBOX MODE</div>
+  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.3.1 · XBOX MODE</div>
 </div>
 <div id="padgate" class="panel" style="position:fixed;top:110px;left:50%;transform:translateX(-50%);text-align:center;z-index:40;max-width:520px;width:calc(100% - 48px)">
   <div style="font-size:19px;font-weight:900;color:#19E3FF">🎮 XBOX PAD FIRST</div>
   <div id="padgate-msg" style="margin-top:4px">Press any button on your Xbox pad to link it…</div>
   <button id="padskip" class="menurow" style="margin-top:8px">NO PAD — USE TOUCH / KEYS</button>
   <div style="margin-top:8px;font-size:12px;color:#9fdcff">2D XBOX MODE: the pad plays right here in the browser panel — that's exactly how Xbox Cloud Gaming runs on Quest. ENTER VR is optional (Touch controllers).</div>
+  <div style="margin-top:6px;font-size:12.5px;color:#FFC21A">PAD MOVES MENUS BUT NOT THE RIDER? The Quest is steering it like a mouse. Fix: Quest Settings → Devices → Gamepad → turn OFF "Use the gaze cursor", then reload this page.</div>
 </div>
 <div id="pause"><div class="pbox">
   <h2>PAUSED</h2>
@@ -1320,7 +1324,7 @@ const E = {
   px: 0, py: 0, pz: 2, ppx: 0, ppy: 0, ppz: 2, vx: 0, vy: 0, vz: 0,
   yaw: 0, contact: 'GROUND', grounded: true,
   wall: null, wnx: 0, wnz: 0, wdx: 0, wdz: 0,
-  throttle: 0, maxKickSpeed: 28,
+  throttle: 0, maxKickSpeed: 24, pumpT: 0,
   airTime: 0, wallTime: 0, grindTime: 0,
   chain: 0, chainAcc: 0, mult: 1, curRail: null, wallLean: 0,
 };
@@ -1371,9 +1375,18 @@ function engineTick(dt) {
     if (E.throttle > 0.01) {
       let dx, dz;
       if (E.contact === 'WALL' && (E.wdx || E.wdz)) { dx = E.wdx; dz = E.wdz; } else { dx = fwdX(); dz = fwdZ(); }
-      const a = 15 * Math.min(1, E.throttle);
+      const a = 4.5 * Math.min(1, E.throttle);          // gentle motor assist only — speed is EARNED by pumping
       E.vx += dx * a * dt; E.vz += dz * a * dt;
       if (E.contact === 'WALL') E.vy += a * dt * 0.1;
+      if (E.throttle > 0.25) {                          // kick-push pumping: a real push every ~0.55s, leg animation and all
+        E.pumpT -= dt;
+        if (E.pumpT <= 0) {
+          const head = clamp(1 - hSpeed() / (E.maxKickSpeed * 1.15), 0.15, 1);   // pushes taper as he nears top speed
+          engineKick(0.38 * head);
+          kickTimer = 0.42; kickLeg = -kickLeg;
+          E.pumpT = 0.55;
+        }
+      } else E.pumpT = Math.min(E.pumpT, 0.08);         // re-push answers almost immediately
       capKickSpeed();
     } else if (E.throttle < -0.01) {
       const keep = clamp(1 + E.throttle * 3.0 * dt, 0, 1); E.vx *= keep; E.vz *= keep;
@@ -1544,12 +1557,12 @@ function nearestSpot(maxD) {
 function gameLogic(dt) {
   /* boost dash: raised ceiling + shove (Kotlin) */
   if (G.boostTime > 0) {
-    G.boostTime -= dt; E.maxKickSpeed = 42;
+    G.boostTime -= dt; E.maxKickSpeed = 36;
     let dx = fwdX(), dz = fwdZ();
     if (E.contact === 'WALL' && (E.wdx || E.wdz)) { dx = E.wdx; dz = E.wdz; }
     E.vx += dx * 34 * dt; E.vz += dz * 34 * dt;
     const h = hSpeed(); if (h > 42) { const s = 42 / h; E.vx *= s; E.vz *= s; }
-  } else E.maxKickSpeed = 28;
+  } else E.maxKickSpeed = 24;
   /* spray: hold RT at a spot ~0.6s to claim it (Kotlin) */
   const spot = nearestSpot(4.2);
   G.nearSpot = spot;
@@ -1745,6 +1758,7 @@ function padVerbs(gp) {
   if (edge(0)) { if (G.state === 'ride') { doJumpPress(); objDone('jump'); } G.padAHeld = true; }   // A
   if (!btn(0) && G.padAHeld) { doJumpRelease(); G.padAHeld = false; }
   if (edge(1) && G.state === 'ride') doBoost();                                                     // B
+  if ((edge(10) || edge(11)) && G.state === 'ride') doBoost();                                      // stick clicks — same boost, Quest-proof
   if (edge(2) && G.state === 'ride') doTrick();                                                     // X
   if (edge(3) && G.state === 'ride') doTurn180();                                                   // Y
   if (edge(4)) doSnap(1);                                                                           // LB
@@ -1956,6 +1970,15 @@ function drawHUD(now) {
   document.getElementById('hudline').firstChild.textContent =
     `CANS ${G.cans}/${CAN_CAP} · TAGS ${G.tags}/16 · CHAIN ${E.chain} · ${kmh} KM/H`;
   document.getElementById('domflash').textContent = (G.flash && now < G.flashUntil) ? G.flash : '';
+  const psEl = document.getElementById('padstat');
+  if (psEl) {
+    const gp = padSnapshot();
+    if (!gp) psEl.textContent = 'PAD: none seen — press any pad button | STATE ' + G.state;
+    else {
+      const pressed = []; gp.buttons.forEach((b, i) => { if (b && (b.pressed || b.value > 0.35)) pressed.push(i); });
+      psEl.textContent = 'PAD ' + (gp.id || '').slice(0, 24) + ' | BTNS ' + (pressed.join(',') || '—') + ' | AXES ' + gp.axes.map(a => a.toFixed(2)).join(' ') + ' | ' + G.state + (G.paused ? ' PAUSED' : '');
+    }
+  }
   const obEl = document.getElementById('objective');
   if (obEl) {
     const ob = (G.state === 'ride' && !G.paused) ? currentObjective() : null;
