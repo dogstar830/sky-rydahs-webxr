@@ -111,6 +111,8 @@
 </div>
 <div id="hudline" class="panel">CANS 20/35 · TAGS 0/16<span class="flash" id="domflash"></span></div>
 <div id="controls" class="panel" style="display:none"><span class="x" id="ctrlx">✕</span>
+  <b>Xbox pad (standard):</b> Left stick ride/steer · <b>A</b> kick+jump (hold = higher) · <b>B</b> Boost Dash (10 cans) ·
+  <b>X</b> trick · <b>Y</b> 180° · <b>RT</b> spray · <b>LT</b> camera reset · <b>LB/RB</b> snap turn · D-pad rides too<br>
   <b>VR (Touch):</b> Left stick ride/steer · <b>A</b> kick+jump (hold = higher) · <b>B</b> Boost Dash (10 cans) ·
   <b>X</b> trick · <b>Y</b> 180° · <b>RT</b> spray (hold at a pink spot) · <b>LT</b> camera reset ·
   <b>Squeeze L/R</b> snap turn 30°<br>
@@ -123,7 +125,12 @@
   <button id="vrbtn" class="menurow" disabled>ENTER VR</button>
   <button id="howbtn" class="menurow">HOW TO RIDE</button>
   <div id="vrnote">checking WebXR…</div>
-  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.1</div>
+  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.2 · PAD FIRST</div>
+</div>
+<div id="padgate" class="panel" style="position:fixed;top:110px;left:50%;transform:translateX(-50%);text-align:center;z-index:40;max-width:520px;width:calc(100% - 48px)">
+  <div style="font-size:19px;font-weight:900;color:#19E3FF">🎮 XBOX PAD FIRST</div>
+  <div id="padgate-msg" style="margin-top:4px">Press any button on your Xbox pad to link it…</div>
+  <button id="padskip" class="menurow" style="margin-top:8px">NO PAD — USE TOUCH / KEYS</button>
 </div>
 <div id="errbar" class="panel"><span class="x" id="errx">✕</span><b>⚠ LAST ERROR</b><pre id="errtxt"></pre></div>
 <div id="introcard">
@@ -1458,11 +1465,12 @@ function comfortFrame(speed, turnRate) {
 
 /* ============ game state + JSRF verbs (port of SceneActivity.handlePad) ============ */
 const G = {
-  state: 'menu',            // 'menu' turntable → 'intro' → 'digitize' → 'ride'
+  state: 'padgate',         // 'padgate' (Xbox pad first) → 'menu' turntable → 'intro' → 'digitize' → 'ride'
   introT: 0, beat: -1, digT: 0,
   cans: 20, tags: 0, boostTime: 0, sprayClock: 0, jumpCutArmed: false,
   flash: '', flashUntil: 0, camYaw: 0, snapYaw: 0, turnRate: 0,
   xrBtn: { R: [], L: [] }, keys: {}, spraying: false,
+  padBtn: [], padIndex: -1, padId: '', padLinked: false, gateDone: false, padAHeld: false,
 };
 const CAN_CAP = 35, BOOST_COST = 10;
 const GRIND_TRICKS = ['Soul', 'Makio', 'Mizou', 'Acid', 'Royale'];
@@ -1581,6 +1589,91 @@ function pollXR() {
   }
   return inp;
 }
+/* ============ input: standard Gamepad API — Xbox pad first (Xbox-cloud style) ============
+   Why: WebXR inputSources only ever carry the headset's own Touch controllers — a
+   Bluetooth Xbox pad is a "traditional gamepad" and, per the WebXR spec, is NOT an XR
+   input source. It reaches the page through the standard Gamepad API instead. Browsers
+   hide pads until the player presses a button on them (anti-fingerprinting rule), which
+   is exactly why Xbox Cloud Gaming makes you wake the pad first — so the game now opens
+   on a pad gate: link the pad, THEN ride. Standard mapping: 0 A · 1 B · 2 X · 3 Y ·
+   4 LB · 5 RB · 6 LT · 7 RT · axes 0/1 left stick · 12–15 D-pad. */
+function padSnapshot() {
+  if (!navigator.getGamepads) return null;
+  const pads = navigator.getGamepads();
+  for (const gp of pads) { if (gp && gp.connected) return gp; }
+  return null;
+}
+function padAnyInput(gp) {
+  if (!gp) return false;
+  for (const b of gp.buttons) if (b.pressed || b.value > 0.35) return true;
+  for (const a of gp.axes) if (Math.abs(a) > 0.35) return true;
+  return false;
+}
+function openGate(how) {
+  if (G.gateDone) return;
+  G.gateDone = true; G.state = 'menu';
+  const pg = document.getElementById('padgate'); if (pg) pg.style.display = 'none';
+  setFlash(how === 'pad' ? 'XBOX PAD LINKED — PRESS A TO RIDE' : 'TOUCH / KEYBOARD MODE — PRESS A TO RIDE', 2.4);
+}
+function linkPad(gp) {
+  G.padIndex = gp.index; G.padId = gp.id || 'gamepad'; G.padLinked = true;
+  openGate('pad');
+}
+window.addEventListener('gamepadconnected', e => { G.padIndex = e.gamepad.index; G.padId = e.gamepad.id; });
+window.addEventListener('gamepaddisconnected', e => {
+  if (e.gamepad.index === G.padIndex) {
+    G.padLinked = false; G.padIndex = -1;
+    if (G.state === 'ride') setFlash('PAD DROPPED — TOUCH / KEYS STILL LIVE', 2.2);
+  }
+});
+function pollPadGate() {
+  const gp = padSnapshot();
+  if (gp && padAnyInput(gp)) { linkPad(gp); return; }
+  const session = renderer.xr.getSession();           // Touch press inside VR also opens the gate
+  if (session) for (const src of session.inputSources) {
+    if (src.gamepad && src.gamepad.buttons.some(b => b.pressed)) { openGate('touch'); return; }
+  }
+}
+function pollPad() {
+  const inp = { throttle: 0, steer: 0, spraying: false, active: false };
+  const gp = padSnapshot();
+  if (!gp) return inp;
+  if (!G.padLinked && padAnyInput(gp)) linkPad(gp);
+  const prev = G.padBtn;
+  const btn = i => (gp.buttons[i] ? gp.buttons[i].pressed : false);
+  const edge = i => btn(i) && !prev[i];
+  const lx = gp.axes[0] || 0, ly = gp.axes[1] || 0;
+  if (Math.abs(ly) > 0.12) { inp.throttle = -ly; inp.active = true; }
+  if (Math.abs(lx) > 0.12) { inp.steer = lx; inp.active = true; }
+  if (btn(12)) { inp.throttle = 1; inp.active = true; }    // D-pad up
+  if (btn(13)) { inp.throttle = -1; inp.active = true; }   // D-pad down
+  if (btn(14)) { inp.steer = -1; inp.active = true; }      // D-pad left
+  if (btn(15)) { inp.steer = 1; inp.active = true; }       // D-pad right
+  if (edge(0)) { if (G.state === 'menu') enterRide(false); else if (G.state === 'intro') skipIntro(); else if (G.state === 'ride') doJumpPress(); G.padAHeld = true; }  // A
+  if (!btn(0) && G.padAHeld) { doJumpRelease(); G.padAHeld = false; }
+  if (edge(1)) { if (G.state === 'menu') startCampaign(); else if (G.state === 'ride') doBoost(); }  // B
+  if (edge(2) && G.state === 'ride') doTrick();            // X
+  if (edge(3) && G.state === 'ride') doTurn180();          // Y
+  if (edge(4)) doSnap(1);                                  // LB — snap left
+  if (edge(5)) doSnap(-1);                                 // RB — snap right
+  if ((gp.buttons[6] ? gp.buttons[6].value : 0) > 0.35 && !prev.lt) { doRecenter(); prev.lt = true; }   // LT — camera reset
+  if ((gp.buttons[6] ? gp.buttons[6].value : 0) <= 0.35) prev.lt = false;
+  if ((gp.buttons[7] ? gp.buttons[7].value : 0) > 0.35) inp.spraying = true;   // RT — spray
+  if (inp.spraying) inp.active = true;
+  for (let i = 0; i < gp.buttons.length; i++) prev[i] = btn(i);
+  return inp;
+}
+{ const b = document.getElementById('padskip');
+  if (b) b.onclick = () => openGate('touch'); }
+setInterval(() => {
+  if (G.gateDone) return;
+  const m = document.getElementById('padgate-msg'); if (!m) return;
+  const gp = padSnapshot();
+  m.textContent = gp
+    ? 'Pad found: ' + String(gp.id).slice(0, 44) + ' — press any button to link it'
+    : 'Press any button on your Xbox pad to link it… (the browser hides pads until you press one — same rule Xbox Cloud Gaming uses)';
+}, 400);
+
 const KEYS = {};
 window.addEventListener('keydown', e => {
   if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) e.preventDefault();
@@ -1643,7 +1736,10 @@ function drawHUD(now) {
   g.fillText(`CANS ${G.cans}/${CAN_CAP} · TAGS ${G.tags}/16`, 256, 58);
   g.fillStyle = '#19E3FF'; g.font = '900 30px "Arial Black", sans-serif';
   g.fillText(`CHAIN ${E.chain} · ${kmh} KM/H`, 256, 100);
-  if (G.state === 'menu') {
+  if (G.state === 'padgate') {
+    g.fillStyle = '#FF2E88'; g.font = '900 25px "Arial Black", sans-serif';
+    g.fillText('PRESS ANY XBOX PAD BUTTON', 256, 152);
+  } else if (G.state === 'menu') {
     g.fillStyle = '#19E3FF'; g.font = '900 20px "Arial Black", sans-serif';
     g.fillText('B — CAMPAIGN', 256, 124);
     g.fillStyle = '#FF2E88'; g.font = '900 30px "Arial Black", sans-serif';
@@ -1751,16 +1847,19 @@ function animate() {
   const presenting = renderer.xr.isPresenting;
   /* input */
   let inp = { throttle: 0, steer: 0, spraying: false };
-  if (G.state === 'ride') {
+  if (G.state === 'padgate') { pollPadGate(); pollPad(); }
+  else if (G.state === 'ride') {
+    const padInp = pollPad();
     inp = presenting ? pollXR() : desktopInput();
-    if (presenting) { const dk = desktopInput(); if (dk.throttle || dk.steer) inp = dk; } // keyboard still works in VR desktop mirror
+    if (padInp.active) inp = padInp;                       // the Xbox pad wins whenever it's live
+    if (presenting && !padInp.active) { const dk = desktopInput(); if (dk.throttle || dk.steer) inp = dk; } // keyboard still works in VR desktop mirror
     E.throttle = inp.throttle; G.spraying = inp.spraying;
     const prevYaw = E.yaw;
     E.yaw -= inp.steer * 2.4 * dt * (1 - clamp(hSpeed() / 90, 0, 0.45));                  // steering
     G.turnRate = dt > 0 ? (E.yaw - prevYaw) / dt : 0;
     if (!presenting) G.camYaw = E.yaw + (G.camYaw - E.yaw);                               // desktop cam stays mouse-owned
     gameLogic(dt);
-  } else if (presenting) pollXR();                                                        // menu: listen for A
+  } else { if (presenting) pollXR(); pollPad(); }                                       // menu/intro: listen for A on Touch AND on the pad
   /* physics */
   if (G.state === 'ride') {
     physAcc += dt;
@@ -1792,7 +1891,7 @@ function animate() {
   fpsFrames++; fpsTime += dt;
   if (fpsTime > 0.5) {
     document.getElementById('status').textContent =
-      (G.state === 'ride' ? 'RIDING' : 'MENU — rider on the turntable') +
+      (G.state === 'ride' ? 'RIDING' : (G.state === 'padgate' ? 'PAD GATE — press any Xbox pad button' : 'MENU — rider on the turntable')) +
       ` · ${Math.round(fpsFrames / fpsTime)} fps · ${presenting ? 'XR' : 'desktop'}`;
     fpsFrames = 0; fpsTime = 0;
   }
@@ -1803,7 +1902,7 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
-document.getElementById('status').textContent = 'MENU — rider on the turntable';
+document.getElementById('status').textContent = 'PAD GATE — press any Xbox pad button';
 
 /* ============ WebXR session wiring ============ */
 (async () => {
@@ -1812,7 +1911,7 @@ document.getElementById('status').textContent = 'MENU — rider on the turntable
   try {
     const ok = await navigator.xr.isSessionSupported('immersive-vr');
     if (!ok) { note.textContent = 'Immersive VR not supported here — desktop mode works. On the Quest, use the Quest Browser.'; return; }
-    btn.disabled = false; note.textContent = 'VR ready — put the headset on, ENTER VR, then press A to ride.';
+    btn.disabled = false; note.textContent = 'VR ready — link the Xbox pad first (press any button on it), ENTER VR, then press A to ride. Quest tip: Settings → Devices → Gamepad → turn the gaze cursor OFF, or the pad can look dead.';
     btn.onclick = async () => {
       try {
         const session = await navigator.xr.requestSession('immersive-vr', { optionalFeatures: ['local-floor'] });
