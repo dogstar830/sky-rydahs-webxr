@@ -98,6 +98,19 @@
     display:none; z-index:50; }
   #errbar .x { float:right; cursor:pointer; font-weight:900; color:#fff; }
   #errbar pre { white-space:pre-wrap; margin:4px 0 0; font-size:11.5px; }
+  .menurow.padfocus { background:#2AFF4A; color:#08130a; border-left-color:#F4F8FF;
+    text-shadow:none; transform:translateX(8px); outline:none; }
+  #objective { top:12px; left:50%; transform:translateX(-50%); z-index:11; display:none;
+    font-size:13.5px; font-weight:800; letter-spacing:1.5px; color:#BFFFC9; border-color:#2AFF4A;
+    box-shadow:0 0 18px rgba(42,255,74,.35); white-space:nowrap; }
+  #pause { position:fixed; inset:0; z-index:30; display:none; background:rgba(4,6,16,.55); }
+  #pause .pbox { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:380px; max-width:calc(100vw - 48px);
+    background:rgba(8,12,28,.92); border:2px solid #19E3FF; border-radius:10px; padding:22px 24px;
+    box-shadow:0 0 30px rgba(25,227,255,.4); }
+  #pause h2 { margin:0 0 4px; font-family:"Arial Black",sans-serif; font-style:italic; font-size:30px; color:#F4F8FF;
+    text-shadow:3px 3px 0 #2AFF4A; }
+  #pause .psub { font-size:12px; letter-spacing:2px; color:#FFC21A; margin-bottom:16px; }
+  #pause .menurow { width:100%; max-width:none; font-size:23px; }
 </style>
 </head>
 <body>
@@ -110,9 +123,12 @@
   <div id="status">loading…</div>
 </div>
 <div id="hudline" class="panel">CANS 20/35 · TAGS 0/16<span class="flash" id="domflash"></span></div>
+<div id="objective" class="panel"></div>
 <div id="controls" class="panel" style="display:none"><span class="x" id="ctrlx">✕</span>
-  <b>Xbox pad (standard):</b> Left stick ride/steer · <b>A</b> kick+jump (hold = higher) · <b>B</b> Boost Dash (10 cans) ·
-  <b>X</b> trick · <b>Y</b> 180° · <b>RT</b> spray · <b>LT</b> camera reset · <b>LB/RB</b> snap turn · D-pad rides too<br>
+  <b>Xbox pad (2D Xbox mode):</b> Left stick ride (push where you want to go) · Right stick camera ·
+  <b>A</b> kick+jump (hold = higher) · <b>B</b> Boost Dash (10 cans) · <b>X</b> trick · <b>Y</b> 180° ·
+  <b>RT</b> spray · <b>LT</b> camera reset · <b>LB/RB</b> snap turn · <b>Menu</b> pause · D-pad works too.
+  Menus: stick/D-pad moves the green focus, <b>A</b> selects, <b>B</b> goes back<br>
   <b>VR (Touch):</b> Left stick ride/steer · <b>A</b> kick+jump (hold = higher) · <b>B</b> Boost Dash (10 cans) ·
   <b>X</b> trick · <b>Y</b> 180° · <b>RT</b> spray (hold at a pink spot) · <b>LT</b> camera reset ·
   <b>Squeeze L/R</b> snap turn 30°<br>
@@ -125,13 +141,22 @@
   <button id="vrbtn" class="menurow" disabled>ENTER VR</button>
   <button id="howbtn" class="menurow">HOW TO RIDE</button>
   <div id="vrnote">checking WebXR…</div>
-  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.2 · PAD FIRST</div>
+  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.3 · XBOX MODE</div>
 </div>
 <div id="padgate" class="panel" style="position:fixed;top:110px;left:50%;transform:translateX(-50%);text-align:center;z-index:40;max-width:520px;width:calc(100% - 48px)">
   <div style="font-size:19px;font-weight:900;color:#19E3FF">🎮 XBOX PAD FIRST</div>
   <div id="padgate-msg" style="margin-top:4px">Press any button on your Xbox pad to link it…</div>
   <button id="padskip" class="menurow" style="margin-top:8px">NO PAD — USE TOUCH / KEYS</button>
+  <div style="margin-top:8px;font-size:12px;color:#9fdcff">2D XBOX MODE: the pad plays right here in the browser panel — that's exactly how Xbox Cloud Gaming runs on Quest. ENTER VR is optional (Touch controllers).</div>
 </div>
+<div id="pause"><div class="pbox">
+  <h2>PAUSED</h2>
+  <div class="psub">SKY RYDAH'S · PORTSIDE TERMINAL</div>
+  <button id="resumeBtn" class="menurow">RESUME</button>
+  <button id="restartBtn" class="menurow">RESTART RUN</button>
+  <button id="pcontrolsBtn" class="menurow">CONTROLS</button>
+  <button id="quitBtn" class="menurow">QUIT TO MENU</button>
+</div></div>
 <div id="errbar" class="panel"><span class="x" id="errx">✕</span><b>⚠ LAST ERROR</b><pre id="errtxt"></pre></div>
 <div id="introcard">
   <div id="ic-kicker">PALMA CITY // TRANSMISSION</div>
@@ -1471,6 +1496,7 @@ const G = {
   flash: '', flashUntil: 0, camYaw: 0, snapYaw: 0, turnRate: 0,
   xrBtn: { R: [], L: [] }, keys: {}, spraying: false,
   padBtn: [], padIndex: -1, padId: '', padLinked: false, gateDone: false, padAHeld: false,
+  paused: false, lastDev: 'pad', bestChain: 0,
 };
 const CAN_CAP = 35, BOOST_COST = 10;
 const GRIND_TRICKS = ['Soul', 'Makio', 'Mizou', 'Acid', 'Royale'];
@@ -1486,7 +1512,7 @@ function doJumpRelease() {
 }
 function doBoost() {
   if (G.boostTime > 0) return;
-  if (G.cans >= BOOST_COST) { G.cans -= BOOST_COST; G.boostTime = 1.2; setFlash('BOOST DASH — 10 cans burn'); }
+  if (G.cans >= BOOST_COST) { G.cans -= BOOST_COST; G.boostTime = 1.2; setFlash('BOOST DASH — 10 cans burn'); objDone('boost'); }
   else setFlash('NEED 10 CANS TO BOOST');
 }
 function doTrick() {
@@ -1533,7 +1559,7 @@ function gameLogic(dt) {
     if (G.sprayClock >= 0.6) {
       G.sprayClock = 0;
       if (G.cans >= spot.cans) {
-        G.cans -= spot.cans; spot.claimed = true; G.tags++;
+        G.cans -= spot.cans; spot.claimed = true; G.tags++; objDone('tag'); saveGame();
         spot.mesh.material.map = graffitiTex[spot.s];
         spot.mesh.material.opacity = 1; spot.mesh.material.needsUpdate = true;
         setFlash(`TAGGED! ${G.tags}/16 — turf claimed`, 2);
@@ -1634,35 +1660,180 @@ function pollPadGate() {
     if (src.gamepad && src.gamepad.buttons.some(b => b.pressed)) { openGate('touch'); return; }
   }
 }
-function pollPad() {
-  const inp = { throttle: 0, steer: 0, spraying: false, active: false };
+/* ============ XBOX MODE input core (v0.3) ============
+   The game now boots and plays like a 2D Xbox game — the Xbox Cloud Gaming
+   model: a flat game surface in the browser panel, one standard pad, focus-
+   navigated menus, Menu = pause. Movement is camera-relative twin-stick
+   (push the left stick where you want to go; right stick works the camera),
+   not tank steering. In immersive VR the pad is still polled every frame and
+   wins whenever the browser passes it through; Touch stays the VR guarantee
+   (Quest Browser is known to sometimes drop standard pads inside immersive
+   sessions — a browser behavior no page can override). */
+function angWrap(a) { while (a > Math.PI) a -= Math.PI * 2; while (a < -Math.PI) a += Math.PI * 2; return a; }
+function angStep(cur, target, maxStep) { const d = angWrap(target - cur); return cur + clamp(d, -maxStep, maxStep); }
+function curveAxis(v) { const sgn = Math.sign(v), a = Math.abs(v); return sgn * Math.pow(a, 1.35); }
+function padRead() {
   const gp = padSnapshot();
-  if (!gp) return inp;
+  if (!gp) return null;
   if (!G.padLinked && padAnyInput(gp)) linkPad(gp);
+  return gp;
+}
+/* ---- objectives: the Xbox-style guided first run ---- */
+const OBJECTIVES = [
+  { id: 'ride', text: 'LEFT STICK — RIDE THE TERMINAL' },
+  { id: 'jump', text: 'A — KICK + JUMP' },
+  { id: 'tag', text: 'HOLD RT AT A PINK SPOT — CLAIM TURF' },
+  { id: 'boost', text: 'B — BOOST DASH (10 CANS)' },
+];
+const objFlags = { ride: false, jump: false, tag: false, boost: false };
+function objDone(id) { if (!objFlags[id]) { objFlags[id] = true; setFlash('OBJECTIVE DONE ✓', 1.5); } }
+function currentObjective() { for (const o of OBJECTIVES) if (!objFlags[o.id]) return o; return null; }
+/* ---- save: claimed turf + best chain persist between sessions (Quick-Resume feel) ---- */
+const SAVE_KEY = 'skyrydahs-save-v1';
+function saveGame() {
+  try {
+    const claimed = []; TAG_SPOTS.forEach((t, i) => { if (t.claimed) claimed.push(i); });
+    G.bestChain = Math.max(G.bestChain || 0, E.chain);
+    localStorage.setItem(SAVE_KEY, JSON.stringify({ best: G.bestChain, claimed }));
+  } catch (e) { /* storage unavailable — session-only play */ }
+}
+function loadGame() {
+  try {
+    const sv = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); if (!sv) return;
+    G.bestChain = sv.best || 0;
+    (sv.claimed || []).forEach(i => {
+      const t = TAG_SPOTS[i];
+      if (t && !t.claimed) {
+        t.claimed = true; G.tags++;
+        t.mesh.material.map = graffitiTex[t.s]; t.mesh.material.opacity = 1; t.mesh.material.needsUpdate = true;
+      }
+    });
+    if (G.tags) setFlash('TURF RESTORED — ' + G.tags + '/16 TAGS STILL YOURS', 2.6);
+  } catch (e) { /* fresh start */ }
+}
+/* ---- focus navigation (Xbox XY-focus, simplified to a vertical list) ---- */
+const MENU_ITEMS = ['campbtn', 'startbtn', 'vrbtn', 'howbtn'];
+const PAUSE_ITEMS = ['resumeBtn', 'restartBtn', 'pcontrolsBtn', 'quitBtn'];
+let menuFocus = 1, pauseFocus = 0;
+function paintFocus(list, idx) {
+  list.forEach((id, i) => { const el = document.getElementById(id); if (el) el.classList.toggle('padfocus', i === idx); });
+}
+function moveFocus(list, idx, dir) {
+  let i = idx;
+  for (let n = 0; n < list.length; n++) {
+    i = (i + dir + list.length) % list.length;
+    const el = document.getElementById(list[i]);
+    if (el && !el.disabled) break;
+  }
+  paintFocus(list, i); return i;
+}
+function navStep(gp, prev, list, idx) {
+  const btn = i => (gp.buttons[i] ? gp.buttons[i].pressed : false);
+  const edge = i => btn(i) && !prev[i];
+  const ly = gp.axes[1] || 0;
+  if (edge(12) || (ly < -0.6 && !prev.lyUp)) idx = moveFocus(list, idx, -1);
+  if (edge(13) || (ly > 0.6 && !prev.lyDn)) idx = moveFocus(list, idx, 1);
+  prev.lyUp = ly < -0.6; prev.lyDn = ly > 0.6;
+  return { idx, aEdge: edge(0), bEdge: edge(1) };
+}
+function consumePadEdges(gp) { const prev = G.padBtn; for (let i = 0; i < gp.buttons.length; i++) prev[i] = gp.buttons[i] ? gp.buttons[i].pressed : false; }
+/* ---- ride verbs (edges), shared by 2D and VR pad paths ---- */
+function padVerbs(gp) {
   const prev = G.padBtn;
   const btn = i => (gp.buttons[i] ? gp.buttons[i].pressed : false);
   const edge = i => btn(i) && !prev[i];
-  const lx = gp.axes[0] || 0, ly = gp.axes[1] || 0;
-  if (Math.abs(ly) > 0.12) { inp.throttle = -ly; inp.active = true; }
-  if (Math.abs(lx) > 0.12) { inp.steer = lx; inp.active = true; }
-  if (btn(12)) { inp.throttle = 1; inp.active = true; }    // D-pad up
-  if (btn(13)) { inp.throttle = -1; inp.active = true; }   // D-pad down
-  if (btn(14)) { inp.steer = -1; inp.active = true; }      // D-pad left
-  if (btn(15)) { inp.steer = 1; inp.active = true; }       // D-pad right
-  if (edge(0)) { if (G.state === 'menu') enterRide(false); else if (G.state === 'intro') skipIntro(); else if (G.state === 'ride') doJumpPress(); G.padAHeld = true; }  // A
+  if (edge(0)) { if (G.state === 'ride') { doJumpPress(); objDone('jump'); } G.padAHeld = true; }   // A
   if (!btn(0) && G.padAHeld) { doJumpRelease(); G.padAHeld = false; }
-  if (edge(1)) { if (G.state === 'menu') startCampaign(); else if (G.state === 'ride') doBoost(); }  // B
-  if (edge(2) && G.state === 'ride') doTrick();            // X
-  if (edge(3) && G.state === 'ride') doTurn180();          // Y
-  if (edge(4)) doSnap(1);                                  // LB — snap left
-  if (edge(5)) doSnap(-1);                                 // RB — snap right
-  if ((gp.buttons[6] ? gp.buttons[6].value : 0) > 0.35 && !prev.lt) { doRecenter(); prev.lt = true; }   // LT — camera reset
+  if (edge(1) && G.state === 'ride') doBoost();                                                     // B
+  if (edge(2) && G.state === 'ride') doTrick();                                                     // X
+  if (edge(3) && G.state === 'ride') doTurn180();                                                   // Y
+  if (edge(4)) doSnap(1);                                                                           // LB
+  if (edge(5)) doSnap(-1);                                                                          // RB
+  if ((gp.buttons[6] ? gp.buttons[6].value : 0) > 0.35 && !prev.lt) { doRecenter(); prev.lt = true; }  // LT
   if ((gp.buttons[6] ? gp.buttons[6].value : 0) <= 0.35) prev.lt = false;
-  if ((gp.buttons[7] ? gp.buttons[7].value : 0) > 0.35) inp.spraying = true;   // RT — spray
-  if (inp.spraying) inp.active = true;
-  for (let i = 0; i < gp.buttons.length; i++) prev[i] = btn(i);
-  return inp;
+  if (edge(9)) togglePause();                                                                       // Menu
+  const spray = (gp.buttons[7] ? gp.buttons[7].value : 0) > 0.35;                                  // RT
+  consumePadEdges(gp);
+  return spray;
 }
+function pollPadRide(dt, presenting) {
+  const gp = padRead(); if (!gp) return null;
+  const spray = padVerbs(gp);
+  const lx = curveAxis(gp.axes[0] || 0), ly = curveAxis(gp.axes[1] || 0);
+  if (presenting) {                                    // legacy tank mapping if the browser passes the pad in VR
+    const th = Math.abs(ly) > 0.1 ? -ly : 0, st = Math.abs(lx) > 0.1 ? lx : 0;
+    return { throttle: th, steer: st, spraying: spray, active: !!(th || st || spray) };
+  }
+  /* 2D Xbox mode: right stick = camera */
+  const rx = gp.axes[2] || 0, ry = gp.axes[3] || 0;
+  if (Math.abs(rx) > 0.12) { G.camYaw -= rx * 2.4 * dt; G.lastDev = 'pad'; }
+  if (Math.abs(ry) > 0.12) { pitchOff = clamp(pitchOff - ry * 1.4 * dt, -0.5, 0.75); }
+  let ix = lx, iz = -ly;
+  if (gp.buttons[12] && gp.buttons[12].pressed) iz = 1;
+  if (gp.buttons[13] && gp.buttons[13].pressed) iz = -1;
+  if (gp.buttons[14] && gp.buttons[14].pressed) ix = -1;
+  if (gp.buttons[15] && gp.buttons[15].pressed) ix = 1;
+  const mag = Math.hypot(ix, iz);
+  if (mag > 0.16) {
+    const d = { x: -Math.sin(G.camYaw), z: -Math.cos(G.camYaw) };       // camera forward
+    const r = { x: -d.z, z: d.x };                                      // camera right
+    const wx = d.x * iz + r.x * ix, wz = d.z * iz + r.z * ix;
+    G.lastDev = 'pad';
+    return { yaw: Math.atan2(-wx, -wz), mag: Math.min(1, mag), spraying: spray, active: true };
+  }
+  return { yaw: E.yaw, mag: 0, spraying: spray, active: !!spray };
+}
+function pollPadMenu() {
+  const gp = padRead(); if (!gp) return;
+  if (G.state === 'intro') {                           // A skips the intro, same as Touch
+    const prev = G.padBtn, a = gp.buttons[0] ? gp.buttons[0].pressed : false;
+    if (a && !prev[0]) skipIntro();
+    consumePadEdges(gp); return;
+  }
+  if (G.state !== 'menu') { consumePadEdges(gp); return; }
+  const nav = navStep(gp, G.padBtn, MENU_ITEMS, menuFocus); menuFocus = nav.idx;
+  if (nav.aEdge) { const el = document.getElementById(MENU_ITEMS[menuFocus]); if (el && !el.disabled) el.click(); }
+  if (nav.bEdge) { const c = document.getElementById('controls'); if (c.style.display !== 'none') c.style.display = 'none'; }
+  consumePadEdges(gp);
+}
+function pollPadPause() {
+  const gp = padRead(); if (!gp) return;
+  const prev = G.padBtn;
+  const btn = i => (gp.buttons[i] ? gp.buttons[i].pressed : false);
+  if (btn(9) && !prev[9]) { consumePadEdges(gp); togglePause(); return; }
+  const nav = navStep(gp, prev, PAUSE_ITEMS, pauseFocus); pauseFocus = nav.idx;
+  if (nav.aEdge) pauseAction(PAUSE_ITEMS[pauseFocus]);
+  if (nav.bEdge) togglePause();
+  consumePadEdges(gp);
+}
+/* ---- pause (Xbox shell: Menu button freezes the run, focus list, B resumes) ---- */
+function togglePause() {
+  if (G.state !== 'ride') return;
+  G.paused = !G.paused;
+  document.getElementById('pause').style.display = G.paused ? 'block' : 'none';
+  if (G.paused) { pauseFocus = 0; paintFocus(PAUSE_ITEMS, 0); saveGame(); }
+}
+function pauseAction(id) {
+  if (id === 'resumeBtn') togglePause();
+  else if (id === 'restartBtn') { resetRun(); togglePause(); }
+  else if (id === 'pcontrolsBtn') { const c = document.getElementById('controls'); c.style.display = c.style.display === 'none' ? '' : 'none'; }
+  else if (id === 'quitBtn') quitToMenu();
+}
+function resetRun() {
+  E.px = 0; E.py = 0; E.pz = 2; E.vx = E.vy = E.vz = 0; E.yaw = 0; E.contact = 'GROUND'; resetChain();
+  G.cans = 20; G.boostTime = 0; doRecenter(); setFlash('BACK AT THE GARAGE — RUN RESET', 1.6);
+}
+function quitToMenu() {
+  G.paused = false; document.getElementById('pause').style.display = 'none';
+  resetRun(); G.state = 'menu'; titlePanel.visible = true; cardPanel.visible = false;
+  document.getElementById('status').textContent = 'MENU — rider on the turntable';
+}
+['resumeBtn', 'restartBtn', 'pcontrolsBtn', 'quitBtn'].forEach(id => {
+  const el = document.getElementById(id); if (el) el.onclick = () => pauseAction(id);
+});
+paintFocus(MENU_ITEMS, menuFocus);
+loadGame();   // after SAVE_KEY + TAG_SPOTS exist — restores claimed turf + best chain
+
 { const b = document.getElementById('padskip');
   if (b) b.onclick = () => openGate('touch'); }
 setInterval(() => {
@@ -1678,8 +1849,11 @@ const KEYS = {};
 window.addEventListener('keydown', e => {
   if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) e.preventDefault();
   if (e.repeat) return; KEYS[e.code] = true;
+  if (e.code === 'Escape' || e.code === 'KeyP') { togglePause(); return; }
+  if (G.state === 'menu' && e.code === 'ArrowDown') { menuFocus = moveFocus(MENU_ITEMS, menuFocus, 1); return; }
+  if (G.state === 'menu' && e.code === 'ArrowUp') { menuFocus = moveFocus(MENU_ITEMS, menuFocus, -1); return; }
   if (G.state === 'intro' && (e.code === 'Space' || e.code === 'Enter')) skipIntro();
-  else if (G.state === 'menu' && (e.code === 'Space' || e.code === 'Enter')) enterRide(false);
+  else if (G.state === 'menu' && (e.code === 'Space' || e.code === 'Enter')) { const el = document.getElementById(MENU_ITEMS[menuFocus]); if (el && !el.disabled) el.click(); }
   else if (G.state === 'ride') {
     if (e.code === 'Space') doJumpPress();
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') doBoost();
@@ -1697,6 +1871,19 @@ renderer.domElement.addEventListener('click', () => {
 document.addEventListener('mousemove', e => {
   if (document.pointerLockElement === renderer.domElement) { mouseDX += e.movementX; mouseDY += e.movementY; }
 });
+function keyboardDrive() {
+  let ix = 0, iz = 0;
+  if (KEYS['KeyW'] || KEYS['ArrowUp']) iz += 1;
+  if (KEYS['KeyS'] || KEYS['ArrowDown']) iz -= 1;
+  if (KEYS['KeyA'] || KEYS['ArrowLeft']) ix -= 1;
+  if (KEYS['KeyD'] || KEYS['ArrowRight']) ix += 1;
+  if (!ix && !iz) return null;
+  G.lastDev = 'keys';
+  const d = { x: -Math.sin(G.camYaw), z: -Math.cos(G.camYaw) };
+  const r = { x: -d.z, z: d.x };
+  const wx = d.x * iz + r.x * ix, wz = d.z * iz + r.z * ix;
+  return { yaw: Math.atan2(-wx, -wz), mag: 1, spraying: !!KEYS['KeyF'] };
+}
 function desktopInput() {
   const inp = { throttle: 0, steer: 0, spraying: !!KEYS['KeyF'] };
   if (KEYS['KeyW'] || KEYS['ArrowUp']) inp.throttle = 1;
@@ -1750,6 +1937,13 @@ function drawHUD(now) {
   } else if (G.state === 'digitize') {
     g.fillStyle = '#2AFF4A'; g.font = '900 26px "Arial Black", sans-serif';
     g.fillText('DIGITIZING…', 256, 152);
+  } else if (G.paused) {
+    g.fillStyle = '#FFC21A'; g.font = '900 30px "Arial Black", sans-serif';
+    g.fillText('❚❚ PAUSED', 256, 152);
+  } else if (G.state === 'ride' && G.sprayClock <= 0 && !(G.flash && now < G.flashUntil)) {
+    const ob = currentObjective();
+    g.fillStyle = '#7CFC00'; g.font = '900 20px "Arial Black", sans-serif';
+    g.fillText(ob ? '▸ ' + ob.text : (G.padLinked ? 'XBOX PAD · LIVE — THE CITY IS YOURS' : 'ALL OBJECTIVES DONE ✓'), 256, 152);
   } else if (G.sprayClock > 0 && G.nearSpot) {
     g.fillStyle = '#0d1524'; g.fillRect(106, 128, 300, 16);
     g.fillStyle = '#FF2E88'; g.fillRect(106, 128, 300 * clamp(G.sprayClock / 0.6, 0, 1), 16);
@@ -1762,6 +1956,12 @@ function drawHUD(now) {
   document.getElementById('hudline').firstChild.textContent =
     `CANS ${G.cans}/${CAN_CAP} · TAGS ${G.tags}/16 · CHAIN ${E.chain} · ${kmh} KM/H`;
   document.getElementById('domflash').textContent = (G.flash && now < G.flashUntil) ? G.flash : '';
+  const obEl = document.getElementById('objective');
+  if (obEl) {
+    const ob = (G.state === 'ride' && !G.paused) ? currentObjective() : null;
+    obEl.style.display = ob ? 'block' : 'none';
+    if (ob) { const t = 'OBJECTIVE — ' + ob.text; if (obEl.textContent !== t) obEl.textContent = t; }
+  }
 }
 
 /* ============ state machine + camera ============ */
@@ -1818,7 +2018,7 @@ function updateCamera(dt) {
     return;
   }
   rider.position.set(E.px, E.py, E.pz);
-  rider.rotation.y = E.yaw;
+  rider.rotation.y = E.yaw + Math.PI;   // model is built facing +Z; physics forward is -Z — the +PI keeps his back to the chase cam (the v0.2 'skating backwards' bug)
   if (presenting) {
     /* VR third person: rig = rider anchor, yaw snaps only (comfort), fixed offset — no sway, no bob */
     camRig.position.set(E.px, E.py, E.pz);
@@ -1847,21 +2047,36 @@ function animate() {
   const presenting = renderer.xr.isPresenting;
   /* input */
   let inp = { throttle: 0, steer: 0, spraying: false };
-  if (G.state === 'padgate') { pollPadGate(); pollPad(); }
+  if (G.state === 'padgate') { pollPadGate(); }
+  else if (G.paused) { pollPadPause(); }
   else if (G.state === 'ride') {
-    const padInp = pollPad();
-    inp = presenting ? pollXR() : desktopInput();
-    if (padInp.active) inp = padInp;                       // the Xbox pad wins whenever it's live
-    if (presenting && !padInp.active) { const dk = desktopInput(); if (dk.throttle || dk.steer) inp = dk; } // keyboard still works in VR desktop mirror
-    E.throttle = inp.throttle; G.spraying = inp.spraying;
-    const prevYaw = E.yaw;
-    E.yaw -= inp.steer * 2.4 * dt * (1 - clamp(hSpeed() / 90, 0, 0.45));                  // steering
-    G.turnRate = dt > 0 ? (E.yaw - prevYaw) / dt : 0;
-    if (!presenting) G.camYaw = E.yaw + (G.camYaw - E.yaw);                               // desktop cam stays mouse-owned
+    if (presenting) {
+      inp = pollXR();
+      const pv = pollPadRide(dt, true);
+      if (pv && pv.active) inp = pv;                     // pad wins in VR whenever the browser passes it through
+      E.throttle = inp.throttle; G.spraying = inp.spraying;
+      const prevYaw = E.yaw;
+      E.yaw -= inp.steer * 2.4 * dt * (1 - clamp(hSpeed() / 90, 0, 0.45));
+      G.turnRate = dt > 0 ? (E.yaw - prevYaw) / dt : 0;
+    } else {
+      const drive = pollPadRide(dt, false) || keyboardDrive();
+      if (drive) {
+        if (drive.mag > 0.02) {
+          const turnRate = 3.6 - clamp(hSpeed() / 42, 0, 0.55) * 1.4;
+          E.yaw = angStep(E.yaw, drive.yaw, turnRate * dt);
+          E.throttle = drive.mag;
+          if (drive.mag > 0.25) objDone('ride');
+          if (G.lastDev === 'pad') G.camYaw = angStep(G.camYaw, E.yaw, 1.6 * dt);   // camera settles behind the rider, action-game style
+        } else E.throttle = 0;
+        G.spraying = !!drive.spraying;
+      } else { E.throttle = 0; G.spraying = !!KEYS['KeyF']; }
+      const prevYaw = E.yaw;
+      G.turnRate = dt > 0 ? (E.yaw - prevYaw) / dt : 0;
+    }
     gameLogic(dt);
-  } else { if (presenting) pollXR(); pollPad(); }                                       // menu/intro: listen for A on Touch AND on the pad
+  } else { if (presenting) pollXR(); pollPadMenu(); }    // menu/intro: Touch quick-start + pad focus navigation
   /* physics */
-  if (G.state === 'ride') {
+  if (G.state === 'ride' && !G.paused) {
     physAcc += dt;
     let n = 0;
     while (physAcc >= STEP && n < 10) { engineTick(STEP); physAcc -= STEP; n++; }
