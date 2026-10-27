@@ -144,7 +144,7 @@
   <button id="vrbtn" class="menurow" disabled>ENTER VR</button>
   <button id="howbtn" class="menurow">HOW TO RIDE</button>
   <div id="vrnote">checking WebXR…</div>
-  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.3.2 · XBOX MODE</div>
+  <div id="footer">A GR8YZONE STUDIOS PROTOTYPE · WEBXR v0.4 · MANGA DIMENSION</div>
 </div>
 <div id="padgate" class="panel" style="position:fixed;top:110px;left:50%;transform:translateX(-50%);text-align:center;z-index:40;max-width:520px;width:calc(100% - 48px)">
   <div style="font-size:19px;font-weight:900;color:#19E3FF">🎮 XBOX PAD FIRST</div>
@@ -560,6 +560,9 @@ for (const t of TAG_SPOTS) {
   t.mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h),
     new THREE.MeshBasicMaterial({ map: ghostTex, transparent: true, opacity: 0.9, side: THREE.DoubleSide }));
   t.mesh.position.set(t.x, t.y, t.z); t.mesh.rotation.y = t.ry; scene.add(t.mesh);
+  t.halo = new THREE.Mesh(new THREE.PlaneGeometry(w * 1.15, h * 1.15),
+    new THREE.MeshBasicMaterial({ color: 0x2AFF4A, transparent: true, opacity: 0, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false }));
+  t.halo.position.set(t.x, t.y, t.z); t.halo.rotation.y = t.ry; t.halo.translateZ(-0.03); scene.add(t.halo);
 }
 
 /* ============ can pickups: 25, Kotlin District layout (rings + ride lines) ============ */
@@ -628,13 +631,27 @@ function updateSparks(dt) {
 /* ============ THE RIDERS — code-built Storm Riders (skin sheet palette) ============ */
 /* base palette: black #111 · white #FFF · red #C62828 · electric green #2AFF4A.
    makeRider(palette) builds a full rig — player and menu crew share the builder. */
+function emblemTexture(color) {
+  const c = document.createElement('canvas'); c.width = c.height = 128;
+  const x = c.getContext('2d');
+  x.fillStyle = '#' + color.toString(16).padStart(6, '0');
+  x.beginPath();                       // swept double-wing glyph
+  x.moveTo(64, 78); x.quadraticCurveTo(30, 88, 8, 52); x.quadraticCurveTo(34, 58, 52, 52);
+  x.quadraticCurveTo(30, 40, 14, 30); x.quadraticCurveTo(44, 34, 58, 56);
+  x.lineTo(64, 66); x.lineTo(70, 56); x.quadraticCurveTo(84, 34, 114, 30);
+  x.quadraticCurveTo(98, 40, 76, 52); x.quadraticCurveTo(94, 58, 120, 52);
+  x.quadraticCurveTo(98, 88, 64, 78); x.fill();
+  x.beginPath(); x.arc(64, 84, 7, 0, Math.PI * 2); x.fill();
+  return new THREE.CanvasTexture(c);
+}
 function makeRider(P) {
   const M = {
     skin: toon(P.skin), hair: toon(P.hair), streak: toon(P.streak), beanie: toon(P.beanie),
     hoodie: toon(P.hoodie), sleeve: toon(P.sleeve), tee: toon(P.tee), pants: toon(P.pants),
     pocket: toon(P.pocket), glove: toon(0x101116), boot: toon(0x20222b), bootWhite: toon(0xe8ecf2),
-    red: toon(P.accent), wheel: toon(0x0c0d12),
+    red: toon(P.accent), wheel: toon(0x0c0d12), metal: toon(0x2a2d38),
     glow: emissive(P.glow, 1.8), bolt: emissive(P.accent, 0.9),
+    scarf: P.scarf ? toon(P.scarf) : null,
   };
   const part = (geo, mat, parent, x = 0, y = 0, z = 0) => {
     const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); parent.add(m); return m;
@@ -649,11 +666,22 @@ function makeRider(P) {
   part(B(0.16, 0.4, 0.02), M.tee, torsoG, 0, 0.32, 0.145);                  // tee showing at the open front
   part(B(0.3, 0.16, 0.05), M.hoodie, torsoG, 0, 0.08, 0.14);                // kangaroo pocket
   part(B(0.2, 0.14, 0.1), M.hoodie, torsoG, 0, 0.62, -0.15);                // hood lump
+  if (P.emblem !== false) {
+    const em = new THREE.Mesh(new THREE.PlaneGeometry(0.34, 0.34),
+      new THREE.MeshBasicMaterial({ map: emblemTexture(P.accent), transparent: true }));
+    em.position.set(0, 0.32, -0.145); em.rotation.y = Math.PI; torsoG.add(em);   // crew wing on the back
+  }
   if (P.detail) {
     part(new THREE.CylinderGeometry(0.012, 0.012, 0.16, 5), M.hoodie, torsoG, -0.05, 0.42, 0.15); // drawstrings
     part(new THREE.CylinderGeometry(0.012, 0.012, 0.16, 5), M.hoodie, torsoG, 0.05, 0.42, 0.15);
   }
   part(new THREE.CylinderGeometry(0.07, 0.08, 0.09, 8), M.skin, torsoG, 0, 0.63, 0); // neck
+  let scarfTail = null;
+  if (P.scarf) {
+    part(B(0.3, 0.09, 0.3), M.scarf, torsoG, 0, 0.585, -0.02);              // scarf wrap
+    scarfTail = new THREE.Group(); scarfTail.position.set(0.09, 0.56, -0.15); torsoG.add(scarfTail);
+    part(B(0.15, 0.36, 0.025), M.scarf, scarfTail, 0, -0.18, -0.02);        // tail — flutters with speed
+  }
 
   const head = new THREE.Group(); head.position.y = 0.72; torsoG.add(head);
   part(B(0.25, 0.29, 0.25), M.skin, head, 0, 0.1, 0);                      // face — determined
@@ -664,6 +692,12 @@ function makeRider(P) {
     const bn = part(new THREE.CylinderGeometry(0.155, 0.165, 0.13, 10), M.beanie, head, 0, 0.26, -0.01);
     bn.rotation.x = 0.1;
     part(B(0.035, 0.1, 0.012), M.bolt, head, 0.09, 0.26, 0.145).rotation.z = 0.5; // bolt emblem
+  }
+  if (P.goggles) {
+    part(B(0.27, 0.045, 0.27), M.glove, head, 0, 0.245, 0);                   // goggle strap
+    const gl1 = part(new THREE.CylinderGeometry(0.048, 0.048, 0.025, 10), M.bolt, head, -0.066, 0.26, 0.115);
+    const gl2 = part(new THREE.CylinderGeometry(0.048, 0.048, 0.025, 10), M.bolt, head, 0.066, 0.26, 0.115);
+    gl1.rotation.x = gl2.rotation.x = Math.PI / 2 - 0.25;                    // lenses pushed up on the forehead
   }
   /* hair variants bursting out from under the beanie (or bare) */
   const HAIRSTYLES = {
@@ -712,22 +746,74 @@ function makeRider(P) {
     const core = part(new THREE.CylinderGeometry(0.055, 0.055, 0.02, 10), M.glow, at, 0.075 * side, -0.06, 0.01);
     core.rotation.z = Math.PI / 2;                                         // glowing core
     part(B(0.012, 0.025, 0.3), M.glow, at, 0.068 * side, -0.02, 0.02);     // emissive glow line
+    /* AT-07 'Hover Edge' detail kit (Grok spec sheet): hub motors, power pack, vents, ratchet straps */
+    for (const wz of [0.15, -0.13]) {
+      const hub = part(new THREE.CylinderGeometry(0.052, 0.052, 0.075, 10), M.metal, at, 0, wz === 0.15 ? -0.115 : -0.1, wz);
+      hub.rotation.z = Math.PI / 2;                                        // in-wheel hub motor
+      const dot = part(new THREE.CylinderGeometry(0.02, 0.02, 0.08, 8), M.glow, at, 0, wz === 0.15 ? -0.115 : -0.1, wz);
+      dot.rotation.z = Math.PI / 2;
+    }
+    part(B(0.09, 0.05, 0.22), M.metal, at, 0, -0.155, 0.01);               // battery pack under the frame
+    part(B(0.02, 0.02, 0.1), M.glow, at, 0.055 * side, -0.155, 0.01);      // pack charge light
+    for (let i = 0; i < 3; i++) { const v = part(B(0.1, 0.012, 0.02), M.metal, at, 0, -0.01 + i * 0.032, -0.2); v.rotation.x = -0.4; }  // exhaust vents
+    part(B(0.14, 0.018, 0.055), M.glove, at, 0, 0.075, 0.13);              // ratchet straps
+    part(B(0.14, 0.018, 0.055), M.glove, at, 0, 0.075, -0.09);
+    part(B(0.05, 0.03, 0.06), M.bolt, at, 0.075 * side, 0.075, 0.13);      // strap buckle
+    const piv = part(new THREE.CylinderGeometry(0.034, 0.034, 0.14, 8), M.metal, at, 0, 0.06, 0);
+    piv.rotation.z = Math.PI / 2;                                          // ankle pivot joint
     return { hip, knee, at, wheels: [w1, w2] };
   }
-  return { group, body, hips: hipsG, torso: torsoG, headG: head,
-    armL: buildArm(-1), armR: buildArm(1), legL: buildLeg(-1), legR: buildLeg(1) };
+  const rig = { group, body, hips: hipsG, torso: torsoG, headG: head,
+    armL: buildArm(-1), armR: buildArm(1), legL: buildLeg(-1), legR: buildLeg(1),
+    glowMat: M.glow, scarfTail };
+  /* Manga Dimension ink: an inverted-hull outline on every solid part */
+  const inkMat = new THREE.MeshBasicMaterial({ color: 0x0b0b10, side: THREE.BackSide });
+  const meshes = []; group.traverse(o => { if (o.isMesh) meshes.push(o); });
+  for (const m of meshes) {
+    m.geometry.computeBoundingBox();
+    const bb = m.geometry.boundingBox;
+    if (Math.max(bb.max.x - bb.min.x, bb.max.y - bb.min.y, bb.max.z - bb.min.z) < 0.055) continue;
+    const ink = new THREE.Mesh(m.geometry, inkMat); ink.scale.setScalar(1.07); m.add(ink);
+  }
+  return rig;
 }
 /* the player rider — the original hero palette, parts aliased so poseRider is unchanged */
-const _hero = makeRider({ skin: 0xf0c8a0, hair: 0x14161f, streak: 0xdfe6ff, beanie: 0x111318,
-  hoodie: 0xf4f6f8, sleeve: 0x15161c, tee: 0x19E3FF, pants: 0x17181f, pocket: 0x232530,
-  accent: 0xC62828, glow: 0x2AFF4A, hairStyle: 'spiky', detail: true });
+const _hero = makeRider({ skin: 0xf0c8a0, hair: 0x14161f, streak: 0xdfe6ff, beanie: null,
+  hoodie: 0x2a1e3f, sleeve: 0x17121f, tee: 0xf4f6f8, pants: 0x55543c, pocket: 0x3f3e2c,
+  accent: 0x19E3FF, glow: 0x2AFF4A, hairStyle: 'spiky', detail: true, scarf: 0x7a4fd0, goggles: true });
 const rider = _hero.group, riderBody = _hero.body, hips = _hero.hips, torso = _hero.torso, headG = _hero.headG;
 const armL = _hero.armL, armR = _hero.armR, legL = _hero.legL, legR = _hero.legR;
 /* animation pose state (targets damped toward each frame — no allocation) */
 const pose = { hipsY: 0, torsoPitch: 0, torsoRoll: 0, headYaw: 0, bodyYaw: 0, lean: 0 };
+const heroGlowMat = _hero.glowMat, heroScarf = _hero.scarfTail;
+/* speed streaks — directional particles that wake past 13 u/s (Aesthetic Bible, motion language) */
+const STREAKS = (() => {
+  const N = 160; const pos = new Float32Array(N * 3); const vel = new Float32Array(N * 3); const life = new Float32Array(N);
+  for (let i = 0; i < N; i++) pos[i * 3 + 1] = -50;
+  const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const pts = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0x9ff5ff, size: 0.085, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false }));
+  pts.frustumCulled = false; scene.add(pts);
+  let head = 0;
+  return {
+    spawn(px, py, pz, vx, vy, vz) { const i = head; head = (head + 1) % N; pos.set([px, py, pz], i * 3); vel.set([vx, vy, vz], i * 3); life[i] = 0.32; },
+    update(dt) { for (let i = 0; i < N; i++) { if (life[i] <= 0) continue; life[i] -= dt; if (life[i] <= 0) { pos[i * 3 + 1] = -50; continue; } pos[i * 3] += vel[i * 3] * dt; pos[i * 3 + 1] += vel[i * 3 + 1] * dt; pos[i * 3 + 2] += vel[i * 3 + 2] * dt; } geo.attributes.position.needsUpdate = true; }
+  };
+})();
+function updateStreaks(dt) {
+  const sp = hSpeed();
+  if (G.state === 'ride' && sp > 13) {
+    const bx = E.px + Math.sin(E.yaw) * 0.4, bz = E.pz + Math.cos(E.yaw) * 0.4;
+    for (let k = 0; k < 2; k++) STREAKS.spawn(
+      bx + (Math.random() - 0.5) * 0.9, E.py + 0.4 + Math.random() * 1.1, bz + (Math.random() - 0.5) * 0.9,
+      Math.sin(E.yaw) * sp * 0.35, 0.3, Math.cos(E.yaw) * sp * 0.35);
+  }
+  STREAKS.update(dt);
+}
 let stridePhase = 0, kickTimer = 0, kickLeg = 1, trickTimer = 0, wheelSpin = 0;
 
 function poseRider(dt, S) {
+  if (heroScarf) heroScarf.rotation.x = -(0.25 + clamp(hSpeed() / 24, 0, 1) * 0.8) + Math.sin(stridePhase * 2.4) * 0.07;
+  if (heroGlowMat) heroGlowMat.emissiveIntensity = 1.5 + clamp(hSpeed() / 24, 0, 1) * 0.9 + (G.boostTime > 0 ? 1.4 : 0);
   /* S: {contact, speed, hSpeed, throttle, turnRate, boost, spraying} */
   let t = { hipsY: 0, torsoPitch: 0.06, torsoRoll: 0, headYaw: 0, bodyYaw: 0, lean: 0,
     shLx: 0.12, shLz: 0.1, shRx: 0.12, shRz: -0.1, elL: -0.25, elR: -0.25,
@@ -883,14 +969,14 @@ function addCrew(palette, kind, x, y, z, yaw, tiltZ = 0) {
   return rig;
 }
 addCrew({ skin: 0xd9a066, hair: 0xFFD23F, streak: 0xffffff, beanie: null,
-  hoodie: 0xFF2E88, sleeve: 0x1c1030, tee: 0xFFC21A, pants: 0x23202e, pocket: 0x2e2a3c,
-  accent: 0x19E3FF, glow: 0xFF7A1A, hairStyle: 'swept', detail: false }, 'cross', -2.05, 0.02, 1.15, 0.5);
-addCrew({ skin: 0x8a5a34, hair: 0x7a4fd0, streak: 0x19E3FF, beanie: 0x0e2a2a,
-  hoodie: 0x2ec4b6, sleeve: 0x12222b, tee: 0xf4f6f8, pants: 0x1a1c26, pocket: 0x262a38,
-  accent: 0xFF2E88, glow: 0x19E3FF, hairStyle: 'mohawk', detail: false }, 'sit', 2.4, 0.04, 0.5, -0.35);
-addCrew({ skin: 0xf0c8a0, hair: 0xd8481f, streak: 0xFFC21A, beanie: 0x2a1414,
-  hoodie: 0xFFC21A, sleeve: 0x201408, tee: 0x14161f, pants: 0x201d18, pocket: 0x2c2822,
-  accent: 0x7CFC00, glow: 0xFF2E88, hairStyle: 'puffs', detail: false }, 'lean', -2.15, 0.02, -1.5, 0.85, 0.16);
+  hoodie: 0x17121f, sleeve: 0x241028, tee: 0xFFC21A, pants: 0x23202e, pocket: 0x2e2a3c,
+  accent: 0xFF2E88, glow: 0xFFD23F, hairStyle: 'swept', detail: false }, 'cross', -2.05, 0.02, 1.15, 0.5);   // VOLT CREW — hot pink + yellow
+addCrew({ skin: 0x8a5a34, hair: 0xd8481f, streak: 0xFFC21A, beanie: 0x2a1414,
+  hoodie: 0x1f130d, sleeve: 0x140b06, tee: 0xf4f6f8, pants: 0x1a1c26, pocket: 0x262a38,
+  accent: 0xE8641C, glow: 0xFF7A29, hairStyle: 'mohawk', detail: false }, 'sit', 2.4, 0.04, 0.5, -0.35);   // RUST CLAW CREW — orange + rust
+addCrew({ skin: 0xf0c8a0, hair: 0x7a4fd0, streak: 0x19E3FF, beanie: 0x0e2a2a,
+  hoodie: 0x101418, sleeve: 0x0c0e12, tee: 0x19E3FF, pants: 0x201d18, pocket: 0x2c2822,
+  accent: 0x19E3FF, glow: 0x2AFF4A, hairStyle: 'puffs', detail: false }, 'lean', -2.15, 0.02, -1.5, 0.85, 0.16);   // CROW CREW — cyan + electric green
 const idleEnv = (t, a, b) => { const k = clamp((t - a) / (b - a), 0, 1); return Math.sin(k * Math.PI); };
 function updateCrewIdle(t, dt) {                       // crew life: breathing, weight shifts, little human moments
   for (const c of CREW) {
@@ -1577,6 +1663,7 @@ function gameLogic(dt) {
         G.cans -= spot.cans; spot.claimed = true; G.tags++; objDone('tag'); saveGame();
         spot.mesh.material.map = graffitiTex[spot.s];
         spot.mesh.material.opacity = 1; spot.mesh.material.needsUpdate = true;
+        if (spot.halo) spot.halo.material.opacity = 0.32;
         setFlash(`TAGGED! ${G.tags}/16 — turf claimed`, 2);
       } else setFlash(`NEED ${spot.cans} CANS FOR THIS SPOT`);
     }
@@ -1725,6 +1812,7 @@ function loadGame() {
       if (t && !t.claimed) {
         t.claimed = true; G.tags++;
         t.mesh.material.map = graffitiTex[t.s]; t.mesh.material.opacity = 1; t.mesh.material.needsUpdate = true;
+        if (t.halo) t.halo.material.opacity = 0.32;
       }
     });
     if (G.tags) setFlash('TURF RESTORED — ' + G.tags + '/16 TAGS STILL YOURS', 2.6);
@@ -2105,6 +2193,7 @@ function animate() {
       G.turnRate = dt > 0 ? (E.yaw - prevYaw) / dt : 0;
     }
     gameLogic(dt);
+    updateStreaks(dt);
   } else { if (presenting) pollXR(); pollPadMenu(); }    // menu/intro: Touch quick-start + pad focus navigation
   /* physics */
   if (G.state === 'ride' && !G.paused) {
