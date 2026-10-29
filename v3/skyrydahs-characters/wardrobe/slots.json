@@ -1,0 +1,1 @@
+{"slots": ["hair", "head", "top", "jacket", "pants", "gloves", "neck", "accessory", "skates"], "bits": {"hair": 1, "head": 2, "top": 4, "jacket": 8, "pants": 16, "gloves": 32, "neck": 64, "accessory": 128, "skates": 256}}
