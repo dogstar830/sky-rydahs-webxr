@@ -1,0 +1,798 @@
+{
+  "_meta": {
+    "game": "Sky Rydahs",
+    "note": "Original crew jacket colorways. \"int\" is usable directly in THREE.Color(); emissive_glow drives neon piping + Air Treck glow."
+  },
+  "crews": {
+    "code-e": {
+      "name": "Code : E",
+      "base": {
+        "hex": "#0b0b0d",
+        "int": 723725,
+        "three": "0x0b0b0d"
+      },
+      "secondary_trim": {
+        "hex": "#1c1c20",
+        "int": 1842208,
+        "three": "0x1c1c20"
+      },
+      "accent": {
+        "hex": "#ffd700",
+        "int": 16766720,
+        "three": "0xffd700"
+      },
+      "cuff_collar_rib": {
+        "hex": "#ffd700",
+        "int": 16766720,
+        "three": "0xffd700"
+      },
+      "lining": {
+        "hex": "#3a2e05",
+        "int": 3812869,
+        "three": "0x3a2e05"
+      },
+      "zipper_hardware": {
+        "hex": "#c9a227",
+        "int": 13214247,
+        "three": "0xc9a227"
+      },
+      "emissive_glow": {
+        "hex": "#ffd700",
+        "int": 16766720,
+        "three": "0xffd700"
+      },
+      "logo": "skyrydahs-characters/shared/crew-logos/code-e.png",
+      "logo_svg": "skyrydahs-characters/shared/crew-logos/code-e.svg",
+      "patch": {
+        "albedo_decal": "skyrydahs-characters/shared/crew-logos/code-e-patch-noshadow.png",
+        "normal_opengl": "skyrydahs-characters/shared/crew-logos/code-e-patch-normal.png",
+        "note": "noshadow and normal are pixel-aligned; normal is tangent-space OpenGL +Y (Three.js default)"
+      },
+      "twill_backing": {
+        "hex": "#2a2620",
+        "int": 2762272,
+        "three": "0x2a2620"
+      },
+      "pbr": {
+        "patch_embroidery": {
+          "roughness": 0.55,
+          "metalness": 0.0,
+          "normalScale": 1.0
+        },
+        "shell_fabric": {
+          "roughness": 0.62,
+          "metalness": 0.0,
+          "note": "nylon/satin bomber; sheen ~0.3 if MeshPhysicalMaterial"
+        },
+        "rib_knit": {
+          "roughness": 0.9,
+          "metalness": 0.0
+        },
+        "hardware": {
+          "roughness": 0.3,
+          "metalness": 1.0
+        },
+        "neon_piping": {
+          "emissiveIntensity": 2.0,
+          "roughness": 0.4,
+          "metalness": 0.0
+        },
+        "logo_print": {
+          "roughness": 0.5,
+          "metalness": 0.0
+        }
+      }
+    },
+    "kogarasumaru": {
+      "name": "Kogarasumaru",
+      "base": {
+        "hex": "#07090b",
+        "int": 461067,
+        "three": "0x07090b"
+      },
+      "secondary_trim": {
+        "hex": "#00e5ff",
+        "int": 58879,
+        "three": "0x00e5ff"
+      },
+      "accent": {
+        "hex": "#00e5ff",
+        "int": 58879,
+        "three": "0x00e5ff"
+      },
+      "cuff_collar_rib": {
+        "hex": "#0b1418",
+        "int": 726040,
+        "three": "0x0b1418"
+      },
+      "lining": {
+        "hex": "#003b44",
+        "int": 15172,
+        "three": "0x003b44"
+      },
+      "zipper_hardware": {
+        "hex": "#8fa6ad",
+        "int": 9414317,
+        "three": "0x8fa6ad"
+      },
+      "emissive_glow": {
+        "hex": "#00e5ff",
+        "int": 58879,
+        "three": "0x00e5ff"
+      },
+      "logo": "skyrydahs-characters/shared/crew-logos/kogarasumaru.png",
+      "logo_svg": "skyrydahs-characters/shared/crew-logos/kogarasumaru.svg",
+      "patch": {
+        "albedo_decal": "skyrydahs-characters/shared/crew-logos/kogarasumaru-patch-noshadow.png",
+        "normal_opengl": "skyrydahs-characters/shared/crew-logos/kogarasumaru-patch-normal.png",
+        "note": "noshadow and normal are pixel-aligned; normal is tangent-space OpenGL +Y (Three.js default)"
+      },
+      "twill_backing": {
+        "hex": "#1d2629",
+        "int": 1910313,
+        "three": "0x1d2629"
+      },
+      "pbr": {
+        "patch_embroidery": {
+          "roughness": 0.55,
+          "metalness": 0.0,
+          "normalScale": 1.0
+        },
+        "shell_fabric": {
+          "roughness": 0.62,
+          "metalness": 0.0,
+          "note": "nylon/satin bomber; sheen ~0.3 if MeshPhysicalMaterial"
+        },
+        "rib_knit": {
+          "roughness": 0.9,
+          "metalness": 0.0
+        },
+        "hardware": {
+          "roughness": 0.3,
+          "metalness": 1.0
+        },
+        "neon_piping": {
+          "emissiveIntensity": 2.0,
+          "roughness": 0.4,
+          "metalness": 0.0
+        },
+        "logo_print": {
+          "roughness": 0.5,
+          "metalness": 0.0
+        }
+      }
+    },
+    "team-storm": {
+      "name": "TEAM STORM",
+      "base": {
+        "hex": "#ff2d95",
+        "int": 16723349,
+        "three": "0xff2d95"
+      },
+      "secondary_trim": {
+        "hex": "#14050d",
+        "int": 1312013,
+        "three": "0x14050d"
+      },
+      "accent": {
+        "hex": "#ffe600",
+        "int": 16770560,
+        "three": "0xffe600"
+      },
+      "cuff_collar_rib": {
+        "hex": "#ffe600",
+        "int": 16770560,
+        "three": "0xffe600"
+      },
+      "lining": {
+        "hex": "#2a0a1a",
+        "int": 2755098,
+        "three": "0x2a0a1a"
+      },
+      "zipper_hardware": {
+        "hex": "#d8d8d8",
+        "int": 14211288,
+        "three": "0xd8d8d8"
+      },
+      "emissive_glow": {
+        "hex": "#ffe600",
+        "int": 16770560,
+        "three": "0xffe600"
+      },
+      "logo": "skyrydahs-characters/shared/crew-logos/team-storm.png",
+      "logo_svg": "skyrydahs-characters/shared/crew-logos/team-storm.svg",
+      "patch": {
+        "albedo_decal": "skyrydahs-characters/shared/crew-logos/team-storm-patch-noshadow.png",
+        "normal_opengl": "skyrydahs-characters/shared/crew-logos/team-storm-patch-normal.png",
+        "note": "noshadow and normal are pixel-aligned; normal is tangent-space OpenGL +Y (Three.js default)"
+      },
+      "twill_backing": {
+        "hex": "#2a2a26",
+        "int": 2763302,
+        "three": "0x2a2a26"
+      },
+      "pbr": {
+        "patch_embroidery": {
+          "roughness": 0.55,
+          "metalness": 0.0,
+          "normalScale": 1.0
+        },
+        "shell_fabric": {
+          "roughness": 0.62,
+          "metalness": 0.0,
+          "note": "nylon/satin bomber; sheen ~0.3 if MeshPhysicalMaterial"
+        },
+        "rib_knit": {
+          "roughness": 0.9,
+          "metalness": 0.0
+        },
+        "hardware": {
+          "roughness": 0.3,
+          "metalness": 1.0
+        },
+        "neon_piping": {
+          "emissiveIntensity": 2.0,
+          "roughness": 0.4,
+          "metalness": 0.0
+        },
+        "logo_print": {
+          "roughness": 0.5,
+          "metalness": 0.0
+        }
+      }
+    },
+    "rust-claw": {
+      "name": "Rust Claw",
+      "base": {
+        "hex": "#8a3416",
+        "int": 9057302,
+        "three": "0x8a3416"
+      },
+      "secondary_trim": {
+        "hex": "#2a130a",
+        "int": 2757386,
+        "three": "0x2a130a"
+      },
+      "accent": {
+        "hex": "#ff7a1a",
+        "int": 16742938,
+        "three": "0xff7a1a"
+      },
+      "cuff_collar_rib": {
+        "hex": "#ff7a1a",
+        "int": 16742938,
+        "three": "0xff7a1a"
+      },
+      "lining": {
+        "hex": "#3b1a0c",
+        "int": 3873292,
+        "three": "0x3b1a0c"
+      },
+      "zipper_hardware": {
+        "hex": "#7a4a2a",
+        "int": 8014378,
+        "three": "0x7a4a2a"
+      },
+      "emissive_glow": {
+        "hex": "#ff7a1a",
+        "int": 16742938,
+        "three": "0xff7a1a"
+      },
+      "logo": "skyrydahs-characters/shared/crew-logos/rust-claw.png",
+      "logo_svg": "skyrydahs-characters/shared/crew-logos/rust-claw.svg",
+      "patch": {
+        "albedo_decal": "skyrydahs-characters/shared/crew-logos/rust-claw-patch-noshadow.png",
+        "normal_opengl": "skyrydahs-characters/shared/crew-logos/rust-claw-patch-normal.png",
+        "note": "noshadow and normal are pixel-aligned; normal is tangent-space OpenGL +Y (Three.js default)"
+      },
+      "twill_backing": {
+        "hex": "#3a2a20",
+        "int": 3811872,
+        "three": "0x3a2a20"
+      },
+      "pbr": {
+        "patch_embroidery": {
+          "roughness": 0.55,
+          "metalness": 0.0,
+          "normalScale": 1.0
+        },
+        "shell_fabric": {
+          "roughness": 0.62,
+          "metalness": 0.0,
+          "note": "nylon/satin bomber; sheen ~0.3 if MeshPhysicalMaterial"
+        },
+        "rib_knit": {
+          "roughness": 0.9,
+          "metalness": 0.0
+        },
+        "hardware": {
+          "roughness": 0.3,
+          "metalness": 1.0
+        },
+        "neon_piping": {
+          "emissiveIntensity": 2.0,
+          "roughness": 0.4,
+          "metalness": 0.0
+        },
+        "logo_print": {
+          "roughness": 0.5,
+          "metalness": 0.0
+        }
+      }
+    },
+    "anubis": {
+      "name": "Anubis",
+      "base": {
+        "hex": "#0a3d3a",
+        "int": 671034,
+        "three": "0x0a3d3a"
+      },
+      "secondary_trim": {
+        "hex": "#031413",
+        "int": 201747,
+        "three": "0x031413"
+      },
+      "accent": {
+        "hex": "#18d6c4",
+        "int": 1627844,
+        "three": "0x18d6c4"
+      },
+      "cuff_collar_rib": {
+        "hex": "#18d6c4",
+        "int": 1627844,
+        "three": "0x18d6c4"
+      },
+      "lining": {
+        "hex": "#062624",
+        "int": 402980,
+        "three": "0x062624"
+      },
+      "zipper_hardware": {
+        "hex": "#c9a75a",
+        "int": 13215578,
+        "three": "0xc9a75a"
+      },
+      "emissive_glow": {
+        "hex": "#18d6c4",
+        "int": 1627844,
+        "three": "0x18d6c4"
+      },
+      "logo": "skyrydahs-characters/shared/crew-logos/anubis.png",
+      "logo_svg": "skyrydahs-characters/shared/crew-logos/anubis.svg",
+      "patch": {
+        "albedo_decal": "skyrydahs-characters/shared/crew-logos/anubis-patch-noshadow.png",
+        "normal_opengl": "skyrydahs-characters/shared/crew-logos/anubis-patch-normal.png",
+        "note": "noshadow and normal are pixel-aligned; normal is tangent-space OpenGL +Y (Three.js default)"
+      },
+      "twill_backing": {
+        "hex": "#22302e",
+        "int": 2240558,
+        "three": "0x22302e"
+      },
+      "pbr": {
+        "patch_embroidery": {
+          "roughness": 0.55,
+          "metalness": 0.0,
+          "normalScale": 1.0
+        },
+        "shell_fabric": {
+          "roughness": 0.62,
+          "metalness": 0.0,
+          "note": "nylon/satin bomber; sheen ~0.3 if MeshPhysicalMaterial"
+        },
+        "rib_knit": {
+          "roughness": 0.9,
+          "metalness": 0.0
+        },
+        "hardware": {
+          "roughness": 0.3,
+          "metalness": 1.0
+        },
+        "neon_piping": {
+          "emissiveIntensity": 2.0,
+          "roughness": 0.4,
+          "metalness": 0.0
+        },
+        "logo_print": {
+          "roughness": 0.5,
+          "metalness": 0.0
+        }
+      }
+    },
+    "static-angels": {
+      "name": "Static Angels",
+      "base": {
+        "hex": "#3a1670",
+        "int": 3806832,
+        "three": "0x3a1670"
+      },
+      "secondary_trim": {
+        "hex": "#9b4dff",
+        "int": 10178047,
+        "three": "0x9b4dff"
+      },
+      "accent": {
+        "hex": "#00e5ff",
+        "int": 58879,
+        "three": "0x00e5ff"
+      },
+      "cuff_collar_rib": {
+        "hex": "#00e5ff",
+        "int": 58879,
+        "three": "0x00e5ff"
+      },
+      "lining": {
+        "hex": "#160a2a",
+        "int": 1444394,
+        "three": "0x160a2a"
+      },
+      "zipper_hardware": {
+        "hex": "#c0c6d0",
+        "int": 12633808,
+        "three": "0xc0c6d0"
+      },
+      "emissive_glow": {
+        "hex": "#00e5ff",
+        "int": 58879,
+        "three": "0x00e5ff"
+      },
+      "logo": "skyrydahs-characters/shared/crew-logos/static-angels.png",
+      "logo_svg": "skyrydahs-characters/shared/crew-logos/static-angels.svg",
+      "patch": {
+        "albedo_decal": "skyrydahs-characters/shared/crew-logos/static-angels-patch-noshadow.png",
+        "normal_opengl": "skyrydahs-characters/shared/crew-logos/static-angels-patch-normal.png",
+        "note": "noshadow and normal are pixel-aligned; normal is tangent-space OpenGL +Y (Three.js default)"
+      },
+      "twill_backing": {
+        "hex": "#2a2434",
+        "int": 2761780,
+        "three": "0x2a2434"
+      },
+      "pbr": {
+        "patch_embroidery": {
+          "roughness": 0.55,
+          "metalness": 0.0,
+          "normalScale": 1.0
+        },
+        "shell_fabric": {
+          "roughness": 0.62,
+          "metalness": 0.0,
+          "note": "nylon/satin bomber; sheen ~0.3 if MeshPhysicalMaterial"
+        },
+        "rib_knit": {
+          "roughness": 0.9,
+          "metalness": 0.0
+        },
+        "hardware": {
+          "roughness": 0.3,
+          "metalness": 1.0
+        },
+        "neon_piping": {
+          "emissiveIntensity": 2.0,
+          "roughness": 0.4,
+          "metalness": 0.0
+        },
+        "logo_print": {
+          "roughness": 0.5,
+          "metalness": 0.0
+        }
+      }
+    },
+    "sleeping-forest": {
+      "name": "Sleeping Forest",
+      "base": {
+        "hex": "#eef2ec",
+        "int": 15659756,
+        "three": "0xeef2ec"
+      },
+      "secondary_trim": {
+        "hex": "#1f5e36",
+        "int": 2055734,
+        "three": "0x1f5e36"
+      },
+      "accent": {
+        "hex": "#2ecc71",
+        "int": 3066993,
+        "three": "0x2ecc71"
+      },
+      "cuff_collar_rib": {
+        "hex": "#1f5e36",
+        "int": 2055734,
+        "three": "0x1f5e36"
+      },
+      "lining": {
+        "hex": "#0d2a17",
+        "int": 862743,
+        "three": "0x0d2a17"
+      },
+      "zipper_hardware": {
+        "hex": "#a8b0a8",
+        "int": 11055272,
+        "three": "0xa8b0a8"
+      },
+      "emissive_glow": {
+        "hex": "#2ecc71",
+        "int": 3066993,
+        "three": "0x2ecc71"
+      },
+      "logo": "skyrydahs-characters/shared/crew-logos/sleeping-forest.png",
+      "logo_svg": "skyrydahs-characters/shared/crew-logos/sleeping-forest.svg",
+      "patch": {
+        "albedo_decal": "skyrydahs-characters/shared/crew-logos/sleeping-forest-patch-noshadow.png",
+        "normal_opengl": "skyrydahs-characters/shared/crew-logos/sleeping-forest-patch-normal.png",
+        "note": "noshadow and normal are pixel-aligned; normal is tangent-space OpenGL +Y (Three.js default)"
+      },
+      "twill_backing": {
+        "hex": "#e4e2d6",
+        "int": 15000278,
+        "three": "0xe4e2d6"
+      },
+      "pbr": {
+        "patch_embroidery": {
+          "roughness": 0.55,
+          "metalness": 0.0,
+          "normalScale": 1.0
+        },
+        "shell_fabric": {
+          "roughness": 0.62,
+          "metalness": 0.0,
+          "note": "nylon/satin bomber; sheen ~0.3 if MeshPhysicalMaterial"
+        },
+        "rib_knit": {
+          "roughness": 0.9,
+          "metalness": 0.0
+        },
+        "hardware": {
+          "roughness": 0.3,
+          "metalness": 1.0
+        },
+        "neon_piping": {
+          "emissiveIntensity": 2.0,
+          "roughness": 0.4,
+          "metalness": 0.0
+        },
+        "logo_print": {
+          "roughness": 0.5,
+          "metalness": 0.0
+        }
+      }
+    },
+    "behemoth": {
+      "name": "Behemoth",
+      "base": {
+        "hex": "#0e0b09",
+        "int": 920329,
+        "three": "0x0e0b09"
+      },
+      "secondary_trim": {
+        "hex": "#ff6a00",
+        "int": 16738816,
+        "three": "0xff6a00"
+      },
+      "accent": {
+        "hex": "#ff6a00",
+        "int": 16738816,
+        "three": "0xff6a00"
+      },
+      "cuff_collar_rib": {
+        "hex": "#ff6a00",
+        "int": 16738816,
+        "three": "0xff6a00"
+      },
+      "lining": {
+        "hex": "#3a1a05",
+        "int": 3807749,
+        "three": "0x3a1a05"
+      },
+      "zipper_hardware": {
+        "hex": "#2b2b2b",
+        "int": 2829099,
+        "three": "0x2b2b2b"
+      },
+      "emissive_glow": {
+        "hex": "#ff6a00",
+        "int": 16738816,
+        "three": "0xff6a00"
+      },
+      "logo": "skyrydahs-characters/shared/crew-logos/behemoth.png",
+      "logo_svg": "skyrydahs-characters/shared/crew-logos/behemoth.svg",
+      "patch": {
+        "albedo_decal": "skyrydahs-characters/shared/crew-logos/behemoth-patch-noshadow.png",
+        "normal_opengl": "skyrydahs-characters/shared/crew-logos/behemoth-patch-normal.png",
+        "note": "noshadow and normal are pixel-aligned; normal is tangent-space OpenGL +Y (Three.js default)"
+      },
+      "twill_backing": {
+        "hex": "#2a2622",
+        "int": 2762274,
+        "three": "0x2a2622"
+      },
+      "pbr": {
+        "patch_embroidery": {
+          "roughness": 0.55,
+          "metalness": 0.0,
+          "normalScale": 1.0
+        },
+        "shell_fabric": {
+          "roughness": 0.62,
+          "metalness": 0.0,
+          "note": "nylon/satin bomber; sheen ~0.3 if MeshPhysicalMaterial"
+        },
+        "rib_knit": {
+          "roughness": 0.9,
+          "metalness": 0.0
+        },
+        "hardware": {
+          "roughness": 0.3,
+          "metalness": 1.0
+        },
+        "neon_piping": {
+          "emissiveIntensity": 2.0,
+          "roughness": 0.4,
+          "metalness": 0.0
+        },
+        "logo_print": {
+          "roughness": 0.5,
+          "metalness": 0.0
+        }
+      }
+    },
+    "genesis": {
+      "name": "Genesis",
+      "base": {
+        "hex": "#5a0a52",
+        "int": 5900882,
+        "three": "0x5a0a52"
+      },
+      "secondary_trim": {
+        "hex": "#14031a",
+        "int": 1311514,
+        "three": "0x14031a"
+      },
+      "accent": {
+        "hex": "#ffc94a",
+        "int": 16763210,
+        "three": "0xffc94a"
+      },
+      "cuff_collar_rib": {
+        "hex": "#ff1fd1",
+        "int": 16719825,
+        "three": "0xff1fd1"
+      },
+      "lining": {
+        "hex": "#2a0626",
+        "int": 2754086,
+        "three": "0x2a0626"
+      },
+      "zipper_hardware": {
+        "hex": "#ffc94a",
+        "int": 16763210,
+        "three": "0xffc94a"
+      },
+      "emissive_glow": {
+        "hex": "#ff1fd1",
+        "int": 16719825,
+        "three": "0xff1fd1"
+      },
+      "logo": "skyrydahs-characters/shared/crew-logos/genesis.png",
+      "logo_svg": "skyrydahs-characters/shared/crew-logos/genesis.svg",
+      "patch": {
+        "albedo_decal": "skyrydahs-characters/shared/crew-logos/genesis-patch-noshadow.png",
+        "normal_opengl": "skyrydahs-characters/shared/crew-logos/genesis-patch-normal.png",
+        "note": "noshadow and normal are pixel-aligned; normal is tangent-space OpenGL +Y (Three.js default)"
+      },
+      "twill_backing": {
+        "hex": "#2e2230",
+        "int": 3023408,
+        "three": "0x2e2230"
+      },
+      "pbr": {
+        "patch_embroidery": {
+          "roughness": 0.55,
+          "metalness": 0.0,
+          "normalScale": 1.0
+        },
+        "shell_fabric": {
+          "roughness": 0.62,
+          "metalness": 0.0,
+          "note": "nylon/satin bomber; sheen ~0.3 if MeshPhysicalMaterial"
+        },
+        "rib_knit": {
+          "roughness": 0.9,
+          "metalness": 0.0
+        },
+        "hardware": {
+          "roughness": 0.3,
+          "metalness": 1.0
+        },
+        "neon_piping": {
+          "emissiveIntensity": 2.0,
+          "roughness": 0.4,
+          "metalness": 0.0
+        },
+        "logo_print": {
+          "roughness": 0.5,
+          "metalness": 0.0
+        }
+      }
+    },
+    "tool-toul-to": {
+      "name": "Tool Toul To",
+      "base": {
+        "hex": "#5b5f63",
+        "int": 5988195,
+        "three": "0x5b5f63"
+      },
+      "secondary_trim": {
+        "hex": "#b7472a",
+        "int": 12011306,
+        "three": "0xb7472a"
+      },
+      "accent": {
+        "hex": "#b7472a",
+        "int": 12011306,
+        "three": "0xb7472a"
+      },
+      "cuff_collar_rib": {
+        "hex": "#2e3033",
+        "int": 3026995,
+        "three": "0x2e3033"
+      },
+      "lining": {
+        "hex": "#1e1f21",
+        "int": 1974049,
+        "three": "0x1e1f21"
+      },
+      "zipper_hardware": {
+        "hex": "#9aa0a6",
+        "int": 10133670,
+        "three": "0x9aa0a6"
+      },
+      "emissive_glow": {
+        "hex": "#ff5a2a",
+        "int": 16734762,
+        "three": "0xff5a2a"
+      },
+      "logo": "skyrydahs-characters/shared/crew-logos/tool-toul-to.png",
+      "logo_svg": "skyrydahs-characters/shared/crew-logos/tool-toul-to.svg",
+      "patch": {
+        "albedo_decal": "skyrydahs-characters/shared/crew-logos/tool-toul-to-patch-noshadow.png",
+        "normal_opengl": "skyrydahs-characters/shared/crew-logos/tool-toul-to-patch-normal.png",
+        "note": "noshadow and normal are pixel-aligned; normal is tangent-space OpenGL +Y (Three.js default)"
+      },
+      "twill_backing": {
+        "hex": "#3a3a3a",
+        "int": 3815994,
+        "three": "0x3a3a3a"
+      },
+      "pbr": {
+        "patch_embroidery": {
+          "roughness": 0.55,
+          "metalness": 0.0,
+          "normalScale": 1.0
+        },
+        "shell_fabric": {
+          "roughness": 0.62,
+          "metalness": 0.0,
+          "note": "nylon/satin bomber; sheen ~0.3 if MeshPhysicalMaterial"
+        },
+        "rib_knit": {
+          "roughness": 0.9,
+          "metalness": 0.0
+        },
+        "hardware": {
+          "roughness": 0.3,
+          "metalness": 1.0
+        },
+        "neon_piping": {
+          "emissiveIntensity": 2.0,
+          "roughness": 0.4,
+          "metalness": 0.0
+        },
+        "logo_print": {
+          "roughness": 0.5,
+          "metalness": 0.0
+        }
+      }
+    }
+  }
+}
