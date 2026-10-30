@@ -1,0 +1,974 @@
+{
+ "rider": "caali",
+ "H": 1.916,
+ "fit": {
+  "r": 1.0,
+  "top": 1.6999475798517278,
+  "Left_skate": {
+   "h": 0.32114893969513925,
+   "scale": 0.9761365948180524,
+   "ankle": [
+    0.1557,
+    0.0764,
+    -0.0475
+   ]
+  },
+  "Right_skate": {
+   "h": 0.3235227959638846,
+   "scale": 0.9833519634160626,
+   "ankle": [
+    -0.1782,
+    0.0781,
+    -0.0571
+   ]
+  },
+  "torso_fy": 0.9935173923807928,
+  "Left_arm": {
+   "scale": 1.271456204568843,
+   "deg": 23.062353045731662,
+   "tip": [
+    0.513,
+    0.695,
+    0.011
+   ],
+   "wrist": [
+    0.421,
+    0.864,
+    -0.02
+   ],
+   "centroids": 11
+  },
+  "Right_arm": {
+   "scale": 1.3617465231974215,
+   "deg": 21.5021650222121,
+   "tip": [
+    -0.513,
+    0.675,
+    0.011
+   ],
+   "wrist": [
+    -0.404,
+    0.855,
+    -0.032
+   ],
+   "centroids": 11
+  }
+ },
+ "files": {
+  "caali-g-v2.glb": {
+   "meshes": {
+    "CaaliG_LOD0": {
+     "tris": 109173,
+     "verts": 101586,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    },
+    "CaaliG_LOD1": {
+     "tris": 35936,
+     "verts": 40841,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    },
+    "CaaliG_LOD2": {
+     "tris": 11702,
+     "verts": 14766,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    }
+   },
+   "joints": 91,
+   "bones_with_weights": 54
+  },
+  "caali-g-v2-hd.glb": {
+   "meshes": {
+    "CaaliG_LOD0": {
+     "tris": 255174,
+     "verts": 206093,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    },
+    "CaaliG_LOD1": {
+     "tris": 35936,
+     "verts": 40841,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    },
+    "CaaliG_LOD2": {
+     "tris": 11702,
+     "verts": 14766,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    }
+   },
+   "joints": 91,
+   "bones_with_weights": 54
+  },
+  "caali-g-v2.quest.glb": {
+   "meshes": {
+    "CaaliG_LOD0": {
+     "tris": 109162,
+     "verts": 101559,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    },
+    "CaaliG_LOD1": {
+     "tris": 35908,
+     "verts": 40767,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    },
+    "CaaliG_LOD2": {
+     "tris": 11694,
+     "verts": 14752,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    }
+   },
+   "joints": 91,
+   "bones_with_weights": 54
+  },
+  "caali-g-v2.quest-ktx2.glb": {
+   "meshes": {
+    "CaaliG_LOD0": {
+     "tris": 109162,
+     "verts": 101559,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    },
+    "CaaliG_LOD1": {
+     "tris": 35908,
+     "verts": 40767,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    },
+    "CaaliG_LOD2": {
+     "tris": 11694,
+     "verts": 14752,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {},
+     "skate_rigid": true,
+     "slots": null
+    }
+   },
+   "joints": 91,
+   "bones_with_weights": 54
+  }
+ },
+ "perRiderJointOffsets_0320": {
+  "note": "Caali G v2 only. Joints moved to targets, IBMs recomputed (inv bind world), vertex weights = *.prespring-20261030-0319 unchanged except pants/pocket zone (y<0.93, non-arm-dominant) verts zeroed on arm/hand bones (0327 rebind); 0 hand+leg mixed verts. Fingertips not moved (Forge call).",
+  "targets": {
+   "Arm": "x +-0.19, y 1.33",
+   "ForeArm": "y 1.065 (along the existing upper-arm direction)",
+   "Hand": "y 0.80 (along the existing forearm direction)",
+   "twists": "same fraction along their segment",
+   "fingers": "translated with Hand (Forge RightHand chain kept)"
+  },
+  "files": {
+   "caali-g-v2": {
+    "joints": {
+     "mixamorig:LeftArm": {
+      "old": [
+       0.19,
+       1.33,
+       -0.0365
+      ],
+      "new": [
+       0.19,
+       1.33,
+       -0.0365
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftForeArm": {
+      "old": [
+       0.2587,
+       1.065,
+       -0.0365
+      ],
+      "new": [
+       0.2587,
+       1.065,
+       -0.0365
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftHand": {
+      "old": [
+       0.2715,
+       0.8,
+       0.0397
+      ],
+      "new": [
+       0.2715,
+       0.8,
+       0.0397
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftHandMiddle4": {
+      "old": [
+       0.2097,
+       0.624,
+       0.0711
+      ],
+      "new": [
+       0.2097,
+       0.624,
+       0.0711
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightArm": {
+      "old": [
+       -0.19,
+       1.33,
+       -0.0896
+      ],
+      "new": [
+       -0.19,
+       1.33,
+       -0.0896
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightForeArm": {
+      "old": [
+       -0.2602,
+       1.065,
+       -0.1249
+      ],
+      "new": [
+       -0.2602,
+       1.065,
+       -0.1249
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightHand": {
+      "old": [
+       -0.3056,
+       0.8,
+       -0.0417
+      ],
+      "new": [
+       -0.3056,
+       0.8,
+       -0.0417
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightHandMiddle4": {
+      "old": [
+       -0.2853,
+       0.6,
+       0.0128
+      ],
+      "new": [
+       -0.2853,
+       0.6,
+       0.0128
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     }
+    },
+    "meshes": {
+     "CaaliG_LOD0": {
+      "tris": 104192,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     },
+     "CaaliG_LOD1": {
+      "tris": 33082,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     },
+     "CaaliG_LOD2": {
+      "tris": 11034,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     }
+    }
+   },
+   "caali-g-v2-hd": {
+    "joints": {
+     "mixamorig:LeftArm": {
+      "old": [
+       0.19,
+       1.33,
+       -0.0365
+      ],
+      "new": [
+       0.19,
+       1.33,
+       -0.0365
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftForeArm": {
+      "old": [
+       0.2587,
+       1.065,
+       -0.0365
+      ],
+      "new": [
+       0.2587,
+       1.065,
+       -0.0365
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftHand": {
+      "old": [
+       0.2715,
+       0.8,
+       0.0397
+      ],
+      "new": [
+       0.2715,
+       0.8,
+       0.0397
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftHandMiddle4": {
+      "old": [
+       0.2097,
+       0.624,
+       0.0711
+      ],
+      "new": [
+       0.2097,
+       0.624,
+       0.0711
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightArm": {
+      "old": [
+       -0.19,
+       1.33,
+       -0.0896
+      ],
+      "new": [
+       -0.19,
+       1.33,
+       -0.0896
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightForeArm": {
+      "old": [
+       -0.2602,
+       1.065,
+       -0.1249
+      ],
+      "new": [
+       -0.2602,
+       1.065,
+       -0.1249
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightHand": {
+      "old": [
+       -0.3056,
+       0.8,
+       -0.0417
+      ],
+      "new": [
+       -0.3056,
+       0.8,
+       -0.0417
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightHandMiddle4": {
+      "old": [
+       -0.2853,
+       0.6,
+       0.0128
+      ],
+      "new": [
+       -0.2853,
+       0.6,
+       0.0128
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     }
+    },
+    "meshes": {
+     "CaaliG_LOD0": {
+      "tris": 250300,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     },
+     "CaaliG_LOD1": {
+      "tris": 33082,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     },
+     "CaaliG_LOD2": {
+      "tris": 11034,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     }
+    }
+   },
+   "caali-g-v2.quest": {
+    "joints": {
+     "mixamorig:LeftArm": {
+      "old": [
+       0.19,
+       1.33,
+       -0.0365
+      ],
+      "new": [
+       0.19,
+       1.33,
+       -0.0365
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftForeArm": {
+      "old": [
+       0.2587,
+       1.065,
+       -0.0365
+      ],
+      "new": [
+       0.2587,
+       1.065,
+       -0.0365
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftHand": {
+      "old": [
+       0.2715,
+       0.8,
+       0.0397
+      ],
+      "new": [
+       0.2715,
+       0.8,
+       0.0397
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftHandMiddle4": {
+      "old": [
+       0.2097,
+       0.624,
+       0.0711
+      ],
+      "new": [
+       0.2097,
+       0.624,
+       0.0711
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightArm": {
+      "old": [
+       -0.19,
+       1.33,
+       -0.0896
+      ],
+      "new": [
+       -0.19,
+       1.33,
+       -0.0896
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightForeArm": {
+      "old": [
+       -0.2602,
+       1.065,
+       -0.1249
+      ],
+      "new": [
+       -0.2602,
+       1.065,
+       -0.1249
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightHand": {
+      "old": [
+       -0.3056,
+       0.8,
+       -0.0417
+      ],
+      "new": [
+       -0.3056,
+       0.8,
+       -0.0417
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightHandMiddle4": {
+      "old": [
+       -0.2853,
+       0.6,
+       0.0128
+      ],
+      "new": [
+       -0.2853,
+       0.6,
+       0.0128
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     }
+    },
+    "meshes": {
+     "CaaliG_LOD0": {
+      "tris": 104192,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     },
+     "CaaliG_LOD1": {
+      "tris": 33082,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     },
+     "CaaliG_LOD2": {
+      "tris": 11034,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     }
+    }
+   },
+   "caali-g-v2.quest-ktx2": {
+    "joints": {
+     "mixamorig:LeftArm": {
+      "old": [
+       0.19,
+       1.33,
+       -0.0365
+      ],
+      "new": [
+       0.19,
+       1.33,
+       -0.0365
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftForeArm": {
+      "old": [
+       0.2587,
+       1.065,
+       -0.0365
+      ],
+      "new": [
+       0.2587,
+       1.065,
+       -0.0365
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftHand": {
+      "old": [
+       0.2715,
+       0.8,
+       0.0397
+      ],
+      "new": [
+       0.2715,
+       0.8,
+       0.0397
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:LeftHandMiddle4": {
+      "old": [
+       0.2097,
+       0.624,
+       0.0711
+      ],
+      "new": [
+       0.2097,
+       0.624,
+       0.0711
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightArm": {
+      "old": [
+       -0.19,
+       1.33,
+       -0.0896
+      ],
+      "new": [
+       -0.19,
+       1.33,
+       -0.0896
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightForeArm": {
+      "old": [
+       -0.2602,
+       1.065,
+       -0.1249
+      ],
+      "new": [
+       -0.2602,
+       1.065,
+       -0.1249
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightHand": {
+      "old": [
+       -0.3056,
+       0.8,
+       -0.0417
+      ],
+      "new": [
+       -0.3056,
+       0.8,
+       -0.0417
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "mixamorig:RightHandMiddle4": {
+      "old": [
+       -0.2853,
+       0.6,
+       0.0128
+      ],
+      "new": [
+       -0.2853,
+       0.6,
+       0.0128
+      ],
+      "delta": [
+       0.0,
+       0.0,
+       0.0
+      ]
+     }
+    },
+    "meshes": {
+     "CaaliG_LOD0": {
+      "tris": 104192,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     },
+     "CaaliG_LOD1": {
+      "tris": 33082,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     },
+     "CaaliG_LOD2": {
+      "tris": 11034,
+      "maxinf": 4,
+      "unweighted": 0,
+      "skate_verts": 0
+     }
+    }
+   }
+  },
+  "rebind_0327": {
+   "caali-g-v2": {
+    "CaaliG_LOD0": {
+     "jacketHemLegDomWithArm_leftAsIs": 148,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 0,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.1276278621963343e-07
+    },
+    "CaaliG_LOD1": {
+     "jacketHemLegDomWithArm_leftAsIs": 115,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 1,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.1119002651938104e-07
+    },
+    "CaaliG_LOD2": {
+     "jacketHemLegDomWithArm_leftAsIs": 94,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 8,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.1111681352815594e-07
+    }
+   },
+   "caali-g-v2-hd": {
+    "CaaliG_LOD0": {
+     "jacketHemLegDomWithArm_leftAsIs": 196,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 0,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.1380525233306571e-07
+    },
+    "CaaliG_LOD1": {
+     "jacketHemLegDomWithArm_leftAsIs": 115,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 1,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.1119002651938104e-07
+    },
+    "CaaliG_LOD2": {
+     "jacketHemLegDomWithArm_leftAsIs": 94,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 8,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.1111681352815594e-07
+    }
+   },
+   "caali-g-v2.quest": {
+    "CaaliG_LOD0": {
+     "jacketHemLegDomWithArm_leftAsIs": 148,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 0,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.112945091641393e-07
+    },
+    "CaaliG_LOD1": {
+     "jacketHemLegDomWithArm_leftAsIs": 115,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 1,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.1143692746351519e-07
+    },
+    "CaaliG_LOD2": {
+     "jacketHemLegDomWithArm_leftAsIs": 94,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 8,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.1340219829847342e-07
+    }
+   },
+   "caali-g-v2.quest-ktx2": {
+    "CaaliG_LOD0": {
+     "jacketHemLegDomWithArm_leftAsIs": 148,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 0,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.112945091641393e-07
+    },
+    "CaaliG_LOD1": {
+     "jacketHemLegDomWithArm_leftAsIs": 115,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 1,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.1143692746351519e-07
+    },
+    "CaaliG_LOD2": {
+     "jacketHemLegDomWithArm_leftAsIs": 94,
+     "mixedHandLegBefore": 0,
+     "lockedLegVerts": 8,
+     "mixedAfter": 0,
+     "bindMaxDelta_m": 1.1340219829847342e-07
+    }
+   }
+  },
+  "shoulderBandSmooth_0330": {
+   "rule": "verts medial of the moved shoulder pivot (2-8 cm, band y Arm-0.30..+0.08) fade Arm/ArmTwist weight onto Shoulder",
+   "verts": {
+    "caali-g-v2": {
+     "CaaliG_LOD0": 2975,
+     "CaaliG_LOD1": 1194,
+     "CaaliG_LOD2": 429
+    },
+    "caali-g-v2-hd": {
+     "CaaliG_LOD0": 6670,
+     "CaaliG_LOD1": 1194,
+     "CaaliG_LOD2": 429
+    },
+    "caali-g-v2.quest": {
+     "CaaliG_LOD0": 2976,
+     "CaaliG_LOD1": 1194,
+     "CaaliG_LOD2": 429
+    },
+    "caali-g-v2.quest-ktx2": {
+     "CaaliG_LOD0": 2976,
+     "CaaliG_LOD1": 1194,
+     "CaaliG_LOD2": 429
+    }
+   }
+  }
+ }
+}
