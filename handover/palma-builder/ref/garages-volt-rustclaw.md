@@ -70,8 +70,65 @@ Each exterior ≤ ~6 draws; world ≤ 110 (dcsplit2, desktop non-XR, post off, s
 
 **Rust Claw status:** logo EXISTS (`shared/crew-logos/rust-claw.png`, packed slot 9). Colours NOT in `crews.js` — using graffiti.js fallbacks `#ff6a1a` / `#8b3a1a` marked TODO for Systems. Volt same (logo slot 8; colours fallback `#ff2fa0` / `#ffe600`).
 
-### 2026-11-05 11:03 CST — DONE
+### 2026-11-05 11:03 CST — initial place DONE (pre Ani review)
 - All hero shots on disk (10 files).
 - DEMO_STATUS Goals + ready check-in + Systems open item for crews.js colours.
 - Handover pushed: commit **15d9f28** (`workshop-handover` → `handover/palma-builder/`).
 - Real html md5 still `5ad0f5646468f5fef7d25f9153144e8e`.
+
+
+### 2026-11-05 11:03–~12:30 CST — Ani review fixes (in progress)
+
+**Ani asked (3):**
+1. Volt exterior cam on canopy roof → move to gate height in front of canopy; clearance ≥3.5 m + collision check.
+2. Empty black emblem discs on Volt + Rust Claw (kit_logos slots 8/9); keep Kogarasumaru emblem.
+3. Rust Claw day: MARINA background reads mirrored (ANIRAM).
+
+**Causes + fixes (code landed, copy build `/tmp/palma_garages.html`):**
+1. **Cam:** hero harness used `clz=12, cy=5.5` — sat on/behind canopy deck (local z≈5.2, y≈3.55). Shot script now `clz=10, cy=2.3` (gate height, in front of canopy). **Clearance:** canopy underside was 3.46 m (`y=3.55`, th `.18`); raised deck to `y=3.85` → underside **3.76 m**. Posts lengthened to match. No canopy footprint AABB (2D colliders would block the under-pass); kiosk+bollards still collide; thin deck has no ground height so it is non-walkable.
+2. **Emblems:** `emblemTex()` in baked `world.js` has no `volt`/`rustclaw` branches → disc+ring only. `kitFixEmblems()` in `crewhouse_kit.js` paints slots 8/9 from `kit_logos.png`, replaces exterior planes at y=10, and detaches them from `world_perf` SIGN atlas (which had baked the empty disc). Karasu/others untouched. Retries at +3.5 s after atlas.
+3. **MARINA:** `putSign("MARINA",…,Math.PI)` in baked base HTML (from old `patch4.py` layout; **not** in `world_perf`/`facades`/`blockout`). `+Z`=south; `ry=PI` faced north → Cove street (looking north from Rust Claw) saw DoubleSide back = mirrored. `patch_crewhouse_kit.py` now rewrites to `ry=0` (face south).
+
+**Files:** `crewhouse_kit.js`, `patch_crewhouse_kit.py`, `garage_hero_shots.py` (harness). Backups `*.bak-ani-fix-20261105-110732`. Lock helper: `palma_testlock.sh` (never overwrite live pid).
+
+**Tests so far (under lock; then browser pause for Rigger/Forge):**
+- Gate tests **PASS** volt/rustclaw/karasu (unlock → interior → exterior hide camMask 32 → exit restore); **0 pageerrors**. `/tmp/garage_gate_test.json`.
+- Real html md5 still `5ad0f5646468f5fef7d25f9153144e8e`.
+- Hero re-shoot + dcsplit2 **pending** (no browser until ~12:03 CST per Ani steering after lock clash; Forge holds `.testlock` at 11:33). Old heroes saved as `shots/hero/garage_{volt,rustclaw}_*_{exterior_day,exterior_night,interior}_v1.png`.
+
+**Next:** acquire lock via `palma_testlock.sh`, RUNS=3 dcsplit2 (`≤110`), re-shoot 6 heroes (overwrite, keep v1), view shots, update DEMO_STATUS ready line, push `handover/palma-builder/`.
+
+**CREW_RIVALS (Systems 11:58):** kitTheme now `(CREWS.find(...)||CREW_RIVALS.find(...))`; hard volt/rustclaw overrides + TODO removed. patch injects `const CREW_RIVALS` from crews.js into the copy. Expected: Volt c1=0xffe600 / c2=0xff2d95; Rust Claw c1=0xff7a1a / c2=0x8a3416. Exterior kitExt neon uses kitTheme. PALMA.garages color → #ff2d95 / #ff7a1a. Karasu locked. DEMO_STATUS Systems open item closed.
+
+### 2026-11-05 12:48 CST — resume after interrupt
+- Code + `/tmp/palma_garages.html` verified intact: CREW_RIVALS inject, kitTheme lookup, canopy 3.76 m, kitFixEmblems, MARINA ry=0, hero cam clz=10/cy=2.3. Real md5 `5ad0f564` unchanged. Gate PASS on disk. Heroes still pre-fix (v1=current). dcsplit/hero re-shoot pending lock.
+- `.testlock` held by Forge pid 2040307 (alive) — waiting; will acquire via `palma_testlock.sh` (kill -0, noclobber).
+
+### 2026-11-05 13:25 CST — still queued on .testlock
+- Waiter (tl_acquire) correctly yielded: Forge extended to 13:22, then Ani AI4b_smoke suite took lock at 13:21 (pid 2039166, alive). No overwrite. Code/copy unchanged; remaining: theme runtime check, dcsplit≤110, hero re-shoot, view, DEMO_STATUS ready, handover push.
+
+## Ani review fixes + CREW_RIVALS — DONE 2026-11-05 13:58 CST
+
+### Causes / fixes
+1. **Volt exterior camera / canopy**
+   - Cause: hero cam sat on/behind canopy roof (`clz=12 cy=5.5`); canopy deck underside was ~3.46 m.
+   - Fix: `garage_hero_shots.py` Volt exterior → `clz=10 cy=2.3 tlz=-1 ty=2.0 rlz=8` (gate-height in front of canopy). `kitExtVolt` deck raised to `y=3.85` (underside **3.76 m** ≥ 3.5); posts/neon matched. Canopy footprint still non-collider (kiosk/bollards own collision).
+2. **Empty black emblem discs**
+   - Cause: `world.js emblemTex` / SIGN atlas had no Volt/Rust Claw UV; discs stayed black.
+   - Fix: `kitPaintEmblem` + `kitFixEmblems` in `crewhouse_kit.js` paint slot 8/9 from `kit_logos.png` onto canvas textures, replace exterior emblem materials, `kitEmblem`/`noMerge`, detach from SIGN.list (retry). Runtime emblem_check: volt bright=8986, rustclaw=7151. Karasu path untouched (`noPlane` in kit probe = different placement; still uses existing emblem).
+3. **Mirrored MARINA**
+   - Cause: baked `putSign("MARINA",…, Math.PI)` faced north → street saw ANIRAM.
+   - Fix: Palma-owned via `patch_crewhouse_kit.py` → `ry=0` (face south). Day+night heroes read **MARINA**.
+4. **CREW_RIVALS colours (Systems)**
+   - Cause: hard overrides L13–14 + TODO fallbacks; `CREW_RIVALS` not in HTML.
+   - Fix: `kitTheme` looks up `(CREWS.find…||CREW_RIVALS.find…)`; overrides/TODO removed. `patch_crewhouse_kit.py` injects `CREW_RIVALS` after `CREWS`. Runtime THEME_PASS: Volt c1=`0xffe600` c2=`0xff2d95`; Rust Claw c1=`0xff7a1a` c2=`0x8a3416`; Karasu `0x00e5ff`/`0x9a3cff`.
+
+### Verification (copy `/tmp/palma_garages.html`, lock via `palma_testlock.sh`, pid 2010810, released 13:58)
+- Theme: THEME_PASS, 0 page errors.
+- Gate: PASS volt/rustclaw/karasu, PAGEERRORS 0 OVERALL PASS.
+- dcsplit2 RUNS=3 seed=1: causeway **world** mean **101.7** (≤110); street 78; b98 92.7; aerial 93.3. (n includes chars+fx.)
+- Heroes overwritten (v1 kept): `shots/hero/garage_{volt,rustclaw}_{exterior_day,exterior_night,interior}.png`. Viewed: Volt gate clear + yellow/pink neon; both emblems filled; MARINA correct; real CREW_RIVALS colours.
+- Real `sky-rydahs-v3-ikki.html` md5 still `5ad0f5646468f5fef7d25f9153144e8e`.
+
+### Files
+`crewhouse_kit.js`, `patch_crewhouse_kit.py`, `garage_hero_shots.py`, `palma_testlock.sh`. Backups `*.bak-ani-fix-*`.

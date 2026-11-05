@@ -58,12 +58,12 @@ Status: **shipped default** = on in the build. **opt-in** = in the chain but beh
 | `assets/world_ktx2/facade_nr.ktx2` | 1.7 MB | KTX2 (produced by Rydah Optimizer) used by facades.js/crewhouse_kit.js under ?ktx2=1 | - | - | - | - | asset |
 | `code/blockout.js` | 46 KB | Realism step 1 grey-box: towers/precinct lots, Dash road, ring paths, East Blocks wall-ride panels, wall-kick faces + route solver. | #12 patch_blockout.py | const BLOCKOUT; window.WALL_PANELS, WALL_KICKS, KICK_ROUTES, KICK_UNREACHABLE, KICK_BRIDGE, BLOCKOUT_LIVE | ?seed (slots), &uj= (debug) | world.js PALMA, colliders | shipped default |
 | `code/bridges.js` | 7 KB | Full-structure bridges (segmental box, multi-beam bents, cable-stayed, suspension) refs bridges-research.md. Additive to createBridge(). | #10 patch_bridges.py | const BRIDGES | - | world.js createBridge | shipped default |
-| `code/crewhouse_kit.js` | 78 KB | One shared parameterised crew garage interior: upstairs = Kogarasumaru pod loft, downstairs = A-T tuning bay; per-crew theme via crews.js colours + logo atlas; lazy build, 14 m player gate. | #24 patch_crewhouse_kit.py | window.KIT, KIT_READY, KIT_FLOOR, KIT_GROUND, KIT_LANE, KIT_POD_FOOT, KOG_GROUND, KOG_THEME, SR_DRACO; const KIT_LOGO_SLOT, KIT_PODS, KIT_PROP_FIT | ?ktx2=1, &mode= | assets/kit, assets/world_ktx2, props/kit GLBs (Forge), crews.js | shipped default |
+| `code/crewhouse_kit.js` | 89 KB | One shared parameterised crew garage interior: upstairs = Kogarasumaru pod loft, downstairs = A-T tuning bay; per-crew theme via crews.js colours + logo atlas; lazy build, 14 m player gate. | #24 patch_crewhouse_kit.py | window.KIT, KIT_READY, KIT_FLOOR, KIT_GROUND, KIT_LANE, KIT_POD_FOOT, KOG_GROUND, KOG_THEME, SR_DRACO; const KIT_LOGO_SLOT, KIT_PODS, KIT_PROP_FIT | ?ktx2=1, &mode= | assets/kit, assets/world_ktx2, props/kit GLBs (Forge), crews.js | shipped default |
 | `code/facades.js` | 3 KB | Building facade material: 8 CC0 materials in one 2048x1024 albedo atlas + normal/roughness atlas, world-space box UVs on the single instanced building shader. | #9 patch_facades.py | const FACADE (uniforms.uDay) | ?ktx2=1 (assets/world_ktx2/facade_*.ktx2) | textures/facade_*.jpg (base64-embedded by patch), SR_KTX2 (Optimizer) | shipped default |
 | `code/ground.js` | 5 KB | WORLD_GROUND 1.0: analytic height/surface lookup (8 m spatial hash), contract with Rydah Systems ride_ground.js. | #13 patch_ground.py | window.WORLD_GROUND(x,z,yHint)->{y,nx,ny,nz,surf}|null; .at .heightAt .surfAt .decks .entries | - | world/bridges/blockout geometry | shipped default |
 | `code/patch_blockout.py` | 1 KB | Injects blockout.js. | #12 | - | - | blockout.js | shipped default |
 | `code/patch_bridges.py` | 1 KB | Injects bridges.js. | #10 | - | - | bridges.js | shipped default |
-| `code/patch_crewhouse_kit.py` | 2 KB | Injects crewhouse_kit.js. | #24 | - | - | crewhouse_kit.js | shipped default |
+| `code/patch_crewhouse_kit.py` | 6 KB | Injects crewhouse_kit.js. | #24 | - | - | crewhouse_kit.js | shipped default |
 | `code/patch_facades.py` | 5 KB | Injects facades.js; embeds textures/facade_{albedo,nr}.jpg as data URIs. | #9 | - | - | facades.js | shipped default |
 | `code/patch_ground.py` | 1 KB | Injects ground.js. | #13 | - | - | ground.js | shipped default |
 | `code/patch_pbr_base.py` | 1 KB | Injects pbr_base.js. | #27 | - | - | pbr_base.js | opt-in |
@@ -221,3 +221,6 @@ Boxes are [minX, minZ, maxX, maxZ] (the full set is in `data/palma.json`):
 - Verify (build_copy `/tmp/palma_bloom.html`, FX on, seed=1): day sky blue not cyan; bloom th/st 0.68/0.6 day+night with bloomHot; no ground blowout; 0 pageerrors; draws street 80–81 / causeway 73–74.
 - Hero finals: `shots/hero/pbr_{street,causeway}_{day,night}_final.png` + `pbr_street_day_before_after_side_by_side.png`.
 - Real html md5 unchanged (`5ad0f5646468f5fef7d25f9153144e8e`). Chain: `python3 patch_pbr_world.py` (after patch_world_perf).
+
+## 2026-11-05 13:59 CST update
+Ani review fixes + CREW_RIVALS: crewhouse_kit.js (kitTheme←CREW_RIVALS, kitFixEmblems, Volt canopy 3.76m), patch_crewhouse_kit.py (inject CREW_RIVALS, MARINA ry=0), tools/garage_hero_shots.py (Volt cam), tools/palma_testlock.sh. Heroes re-shot under shots/hero/garage_{volt,rustclaw}_*.png. Real html untouched.
