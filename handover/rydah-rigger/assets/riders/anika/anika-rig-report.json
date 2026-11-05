@@ -1,0 +1,1025 @@
+{
+ "rider": "anika",
+ "H": 1.68,
+ "fit": {
+  "r": 0.8768267223382046,
+  "top": 1.4719310888756292,
+  "Left_skate": {
+   "h": 0.267731037791935,
+   "scale": 0.8137721513432675,
+   "ankle": [
+    0.1433,
+    0.0384,
+    -0.0326
+   ]
+  },
+  "Right_skate": {
+   "h": 0.2676319134633576,
+   "scale": 0.8134708615907524,
+   "ankle": [
+    -0.1434,
+    0.0384,
+    -0.0326
+   ]
+  },
+  "torso_fy": 0.999272160600318,
+  "Left_arm": {
+   "scale": 1.0325653972837816,
+   "deg": 21.89150270554162,
+   "tip": [
+    0.436,
+    0.634,
+    0.027
+   ],
+   "wrist": [
+    0.349,
+    0.761,
+    -0.01
+   ],
+   "centroids": 11
+  },
+  "Right_arm": {
+   "scale": 1.093696173765321,
+   "deg": 24.774764675052186,
+   "tip": [
+    -0.436,
+    0.632,
+    0.026
+   ],
+   "wrist": [
+    -0.35,
+    0.774,
+    -0.016
+   ],
+   "centroids": 11
+  },
+  "extra": {
+   "BraidL": {
+    "points": [
+     [
+      0.0757,
+      1.2327,
+      0.0067
+     ],
+     [
+      0.08,
+      1.2071,
+      0.0222
+     ],
+     [
+      0.0821,
+      1.1815,
+      0.039
+     ],
+     [
+      0.0976,
+      1.1558,
+      0.0483
+     ],
+     [
+      0.1411,
+      1.1302,
+      0.0189
+     ],
+     [
+      0.164,
+      1.1046,
+      0.0154
+     ]
+    ],
+    "len": 0.18533242000811653,
+    "verts": 902
+   },
+   "BraidR": {
+    "points": [
+     [
+      -0.0802,
+      1.2341,
+      -0.0004
+     ],
+     [
+      -0.0874,
+      1.2083,
+      0.0117
+     ],
+     [
+      -0.0985,
+      1.1824,
+      0.0283
+     ],
+     [
+      -0.1085,
+      1.1565,
+      0.0358
+     ],
+     [
+      -0.124,
+      1.1307,
+      0.0589
+     ],
+     [
+      -0.1392,
+      1.1048,
+      0.0912
+     ]
+    ],
+    "len": 0.17297454894830439,
+    "verts": 893
+   },
+   "skirt": {
+    "top": 0.8164310357605489,
+    "hem": 0.6071825452378498,
+    "verts": 32437
+   }
+  }
+ },
+ "files": {
+  "anika-rider.glb": {
+   "meshes": {
+    "Anika_LOD0": {
+     "tris": 109354,
+     "verts": 113516,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 270,
+      "Anika_BraidL_02": 359,
+      "Anika_BraidL_03": 436,
+      "Anika_BraidL_04": 518,
+      "Anika_BraidL_05": 161,
+      "Anika_BraidR_01": 449,
+      "Anika_BraidR_02": 571,
+      "Anika_BraidR_03": 602,
+      "Anika_BraidR_04": 785,
+      "Anika_BraidR_05": 353,
+      "Anika_Skirt_00": 3431,
+      "Anika_Skirt_01": 5712,
+      "Anika_Skirt_02": 11665,
+      "Anika_Skirt_03": 12281,
+      "Anika_Skirt_04": 13039,
+      "Anika_Skirt_05": 9745
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 27004,
+      "hair": 4949,
+      "head": 6552,
+      "legwear": 2981,
+      "skates": 10706,
+      "skirt": 29432,
+      "top": 31892
+     }
+    },
+    "Anika_LOD1": {
+     "tris": 36087,
+     "verts": 45858,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 139,
+      "Anika_BraidL_02": 164,
+      "Anika_BraidL_03": 206,
+      "Anika_BraidL_04": 207,
+      "Anika_BraidL_05": 49,
+      "Anika_BraidR_01": 176,
+      "Anika_BraidR_02": 235,
+      "Anika_BraidR_03": 257,
+      "Anika_BraidR_04": 321,
+      "Anika_BraidR_05": 166,
+      "Anika_Skirt_00": 1398,
+      "Anika_Skirt_01": 2483,
+      "Anika_Skirt_02": 4813,
+      "Anika_Skirt_03": 4975,
+      "Anika_Skirt_04": 5347,
+      "Anika_Skirt_05": 3954
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 10460,
+      "hair": 2055,
+      "head": 2705,
+      "legwear": 1186,
+      "skates": 6319,
+      "skirt": 12057,
+      "top": 11076
+     }
+    },
+    "Anika_LOD2": {
+     "tris": 11690,
+     "verts": 17272,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 0,
+      "Anika_BraidL_02": 0,
+      "Anika_BraidL_03": 0,
+      "Anika_BraidL_04": 0,
+      "Anika_BraidL_05": 0,
+      "Anika_BraidR_01": 0,
+      "Anika_BraidR_02": 0,
+      "Anika_BraidR_03": 0,
+      "Anika_BraidR_04": 0,
+      "Anika_BraidR_05": 0,
+      "Anika_Skirt_00": 0,
+      "Anika_Skirt_01": 0,
+      "Anika_Skirt_02": 0,
+      "Anika_Skirt_03": 0,
+      "Anika_Skirt_04": 0,
+      "Anika_Skirt_05": 0
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 3257,
+      "hair": 892,
+      "head": 881,
+      "legwear": 448,
+      "skates": 1876,
+      "skirt": 5319,
+      "top": 4599
+     }
+    }
+   },
+   "joints": 107,
+   "bones_with_weights": 66
+  },
+  "anika-rider.quest.glb": {
+   "meshes": {
+    "Anika_LOD0": {
+     "tris": 109353,
+     "verts": 113514,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 270,
+      "Anika_BraidL_02": 359,
+      "Anika_BraidL_03": 436,
+      "Anika_BraidL_04": 518,
+      "Anika_BraidL_05": 161,
+      "Anika_BraidR_01": 449,
+      "Anika_BraidR_02": 571,
+      "Anika_BraidR_03": 602,
+      "Anika_BraidR_04": 785,
+      "Anika_BraidR_05": 353,
+      "Anika_Skirt_00": 3427,
+      "Anika_Skirt_01": 5710,
+      "Anika_Skirt_02": 11662,
+      "Anika_Skirt_03": 12282,
+      "Anika_Skirt_04": 13039,
+      "Anika_Skirt_05": 9738
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 27013,
+      "hair": 4947,
+      "head": 6552,
+      "legwear": 2981,
+      "skates": 10704,
+      "skirt": 29425,
+      "top": 31892
+     }
+    },
+    "Anika_LOD1": {
+     "tris": 36069,
+     "verts": 45814,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 139,
+      "Anika_BraidL_02": 164,
+      "Anika_BraidL_03": 206,
+      "Anika_BraidL_04": 207,
+      "Anika_BraidL_05": 49,
+      "Anika_BraidR_01": 176,
+      "Anika_BraidR_02": 235,
+      "Anika_BraidR_03": 257,
+      "Anika_BraidR_04": 321,
+      "Anika_BraidR_05": 166,
+      "Anika_Skirt_00": 1398,
+      "Anika_Skirt_01": 2483,
+      "Anika_Skirt_02": 4813,
+      "Anika_Skirt_03": 4975,
+      "Anika_Skirt_04": 5347,
+      "Anika_Skirt_05": 3951
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 10460,
+      "hair": 2055,
+      "head": 2705,
+      "legwear": 1186,
+      "skates": 6275,
+      "skirt": 12057,
+      "top": 11076
+     }
+    },
+    "Anika_LOD2": {
+     "tris": 11681,
+     "verts": 17256,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 0,
+      "Anika_BraidL_02": 0,
+      "Anika_BraidL_03": 0,
+      "Anika_BraidL_04": 0,
+      "Anika_BraidL_05": 0,
+      "Anika_BraidR_01": 0,
+      "Anika_BraidR_02": 0,
+      "Anika_BraidR_03": 0,
+      "Anika_BraidR_04": 0,
+      "Anika_BraidR_05": 0,
+      "Anika_Skirt_00": 0,
+      "Anika_Skirt_01": 0,
+      "Anika_Skirt_02": 0,
+      "Anika_Skirt_03": 0,
+      "Anika_Skirt_04": 0,
+      "Anika_Skirt_05": 0
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 3259,
+      "hair": 892,
+      "head": 881,
+      "legwear": 448,
+      "skates": 1857,
+      "skirt": 5319,
+      "top": 4600
+     }
+    }
+   },
+   "joints": 107,
+   "bones_with_weights": 66
+  },
+  "anika-rider.quest-ktx2.glb": {
+   "meshes": {
+    "Anika_LOD0": {
+     "tris": 109353,
+     "verts": 113514,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 270,
+      "Anika_BraidL_02": 359,
+      "Anika_BraidL_03": 436,
+      "Anika_BraidL_04": 518,
+      "Anika_BraidL_05": 161,
+      "Anika_BraidR_01": 449,
+      "Anika_BraidR_02": 571,
+      "Anika_BraidR_03": 602,
+      "Anika_BraidR_04": 785,
+      "Anika_BraidR_05": 353,
+      "Anika_Skirt_00": 3427,
+      "Anika_Skirt_01": 5768,
+      "Anika_Skirt_02": 11727,
+      "Anika_Skirt_03": 12229,
+      "Anika_Skirt_04": 13048,
+      "Anika_Skirt_05": 9770
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 26822,
+      "hair": 4945,
+      "head": 6518,
+      "legwear": 2973,
+      "skates": 10704,
+      "skirt": 29488,
+      "top": 32064
+     }
+    },
+    "Anika_LOD1": {
+     "tris": 36069,
+     "verts": 45814,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 139,
+      "Anika_BraidL_02": 164,
+      "Anika_BraidL_03": 206,
+      "Anika_BraidL_04": 207,
+      "Anika_BraidL_05": 49,
+      "Anika_BraidR_01": 176,
+      "Anika_BraidR_02": 235,
+      "Anika_BraidR_03": 257,
+      "Anika_BraidR_04": 321,
+      "Anika_BraidR_05": 166,
+      "Anika_Skirt_00": 1399,
+      "Anika_Skirt_01": 2551,
+      "Anika_Skirt_02": 4870,
+      "Anika_Skirt_03": 4980,
+      "Anika_Skirt_04": 5314,
+      "Anika_Skirt_05": 3897
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 10417,
+      "hair": 2007,
+      "head": 2730,
+      "legwear": 1193,
+      "skates": 6275,
+      "skirt": 12062,
+      "top": 11130
+     }
+    },
+    "Anika_LOD2": {
+     "tris": 11681,
+     "verts": 17256,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 0,
+      "Anika_BraidL_02": 0,
+      "Anika_BraidL_03": 0,
+      "Anika_BraidL_04": 0,
+      "Anika_BraidL_05": 0,
+      "Anika_BraidR_01": 0,
+      "Anika_BraidR_02": 0,
+      "Anika_BraidR_03": 0,
+      "Anika_BraidR_04": 0,
+      "Anika_BraidR_05": 0,
+      "Anika_Skirt_00": 0,
+      "Anika_Skirt_01": 0,
+      "Anika_Skirt_02": 0,
+      "Anika_Skirt_03": 0,
+      "Anika_Skirt_04": 0,
+      "Anika_Skirt_05": 0
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 3369,
+      "hair": 857,
+      "head": 895,
+      "legwear": 443,
+      "skates": 1857,
+      "skirt": 5214,
+      "top": 4621
+     }
+    }
+   },
+   "joints": 107,
+   "bones_with_weights": 66
+  },
+  "anika-npc.glb": {
+   "meshes": {
+    "AnikaNPC_LOD1": {
+     "tris": 11690,
+     "verts": 17272,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 52,
+      "Anika_BraidL_02": 61,
+      "Anika_BraidL_03": 68,
+      "Anika_BraidL_04": 70,
+      "Anika_BraidL_05": 19,
+      "Anika_BraidR_01": 57,
+      "Anika_BraidR_02": 82,
+      "Anika_BraidR_03": 94,
+      "Anika_BraidR_04": 122,
+      "Anika_BraidR_05": 63,
+      "Anika_Skirt_00": 560,
+      "Anika_Skirt_01": 1115,
+      "Anika_Skirt_02": 2145,
+      "Anika_Skirt_03": 2176,
+      "Anika_Skirt_04": 2423,
+      "Anika_Skirt_05": 1738
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 3257,
+      "hair": 892,
+      "head": 881,
+      "legwear": 448,
+      "skates": 1876,
+      "skirt": 5319,
+      "top": 4599
+     }
+    },
+    "AnikaNPC_LOD0": {
+     "tris": 26588,
+     "verts": 35317,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 90,
+      "Anika_BraidL_02": 104,
+      "Anika_BraidL_03": 137,
+      "Anika_BraidL_04": 138,
+      "Anika_BraidL_05": 39,
+      "Anika_BraidR_01": 137,
+      "Anika_BraidR_02": 157,
+      "Anika_BraidR_03": 163,
+      "Anika_BraidR_04": 230,
+      "Anika_BraidR_05": 118,
+      "Anika_Skirt_00": 953,
+      "Anika_Skirt_01": 1920,
+      "Anika_Skirt_02": 3790,
+      "Anika_Skirt_03": 3790,
+      "Anika_Skirt_04": 4138,
+      "Anika_Skirt_05": 3004
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 7018,
+      "hair": 1679,
+      "head": 1782,
+      "legwear": 870,
+      "skates": 6319,
+      "skirt": 9226,
+      "top": 8423
+     }
+    },
+    "AnikaNPC_LOD2": {
+     "tris": 4877,
+     "verts": 9350,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 0,
+      "Anika_BraidL_02": 0,
+      "Anika_BraidL_03": 0,
+      "Anika_BraidL_04": 0,
+      "Anika_BraidL_05": 0,
+      "Anika_BraidR_01": 0,
+      "Anika_BraidR_02": 0,
+      "Anika_BraidR_03": 0,
+      "Anika_BraidR_04": 0,
+      "Anika_BraidR_05": 0,
+      "Anika_Skirt_00": 0,
+      "Anika_Skirt_01": 0,
+      "Anika_Skirt_02": 0,
+      "Anika_Skirt_03": 0,
+      "Anika_Skirt_04": 0,
+      "Anika_Skirt_05": 0
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 1926,
+      "hair": 282,
+      "head": 285,
+      "legwear": 178,
+      "skates": 1337,
+      "skirt": 3538,
+      "top": 1804
+     }
+    }
+   },
+   "joints": 107,
+   "bones_with_weights": 63
+  },
+  "anika-npc.quest.glb": {
+   "meshes": {
+    "AnikaNPC_LOD1": {
+     "tris": 11681,
+     "verts": 17256,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 52,
+      "Anika_BraidL_02": 61,
+      "Anika_BraidL_03": 68,
+      "Anika_BraidL_04": 70,
+      "Anika_BraidL_05": 19,
+      "Anika_BraidR_01": 57,
+      "Anika_BraidR_02": 82,
+      "Anika_BraidR_03": 94,
+      "Anika_BraidR_04": 122,
+      "Anika_BraidR_05": 63,
+      "Anika_Skirt_00": 560,
+      "Anika_Skirt_01": 1115,
+      "Anika_Skirt_02": 2145,
+      "Anika_Skirt_03": 2176,
+      "Anika_Skirt_04": 2423,
+      "Anika_Skirt_05": 1738
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 3259,
+      "hair": 892,
+      "head": 881,
+      "legwear": 448,
+      "skates": 1857,
+      "skirt": 5319,
+      "top": 4600
+     }
+    },
+    "AnikaNPC_LOD0": {
+     "tris": 26573,
+     "verts": 35277,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 90,
+      "Anika_BraidL_02": 104,
+      "Anika_BraidL_03": 137,
+      "Anika_BraidL_04": 138,
+      "Anika_BraidL_05": 39,
+      "Anika_BraidR_01": 137,
+      "Anika_BraidR_02": 157,
+      "Anika_BraidR_03": 163,
+      "Anika_BraidR_04": 230,
+      "Anika_BraidR_05": 118,
+      "Anika_Skirt_00": 949,
+      "Anika_Skirt_01": 1920,
+      "Anika_Skirt_02": 3790,
+      "Anika_Skirt_03": 3790,
+      "Anika_Skirt_04": 4138,
+      "Anika_Skirt_05": 3004
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 7018,
+      "hair": 1679,
+      "head": 1782,
+      "legwear": 870,
+      "skates": 6279,
+      "skirt": 9226,
+      "top": 8423
+     }
+    },
+    "AnikaNPC_LOD2": {
+     "tris": 4873,
+     "verts": 9351,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 0,
+      "Anika_BraidL_02": 0,
+      "Anika_BraidL_03": 0,
+      "Anika_BraidL_04": 0,
+      "Anika_BraidL_05": 0,
+      "Anika_BraidR_01": 0,
+      "Anika_BraidR_02": 0,
+      "Anika_BraidR_03": 0,
+      "Anika_BraidR_04": 0,
+      "Anika_BraidR_05": 0,
+      "Anika_Skirt_00": 0,
+      "Anika_Skirt_01": 0,
+      "Anika_Skirt_02": 0,
+      "Anika_Skirt_03": 0,
+      "Anika_Skirt_04": 0,
+      "Anika_Skirt_05": 0
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 1928,
+      "hair": 282,
+      "head": 285,
+      "legwear": 178,
+      "skates": 1335,
+      "skirt": 3538,
+      "top": 1805
+     }
+    }
+   },
+   "joints": 107,
+   "bones_with_weights": 63
+  },
+  "anika-npc.quest-ktx2.glb": {
+   "meshes": {
+    "AnikaNPC_LOD1": {
+     "tris": 11681,
+     "verts": 17256,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 52,
+      "Anika_BraidL_02": 61,
+      "Anika_BraidL_03": 68,
+      "Anika_BraidL_04": 70,
+      "Anika_BraidL_05": 19,
+      "Anika_BraidR_01": 56,
+      "Anika_BraidR_02": 82,
+      "Anika_BraidR_03": 94,
+      "Anika_BraidR_04": 122,
+      "Anika_BraidR_05": 63,
+      "Anika_Skirt_00": 582,
+      "Anika_Skirt_01": 1109,
+      "Anika_Skirt_02": 2089,
+      "Anika_Skirt_03": 2099,
+      "Anika_Skirt_04": 2380,
+      "Anika_Skirt_05": 1741
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 3369,
+      "hair": 857,
+      "head": 895,
+      "legwear": 443,
+      "skates": 1857,
+      "skirt": 5214,
+      "top": 4621
+     }
+    },
+    "AnikaNPC_LOD0": {
+     "tris": 26573,
+     "verts": 35277,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 90,
+      "Anika_BraidL_02": 104,
+      "Anika_BraidL_03": 137,
+      "Anika_BraidL_04": 138,
+      "Anika_BraidL_05": 39,
+      "Anika_BraidR_01": 137,
+      "Anika_BraidR_02": 157,
+      "Anika_BraidR_03": 163,
+      "Anika_BraidR_04": 230,
+      "Anika_BraidR_05": 118,
+      "Anika_Skirt_00": 929,
+      "Anika_Skirt_01": 1981,
+      "Anika_Skirt_02": 3888,
+      "Anika_Skirt_03": 3818,
+      "Anika_Skirt_04": 4091,
+      "Anika_Skirt_05": 2944
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 7012,
+      "hair": 1664,
+      "head": 1784,
+      "legwear": 878,
+      "skates": 6279,
+      "skirt": 9249,
+      "top": 8411
+     }
+    },
+    "AnikaNPC_LOD2": {
+     "tris": 4873,
+     "verts": 9351,
+     "maxinf": 4,
+     "unweighted": 0,
+     "wsum_err": 1.1920928955078125e-07,
+     "bone_verts": {
+      "Anika_BraidL_01": 0,
+      "Anika_BraidL_02": 0,
+      "Anika_BraidL_03": 0,
+      "Anika_BraidL_04": 0,
+      "Anika_BraidL_05": 0,
+      "Anika_BraidR_01": 0,
+      "Anika_BraidR_02": 0,
+      "Anika_BraidR_03": 0,
+      "Anika_BraidR_04": 0,
+      "Anika_BraidR_05": 0,
+      "Anika_Skirt_00": 0,
+      "Anika_Skirt_01": 0,
+      "Anika_Skirt_02": 0,
+      "Anika_Skirt_03": 0,
+      "Anika_Skirt_04": 0,
+      "Anika_Skirt_05": 0
+     },
+     "skate_rigid": true,
+     "slots": {
+      "body": 1916,
+      "hair": 299,
+      "head": 272,
+      "legwear": 177,
+      "skates": 1335,
+      "skirt": 3568,
+      "top": 1784
+     }
+    }
+   },
+   "joints": 107,
+   "bones_with_weights": 63
+  }
+ },
+ "symShoulders_0331": {
+  "note": "LeftArm/RightArm bind joints set symmetric x +-0.135, y = mean of both sides, z kept per side; children world positions kept; IBMs = inv(bind world); weights, spring bones, springChains, _WC/_WA unchanged",
+  "files": {
+   "anika-rider": {
+    "LeftArm": {
+     "old": [
+      0.1601,
+      1.0958,
+      -0.032
+     ],
+     "new": [
+      0.135,
+      1.0958,
+      -0.032
+     ],
+     "delta": [
+      -0.0251,
+      0.0,
+      0.0
+     ]
+    },
+    "RightArm": {
+     "old": [
+      -0.1077,
+      1.0958,
+      -0.0786
+     ],
+     "new": [
+      -0.135,
+      1.0958,
+      -0.0786
+     ],
+     "delta": [
+      -0.0273,
+      -0.0,
+      0.0
+     ]
+    }
+   },
+   "anika-rider.quest": {
+    "LeftArm": {
+     "old": [
+      0.1601,
+      1.0958,
+      -0.032
+     ],
+     "new": [
+      0.135,
+      1.0958,
+      -0.032
+     ],
+     "delta": [
+      -0.0251,
+      0.0,
+      0.0
+     ]
+    },
+    "RightArm": {
+     "old": [
+      -0.1077,
+      1.0958,
+      -0.0786
+     ],
+     "new": [
+      -0.135,
+      1.0958,
+      -0.0786
+     ],
+     "delta": [
+      -0.0273,
+      -0.0,
+      0.0
+     ]
+    }
+   },
+   "anika-rider.quest-ktx2": {
+    "LeftArm": {
+     "old": [
+      0.1601,
+      1.0958,
+      -0.032
+     ],
+     "new": [
+      0.135,
+      1.0958,
+      -0.032
+     ],
+     "delta": [
+      -0.0251,
+      0.0,
+      0.0
+     ]
+    },
+    "RightArm": {
+     "old": [
+      -0.1077,
+      1.0958,
+      -0.0786
+     ],
+     "new": [
+      -0.135,
+      1.0958,
+      -0.0786
+     ],
+     "delta": [
+      -0.0273,
+      -0.0,
+      0.0
+     ]
+    }
+   },
+   "anika-npc": {
+    "LeftArm": {
+     "old": [
+      0.1601,
+      1.0958,
+      -0.032
+     ],
+     "new": [
+      0.135,
+      1.0958,
+      -0.032
+     ],
+     "delta": [
+      -0.0251,
+      0.0,
+      0.0
+     ]
+    },
+    "RightArm": {
+     "old": [
+      -0.1077,
+      1.0958,
+      -0.0786
+     ],
+     "new": [
+      -0.135,
+      1.0958,
+      -0.0786
+     ],
+     "delta": [
+      -0.0273,
+      -0.0,
+      0.0
+     ]
+    }
+   },
+   "anika-npc.quest": {
+    "LeftArm": {
+     "old": [
+      0.1601,
+      1.0958,
+      -0.032
+     ],
+     "new": [
+      0.135,
+      1.0958,
+      -0.032
+     ],
+     "delta": [
+      -0.0251,
+      0.0,
+      0.0
+     ]
+    },
+    "RightArm": {
+     "old": [
+      -0.1077,
+      1.0958,
+      -0.0786
+     ],
+     "new": [
+      -0.135,
+      1.0958,
+      -0.0786
+     ],
+     "delta": [
+      -0.0273,
+      -0.0,
+      0.0
+     ]
+    }
+   },
+   "anika-npc.quest-ktx2": {
+    "LeftArm": {
+     "old": [
+      0.1601,
+      1.0958,
+      -0.032
+     ],
+     "new": [
+      0.135,
+      1.0958,
+      -0.032
+     ],
+     "delta": [
+      -0.0251,
+      0.0,
+      0.0
+     ]
+    },
+    "RightArm": {
+     "old": [
+      -0.1077,
+      1.0958,
+      -0.0786
+     ],
+     "new": [
+      -0.135,
+      1.0958,
+      -0.0786
+     ],
+     "delta": [
+      -0.0273,
+      -0.0,
+      0.0
+     ]
+    }
+   }
+  }
+ }
+}
