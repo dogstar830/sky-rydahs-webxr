@@ -65,3 +65,13 @@ Task (Oliver via Ani, 10/30 20:11): PBR building bases 0-5 m: brick/poured concr
 - Gameplay invariants: colliders 973, WALL_KICKS 26, WALL_PANELS 17, tags 9, noKick 808 identical base vs pbrbase; 0 pageerrors; grind world true.
 - Real html md5 unchanged `5ad0f564…`. `pbr_world.js` untouched. Lock released promptly (Rigger took next).
 - Chain: `python3 patch_pbr_base.py` after `patch_pbr_world.py`. Opt-in `?pbrbase=1` until Ani look + Oliver before/after.
+- 14:37 CST: DEMO_STATUS ready (opt-in) + check-in posted. Handover pushed **afe79fb**. Lock left free for garage Volt re-shoot waiters / Rigger.
+
+## 2026-11-05 14:57 CST — Oliver ruled DEFAULT ON (via Ani)
+
+- Ruling: building bases (`pbrbase`) are the DEFAULT; `?pbrbase=0` to opt out. Window-interior / night-glow polish NOT in this pass.
+- Backups: `pbr_base.js.bak-default-20261105-145819`, `patch_pbr_base.py.bak-default-*`, `build_ikki.sh.bak-default-*`.
+- Flip: `pbr_base.js` gate now `!PBR_WORLD.on || /[?&]pbrbase=0/` → early return; otherwise `S.on=true`. `?pbrbase=1` kept as force-on/no-op. Matches `pbr_world` default-on pattern.
+- `patch_pbr_base.py` + `build_ikki.sh` comments updated (DEFAULT ON). Chain line unchanged: `python3 patch_pbr_base.py` immediately after `patch_pbr_world.py`. Did NOT run `build_ikki.sh`.
+- Test copy: `bash build_copy.sh /tmp/palma_base_default.html` → `patch_pbr_base ok`. Real html md5 still `5ad0f564…`.
+- Gate runner `/tmp/palma_base_default_run.sh` queued: lets Volt canopy waiter go first, then flag/error/invariant gate + dcsplit2 nofx seed=1 (street/causeway ≤110).
