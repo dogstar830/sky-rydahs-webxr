@@ -502,7 +502,7 @@ const KIT_EXT={ mats:null, done:Object.create(null) };
 function kitExtMats(){ if(KIT_EXT.mats) return KIT_EXT.mats;
   const M={};
   M.steel=new THREE.MeshStandardMaterial({color:0x6a7078,roughness:.55,metalness:.7});
-  M.dark=new THREE.MeshStandardMaterial({color:0x1a1c20,roughness:.72,metalness:.35});
+  M.dark=new THREE.MeshStandardMaterial({color:0x1c1e22,roughness:.6,metalness:.45}); // Volt canopy underside composite; shared
   M.glass=new THREE.MeshStandardMaterial({color:0x88c8e8,roughness:.15,metalness:.2,transparent:true,opacity:.45,depthWrite:false});
   M.corr=new THREE.MeshStandardMaterial({color:0x7a4a2a,roughness:.85,metalness:.55});
   M.corr2=new THREE.MeshStandardMaterial({color:0x5a5e64,roughness:.7,metalness:.65});
@@ -519,17 +519,25 @@ function kitExtMerge(geos,mat,parent,name){ const ok=geos.filter(Boolean); if(!o
   const m=new THREE.Mesh(g,mat); m.name=name||'kit_ext'; m.userData.noMerge=true; m.userData.mod='kit_ext'; m.frustumCulled=true; parent.add(m); return m; }
 function kitExtPushCol(G,boxes){ const th=G.th,[gx,gz]=G.pos; const W=(lx,lz)=>[gx+lx*Math.cos(th)+lz*Math.sin(th), gz-lx*Math.sin(th)+lz*Math.cos(th)];
   for(const [a0,a1,b0,b1] of boxes){ const a=W(a0,b0), b=W(a1,b1); colliders.push({minX:Math.min(a[0],b[0]),maxX:Math.max(a[0],b[0]),minZ:Math.min(a[1],b[1]),maxZ:Math.max(a[1],b[1]),kit_ext:1,g:G}); } }
-function kitExtVolt(G){ // EV charging plaza: canopy + glass kiosk + bollards + neon (target ~5 draws)
+function kitExtVolt(G){ // EV charging plaza: canopy + glass kiosk + bollards + neon (target ~6 draws)
   // Canopy underside clearance >=3.5 m (deck y=3.85, th=.18 -> underside 3.76). No footprint AABB (2D colliders would block under-pass); posts+kiosk+bollards already collide. Thin deck is non-walkable (no ground height).
+  // Ani 14:00: underside was a blown-out 0xffe600 MeshBasic slab — dark PBR deck + thin tone-mapped emissive strips only.
   const M=kitExtMats(), root=new THREE.Group(); root.name='kit_ext_volt'; root.userData.noMerge=true; G.group.add(root);
   const th=kitTheme(G.crew), c1=new THREE.Color(th.c1), accent=new THREE.Color(th.c2);
-  const neon1=kitExtNeon(c1.getHex()), neon2=kitExtNeon(accent.getHex());
-  // draw 1: dark body (canopy deck + kiosk shell)
-  kitExtMerge([kitExtBox(10.5,.18,6.2,0,3.85,5.2), kitExtBox(2.2,2.6,2.0,-5.2,1.3,6.5)], M.dark, root, 'kit_ext_volt_dark');
+  // neon1: moderate emissive strips (NOT MeshBasic / toneMapped:false — that bloom-clipped as a yellow sheet)
+  const neon1=new THREE.MeshStandardMaterial({color:0x14140c,emissive:c1.getHex(),emissiveIntensity:1.15,roughness:.35,metalness:.15,toneMapped:true});
+  const neon2=kitExtNeon(accent.getHex());
+  // draw 1: dark body — canopy deck (underside reads as dark metal) + kiosk shell + underside panel grooves
+  kitExtMerge([kitExtBox(10.5,.18,6.2,0,3.85,5.2), kitExtBox(2.2,2.6,2.0,-5.2,1.3,6.5),
+    kitExtBox(10.0,.015,.035,0,3.745,3.55),kitExtBox(10.0,.015,.035,0,3.745,5.2),kitExtBox(10.0,.015,.035,0,3.745,6.85),
+    kitExtBox(.035,.015,5.6,-3.3,3.745,5.2),kitExtBox(.035,.015,5.6,3.3,3.745,5.2)], M.dark, root, 'kit_ext_volt_dark');
   // draw 2: steel (canopy posts + kiosk roof) — posts h=3.76 @ cy=1.88 reach deck underside
   kitExtMerge([kitExtCyl(.09,.11,3.76,-4.6,1.88,3.0),kitExtCyl(.09,.11,3.76,-4.6,1.88,7.2),kitExtCyl(.09,.11,3.76,4.6,1.88,3.0),kitExtCyl(.09,.11,3.76,4.6,1.88,7.2),kitExtBox(2.3,.12,2.1,-5.2,2.66,6.5)], M.steel, root, 'kit_ext_volt_steel');
-  // draw 3: neon primary (canopy edge + LED strips + yard strip)
-  kitExtMerge([kitExtBox(10.7,.06,6.4,0,3.78,5.2),kitExtBox(9.6,.04,.08,0,3.72,3.4),kitExtBox(9.6,.04,.08,0,3.72,5.2),kitExtBox(9.6,.04,.08,0,3.72,7.0),kitExtBox(9.5,.03,.2,0,.04,8.2)], neon1, root, 'kit_ext_volt_neon1');
+  // draw 3: yellow emissive accents only — thin perimeter + cross strips + yard strip (no full-slab)
+  kitExtMerge([kitExtBox(10.55,.03,.05,0,3.74,2.15),kitExtBox(10.55,.03,.05,0,3.74,8.25),
+    kitExtBox(.05,.03,6.15,-5.22,3.74,5.2),kitExtBox(.05,.03,6.15,5.22,3.74,5.2),
+    kitExtBox(9.6,.025,.045,0,3.735,3.4),kitExtBox(9.6,.025,.045,0,3.735,5.2),kitExtBox(9.6,.025,.045,0,3.735,7.0),
+    kitExtBox(9.5,.03,.2,0,.04,8.2)], neon1, root, 'kit_ext_volt_neon1');
   // draw 4: neon accent (kiosk bar + 4 cable arms as boxes)
   kitExtMerge([kitExtBox(1.6,.18,.06,-5.2,2.4,7.55),kitExtBox(.06,1.4,.06,-2.2,2.7,4.2),kitExtBox(.06,1.4,.06,-.4,2.7,4.2),kitExtBox(.06,1.4,.06,1.4,2.7,4.2),kitExtBox(.06,1.4,.06,3.2,2.7,4.2)], neon2, root, 'kit_ext_volt_neon2');
   // draw 5: glass kiosk pane

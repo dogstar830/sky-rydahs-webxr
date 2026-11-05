@@ -132,3 +132,21 @@ Each exterior ≤ ~6 draws; world ≤ 110 (dcsplit2, desktop non-XR, post off, s
 
 ### Files
 `crewhouse_kit.js`, `patch_crewhouse_kit.py`, `garage_hero_shots.py`, `palma_testlock.sh`. Backups `*.bak-ani-fix-*`.
+
+### 2026-11-05 14:01 CST — Volt canopy underside (Ani)
+- Cause: `kitExtBox(10.7,.06,6.4)` neon1 MeshBasic (toneMapped:false) = blown-out yellow sheet under night cam.
+- Fix in `crewhouse_kit.js` kitExtVolt: remove full slab; dark PBR deck (M.dark roughness .6) + thin MeshStandard emissive strips (intensity 1.15, toneMapped); still 6 draws. build_copy → `/tmp/palma_garages.html`. Waiting lock (pbr_base + bases queue first).
+
+### 2026-11-05 14:51 CST — resume canopy re-shoot
+- Code + copy OK (emissiveIntensity 1.15 strips, no full slab). Waiter pid 2090461 healthy, yielding to Rigger 2078568 (simca+dark2, lock from 14:35). Pre-fix heroes still at garage_volt_exterior_{day,night}.png; *_v2 are same-byte pre-fix backups (not new shots).
+
+### 2026-11-05 15:57 CST — Volt canopy heroes VERIFIED
+- Existing waiter acquired at 15:51 CST; built copy only. New day/night shots captured at df=70/69, 1920×1080 dsf=1.5 HD seed=1 FX on; both viewed. Dark underside, thin yellow strips, no flat yellow blowout; gate/pad still clear. *_v2 files are intentionally the previous pre-fix heroes, NOT the new outputs.
+- Runtime probe: extVariant draws=6; dark material #1c1e22 roughness .6 metalness .45; primary strips MeshStandardMaterial emissiveIntensity=1.15, toneMapped=true.
+- dcsplit2 actual HOOK+BRV b98 view: world=95 ≤110, no page errors. Characters=106 (assets still loading in this short run), FX=5; 110 cap is WORLD metric.
+- Quick gate harness wrongly asserted extVariant.visible=false (visibility uses camera layers); gate replay queued with original layer-aware test, Volt only. Do not use that harness FAIL as a gameplay regression.
+
+### 2026-11-05 16:07 CST — Volt canopy ready for rebuild
+- Correct original layer-aware Volt gate test PASS (unlock/enter/layer-hide/exit restore), PAGEERRORS 0. Gate-only lock released promptly.
+- Both new heroes visually approved; prior heroes retained as *_v2. b98 world 95; exterior 6 draws. Real html md5 unchanged: 5ad0f5646468f5fef7d25f9153144e8e.
+- DEMO_STATUS backed up and ready line added. CloudAgent unavailable; parent handover instructions at /tmp/volt_canopy_parent_message.txt. pbr_base mip-bias/storefront-glow polish intentionally deferred.

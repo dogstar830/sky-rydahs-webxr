@@ -242,3 +242,6 @@ Ani review fixes + CREW_RIVALS: crewhouse_kit.js (kitTheme←CREW_RIVALS, kitFix
 - Chain: `python3 patch_pbr_base.py` immediately after `patch_pbr_world.py` (Ani approved). Default-on only after Ani look check + Oliver before/after.
 - Hero finals: `shots/hero/bldgbase_final_{street,close}_{day,night}_{before,after}.png` + `*_side_by_side.png`.
 - WIP refs kept out of chain: `pbr_base_wip.js`, `pbr_base_wip_inject.py`, `pbr_base_wip.glsl`.
+
+## Update 2026-11-05 — Volt canopy underside (Palma Builder)
+Volt canopy follow-up: code/crewhouse_kit.js dark PBR canopy #1c1e22 roughness .6 metalness .45; thin primary strips MeshStandardMaterial emissive intensity 1.15 toneMapped=true. Exterior remains 6 draws. New day/night heroes in shots/hero; _v2 are old pre-fix backups. Runtime b98 world 95 <=110, layer-aware gate PASS, 0 errors. Real html unchanged. No pbr_base polish changes.
