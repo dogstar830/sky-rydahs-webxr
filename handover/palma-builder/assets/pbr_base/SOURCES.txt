@@ -1,0 +1,8 @@
+Building-base atlas page B (Palma Builder, 2026-10-30). Built by /workspace/v3build/pbr_base_atlas.py from unmodified ambientCG 2K-JPG sets
+in /workspace/skyrydahs-ref/pbr/ (see SOURCES.txt there). All CC0 1.0, ambientCG (https://docs.ambientcg.com/license/).
+tile 0,0 Bricks105 (brick + mortar)        https://ambientcg.com/view?id=Bricks105
+tile 1,0 Concrete034 (poured concrete)     https://ambientcg.com/view?id=Concrete034
+tile 0,1 PaintedMetal004 (steel I-beams/frames; shader converts to charcoal paint, chips kept)  https://ambientcg.com/view?id=PaintedMetal004
+tile 1,1 MetalPlates008 (kick plates)      https://ambientcg.com/view?id=MetalPlates008
+pbrB_albedo 2048^2 ETC1S/BasisLZ q192 sRGB | pbrB_nrm 1024^2 UASTC+zstd18 linear (GL) | pbrB_orm 1024^2 ETC1S q192 linear (R AO, G rough, B metal). All pre-flipped (flipY=false), power of two, full mips.
+Quest GPU estimate: 2.8 + 1.4 + 0.7 = 4.9 MB. jpg fallbacks alongside (desktop / no-KTX2 path).

@@ -1,0 +1,13 @@
+# CC0 PBR sources for step 5 (2K JPG zips, unmodified). License for all: CC0 1.0, ambientCG https://docs.ambientcg.com/license/ (https://creativecommons.org/publicdomain/zero/1.0/). Author: ambientCG (Lennart Demes).
+# file | url | author | license | use
+Asphalt031_2K-JPG.zip | https://ambientcg.com/view?id=Asphalt031 (dl https://ambientcg.com/get?file=Asphalt031_2K-JPG.zip) | ambientCG | CC0 1.0 | 30 MB
+Bark001_2K-JPG.zip | https://ambientcg.com/view?id=Bark001 (dl https://ambientcg.com/get?file=Bark001_2K-JPG.zip) | ambientCG | CC0 1.0 | 18 MB
+Bricks105_2K-JPG.zip | https://ambientcg.com/view?id=Bricks105 (dl https://ambientcg.com/get?file=Bricks105_2K-JPG.zip) | ambientCG | CC0 1.0 | 15 MB
+Concrete034_2K-JPG.zip | https://ambientcg.com/view?id=Concrete034 (dl https://ambientcg.com/get?file=Concrete034_2K-JPG.zip) | ambientCG | CC0 1.0 | 11 MB
+Concrete046_2K-JPG.zip | https://ambientcg.com/view?id=Concrete046 (dl https://ambientcg.com/get?file=Concrete046_2K-JPG.zip) | ambientCG | CC0 1.0 | 23 MB
+CorrugatedSteel005_2K-JPG.zip | https://ambientcg.com/view?id=CorrugatedSteel005 (dl https://ambientcg.com/get?file=CorrugatedSteel005_2K-JPG.zip) | ambientCG | CC0 1.0 | 19 MB
+Ground080_2K-JPG.zip | https://ambientcg.com/view?id=Ground080 (dl https://ambientcg.com/get?file=Ground080_2K-JPG.zip) | ambientCG | CC0 1.0 | 24 MB
+MetalPlates008_2K-JPG.zip | https://ambientcg.com/view?id=MetalPlates008 (dl https://ambientcg.com/get?file=MetalPlates008_2K-JPG.zip) | ambientCG | CC0 1.0 | 10 MB
+PaintedMetal004_2K-JPG.zip | https://ambientcg.com/view?id=PaintedMetal004 (dl https://ambientcg.com/get?file=PaintedMetal004_2K-JPG.zip) | ambientCG | CC0 1.0 | 25 MB
+PaintedPlaster017_2K-JPG.zip | https://ambientcg.com/view?id=PaintedPlaster017 (dl https://ambientcg.com/get?file=PaintedPlaster017_2K-JPG.zip) | ambientCG | CC0 1.0 | 15 MB
+Planks037A_2K-JPG.zip | https://ambientcg.com/view?id=Planks037A (dl https://ambientcg.com/get?file=Planks037A_2K-JPG.zip) | ambientCG | CC0 1.0 | 20 MB
