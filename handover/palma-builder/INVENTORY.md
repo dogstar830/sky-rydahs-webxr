@@ -66,11 +66,11 @@ Status: **shipped default** = on in the build. **opt-in** = in the chain but beh
 | `code/patch_crewhouse_kit.py` | 6 KB | Injects crewhouse_kit.js. | #24 | - | - | crewhouse_kit.js | shipped default |
 | `code/patch_facades.py` | 5 KB | Injects facades.js; embeds textures/facade_{albedo,nr}.jpg as data URIs. | #9 | - | - | facades.js | shipped default |
 | `code/patch_ground.py` | 1 KB | Injects ground.js. | #13 | - | - | ground.js | shipped default |
-| `code/patch_pbr_base.py` | 1 KB | Injects pbr_base.js. | #27 | - | - | pbr_base.js | opt-in |
+| `code/patch_pbr_base.py` | 1 KB | Injects pbr_base.js after pbr_world, before LOOP. Ani approved slot. | #27 | - | - | pbr_base.js | shipped opt-in |
 | `code/patch_pbr_world.py` | 1 KB | Injects pbr_world.js. | #26 | - | - | pbr_world.js | shipped default |
 | `code/patch_sky.py` | 1 KB | Injects sky.js. | #11 | - | - | sky.js | shipped default |
 | `code/patch_world_perf.py` | 2 KB | Injects world_perf.js. | #25 | - | - | world_perf.js | shipped default |
-| `code/pbr_base.js` | 10 KB | PBR building-base band 0..~5 m: brick/concrete, I-beams, storefronts. Layers on pbr_world. | #27 patch_pbr_base.py | const PBR_BASE | ?pbrbase=1 (opt-in), ?toon=1 disables | pbr_world.js, assets/pbr_base | opt-in |
+| `code/pbr_base.js` | 10 KB | PBR building-base band 0..~5 m: brick/concrete per kit, steel I-beams+lintels, framed storefronts (env glass + night interiors), kick plate, grime/AO. Shader-only 0 new draws. Contrast+distance-AA fix 11/05 so band reads at 15–40 m. | #27 patch_pbr_base.py (after #26 pbr_world) | const PBR_BASE | ?pbrbase=1 (opt-in until Ani/Oliver), ?toon=1/?pbr=0 no-op | pbr_world.js, assets/pbr_base | opt-in ready |
 | `code/pbr_base_wip.glsl` | 5 KB | Building-base GLSL chunk for the WIP. | not in chain | - | - | - | WIP |
 | `code/pbr_base_wip.js` | 30 KB | WIP fork of pbr_world.js with building-base shader work. NOT in chain. | not in chain | PBR_WORLD (would replace) | ?pbr, ?toon, ?ktx2 | pbr_base_wip.glsl | WIP |
 | `code/pbr_base_wip_inject.py` | 2 KB | Test-copy injector for pbr_base_wip.js. | not in chain (copy builds only) | - | - | pbr_base_wip.js | WIP |
@@ -138,6 +138,16 @@ Status: **shipped default** = on in the build. **opt-in** = in the chain but beh
 | `shots/hero/pbr_causeway_night_final.png` | 3.6 MB | PBR causeway night hero final | - | - | - | - | - |
 | `shots/hero/pbr_street_day_before_tweak.png` | 3.0 MB | Day street with bak-bloomtweak-0018 (pre-removal) for SBS | - | - | - | - | - |
 | `shots/hero/pbr_street_day_before_after_side_by_side.png` | 3.6 MB | Day street before/after day-bloom tweak removal SBS | - | - | - | - | - |
+| `shots/hero/bldgbase_final_street_day_after.png` | 3.0 MB | Building-base hero final (street day, ?pbrbase=1) | - | - | - | - | - |
+| `shots/hero/bldgbase_final_street_day_before.png` | 3.0 MB | Building-base hero final (street day baseline) | - | - | - | - | - |
+| `shots/hero/bldgbase_final_street_night_after.png` | 3.2 MB | Building-base hero final (street night, ?pbrbase=1) | - | - | - | - | - |
+| `shots/hero/bldgbase_final_street_night_before.png` | 3.2 MB | Building-base hero final (street night baseline) | - | - | - | - | - |
+| `shots/hero/bldgbase_final_close_day_after.png` | 3.9 MB | Building-base hero final (~15 m storefront day) | - | - | - | - | - |
+| `shots/hero/bldgbase_final_close_day_before.png` | 3.2 MB | Building-base hero final (~15 m storefront day baseline) | - | - | - | - | - |
+| `shots/hero/bldgbase_final_close_night_after.png` | 4.2 MB | Building-base hero final (~15 m storefront night, lit interiors) | - | - | - | - | - |
+| `shots/hero/bldgbase_final_street_day_side_by_side.png` | 3.6 MB | Building-base day street before/after SBS | - | - | - | - | - |
+| `shots/hero/bldgbase_final_street_night_side_by_side.png` | 3.9 MB | Building-base night street before/after SBS | - | - | - | - | - |
+| `shots/hero/bldgbase_final_close_day_side_by_side.png` | 4.6 MB | Building-base close day before/after SBS | - | - | - | - | - |
 | `shots/hero/spawn_view_day.png` | 626 KB | Hero shot (screenshot standard) | - | - | - | - | - |
 | `shots/hero/spawn_view_night.png` | 614 KB | Hero shot (screenshot standard) | - | - | - | - | - |
 | `tools/bldgbase_shots.py` | 3 KB | Playwright hero/before-after shot script (1920x1080 dsf1.5, tier hd, seed 1). | - | - | - | - | tool |
@@ -203,7 +213,7 @@ Boxes are [minX, minZ, maxX, maxZ] (the full set is in `data/palma.json`):
 - Logo atlas `assets/kit/kit_logos.png` slots (KIT_LOGO_SLOT): codee 0, karasu 1, static 2, behemoth 3, anubis 4, ttt 5, genesis 6, forest 7, volt 8. Rust Claw has no slot yet.
 
 ## Open items
-1. **Building-base WIP**: pbr_base.js is opt-in (`?pbrbase=1`). pbr_base_wip.* is outside the chain, not finished.
+1. **Building-base**: pbr_base.js OPT-IN ready (`?pbrbase=1`) as of 2026-11-05 — waiting Ani look check + Oliver before/after before default-on. pbr_base_wip.* kept as older reference outside chain.
 2. **FACADE harness fix**: the shot/measure harness reads day state through the global `const FACADE` (FACADE.uniforms.uDay). It needs a proper fix so the shot scripts don't depend on that global.
 3. **Pod collision** in the Kog loft needs a height-aware check (the colliders are XZ-only, so pods block at any height).
 4. **Catwalk posts** in the garage kit are still to do.
@@ -224,3 +234,11 @@ Boxes are [minX, minZ, maxX, maxZ] (the full set is in `data/palma.json`):
 
 ## 2026-11-05 13:59 CST update
 Ani review fixes + CREW_RIVALS: crewhouse_kit.js (kitTheme←CREW_RIVALS, kitFixEmblems, Volt canopy 3.76m), patch_crewhouse_kit.py (inject CREW_RIVALS, MARINA ry=0), tools/garage_hero_shots.py (Volt cam), tools/palma_testlock.sh. Heroes re-shot under shots/hero/garage_{volt,rustclaw}_*.png. Real html untouched.
+
+## Update 2026-11-05 — Building ground-floor bases opt-in (Palma Builder)
+- `code/pbr_base.js` + `code/patch_pbr_base.py`: 0–5 m band on facade ShaderMaterial after pbr_world convert. Brick/concrete per kit, steel I-beam columns+lintels, framed storefronts (env glass + night interiors), kick plate, grime/AO. Shader-only (0 new draws). OPT-IN `?pbrbase=1`.
+- Contrast/scale + distance-AA fix 11/05: larger masonry modules, thicker beams/frames, stronger mortar/glass/grime; `wall=mix(masonry,col,.92)` so facades distance-AA no longer washes beams/windows at 15–40 m.
+- Assets: `assets/pbr_base/pbrB_{albedo,nrm,orm}.{jpg,ktx2}` (CC0 ambientCG; see SOURCES.txt).
+- Chain: `python3 patch_pbr_base.py` immediately after `patch_pbr_world.py` (Ani approved). Default-on only after Ani look check + Oliver before/after.
+- Hero finals: `shots/hero/bldgbase_final_{street,close}_{day,night}_{before,after}.png` + `*_side_by_side.png`.
+- WIP refs kept out of chain: `pbr_base_wip.js`, `pbr_base_wip_inject.py`, `pbr_base_wip.glsl`.

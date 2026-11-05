@@ -28,3 +28,40 @@ Task (Oliver via Ani, 10/30 20:11): PBR building bases 0-5 m: brick/poured concr
 - 10:44: chain copy bo_bldgbase3.html: default: err 0 404 0 shader 0 base False; &pbrbase=1: err 0 404 0 shader 0 base True; &toon=1: err 0 404 0 shader 0 base False; &tier=quest: err 0 404 0 shader 0 base False; &tier=quest&ktx2=1&pbrbase=1: err 0 404 0 shader 0 base True
 - 09:15: after shots: Traceback (most recent call last):   File "/workspace/v3build/bldgbase_shots.py", line 25, in <module>     pg.evaluate("garages.forEach(g=>g.gate&&(g.gate.dismissed=true));if(typeof GATE!='undefined'){GATE.uiOpen=false;gateUI()};window.__npcPassive=true;window.__npcFreeze=true"); pg.evaluate(HOOK)  
 - 09:22: step (6) hero shots done
+
+## 2026-11-05 — finish-mode close-out (opt-in shippable)
+
+- Goal: ship as `?pbrbase=1` (default only after Ani look + Oliver before/after). Chain: `patch_pbr_base.py` after `patch_pbr_world.py` (already in build_ikki.sh).
+- Contrast/scale pass on `pbr_base.js` (bak `pbr_base.js.bak-contrast-20261105-*`): bay width `P0.x*1.6→2.05`; masonry `qsc` brick `1.4→.95` / concrete `2.6→1.7`; columns `qcw .21→.30`; lintel `.34→.42`; plinth `qPl .38→.48`; frames `fw .075→.11`; brick stretch `1.25→1.75`; steel flange/web contrast up; day glass `+.28→+.45 uDay`; night interior emi `1.1→1.35`; normals `1.2→1.65`; stronger AO/grime/spec. Target: band reads at 15–40 m, stylised realism.
+- Next: build_copy `/tmp/palma_base.html`, wait .testlock (Systems/other Palma), shoot `bldgbase_final_*` street/close day+night baseline vs pbrbase=1 SBS, dcsplit2 draws ≤110, spawn/wallkick/colliders/0 errors.
+
+### 11:34 CST — distance-AA fix + lock freeze
+- Root cause of "too subtle at street distance": facades fragment does `o=mix(col, avg=wall*.7+..., aa)` where `aa` rises with fwidth. Base band set `wall` to flat masonry, so at 15–40 m beams/windows in `col` were AA-washed away. Fix: `wall=mix(masonry, col, .92)` (bak `pbr_base.js.bak-distAA-*`).
+- Contrast/scale pass kept (thicker columns/frames, larger brick modules, stronger mortar/glass/grime).
+- Copy rebuilt `/tmp/palma_base.html`; real html md5 unchanged `5ad0f564…`.
+- LOCK RULE (urgent): before writing `.testlock`, read pid + `kill -0`; never overwrite a live pid; atomic O_EXCL only; unlink only if claim holds our pid. Shared helper `/tmp/palma_testlock.py`. Browser freeze until **12:03 CST** (Rigger ~25 min slot). No Chromium from Palma until then.
+- Queue ready: `/tmp/palma_base_queue.sh` (freeze→verify shots→dcsplit2 nofx seed=1 baseline+pbrbase→gameplay invariants). Lock via `/tmp/palma_testlock.py`.
+- 12:03–12:18+ CST: freeze lifted; correctly waiting on live lock holder pid 1985743 (`bash /tmp/rs_shots.sh` → `rider_style_opt3_shots.py`, chromium active). Claimed max 45 min from 11:33 but still running — we do NOT overwrite.
+
+### 12:23 CST — resume after interrupt
+- State OK: contrast+distance-AA in `pbr_base.js` (md5 `1d49f28a…`) and `/tmp/palma_base.html` (built 11:34); real html `5ad0f564…` unchanged; `pbr_world.js` untouched (`d35c25d1…`).
+- No dead own lock to clear. Queue pid 1987813 still waiting correctly on live holder 1985743 (`rs_shots.sh` / opt3 hero, ~50 min, over claimed 45 — still alive, do not overwrite).
+- Pending: hero `bldgbase_final_*` shots + SBS, dcsplit2 nofx, gameplay invariants, DEMO_STATUS ready, handover push.
+- 12:31 CST: Forge released; Rigger took lock (`anika springs+combat run9`, pid 1987007, max 30 min from 12:29). Our queue correctly re-read lock and waits on live Rigger — no overwrite, no browser.
+- 12:51 CST: old queue (1h wait from 12:03) near timeout while Forge holds another opt3-close slot (pid 2040307, max 30 min from 12:45). Stopped waiting queue (never held lock). Restarted `/tmp/palma_base_queue2.sh` with 2h wait + 10s poll; still kill -0 / O_EXCL / own-pid release only.
+- 13:05 CST: still waiting on Forge opt3-close (pid 2040307); shots progressing (caali close day/night before/after landed). Queue2 healthy. No browser from us.
+- 13:13 CST: resume — queue2 pid 2044808 still sole waiter; Forge extended lock to 13:22 for anika after. No second queue. Watching log only.
+- 13:16 CST: Forge released; queue2 entered shots+verify; Rigger immediately took lock (run10, pid 2044257, max 40 min). verify take_lock correctly waiting — no overwrite.
+- 13:22–13:30 CST: Rigger → Ani AI4b_smoke suite (pid 2039166, runq: smoke/grind/atk/wallride/gamepad). Queue2 verify still waiting correctly on live Ani pid.
+- 13:34 Rigger run10 again; 13:37 **other Palma** took lock (`ani garage dcsplit+hero+rivals`, pid 2010810, max 30 min). Queue2 yields (same bot family, let waiters/holders finish). Still no second queue from us.
+- 13:58 CST: LOCK acquired by queue2 verify (pid 2060005). Shots starting. No second queue.
+- 14:04 CST: resume — verify 2060005 holds lock, first shot `bldgbase_final_street_night_before.png` landed. Watching only; no duplicate queue. Will release promptly for garage Volt re-shoot waiters.
+
+### 14:35 CST — queue2 complete (opt-in shippable)
+- Verify ok: PBR_BASE on, facade patched=1, warn=[], 0 page/shader errors. SBS written.
+- Hero finals: `shots/hero/bldgbase_final_{street,close}_{day,night}_{before,after}.png` + `{street_day,street_night,close_day}_side_by_side.png`.
+- Look: street day after — skyscraper base shows concrete + dark steel frames/windows at 15–40 m (distance-AA wall←col fix working). Close day — textured masonry, speckled I-beams, storefront glass. Night — lit interiors. Before flats vs after structured. No further shader iterate needed.
+- dcsplit2 nofx seed=1 (3 runs): **pbrbase** street world 75/75.7/77, causeway 101/101/101; **baseline** street 75/78/82, causeway 101/101/101. All ≤110; ~0 added draws (shader-only).
+- Gameplay invariants: colliders 973, WALL_KICKS 26, WALL_PANELS 17, tags 9, noKick 808 identical base vs pbrbase; 0 pageerrors; grind world true.
+- Real html md5 unchanged `5ad0f564…`. `pbr_world.js` untouched. Lock released promptly (Rigger took next).
+- Chain: `python3 patch_pbr_base.py` after `patch_pbr_world.py`. Opt-in `?pbrbase=1` until Ani look + Oliver before/after.

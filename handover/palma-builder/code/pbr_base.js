@@ -2,7 +2,7 @@
 // Ground-floor band (0..baseH, ~3.2-5 m) on the single instanced building ShaderMaterial, after pbr_world converted it: brick / poured concrete
 // per kit, painted-steel I-beam columns + lintel, concrete fascia with inset sign panel, framed storefronts (env-cube glass + interior parallax
 // card, lit at night), steel kick plate / concrete plinth, base grime + AO. Atlas page B (assets/pbr_base/pbrB_*, CC0 ambientCG, see SOURCES.txt).
-// Shader-only: 0 new meshes / draws; colliders, WALL_PANELS, WALL_KICKS, tag spots untouched. OPT-IN: ?pbrbase=1 (needs the PBR world, so ?toon=1 / ?pbr=0 -> no-op).
+// Shader-only: 0 new meshes / draws; colliders, WALL_PANELS, WALL_KICKS, tag spots untouched. OPT-IN: ?pbrbase=1 (needs the PBR world, so ?toon=1 / ?pbr=0 -> no-op). Contrast/scale pass 2026-11-05: larger masonry modules, thicker I-beams/frames, stronger brick mortar + glass + grime; distance-AA wall←col mix so beams/windows survive 15-40 m.
 const PBR_BASE=(()=>{ const S={on:false,warn:[],stats:{}}; if(typeof PBR_WORLD==='undefined'||!PBR_WORLD.on||!/[?&]pbrbase=1(&|$)/.test(location.search)) return S; S.on=true; /* OPT-IN ?pbrbase=1 until Ani's look check + Oliver's before/after */
   const BASE='assets/pbr_base/', K2=window.SR_KTX2&&window.SR_KTX2.on, U={bA:{value:null},bN:{value:null},bO:{value:null}};
   function tex(n,u){ const t=new THREE.TextureLoader().load(BASE+n+'.jpg'); t.wrapS=t.wrapT=THREE.ClampToEdgeWrapping; t.anisotropy=8; t.generateMipmaps=true; t.minFilter=THREE.LinearMipmapLinearFilter; U[u].value=t; if(!K2) return;
@@ -12,25 +12,25 @@ const PBR_BASE=(()=>{ const S={on:false,warn:[],stats:{}}; if(typeof PBR_WORLD==
   const GL=`        /* pbr: BUILDING BASE (Palma 10/30): masonry (brick/poured concrete) + steel I-beam columns & lintel, framed storefronts (env glass + interior parallax), kick plate/plinth, grime+AO. 0 new draws */
         vec2 qB=vec2(vFace.x,y); vec2 qBx=dFdx(qB), qBy=dFdy(qB);
         if(!roof&&y<P1.z+.01&&y>-.3){
-          float qW=max(vFace.y,1.), qs=clamp(vFace.x,0.,qW), qHb=P1.z, qnb=max(1.,floor(qW/(P0.x*1.6)+.5)), qbw=qW/qnb, qbi=min(floor(qs/qbw),qnb-1.), qbx=qs-qbi*qbw, qhb=h21(vec2(qbi,vSeed*3.1));
+          float qW=max(vFace.y,1.), qs=clamp(vFace.x,0.,qW), qHb=P1.z, qnb=max(1.,floor(qW/(P0.x*2.05)+.5)), qbw=qW/qnb, qbi=min(floor(qs/qbw),qnb-1.), qbx=qs-qbi*qbw, qhb=h21(vec2(qbi,vSeed*3.1));
           bool qBrick=(k==2||k==3||k==6||fm==0||(k==5&&fract(vSeed*.37)<.5));
-          float qL1=qHb-1.05, qL0=qL1-.34, qcw=.21, qdc=min(qbx,qbw-qbx), qPl=.38;
-          vec3 qA,qN,qO,qSA,qSN,qSO; float qsc=qBrick?1.4:2.6; vec2 qt=qBrick?vec2(0.,0.):vec2(1.,0.);
-          PBB(qt,qB/qsc,qsc,qA,qN,qO); PBB(vec2(0.,1.),qB/1.1,1.1,qSA,qSN,qSO);
-          vec3 qAc=max(vec3(0.),(qA-dot(qA,vec3(.33)))*1.25+dot(qA,vec3(.33))*(qBrick?mix(.55,1.12,smoothstep(.32,.5,dot(qA,vec3(.33)))):1.)); vec3 qMas=qAc*(qBrick?mix(vec3(1.),vCol/max(dot(vCol,vec3(.3,.59,.11)),.08)*.45,.18)*.95:vec3(.78,.77,.74))*(.9+.2*fract(vSeed*1.73));
-          float qsl=dot(qSA,vec3(.3,.59,.11)); vec3 qSt=mix(vec3(.11,.13,.16),vec3(.42,.42,.40),smoothstep(.55,.85,qsl));   /* charcoal painted steel, chips from the texture */
+          float qL1=qHb-1.05, qL0=qL1-.42, qcw=.30, qdc=min(qbx,qbw-qbx), qPl=.48;
+          vec3 qA,qN,qO,qSA,qSN,qSO; float qsc=qBrick?.95:1.7; vec2 qt=qBrick?vec2(0.,0.):vec2(1.,0.);
+          PBB(qt,qB/qsc,qsc,qA,qN,qO); PBB(vec2(0.,1.),qB/.95,.95,qSA,qSN,qSO);
+          vec3 qAc=max(vec3(0.),(qA-dot(qA,vec3(.33)))*1.75+dot(qA,vec3(.33))*(qBrick?mix(.42,1.22,smoothstep(.28,.52,dot(qA,vec3(.33)))):1.08)); vec3 qMas=qAc*(qBrick?mix(vec3(1.),vCol/max(dot(vCol,vec3(.3,.59,.11)),.08)*.55,.22)*1.05:vec3(.86,.84,.80))*(.88+.24*fract(vSeed*1.73));
+          float qsl=dot(qSA,vec3(.3,.59,.11)); vec3 qSt=mix(vec3(.09,.10,.12),vec3(.48,.47,.44),smoothstep(.5,.88,qsl));   /* charcoal painted steel; contrast pass 11/05 for 15-40 m */
           float qSignIn=0.; vec3 qM=qMas; vec3 qNt=qN; float qRo=qO.g, qMe=0., qAO=qO.r, qE=0.; vec3 qEm=vec3(0.); bool qKeep=false;
           bool qCol=qdc<qcw, qLin=y>qL0&&y<qL1&&!qCol, qSign=y>=qL1&&y<qHb-.25&&!qCol, qTop=y>=qHb-.25&&!qCol;
           bool qSolid=qhb<.2||qbw<2.2;
           if(qCol){ float qd=qcw-qdc; qM=qSt; qNt=qSN; qRo=qSO.g*.9; qMe=.6;
-            if(qd<.035) { qM*=1.55; qNt=vec3(.5+.35*(qdc<qbx?1.:-1.),.5,1.); } else if(qd<.06) qM*=.55; else { qM*=.82; qAO*=.8; }   /* flange edge catch-light, web shadow */
-            if(abs(qd-.13)<.022&&fract(y/.45)<.09) qM*=1.6; }                                                                    /* bolt rows */
-          else if(qLin){ float qe=min(y-qL0,qL1-y); qM=qSt*(qe<.04?1.5:qe<.065?.55:.85); qNt=qSN; qRo=qSO.g*.9; qMe=.6; qAO*=qe<.065?.85:1.; }
+            if(qd<.045) { qM*=1.9; qNt=vec3(.5+.42*(qdc<qbx?1.:-1.),.5,1.); } else if(qd<.08) qM*=.42; else { qM*=.78; qAO*=.72; }   /* flange edge catch-light, web shadow */
+            if(abs(qd-.16)<.028&&fract(y/.5)<.11) qM*=1.85; }                                                                    /* bolt rows */
+          else if(qLin){ float qe=min(y-qL0,qL1-y); qM=qSt*(qe<.05?1.75:qe<.08?.4:.88); qNt=qSN; qRo=qSO.g*.9; qMe=.65; qAO*=qe<.08?.8:1.; }
           else if(qSign){ vec3 fA,fN,fO; PBB(vec2(1.,0.),qB/2.2,2.2,fA,fN,fO); float sx=qbx/qbw, sy=(y-qL1)/(qHb-.25-qL1); bool ins=sx>.1&&sx<.9&&sy>.18&&sy<.82; qM=ins?vec3(.05,.05,.06):fA*.85; qNt=ins?vec3(.5,.5,1.):fN; qRo=ins?.3:fO.g; qMe=ins?.5:0.; if(!ins) emi=vec3(0.); qSignIn=ins?1.:0.; }
           else if(qTop){ vec3 tA,tN,tO; PBB(vec2(1.,0.),qB/2.2,2.2,tA,tN,tO); qM=tA*(y>qHb-.08?1.:.9)*(y<qHb-.2?.55:1.); qNt=tN; qRo=tO.g; }
-          else if(y<qPl){ if(qSolid){ vec3 cA,cN,cO; PBB(vec2(1.,0.),qB/2.,2.,cA,cN,cO); qM=cA*.62; qNt=cN; qRo=cO.g; } else { vec3 kA,kN,kO; PBB(vec2(1.,1.),qB/.9,.9,kA,kN,kO); qM=kA*.55*(qPl-y<.03?1.6:1.); qNt=kN; qRo=kO.g*.8; qMe=.85; } }
+          else if(y<qPl){ if(qSolid){ vec3 cA,cN,cO; PBB(vec2(1.,0.),qB/1.5,1.5,cA,cN,cO); qM=cA*.72; qNt=cN; qRo=cO.g; } else { vec3 kA,kN,kO; PBB(vec2(1.,1.),qB/.75,.75,kA,kN,kO); qM=kA*.68*(qPl-y<.04?1.85:1.); qNt=kN; qRo=kO.g*.75; qMe=.9; } }
           else {
-            float ox=qbx-qcw, ow=qbw-2.*qcw, oy=y-qPl, oh=qL0-qPl, fw=.075; bool inG; float qfr=0.;
+            float ox=qbx-qcw, ow=qbw-2.*qcw, oy=y-qPl, oh=qL0-qPl, fw=.11; bool inG; float qfr=0.;
             if(qSolid){ float px=abs(ox-ow*.5), py=abs(oy-oh*.55); inG=px<ow*.28&&py<oh*.3; qfr=float(!inG&&px<ow*.28+.07&&py<oh*.3+.07); }
             else { float trn=min(2.45,oh-.45); float mul=ow>3.?abs(ox-ow*.5):99.; qfr=float(ox<fw||ox>ow-fw||oy>oh-fw||abs(oy-trn)<.045||mul<.04||(oy<fw)); inG=qfr<.5; }
             if(qfr>.5){ qM=qSt*.8; qNt=qSN; qRo=.35; qMe=.8; }
@@ -45,24 +45,27 @@ const PBR_BASE=(()=>{ const S={on:false,warn:[],stats:{}}; if(typeof PBR_WORLD==
               else ic=wc*.75;
               ic*=1.-.55*smoothstep(0.,qD,hp.z*.8);
               float on=step(rn,P1.y+.35); vec3 lc=mix(LIT,vec3(1.,.92,.8),.5);
-              vec3 day=ic*.32*lg, night=ic*lc*(on*1.1+.06)*lg;
+              vec3 day=ic*.38*lg, night=ic*lc*(on*1.25+.08)*lg;
               vec3 inter=mix(night,day,uDay);
               vec3 gr=reflect(V,n); vec3 genv=textureCube(uEnv,vec3(-gr.x,gr.y,gr.z)).rgb; float gf=.06+.94*pow(1.-max(0.,dot(-V,n)),5.);
-              vec3 gcol=mix(inter,genv*mix(.5,1.,uDay),clamp(gf+.28*uDay,0.,1.));
-              qE=1.; qM=gcol; qEm=night*(1.-uDay)*(1.-gf)*1.1; qAO=1.;
+              vec3 gcol=mix(inter,genv*mix(.55,1.15,uDay),clamp(gf+.45*uDay,0.,1.));
+              qE=1.; qM=gcol; qEm=night*(1.-uDay)*(1.-gf)*1.35; qAO=1.;
               float sm=step(.92,h21(vec2(floor(ox*3.),floor(oy*3.)+qbi)))*.05; qM+=sm;                   /* dirt smudges */
             } else { qM=qMas; }
           }
           if(!qKeep){
-            vec2 qnx=(qNt.xy*2.-1.)*1.2; vec3 qpn=normalize(Tn*qnx.x+Bn*qnx.y+n*sqrt(max(.05,1.-dot(qnx,qnx))));
-            float qdl=dot(qpn,uSun)-ndl, qdv=dot(qpn,-V)-dot(n,-V); float qsh=band*(1.+qdl*.9+qdv*.7); qsh=mix(qsh,max(qsh,.95),.45*uDay); vec3 qamb=textureCube(uEnv,vec3(-qpn.x,qpn.y,qpn.z)).rgb*.22*uDay;
-            float qao=qAO*(1.-.45*exp(-y/.32))*(1.-.3*exp(-max(qdc-qcw,0.)/.12)*float(!qCol))*(1.-.25*exp(-max(qL0-y,0.)/.15)*float(y<qL0&&!qCol));
-            float qg=exp(-y/.9)*.35+.2*smoothstep(.6,1.,h21(vec2(floor(qs*2.3),vSeed)))*smoothstep(1.4,0.,y);   /* base grime + splash */
-            if(qE<.5){ vec3 qrv=reflect(V,qpn); vec3 qen=textureCube(uEnv,vec3(-qrv.x,qrv.y,qrv.z)).rgb; float qsp=(1.-qRo)*(1.-qRo)*mix(.1,.9,qMe);
-              col=qM*(1.-qg)*(qsh*nk+qamb)*qao+qen*qsp*mix(vec3(.04),qM*1.5,qMe)*.6; if(qSignIn<.5) emi=vec3(0.); }
+            vec2 qnx=(qNt.xy*2.-1.)*1.65; vec3 qpn=normalize(Tn*qnx.x+Bn*qnx.y+n*sqrt(max(.05,1.-dot(qnx,qnx))));
+            float qdl=dot(qpn,uSun)-ndl, qdv=dot(qpn,-V)-dot(n,-V); float qsh=band*(1.+qdl*1.15+qdv*.85); qsh=mix(qsh,max(qsh,1.05),.55*uDay); vec3 qamb=textureCube(uEnv,vec3(-qpn.x,qpn.y,qpn.z)).rgb*.28*uDay;
+            float qao=qAO*(1.-.55*exp(-y/.28))*(1.-.4*exp(-max(qdc-qcw,0.)/.1)*float(!qCol))*(1.-.32*exp(-max(qL0-y,0.)/.12)*float(y<qL0&&!qCol));
+            float qg=exp(-y/.75)*.48+.28*smoothstep(.55,1.,h21(vec2(floor(qs*2.3),vSeed)))*smoothstep(1.6,0.,y);   /* base grime + splash; stronger for street read */
+            if(qE<.5){ vec3 qrv=reflect(V,qpn); vec3 qen=textureCube(uEnv,vec3(-qrv.x,qrv.y,qrv.z)).rgb; float qsp=(1.-qRo)*(1.-qRo)*mix(.12,1.,qMe);
+              col=qM*(1.-qg)*(qsh*nk+qamb)*qao+qen*qsp*mix(vec3(.05),qM*1.7,qMe)*.75; if(qSignIn<.5) emi=vec3(0.); }
             else { col=qM*mix(1.,qao,.5); emi=qEm; }
           }
-          wall=qMas*band*nk*.85;
+          /* CRITICAL 11/05: facades distance-AA does o=mix(col, avg=wall*.7+..., aa).
+             Old wall=flat masonry made beams/windows vanish at 15-40 m (the "too subtle" bug).
+             Keep structured col in wall so AA preserves I-beams, frames, glass. */
+          wall=mix(qMas*band*nk*.85, col, .92);
         }
 `, DEF='#define PBB(T,UV,SCL,A,N,O) { vec2 f_=fract(UV); vec2 a_=(T*vec2(1.,-1.)+vec2(0.,1.)+PAD+f_*(1.-2.*PAD))*.5; vec2 g1_=qBx/SCL*.5*(1.-2.*PAD), g2_=qBy/SCL*.5*(1.-2.*PAD); A=texture2DGradEXT(pbrBA,a_,g1_,g2_).rgb; N=texture2DGradEXT(pbrBN,a_,g1_,g2_).rgb; O=texture2DGradEXT(pbrBO,a_,g1_,g2_).rgb; }';
   function patch(m){ const va='vY=wp.y-instanceMatrix[3].y;', a3='emi*=mix(1.,.25,uDay); float aa=', ua='uniform sampler2D uFA, uFN, pbrFA, pbrFN;';

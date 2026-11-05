@@ -1,5 +1,5 @@
 # Palma Builder: inline pbr_base.js (PBR building-base band) right AFTER the pbr_world.js block, before the main loop.
-# NOT in build_ikki.sh yet (chain slot pending Ani). Run after patch_pbr_world.py. Test copies: python3 patch_pbr_base.py /tmp/<copy>.html
+# In build_ikki.sh after patch_pbr_world.py (Ani approved 10/30). OPT-IN ?pbrbase=1. Test copies: python3 patch_pbr_base.py /tmp/<copy>.html
 import sys, os
 f=sys.argv[1] if len(sys.argv)>1 else os.environ.get('SR_HTML','/workspace/v3build/sky-rydahs-v3-ikki.html'); src=open(f).read()
 if 'const PBR_BASE=' in src: print("patch_pbr_base: already applied"); sys.exit(0)
