@@ -3,12 +3,15 @@
 // is re-parented into whichever garage the camera is near; per-crew colour via uniforms/instanceColor, logos via one logo atlas page.
 // Old dressBase interiors stay as the far LOD and are hidden while the kit is active in that garage. No skateboards anywhere.
 (function(){
-const KIT_LOGO_SLOT={codee:0,karasu:1,static:2,behemoth:3,anubis:4,ttt:5,genesis:6,forest:7,volt:8}; // volt = shared/crew-logos/volt.png (config only; Volt garage on hold, not placed)
+const KIT_LOGO_SLOT={codee:0,karasu:1,static:2,behemoth:3,anubis:4,ttt:5,genesis:6,forest:7,volt:8,rustclaw:9}; // volt=shared/crew-logos/volt.png slot8; rustclaw=rust-claw.png slot9 (packed 2026-11-05)
 // per-crew theme: c1 = neon (crews.js defaults.wheelGlow), c2 = accent (crews.js defaults.gold), name = world.js PALMA.garages name
 function kitTheme(gid){ const G=(PALMA.garages||[]).find(q=>q.crew===gid)||{name:gid,color:"#00E5FF"}; const cr=(typeof CREWS!=='undefined'?CREWS:[]).find(q=>q.garage===gid);
   const d=cr&&cr.defaults||{}; const T={id:gid,name:G.name,c1:d.wheelGlow!=null?d.wheelGlow:new THREE.Color(G.color).getHex(),c2:d.gold!=null?d.gold:0xb040ff,logo:KIT_LOGO_SLOT[gid]||0,
     sign:"AirTrecks",poster:G.name+" CREW",bay:[G.name,"GARAGE BAY 01","A-T TUNING & OPS"],street:"PALMA CITY"};
   if(gid==="karasu") Object.assign(T,{c1:0x00e5ff,c2:0x9a3cff,sign:"AirTrecks",poster:"KARASU CREW",bay:["KOGARASUMARU","GARAGE BAY 01","A-T TUNING & OPS"]}); // locked ref palette, purple accents downstairs
+  // TODO(Rydah Systems): Volt + Rust Claw not in crews.js yet — colours from graffiti.js GRAF_CREWS fallbacks; swap to crews.js defaults when landed
+  if(gid==="volt") Object.assign(T,{c1:0xff2fa0,c2:0xffe600,sign:"AirTrecks",poster:"VOLT CREW",bay:["VOLT","GARAGE BAY 01","A-T TUNING & OPS"]});
+  if(gid==="rustclaw") Object.assign(T,{c1:0xff6a1a,c2:0x8b3a1a,sign:"AirTrecks",poster:"RUST CLAW CREW",bay:["RUST CLAW","GARAGE BAY 01","A-T TUNING & OPS"]});
   return Object.assign(T,(window.KIT_THEME_OVERRIDE||{})[gid]||{}); }
 window.kitTheme=kitTheme; window.KOG_THEME=null;
 
@@ -493,7 +496,86 @@ function kitTick(){ if(!KIT.root) return; const cam=(renderer.xr&&renderer.xr.is
   if(!KIT.lazy&&(bd<KIT_LAZY_R||window.KIT_FORCE)) kitLazy(); kitColGate(bd<KIT_R?best:null); const on=bd<KIT_R; KIT.root.visible=on; if(!on) kitExterior(null,false); if(on&&best!==KIT.g) kitApply(best); if(!on){ if(KIT.oldMeshes) KIT.oldMeshes.forEach(m=>m.visible=true); KIT.g=null; return; }
   const ly=p.y, wasUp=KIT.up.visible; KIT.up.visible=ly-(KIT.g?0:0)>KIT_UPY-1.5||window.KIT_FLOOR==='up'; KIT.down.visible=!KIT.up.visible||window.KIT_FLOOR==='both'; if(wasUp!==KIT.up.visible) kitLights(); { const inv=new THREE.Matrix4().copy(best.group.matrixWorld).invert(); const lp=new THREE.Vector3(pp.x,0,pp.z).applyMatrix4(inv); const inside=lp.x>-6&&lp.x<6&&lp.z>-17&&lp.z<-.2; KIT.inside=inside; kitExterior(best,inside,KIT.up.visible?'up':'down'); } 
   const t=(performance.now()-(KIT.t0||(KIT.t0=performance.now())))/1000, P=KIT.pools.up.drone; if(KIT.up.visible&&KIT.glbDrone) kitDronePose(t); else if(KIT.up.visible){ for(const d of KIT.drones){ const dy=Math.sin(t*1.6+d.ph)*.06; for(const i of d.ids){ P.getMatrixAt(i,_m); _m.elements[13]+= dy-(d._dy||0); P.setMatrixAt(i,_m); } d._dy=dy; } P.instanceMatrix.needsUpdate=true; } }
+
+// ---------- per-crew EXTERIOR variants (Palma only; Volt charging plaza / Rust Claw salvage shed) ----------
+// Budget: <=~6 draws each via shared mats + mergeBufferGeometries / InstancedMesh. No cars/bikes/boards.
+const KIT_EXT={ mats:null, done:Object.create(null) };
+function kitExtMats(){ if(KIT_EXT.mats) return KIT_EXT.mats;
+  const M={};
+  M.steel=new THREE.MeshStandardMaterial({color:0x6a7078,roughness:.55,metalness:.7});
+  M.dark=new THREE.MeshStandardMaterial({color:0x1a1c20,roughness:.72,metalness:.35});
+  M.glass=new THREE.MeshStandardMaterial({color:0x88c8e8,roughness:.15,metalness:.2,transparent:true,opacity:.45,depthWrite:false});
+  M.corr=new THREE.MeshStandardMaterial({color:0x7a4a2a,roughness:.85,metalness:.55});
+  M.corr2=new THREE.MeshStandardMaterial({color:0x5a5e64,roughness:.7,metalness:.65});
+  M.wood=new THREE.MeshStandardMaterial({color:0x5a4030,roughness:.95,metalness:0});
+  M.buoy=new THREE.MeshStandardMaterial({color:0xd45020,roughness:.55,metalness:.1});
+  M.chain=new THREE.MeshStandardMaterial({color:0x3a3c40,roughness:.6,metalness:.8});
+  M.boll=new THREE.MeshStandardMaterial({color:0x2a2e34,roughness:.45,metalness:.75});
+  KIT_EXT.mats=M; return M; }
+function kitExtNeon(col){ const m=new THREE.MeshBasicMaterial({color:col}); m.toneMapped=false; return m; }
+function kitExtBox(w,h,d,x,y,z,rx,ry,rz){ const g=new THREE.BoxGeometry(w,h,d); if(rx||ry||rz){ g.rotateX(rx||0); g.rotateY(ry||0); g.rotateZ(rz||0); } g.translate(x,y,z); return g; }
+function kitExtCyl(rt,rb,h,x,y,z,seg){ const g=new THREE.CylinderGeometry(rt,rb,h,seg||8); g.translate(x,y,z); return g; }
+function kitExtMerge(geos,mat,parent,name){ const ok=geos.filter(Boolean); if(!ok.length) return null;
+  const g=THREE.BufferGeometryUtils.mergeBufferGeometries(ok,false); if(!g) return null;
+  const m=new THREE.Mesh(g,mat); m.name=name||'kit_ext'; m.userData.noMerge=true; m.userData.mod='kit_ext'; m.frustumCulled=true; parent.add(m); return m; }
+function kitExtPushCol(G,boxes){ const th=G.th,[gx,gz]=G.pos; const W=(lx,lz)=>[gx+lx*Math.cos(th)+lz*Math.sin(th), gz-lx*Math.sin(th)+lz*Math.cos(th)];
+  for(const [a0,a1,b0,b1] of boxes){ const a=W(a0,b0), b=W(a1,b1); colliders.push({minX:Math.min(a[0],b[0]),maxX:Math.max(a[0],b[0]),minZ:Math.min(a[1],b[1]),maxZ:Math.max(a[1],b[1]),kit_ext:1,g:G}); } }
+function kitExtVolt(G){ // EV charging plaza: canopy + glass kiosk + bollards + neon (target ~5 draws)
+  const M=kitExtMats(), root=new THREE.Group(); root.name='kit_ext_volt'; root.userData.noMerge=true; G.group.add(root);
+  const c1=new THREE.Color(G.color||'#ff2fa0'), accent=new THREE.Color('#ffe600');
+  const neon1=kitExtNeon(c1.getHex()), neon2=kitExtNeon(accent.getHex());
+  // draw 1: dark body (canopy deck + kiosk shell)
+  kitExtMerge([kitExtBox(10.5,.18,6.2,0,3.55,5.2), kitExtBox(2.2,2.6,2.0,-5.2,1.3,6.5)], M.dark, root, 'kit_ext_volt_dark');
+  // draw 2: steel (canopy posts + kiosk roof)
+  kitExtMerge([kitExtCyl(.09,.11,3.5,-4.6,1.75,3.0),kitExtCyl(.09,.11,3.5,-4.6,1.75,7.2),kitExtCyl(.09,.11,3.5,4.6,1.75,3.0),kitExtCyl(.09,.11,3.5,4.6,1.75,7.2),kitExtBox(2.3,.12,2.1,-5.2,2.66,6.5)], M.steel, root, 'kit_ext_volt_steel');
+  // draw 3: neon primary (canopy edge + LED strips + yard strip)
+  kitExtMerge([kitExtBox(10.7,.06,6.4,0,3.48,5.2),kitExtBox(9.6,.04,.08,0,3.42,3.4),kitExtBox(9.6,.04,.08,0,3.42,5.2),kitExtBox(9.6,.04,.08,0,3.42,7.0),kitExtBox(9.5,.03,.2,0,.04,8.2)], neon1, root, 'kit_ext_volt_neon1');
+  // draw 4: neon accent (kiosk bar + 4 cable arms as boxes)
+  kitExtMerge([kitExtBox(1.6,.18,.06,-5.2,2.4,7.55),kitExtBox(.06,1.4,.06,-2.2,2.7,4.2),kitExtBox(.06,1.4,.06,-.4,2.7,4.2),kitExtBox(.06,1.4,.06,1.4,2.7,4.2),kitExtBox(.06,1.4,.06,3.2,2.7,4.2)], neon2, root, 'kit_ext_volt_neon2');
+  // draw 5: glass kiosk pane
+  kitExtMerge([kitExtBox(1.9,1.6,.06,-5.2,1.5,7.52)], M.glass, root, 'kit_ext_volt_glass');
+  // draw 6: bollards InstancedMesh + neon rings shared via second IM would be draw 7 — bake rings into neon1? Keep 1 IM for bollards only
+  const bGeo=new THREE.CylinderGeometry(.18,.22,1.15,10); const boll=new THREE.InstancedMesh(bGeo,M.boll,4); boll.name='kit_ext_volt_bollards'; boll.userData.noMerge=true; boll.userData.mod='kit_ext';
+  const _m=new THREE.Matrix4(),_q=new THREE.Quaternion(),_s=new THREE.Vector3(1,1,1),_p=new THREE.Vector3();
+  [[-2.2,4.2],[-.4,4.2],[1.4,4.2],[3.2,4.2]].forEach((xz,i)=>{ _p.set(xz[0],.58,xz[1]); _m.compose(_p,_q,_s); boll.setMatrixAt(i,_m); });
+  root.add(boll);
+  kitExtPushCol(G,[[-6.3,-4.1,5.5,7.6],[-2.5,3.5,3.9,4.6]]);
+  G.extVariant=root; return root; }
+function kitExtRustClaw(G){ // corrugated salvage shed + marina salvage (target ~6 draws)
+  const M=kitExtMats(), root=new THREE.Group(); root.name='kit_ext_rustclaw'; root.userData.noMerge=true; G.group.add(root);
+  const c1=new THREE.Color(G.color||'#ff6a1a'); const neon1=kitExtNeon(c1.getHex());
+  const _m=new THREE.Matrix4(),_q=new THREE.Quaternion(),_s=new THREE.Vector3(1,1,1),_p=new THREE.Vector3();
+  // draw 1: corrugated panels (InstancedMesh)
+  const panelGeo=new THREE.BoxGeometry(2.4,4.6,.08); const panels=new THREE.InstancedMesh(panelGeo,M.corr,6); panels.name='kit_ext_rc_panels'; panels.userData.noMerge=true; panels.userData.mod='kit_ext';
+  [[-4.75,2.3,.05,0],[4.75,2.3,.05,0],[-5.85,2.3,-2.5,1],[-5.85,2.3,-6.5,1],[5.85,2.3,-2.5,1],[5.85,2.3,-6.5,1]].forEach((p,i)=>{
+    _p.set(p[0],p[1],p[2]); if(p[3]) _q.setFromAxisAngle(new THREE.Vector3(0,1,0),Math.PI/2); else _q.identity(); _m.compose(_p,_q,_s.set(1,1,1)); panels.setMatrixAt(i,_m); });
+  root.add(panels);
+  // draw 2: galvanized strips + crane boom/mast/hook (steel+chain merged as steel-ish)
+  kitExtMerge([kitExtBox(2.4,.12,.1,-4.75,4.4,.1),kitExtBox(2.4,.12,.1,4.75,4.4,.1),kitExtBox(2.4,.12,.1,-4.75,.3,.1),kitExtBox(2.4,.12,.1,4.75,.3,.1),
+    kitExtBox(.12,.12,4.5,3.2,5.8,2.0,0,.2,-.35),kitExtBox(.25,.8,.25,3.2,4.6,.2),kitExtCyl(.04,.04,1.2,4.6,4.9,3.6,6)], M.steel, root, 'kit_ext_rc_steel');
+  // draw 3: wood crates IM
+  const crateGeo=new THREE.BoxGeometry(1.1,.7,.9); const crates=new THREE.InstancedMesh(crateGeo,M.wood,5); crates.name='kit_ext_rc_crates'; crates.userData.noMerge=true; crates.userData.mod='kit_ext';
+  [[-5.2,.35,5.5],[-5.2,1.05,5.5],[-3.8,.35,6.2],[4.6,.35,5.8],[5.0,1.05,5.8]].forEach((p,i)=>{ _p.set(p[0],p[1],p[2]); _q.setFromAxisAngle(new THREE.Vector3(0,1,0),(i%3)*.4); _m.compose(_p,_q,_s.set(1,1,1)); crates.setMatrixAt(i,_m); });
+  root.add(crates);
+  // draw 4: hull plates IM (reuse corr)
+  const plateGeo=new THREE.BoxGeometry(1.8,.08,1.1); const plates=new THREE.InstancedMesh(plateGeo,M.corr2,4); plates.name='kit_ext_rc_plates'; plates.userData.noMerge=true; plates.userData.mod='kit_ext';
+  [[5.0,.9,3.8],[5.2,1.5,3.5],[-5.4,.8,3.6],[-5.0,1.4,3.2]].forEach((p,i)=>{ _p.set(p[0],p[1],p[2]); _q.setFromEuler(new THREE.Euler(.2,(i%2?1:-1)*.5,.15)); _m.compose(_p,_q,_s.set(1,1,1)); plates.setMatrixAt(i,_m); });
+  root.add(plates);
+  // draw 5: buoys IM
+  const buoyGeo=new THREE.SphereGeometry(.35,10,8); const buoys=new THREE.InstancedMesh(buoyGeo,M.buoy,4); buoys.name='kit_ext_rc_buoys'; buoys.userData.noMerge=true; buoys.userData.mod='kit_ext';
+  [[-4.2,.4,7.0],[-3.5,.4,7.3],[4.0,.4,7.1],[4.8,.55,6.6]].forEach((p,i)=>{ _p.set(p[0],p[1],p[2]); _q.identity(); _m.compose(_p,_q,_s.set(1,1,1)); buoys.setMatrixAt(i,_m); });
+  root.add(buoys);
+  // draw 6: neon bar + yard pad + hook torus (neon + dark + chain) — keep to 1 neon mesh; pad on dark; hook as chain single
+  kitExtMerge([kitExtBox(3.2,.22,.06,0,4.9,.35)], neon1, root, 'kit_ext_rc_neon');
+  // hook torus can't easily merge with boxes of different type into same draw with different mat — add as part of steel already? Add separate chain mesh would be draw 7.
+  // Fold hook into steel draw by approximating with small boxes already in steel merge; skip torus to hold budget.
+  kitExtPushCol(G,[[-5.8,-3.2,5.0,7.4],[3.4,5.8,5.2,7.2],[2.8,3.8,0,.6]]);
+  G.extVariant=root; return root; }
+function kitExtVariant(G){ if(!G||KIT_EXT.done[G.crew]) return; KIT_EXT.done[G.crew]=1;
+  try{ if(G.crew==='volt') kitExtVolt(G); else if(G.crew==='rustclaw') kitExtRustClaw(G); }catch(e){ console.warn('kitExtVariant '+G.crew,e); } }
+function kitExtAll(){ if(typeof garages==='undefined'||!garages.length) return; if(!(THREE.BufferGeometryUtils&&THREE.BufferGeometryUtils.mergeBufferGeometries)) return setTimeout(kitExtAll,250); for(const G of garages) kitExtVariant(G); }
+window.kitExtVariant=kitExtVariant; window.kitExtAll=kitExtAll; window.kitExtVolt=kitExtVolt; window.kitExtRustClaw=kitExtRustClaw;
 function kitInit(){ if(typeof garages==='undefined'||!garages.length||typeof scene==='undefined'||!THREE.GLTFLoader||typeof animated==='undefined'){ return setTimeout(kitInit,300); }
-  if(/nokit/.test(location.search)) return; try{ kitBuild(); animated.push(kitTick); window.KIT_READY=true; }catch(e){ console.warn('crewhouse kit failed',e); } }
+  if(/nokit/.test(location.search)) return; try{ kitExtAll(); kitBuild(); animated.push(kitTick); window.KIT_READY=true; }catch(e){ console.warn('crewhouse kit failed',e); } }
 setTimeout(kitInit,0);
 })();

@@ -202,3 +202,10 @@ Boxes are [minX, minZ, maxX, maxZ] (the full set is in `data/palma.json`):
 3. **Pod collision** in the Kog loft needs a height-aware check (the colliders are XZ-only, so pods block at any height).
 4. **Catwalk posts** in the garage kit are still to do.
 5. **Volt** (The 98, charging station off the boulevard) and **Rust Claw** (The Cove, salvage shed in the marina blocks) garages are newly assigned (crew ruling 2026-11-02) and **not yet placed**.
+
+## Update 2026-11-05 — Volt + Rust Claw garages (Palma Builder)
+- `code/crewhouse_kit.js` + `code/patch_crewhouse_kit.py`: inject Volt `[288,-74]` (The 98 charging station) + Rust Claw `[-165,-88]` (Cove salvage shed) into `PALMA.garages`; GATE_CODES volt=`9800` rustclaw=`1984`; per-crew exterior variants (`kitExtVolt` / `kitExtRustClaw`, ≤6 draws); logo slots volt=8 rustclaw=9; theme colour fallbacks TODO until crews.js lands.
+- `assets/kit/kit_logos.png`: slot 9 = `shared/crew-logos/rust-claw.png`.
+- `ref/garages-volt-rustclaw.md`: design refs + progress log.
+- `shots/hero/garage_{volt,rustclaw}_{exterior_{day,night},interior,lot_{before,after}}.png` (10 files).
+- Chain: `python3 patch_crewhouse_kit.py` (after patch_quant_fix, before patch_world_perf).
