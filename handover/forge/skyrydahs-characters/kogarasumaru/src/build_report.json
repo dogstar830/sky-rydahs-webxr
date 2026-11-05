@@ -1,0 +1,51 @@
+{
+ "name": "kogarasumaru",
+ "lod_tris": {
+  "0": 15308,
+  "1": 7994,
+  "2": 2400
+ },
+ "modules": {
+  "body": {
+   "raw": 5080,
+   "final": 5080,
+   "budget": 10000
+  },
+  "hair": {
+   "raw": 1370,
+   "final": 1370,
+   "budget": 2500
+  },
+  "top": {
+   "raw": 3872,
+   "final": 2940,
+   "budget": 3000
+  },
+  "skates": {
+   "raw": 2016,
+   "final": 1960,
+   "budget": 2000
+  },
+  "accessory": {
+   "raw": 3186,
+   "final": 3186,
+   "budget": 8000
+  },
+  "glow": {
+   "raw": 772,
+   "final": 772,
+   "budget": null
+  }
+ },
+ "accessory_items": [
+  "battery",
+  "cape",
+  "chains",
+  "display",
+  "emblem",
+  "radio",
+  "spraycans",
+  "visor"
+ ],
+ "fp_tris": 2956
+}

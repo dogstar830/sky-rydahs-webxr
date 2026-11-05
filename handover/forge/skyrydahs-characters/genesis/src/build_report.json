@@ -1,0 +1,52 @@
+{
+ "name": "genesis",
+ "lod_tris": {
+  "0": 15170,
+  "1": 7992,
+  "2": 2292
+ },
+ "modules": {
+  "body": {
+   "raw": 5096,
+   "final": 5096,
+   "budget": 10000
+  },
+  "hair": {
+   "raw": 742,
+   "final": 742,
+   "budget": 2500
+  },
+  "top": {
+   "raw": 3824,
+   "final": 2940,
+   "budget": 3000
+  },
+  "skates": {
+   "raw": 2016,
+   "final": 1960,
+   "budget": 2000
+  },
+  "accessory": {
+   "raw": 3724,
+   "final": 3724,
+   "budget": 9000
+  },
+  "glow": {
+   "raw": 708,
+   "final": 708,
+   "budget": null
+  }
+ },
+ "accessory_items": [
+  "battery",
+  "chains",
+  "display",
+  "emblem",
+  "pods",
+  "puffer",
+  "radio",
+  "shades",
+  "spraycans"
+ ],
+ "fp_tris": 2956
+}

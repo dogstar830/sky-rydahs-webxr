@@ -1,0 +1,53 @@
+{
+ "name": "anubis",
+ "lod_tris": {
+  "0": 13552,
+  "1": 7994,
+  "2": 3010
+ },
+ "modules": {
+  "body": {
+   "raw": 2364,
+   "final": 2364,
+   "budget": 10000
+  },
+  "hair": {
+   "raw": 1136,
+   "final": 1136,
+   "budget": 2500
+  },
+  "top": {
+   "raw": 3348,
+   "final": 2940,
+   "budget": 3000
+  },
+  "skates": {
+   "raw": 2016,
+   "final": 1960,
+   "budget": 2000
+  },
+  "accessory": {
+   "raw": 4328,
+   "final": 4328,
+   "budget": 10000
+  },
+  "glow": {
+   "raw": 824,
+   "final": 824,
+   "budget": null
+  }
+ },
+ "accessory_items": [
+  "backplate",
+  "battery",
+  "chains",
+  "chestplate",
+  "display",
+  "legguards",
+  "pauldrons",
+  "radio",
+  "spraycans",
+  "vambraces"
+ ],
+ "fp_tris": 2956
+}

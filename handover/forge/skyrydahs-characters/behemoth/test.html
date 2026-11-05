@@ -1,0 +1,50 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Behemoth rider — toon test</title>
+<style>html,body{margin:0;height:100%;background:#0a0a1a;overflow:hidden}#hud{position:fixed;left:12px;top:10px;color:#ff7a12;font:600 13px system-ui}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+</head><body><div id="hud">BEHEMOTH — drag to orbit · B boost · ?fp=1 first-person · ?vr=1 sprite glow (no bloom) · ?lod=0|1|2 · ?crew={json}</div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { loadRider, loadRiderFP } from './loader.js';
+const q = new URLSearchParams(location.search);
+if (q.get('shot')) document.getElementById('hud').style.display = 'none';
+const VR = !!q.get('vr'), FP = !!q.get('fp');
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene(); scene.background = new THREE.Color('#1a1830'); scene.fog = new THREE.Fog(0x1a1830, 6, 22);
+const camera = new THREE.PerspectiveCamera(FP ? 80 : 30, innerWidth / innerHeight, 0.03, 100);
+const controls = new OrbitControls(camera, renderer.domElement);
+const sun = new THREE.DirectionalLight(0xfff2dd, 2.4); sun.position.set(2, 4, 3); scene.add(sun);
+scene.add(new THREE.HemisphereLight(0xb8c4ff, 0x40306a, 1.1));
+const ground = new THREE.Mesh(new THREE.CircleGeometry(FP ? 6 : 1.4, 48), new THREE.MeshBasicMaterial({ color: 0x14122a }));
+ground.rotation.x = -Math.PI / 2; scene.add(ground);
+const ringG = new THREE.Mesh(new THREE.RingGeometry(1.36, 1.4, 64), new THREE.MeshBasicMaterial({ color: '#ff7a12' }));
+ringG.rotation.x = -Math.PI / 2; ringG.position.y = 0.002; scene.add(ringG);
+const crew = q.get('crew') ? JSON.parse(q.get('crew')) : {};
+const rider = FP ? await loadRiderFP(scene, './behemoth-fp.glb', crew, { vr: VR }) : await loadRider(scene, './behemoth-rider.glb', crew, { vr: VR });
+rider.userData.setLightDir(sun.position);
+if (q.get('expr')) for (const e of q.get('expr').split(',')) { const [n, w] = e.split(':'); rider.userData.setExpression(n, w === undefined ? 1 : +w); }
+if (q.get('sil')) { scene.background = new THREE.Color('#ffffff'); scene.fog = null; ground.visible = ringG.visible = false; const blk = new THREE.MeshBasicMaterial({ color: 0 }); rider.traverse(o => { if (o.isMesh) o.material = blk; if (o.isSprite) o.visible = false; }); }
+if (q.get('lod')) { const L = rider.userData.lod; L.autoUpdate = false; L.levels.forEach((l, i) => l.object.visible = i === +q.get('lod')); }
+const views = { front: 0, '34': Math.PI / 4, side: Math.PI / 2, back: Math.PI };
+const ang = views[q.get('view') || '34'], dist = +(q.get('dist') || 4.3), ty = +(q.get('ty') || 0.9);
+if (FP) { camera.position.set(0, 1.62, 0.02); controls.target.set(0, 0.75, 0.75); }
+else { controls.target.set(0, ty, 0); camera.position.set(Math.sin(ang) * dist, ty + 0.1, Math.cos(ang) * dist); }
+controls.update();
+if (q.get('shot')) { const a = (FP ? 0 : ang) + 0.6; sun.position.set(Math.sin(a) * 3, 4, Math.cos(a) * 3); rider.userData.setLightDir(sun.position); }
+let composer = null;
+if (!VR && !q.get('sil')) { composer = new EffectComposer(renderer); composer.addPass(new RenderPass(scene, camera));
+  composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.35, 0.35, 0.92)); composer.addPass(new OutputPass()); }
+let boost = 0, want = 0; addEventListener('keydown', e => { if (e.key === 'b') want = 1 - want; });
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); composer?.setSize(innerWidth, innerHeight); });
+const clock = new THREE.Clock();
+renderer.setAnimationLoop(() => { const dt = clock.getDelta(); boost += (want - boost) * Math.min(1, dt * 4);
+  controls.update(); rider.userData.update(camera, dt, boost); composer ? composer.render() : renderer.render(scene, camera);
+  document.title = 'READY ' + renderer.info.render.calls; });
+</script></body></html>

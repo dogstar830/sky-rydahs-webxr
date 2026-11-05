@@ -1,0 +1,62 @@
+Blender 4.3.2 (hash 32f5fdce0a0a built 2024-12-17 01:31:14)
+Read blend: "/workspace/forge_kit/gr8/anika_hi.blend"
+Fra:1 Mem:587.20M (Peak 1300.44M) | Time:498150:53:43.92 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:598.11M (Peak 1300.44M) | Time:498150:53:43.92 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:834.75M (Peak 1300.44M) | Time:498150:53:45.07 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:834.75M (Peak 1300.44M) | Time:498150:53:45.07 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:834.75M (Peak 1300.44M) | Time:498150:53:45.07 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:835.01M (Peak 1300.44M) | Time:498150:53:45.07 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:706.59M (Peak 1732.27M) | Time:498150:53:48.37 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:707.95M (Peak 1732.27M) | Time:498150:53:48.37 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:789.81M (Peak 1732.27M) | Time:498150:53:48.44 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:789.80M (Peak 1732.27M) | Time:498150:53:48.44 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:789.80M (Peak 1732.27M) | Time:498150:53:48.44 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:790.05M (Peak 1732.27M) | Time:498150:53:48.44 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:790.07M (Peak 1732.27M) | Time:498150:53:48.44 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:690.35M (Peak 1732.27M) | Time:498150:53:53.35 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:691.71M (Peak 1732.27M) | Time:498150:53:53.35 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:736.45M (Peak 1732.27M) | Time:498150:53:53.35 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:773.57M (Peak 1732.27M) | Time:498150:53:53.46 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:773.56M (Peak 1732.27M) | Time:498150:53:53.46 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:774.06M (Peak 1732.27M) | Time:498150:53:53.46 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:773.83M (Peak 1732.27M) | Time:498150:53:53.46 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:773.83M (Peak 1732.27M) | Time:498150:53:53.46 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:562.98M (Peak 1732.27M) | Time:498150:53:57.78 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:585.69M (Peak 1732.27M) | Time:498150:53:57.78 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:609.09M (Peak 1732.27M) | Time:498150:53:57.79 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:708.73M (Peak 1732.27M) | Time:498150:53:58.33 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:708.72M (Peak 1732.27M) | Time:498150:53:58.34 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:964.73M (Peak 1732.27M) | Time:498150:53:58.34 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:964.99M (Peak 1732.27M) | Time:498150:53:58.34 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:965.24M (Peak 1732.27M) | Time:498150:53:58.34 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:966.24M (Peak 1732.27M) | Time:498150:53:58.34 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1030.24M (Peak 1732.27M) | Time:498150:53:58.34 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:562.98M (Peak 1732.27M) | Time:498150:54:00.14 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:562.98M (Peak 1732.27M) | Time:498150:54:00.14 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:586.37M (Peak 1732.27M) | Time:498150:54:00.14 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:708.73M (Peak 1732.27M) | Time:498150:54:00.69 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:708.72M (Peak 1732.27M) | Time:498150:54:00.69 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:708.99M (Peak 1732.27M) | Time:498150:54:00.69 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:709.24M (Peak 1732.27M) | Time:498150:54:00.69 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:710.24M (Peak 1732.27M) | Time:498150:54:00.69 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:710.24M (Peak 1732.27M) | Time:498150:54:00.69 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:966.24M (Peak 1732.27M) | Time:498150:54:00.69 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading Image_1
+FOOT {'Left': {'cx': 0.14579004794359207, 'cy': -0.016740642488002777, 'L': 0.32677896320819855}, 'Right': {'cx': -0.14586251974105835, 'cy': -0.01671767234802246, 'L': 0.3266217112541199}}
+MODLEN 0.3876654952764511
+SKATE_TOP 0.2768552303314209
+ZCUT 0.2568552303314209
+stripped verts 129247
+Info: Removed 44210 vertices
+Info: Removed: 3 vertices, 3 edges, 0 faces
+BASE tris (welded hi) 952661
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_anika_back.png texels 879
+LOD LOD2 tris 11397
+Info: Saved "anika_lods.blend"
+SAVED {'LOD2': 'AnikaTest_LOD2'}
+
+Blender quit

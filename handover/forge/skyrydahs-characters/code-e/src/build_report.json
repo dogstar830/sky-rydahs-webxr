@@ -1,0 +1,49 @@
+{
+ "name": "code-e",
+ "lod_tris": {
+  "0": 13434,
+  "1": 7992,
+  "2": 2759
+ },
+ "modules": {
+  "body": {
+   "raw": 5108,
+   "final": 5108,
+   "budget": 10000
+  },
+  "hair": {
+   "raw": 1658,
+   "final": 1658,
+   "budget": 2500
+  },
+  "top": {
+   "raw": 2236,
+   "final": 2236,
+   "budget": 3000
+  },
+  "skates": {
+   "raw": 2016,
+   "final": 1960,
+   "budget": 2000
+  },
+  "accessory": {
+   "raw": 1200,
+   "final": 1200,
+   "budget": 6000
+  },
+  "glow": {
+   "raw": 1272,
+   "final": 1272,
+   "budget": null
+  }
+ },
+ "accessory_items": [
+  "display",
+  "emblem",
+  "goggles",
+  "radio",
+  "scarf",
+  "spraycans"
+ ],
+ "fp_tris": 2956
+}

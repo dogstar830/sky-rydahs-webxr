@@ -1,0 +1,48 @@
+{
+ "name": "static-angels",
+ "lod_tris": {
+  "0": 15438,
+  "1": 7992,
+  "2": 2818
+ },
+ "modules": {
+  "body": {
+   "raw": 5688,
+   "final": 5688,
+   "budget": 10000
+  },
+  "hair": {
+   "raw": 2102,
+   "final": 2102,
+   "budget": 2500
+  },
+  "top": {
+   "raw": 3244,
+   "final": 2940,
+   "budget": 3000
+  },
+  "skates": {
+   "raw": 2016,
+   "final": 1960,
+   "budget": 2000
+  },
+  "accessory": {
+   "raw": 1092,
+   "final": 1092,
+   "budget": 5000
+  },
+  "glow": {
+   "raw": 1656,
+   "final": 1656,
+   "budget": null
+  }
+ },
+ "accessory_items": [
+  "chains",
+  "display",
+  "emblem",
+  "radio",
+  "spraycans"
+ ],
+ "fp_tris": 2956
+}

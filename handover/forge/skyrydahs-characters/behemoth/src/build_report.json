@@ -1,0 +1,48 @@
+{
+ "name": "behemoth",
+ "lod_tris": {
+  "0": 13482,
+  "1": 7996,
+  "2": 2554
+ },
+ "modules": {
+  "body": {
+   "raw": 5080,
+   "final": 5080,
+   "budget": 10000
+  },
+  "hair": {
+   "raw": 706,
+   "final": 706,
+   "budget": 2500
+  },
+  "top": {
+   "raw": 4872,
+   "final": 2940,
+   "budget": 3000
+  },
+  "skates": {
+   "raw": 2016,
+   "final": 1960,
+   "budget": 2000
+  },
+  "accessory": {
+   "raw": 2064,
+   "final": 2064,
+   "budget": 5000
+  },
+  "glow": {
+   "raw": 732,
+   "final": 732,
+   "budget": null
+  }
+ },
+ "accessory_items": [
+  "battery",
+  "chains",
+  "display",
+  "radio",
+  "spraycans"
+ ],
+ "fp_tris": 2956
+}

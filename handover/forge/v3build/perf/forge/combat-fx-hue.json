@@ -1,0 +1,35 @@
+[
+ {
+  "crew": "codee",
+  "target": 41,
+  "alt": 47,
+  "peak": 55,
+  "mean": 61,
+  "sat": 0.4,
+  "n": 196383,
+  "err": 8,
+  "PASS": false
+ },
+ {
+  "crew": "karasu",
+  "target": 356,
+  "alt": null,
+  "peak": 225,
+  "mean": 237,
+  "sat": 0.62,
+  "n": 218676,
+  "err": 131,
+  "PASS": false
+ },
+ {
+  "crew": "volt",
+  "target": 327,
+  "alt": 56,
+  "peak": 305,
+  "mean": 322,
+  "sat": 0.24,
+  "n": 139765,
+  "err": 22,
+  "PASS": false
+ }
+]

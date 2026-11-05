@@ -1,0 +1,541 @@
+FRAME https://muse.ai/s/top-vr-games-how-their-gameplay-was-xuxu66x0xlxcxkxkxx8/tXJSgjPlm7hadN7cy5VPRg8PMziU_eUQawn-3w4-pfU 92
+Top Vr Games How Their Gameplay Was
+Content is user generated and unverified.
+Log in
+Sign up
+[['', '/'], ['Log in', '/?return_to=%2Fs%2Ftop-vr-games-how-their-gameplay-was-xuxu66x0xlxcxkxkxx8%2FtXJSgjPlm7hadN7cy5VPRg8PMziU_eUQawn-3w4-pfU'], ['Sign up', '/?return_to=%2Fs%2Ftop-vr-games-how-their-gameplay-was-xuxu66x0xlxcxkxkxx8%2FtXJSgjPlm7hadN7cy5VPRg8PMziU_eUQawn-3w4-pfU']]
+[['Muse', '/images/hatch/share/muse-mark.png']]
+FRAME https://xuxu66x0xlxcxkxkxx8.cf.metaaiusercontent.com/index.html 35936
+Top VR games — and how their gameplay was actually built
+
+Almost all of them were built VR-first around one thing you do with your own body — swing, flick, slash, climb, punch. The one port here, Resident Evil 4 VR, only worked after its interaction was rebuilt from scratch. This is what the developers did, what it cost, and what it teaches a fast momentum-skating game on Quest.
+
+13 LANDMARK TITLES
+LOCOMOTION · INTERACTION · FEEL
+QUEST PERFORMANCE BUDGETS
+24 TRANSFERABLE LESSONS
+The pattern
+The games
+Movement
+Hands & physics
+Game feel
+Comfort evidence
+Performance
+Lessons for Sky Rydah's
+Open questions
+Sources
+01The pattern behind every hit
+
+VR's winners are built around one embodied verb the player performs with their own body — not a thumbstick with a new skin.
+
+Swing your arms to be a gorilla (Gorilla Tag). Flick-and-catch (Half-Life: Alyx). Slash broadly (Beat Saber). Climb anything, then T-pose to glide (Population: One). Punch-and-counter (Batman: Arkham Shadow). For a skating game, that verb has to be riding momentum itself — learned in the body.
+
+10M / $100M
+Gorilla Tag users and revenue by June 2024 — ~1M daily and ~3M monthly players, 10B TikTok views. Free-to-play plus cosmetics, almost no menus.
+~70%
+Share of time spent on Quest that is free-to-play, per Meta's Chris Pruett at GDC 2025. Paid apps still take the majority of revenue.
+20–40 min
+Meta's session “Goldilocks zone.” Under 15–20 minutes feels not worth putting the headset on; most sessions end under ~40.
+Top 50 — missing
+Weekly Quest charts in 2025 repeatedly put Animal Company, Beat Saber and Gorilla Tag top-3 — while Batman: Arkham Shadow and Metro Awakening couldn't crack the top 50 in one chart week, even though Batman won Best VR/AR at The Game Awards 2024.
+
+Market reality from the research: the Quest audience in 2025–26 rewards social, low-friction, clip-able, replayable loops — and punishes the traditional premium campaign shape. Discovery happens off-store: TikTok, influencers, friends.
+
+02The games, and the one decision that made each work
+
+Filter by what each game is really a lesson in. Every card pairs the core loop with the VR-specific design decision — the thing that would not work on a flat screen.
+
+All 13
+Movement is the game
+Physics & hands
+Flow & rhythm
+Story & scale
+Half-Life: Alyx
+PC VR · 2020 · VALVE
+
+CORE LOOP
+Explore City 17 → scavenge ammo & resin → physical gunplay and puzzles → upgrade weapons
+
+The decision: Everything is manipulated by hand, one-handed — weapons stay one-handed “as Valve wanted players to have a hand free to interact with the world at all times.” Health lives as hearts on the glove; ammo is lit on the gun. No HUD.
+
+Beat Saber
+QUEST FLAGSHIP
+
+CORE LOOP
+Stand in place → slash colour blocks in arrow directions to music → chase score and grade
+
+The decision: Scoring is not timing — it's motion. Points come from swing breadth and cutting through the block's centre, so the score system secretly choreographs your body. Zero artificial locomotion = near-zero sickness, song-length sessions.
+
+Gorilla Tag
+QUEST
+
+CORE LOOP
+Join a lobby → chase and flee in tag → hang out → cosmetics
+
+The decision: Locomotion is the game. Arm-only propulsion — no sticks, no buttons, no legs, almost no menus. The skill ceiling (wall-climbs, launches, jukes) was discovered by players months later, not designed as a move list.
+
+Blade & Sorcery / Nomad
+PC VR / QUEST
+
+CORE LOOP
+Spawn in an arena or dungeon → improvise melee, ranged and magic kills → experiment
+
+The decision: No block button, no animation-driven combat — “you must precisely deflect enemy strikes using your own weapons in real time.” Every object has weight; blades penetrate or deflect by material. The sandbox is the content.
+
+Boneworks / Bonelab
+PC VR / QUEST
+
+CORE LOOP
+Physics adventure — climb, pry, stack and fight through MythOS with found objects
+
+The decision: A fully simulated player body, so every verb obeys the same physics: “nothing is scripted to look right; it has to work.” Bonelab's mods and Quest release are why it — not just Boneworks — is a perennial Quest top-10 title.
+
+Population: One
+QUEST / PC
+
+CORE LOOP
+Drop → loot → climb, fly, build → shrinking-zone squad fights, 18 players in 6 squads of 3
+
+The decision: The Vertical Combat System — climb anything, glide anywhere with a T-pose. Verticality replaces positioning-by-walking. Matches are deliberately shorter than flat battle royales to suit mixed VR comfort. ~$10M in its first 3 months.
+
+Superhot VR
+ALL PLATFORMS
+
+CORE LOOP
+Room-scale: dodge, grab, throw, shoot in frozen time → time advances as you move
+
+The decision: Time moves only when you move. The player — not the designer — sets the pace, so intense action never forces camera motion or reaction speed on anyone. No artificial locomotion at all.
+
+Pistol Whip
+QUEST / PC · CLOUDHEAD
+
+CORE LOOP
+Auto-run through a scene → shoot, melee and dodge to the beat → chase score
+
+The decision: On-rails forward motion deletes the locomotion problem; heavy auto-aim by default deletes the aiming problem, so attention goes to dodging and flow. Turning the assist off (“Deadeye”) is an opt-in mastery layer — score is accuracy + on-beat, up to 200 pts per shot in preview coverage.
+
+Asgard's Wrath 2
+QUEST · SANZARU
+
+CORE LOOP
+60+ hour action-RPG: explore realms, physics-visceral melee, god-scale puzzles, possess heroes
+
+The decision: Scale faked inside Quest 2 limits — “sprawling” feel from negative space (“good for the eyes, for the mind to rest”), with density hidden in tucked-away side areas holding the best rewards. Combat was simplified from the first game's parry-gate for approachability.
+
+Batman: Arkham Shadow
+QUEST 3/3S · 2024 · CAMOUFLAJ
+
+CORE LOOP
+Arkham Asylum-structured hubs → predator stealth → freeflow brawls → gadget-gated backtracking
+
+The decision: Freeflow translated to boxing — your punch makes Batman lunge to the target; a blue counter icon appears in your view and swinging your arm that way auto-retargets. And crucially: contained Asylum-like hubs, not an open-world city — Quest's flagship campaign chose containment.
+
+Resident Evil 4 VR
+QUEST 2 · ARMATURE
+
+CORE LOOP
+First-person RE4 — explore, physical gunplay, survive
+
+The decision: A port that worked because interaction — not just viewpoint — was rebuilt: weapons grabbed off the body instead of menus, a different weapon in each hand, full upper-body rig, plus teleport, room-scale and smooth options and seated play.
+
+Jet Island
+PC VR · MASTER INDIE
+
+CORE LOOP
+Open world → frictionless hoverboard + wrist jets + grapple → kill drones to raise stats → 4 giant bosses
+
+The decision: Extreme speed with no cap, physics-first — and an explicit “may cause motion sickness” warning. The closest skating precedent in VR; a cult game for players with VR legs, not a mass-comfort title. Full breakdown in the Movement section below.
+
+Echo Arena / Lone Echo
+RIFT · READY AT DAWN
+
+CORE LOOP
+Zero-G: push and pull yourself hand-over-hand → throw the disc / complete tasks
+
+The decision: The foundation. The GDC talk “It's All in the Hands” documented positioning the head 1:1 relative to a grabbing hand and procedurally posing hands on arbitrary surfaces — the direct ancestor of both Gorilla Tag and Population: One's climbing.
+
+Foundational does not always mean chart-topping, and chart-topping does not always mean influential — the research keeps both lists in view on purpose. Echo Arena is here for lineage; Gorilla Tag, Beat Saber and the physics sandboxes are here because they hold the Quest charts week after week.
+
+03Movement — going fast without losing the player
+
+The best fast VR games share conditions: the player initiates and predicts the motion, motion is mostly forward, turning is done by the physical head and body (or snapped), the frame rate never drops, and runs are short. Pick a case study:
+
+Gorilla Tag
+Jet Island — the skating reference
+Sprint Vector
+Population: One
+Alyx's options
+Arm locomotion came first. The game came second.
+
+Kerestell Smith started the movement prototype in December 2019; it worked by January 2020. “A few months later” came the idea of tag. Locomotion first, theme second, game mode third — from GameSpot's origin interview (published 2024-09-11).
+
+HOW IT WAS FOUND
+The trigger was Echo Arena: zero-G movement that felt like “push on the world, and the world pushes back” under internally consistent rules you can learn.
+That became Another Axiom's design axioms: (1) a direct relationship between player and environment, (2) a plausible alternate reality with consistent internal rules, (3) connection to other people.
+No legs, deliberately. Playing Raccoon Lagoon, Smith noticed being placed at torso height “didn't feel weird… because you don't have your legs as a controller, removing that actually makes it easier to interact with that virtual world.”
+WHY IT WORKS
+Velocity is caused by your own arm strokes, in the direction and at the moment you expect — and stops the instant you stop pushing.
+Radical subtraction: no menus breaking presence. Low-poly, PS1-inspired art partly because Smith was targeting the original, underpowered Quest alone — and a clearly non-real style is easier for the brain to buy into than near-real rendering.
+The ceiling was emergent: wall-climbing, launching and juking were discovered by players months later, then spread as clips.
+“Push on the world, and the world pushes back.”
+— the Echo Arena feeling Smith set out to reproduce, via GameSpot's Gorilla Tag origin story
+Try it: the comfort vignette
+
+Dynamic vignetting narrows your field of view during movement, cutting the peripheral optic flow that drives vection. Meta's own docs recommend it, scaled with speed. Drag the speed and watch the edges close in — this is the single most-used comfort tool in fast VR.
+
+Riding speed 
+Cruising
+Vignette 14%
+04Hands, physics bodies — and what each choice costs
+
+Interaction is where VR games spend — or blow — their budget. Alyx cheated invisibly in the player's favour. Boneworks refused to cheat at all. Both were right for their game; only one approach survives on a Quest chip in a browser.
+
+Alyx's gravity gloves: select → lock → flick → catch
+
+From Road to VR's Inside XR Design deep-dive. Most VR force-pulls have two stages: point (object highlights), press (it flies to you). Alyx inserts a third — lock-on.
+
+Pull the trigger and the selection is locked — moving your hand afterwards cannot retarget it. Only then does the physical flick gesture fire the pull, and you catch the object mid-air with the grip.
+Why it works: player and game are provably “on the same page” before anything moves; each stage has a distinct sound; the trajectory curves in real time toward your hand at a tuned speed — magical, but you still perform the catch.
+The inertia cheat: Alyx simulates inertia so heavy objects feel heavy — but ignores inertia sway in the throwing calculation, so throws land where your arm actually threw them. Feel physics; act on clean input. The most transferable trick in this whole report.
+Menus work by laser pointer and direct touch — “no matter if the player's first instinct is to touch the menu or use the laser, both choices are equally correct.”
+The crowbar: 1.5 years, cut
+
+Valve spent ~1.5 years trying to keep Alyx's crowbar — and cut it. With no force feedback, players held it out of sight and constantly hooked it on doors and world geometry.
+
+Failed fixes: disabling its collision while off-screen, and haptic buzzing on collision. Neither worked. Playtest observation killed it, not theory.
+The lesson generalises: long, held, off-screen rigid objects are a VR trap — directly relevant to any spray can, baton or board carried in-hand.
+More iteration casualties: fast zombies and headcrabs were cut entirely — at VR proximity and speed “the shock… was just too much.” Antlions were slowed and given shootable legs.
+And the inverse: wearable props (hats, cones, pots block barnacles; a found gas mask genuinely works) were kept because playtesters kept trying them. Valve formalised emergent behaviour instead of forbidding it.
+APPROACH	WHO	BUYS	COSTS
+Hands only, no arms/body	Alyx, Beat Saber	Zero IK error; nothing can be visibly wrong; cheap. Valve: misrepresenting arms “could impact immersion” — players don't miss them in-headset.	Can't push or climb with body mass; no self-avatar for social clips.
+No legs, arms-as-locomotion	Gorilla Tag, Lone Echo	The missing parts are exactly the parts with no controller; locomotion and interaction unify.	Only works when hands genuinely drive movement.
+Hands bound to controllers, IK arms for looks	Blade & Sorcery	Maximum freedom of motion; only held-object weight resists you.	Arms and body can visually break; no true body blocking.
+Full simulated body	Boneworks / Bonelab	True physical presence; one ruleset for every verb; players invent solutions, clips are shareable.	CPU cost, motion sickness, proportion-mismatch frustration. Sold for “expert VR users only” — reviews note even strong VR legs get queasy when the view gets yanked around climbing and fighting.
+Body as inventory & UI	Alyx, RE4 VR, Arkham Shadow, Population: One	No menus — glove HUD, over-shoulder backpack, weapons grabbed off hips, T-pose = wingsuit. Locations are learned proprioceptively.	Needs generous grab radii and assistance, or it gets fiddly under pressure.
+The Quest bill for full physics, documented:
+
+Blade & Sorcery: Nomad is a separate, slimmed build — “lower quality graphics, lower quality physical simulations, and less AI enemies able to be simulated at one time” than PC. Full physics on a mobile chip is paid for in enemy count first. For a game whose enemies are pursuing police, that trade is existential: cheap steering AI and a few active pursuers beat simulated crowds. Boneworks' stack shows why — HMD/controller transforms feed a skeletal rig, then a physics rig (waist/torso/head colliders plus a “highly frictionized rigidbody sphere” for acceleration and ledge detection), then the visible simulated rig. Every verb falls out of it — and so does the cost.
+
+05Game feel — score the motion, protect the flow
+
+The systems underneath the hits share a trick: the scoring system is secretly a teaching system, and difficulty comes from exposure and tempo — not from failable inputs.
+
+Beat Saber
+SCORE = CHOREOGRAPHY
+
+Removing timing from scoring sounds wrong for a rhythm game. In VR it's the masterstroke: because points reward how you move — big swing, centred cut — high-level play looks and feels like dancing because the numbers demand it. The failure mode avoided: players gaming timing with tiny wrist-flicks.
+
+Pistol Whip
+ASSIST BY DEFAULT
+
+Heavy auto-aim ships as the default; removing it is a self-imposed challenge. Armour holds one hit and is restored by shooting a quota of enemies — or by a risky melee kill: a comeback mechanic that pushes a hurt player toward aggression instead of hiding.
+
+Superhot VR
+DIFFICULTY BY TEMPO
+
+Because time follows your own movement, the same encounter is a puzzle for a cautious player and a brawl for a bold one — no separate difficulty ramp to tune. Transferable form: threat speed coupled to player speed.
+
+Jet Set Radio
+FLOW IS PROTECTED
+
+Tricks are automatic and un-failable — triggered by speed, height and direction; grinds need no balance input; you effectively cannot fall from a trick. Score is lost by hitting obstacles, not by failing an input. And grinding is also defence: bullets cannot hit you while grinding. JSRF's refinement: chaining tricks on grinds builds speed as well as score — combo and movement are the same system.
+
+JSR's two graffiti verbs
+EXPOSURE = DIFFICULTY
+
+Small tags: a single spray, performable while grinding or wall-riding past — drive-by tagging. Large/XL tags: stop you and demand a sequence of motions, scoring escalating chunks (review example: 100 → … → 1,000 pts per correct motion; a mistake restarts that chunk for far fewer points but keeps progress). The time you're exposed is the difficulty.
+
+JSR's police ladder
+ESCALATION AS CLOCK
+
+Patrolmen → Captain Onishima with a gun → riot/SWAT with tear gas → helicopters with missiles and armour, escalating as you tag. Telegraphing is diegetic: your wristwatch radio intercepts police chatter, a “!” marks being sighted, “RUN AWAY” arrows point to escape routes.
+
+Hover Skate VR
+PROGRESSION SKELETON
+
+250+ flip/grind tricks performed by moving the board with your hands, a trick list with replays; landing tricks ranks them up and raises overall skill; 20+ location challenges unlock boards and shoes in a shop; a Comfort Mode simplifies locations. Imperfect game, perfect skeleton: trick mastery, location challenges, cosmetic unlocks.
+
+Asgard's Wrath 2
+PROGRESSION BY SUBTRACTION
+
+The sequel removed the first game's hard parry-gate — enemies nearly unbreakable without perfect parries — because it throttled approachability. Then it added repeatable randomised Uncharted Rifts whose loot feeds the campaign: a template for a free-roam ↔ repeatable-mission loop.
+
+Gorilla Tag, again
+SKILL IS PROGRESSION
+
+Almost no designed progression at all — the movement skill ceiling itself became the progression, discovered by the community and spread as clips. The team then supported the social layer (lobbies as hangouts, cosmetics) rather than adding levels. Average sessions approached ~60 minutes — far above Meta's norm — because the lobby is a place, not a queue.
+
+06Comfort — what the evidence actually supports
+
+Comfort advice is full of folklore. The research separates the techniques with strong support from the ones that failed controlled tests — including one honest disagreement between practitioner guidance and a controlled study.
+
+TECHNIQUE	WHAT THE EVIDENCE SAYS	VERDICT
+Stable frame rate above all	“Maintain a consistent, high frame rate” — dropped frames intensify visual–vestibular mismatch. Frame pacing matters as much as locomotion choice. (Unity vestibular guide)	Strong support
+Dynamic vignette / tunnelling	Narrowing FOV during movement cuts peripheral optic flow, “a primary driver of vection.” Meta's docs recommend vignettes; strength should scale with speed and rotation.	Strong support
+Snap turn 30–45°, not smooth	“Continuous head rotation in VR (yaw) is one of the most potent cybersickness triggers.” Snap turns eliminate continuous rotational flow; most guidelines now default to snap.	Strong support
+Never move the camera for the player	No pans, cutscene camera moves, screen shake or uncommanded banking. Direct attention with sound, light and motion in the scene. “Does any code path write to the camera transform other than head tracking? If yes, it needs a very good reason.”	Strong support
+Player-initiated, body-matched motion	Arm-swing and push-off systems (Gorilla Tag, Sprint Vector, Lone Echo) repeatedly produce fast motion with low reported sickness — acceleration coincides with your own muscular action.	Strong support
+Teleport vs smooth	Teleport removes continuous flow entirely and suits general audiences; smooth suits action genres but should ship with vignette, a snap option and a comfort mode.	Depends on genre
+Acceleration curves	The sources conflict. Practitioner guidance says avoid artificial acceleration — “acceleration is worse than constant speed, rotation worse than forward.” But Widdowson et al. (LaValle group, Human Factors 2021) tested constant vs ramp vs polynomial speed profiles and found no significant difference in cybersickness or postural stability: “speed profile has negligible effect.” Practical reading: don't mutilate a momentum game chasing a perfect curve — spend the effort on rotation, prediction, frame rate and vignetting.	Evidence conflicts
+Rest frames / virtual nose	Companion objects (a nose, cockpit, grid — or a board under your feet) are proposed as stable references. A preregistered, higher-power test (n=32) of the virtual nose found no significant benefit (effect ≈ 0). Treat a visible board as an immersion and orientation aid, not a proven anti-sickness device.	Weak evidence
+Meta's comfort ratings are judged on the default experience.
+
+Comfortable ≈ avoids camera/player motion; Moderate = some; Intense = “significant camera movement, player motion or disorientating content” and “aren't appropriate for most people, especially those new to Meta Quest.” A fast skater should expect — and honestly label — Intense for its raw mode, and design its onboarding accordingly.
+
+07Performance is a comfort feature — the Quest budget
+
+On WebXR the budget is brutal: everything — JavaScript, physics, draw preparation — shares one frame, and in three.js each draw call effectively happens twice, once per eye. These are Meta's published numbers, not rules of thumb.
+
+Frame budget by refresh rate
+
+Meta requires interactive apps to hit a minimum of 72 FPS. A held 72 is more comfortable than a 90 that keeps missing.
+
+72 fps
+13.9 ms
+90 fps
+11.1 ms
+120 fps
+8.3 ms
+WebXR in the Quest Browser runs at 72 fps by default.
+Request 90 only if you can hold it.
+The physics trap, quantified
+
+Surma's Three.js/WebXR case study profiled a sample of 500 simulated balls at ~16.1 ms per frame on Quest — of which ~10 ms was physics alone.
+
+500-ball sample frame — 16.1 ms total
+physics ≈10 ms
+rest
+— — 13.9 ms = the entire 72 fps budget, before rendering
+Physics must be simplified, fixed-timestepped,
+and/or moved off the main thread.
+80–200
+Draw calls for a “busy simulation” on Quest 2/Pro (Meta's example ranges). A populated open city with NPCs and police is busy by definition. Medium: 200–300 · Light: 400–600.
+200–300
+Draw calls, busy simulation, Quest 3/3S. Medium: 400–600 · Light: 700–1,000. In WebXR, budget per eye — the scene is drawn twice.
+750k–1M
+Recommended triangles per frame, Quest 2/Pro. Quest 3/3S: 1.3M–1.8M. Quest 1: 350k–500k. (Meta internal recommended ranges.)
+≤3 ms + ≤2 ms
+A suggested split of the 13.9 ms for a WebXR skater (research synthesis, a starting point to playtest): ≤3 ms game JS, ≤2 ms kinematic physics — the rest is rendering plus browser/system headroom.
+
+WebXR discipline from the research: InstancedMesh for every repeated prop class, merged static geometry, shared materials, atlased KTX2 textures, baked lighting (free at runtime), no stacked transparency, and be careful with post-processing — each full-screen pass re-draws both eyes and works against foveation. Never allocate objects in the frame loop; never set React state per frame. Profile on-device — never from desktop emulation. Sources: Meta developer documentation and the Graspable WebXR performance guide (verified live during research, published 2026-10-02).
+
+08The payoff — 24 lessons for Sky Rydah's
+
+The research was commissioned for a WebXR momentum-skating game on Quest — Air Gear / Jet Set Radio Future energy: motorised skates, grinds, wall rides, graffiti turf, missions, escalating police. Every lesson below is tied to the game it came from. Bracketed numbers in the original research are starting points to playtest, not sourced constants — no source publishes skating-specific tuning values.
+
+All 24
+Movement feel
+Comfort
+Interaction
+Systems & sessions
+Performance
+Lesson 01 · Movement
+One momentum model, three energy sources — and nothing else
+
+Low-friction rolling where slope converts to speed, a motor/boost adding directed thrust, and rails/walls that preserve or redirect speed. Skill = stacking sources and choosing lines.
+
+From: Jet Island · JSRF
+
+Lesson 02 · Movement
+Make acceleration player-caused wherever possible
+
+If thrust and steering live in the hands — lean, arm pump, hand-pointed jets — the brain predicts it. Reserve stick-only acceleration for a “cruise” accessibility mode.
+
+From: Gorilla Tag · Sprint Vector · Lone Echo
+
+Lesson 03 · Movement
+Protect flow like Jet Set Radio, not like a simulator
+
+Auto-snap to rails within a generous cone, no balance meter, no falling off tricks, wall-rides auto-stick for a minimum duration, landing forgiveness. Score is lost by colliding and breaking the chain — never by a failed input.
+
+From: JSR · Alyx's assist-the-outcome philosophy
+
+Lesson 04 · Movement
+Chain = speed = score — one system
+
+Each linked grind, wall-ride or tag inside a decaying window raises the multiplier and grants a small speed bonus. HUD-free readouts: skate sound pitch, wind, controller rumble intensity.
+
+From: JSRF · Beat Saber · Sprint Vector's haptics
+
+Lesson 05 · Movement
+Turn with the head and body; snap the rest
+
+Primary steering = gaze/lean direction at speed — you go where you look, as in real skating. Offer 30–45° snap turn for reorientation at low speed. Avoid smooth stick-yaw at speed entirely.
+
+From: Unity / Meta comfort guidance
+
+Lesson 06 · Movement
+Couple threat to tempo
+
+Police pressure scales with your speed and heat, and relaxes when you slow, hide or leave the district. Never teleport-spawn police into the player's face; telegraph arrivals by radio chatter and sound.
+
+From: Superhot VR · JSR
+
+Lesson 07 · Comfort
+Ship three comfort tiers — and mean them
+
+Flow (default): dynamic vignette scaling with speed and turn rate, snap reorientation, no camera roll on wall-rides. Raw: vignette off, full banking — labelled Intense. Chill/Cruise: capped top speed, stronger vignette, calmer police. Make Flow the judged default.
+
+From: Alyx's options-without-punishment · Meta comfort ratings
+
+Lesson 08 · Comfort
+Never move the camera
+
+No shake on landing (use sound, rumble, FOV pulse), no cutscene pans, no forced look, no uncommanded drops. Falls are fades/respawns at the last grounded point — Alyx-Shift-style quick dashes rather than ballistic camera arcs where feasible.
+
+From: Practitioner guidance · Alyx
+
+Lesson 09 · Comfort
+Dose speed: 2–4 minute runs inside a 20–40 minute session
+
+Missions, tag routes and chases as short runs. Between runs, the player is near-stationary in a hub — shop, graffiti wall, crew — where the vestibular system resets.
+
+From: Sprint Vector · Meta's Goldilocks research
+
+Lesson 10 · Comfort
+Onboard like Gorilla Tag, not a tutorial document
+
+First 60 seconds: one flat plaza, one rail, one tag spot, no police, no fail state. The player learns push/lean = go, rail = grind, wall = ride before any system is named. Settings live on the wrist.
+
+From: Gorilla Tag · Alyx's multi-modal menus
+
+Lesson 11 · Interaction
+Graffiti is your gravity gloves
+
+Two physical verbs, both Alyx-pattern (select → lock → gesture → result, distinct sound per stage). Drive-by tag: point the can while passing, squeeze, one sweeping stroke paints it. Big piece: stop, paint the outline with real arm strokes — bigger, slower, louder, worth far more, and you're exposed the whole time. Painting skill = stroke breadth and coverage, not stick-wiggles.
+
+From: Alyx gloves · Beat Saber motion scoring · JSR tags
+
+Lesson 12 · Interaction
+Body as inventory
+
+Spray cans and boost on the hips; radio on the wrist — police-intercept warnings, heat meter, hearts-style status on the glove, exactly Alyx's diegetic HUD. Map as a physical unfold or wrist projection. No floating panels while moving.
+
+From: Alyx · RE4 VR · Arkham Shadow
+
+Lesson 13 · Interaction
+Show hands + skates. Skip the full body
+
+Hands do the work — push, spray, grab rails. Skates under the feet give orientation and a speed readout. Don't build a Boneworks-style simulated body in WebXR: its CPU cost, proportion errors and sickness bill are documented, and Quest's own physics ports cut fidelity to survive. Any legs are simple, non-colliding dressing.
+
+From: Alyx · Gorilla Tag · Boneworks · Nomad
+
+Lesson 14 · Interaction
+Fake the player's physics; simulate almost nothing else
+
+The skater is a kinematic momentum model — velocity vector plus surface rules for ground, rail and wall. Deterministic, cheap, tunable, identical for every player (fair scoring). Real rigidbodies only for a handful of hero props.
+
+From: Boneworks as warning · Nomad's cuts · Surma's WebXR case
+
+Lesson 15 · Interaction
+Cheat invisibly in the player's favour
+
+Rail magnetism, grab windows, tag-cone forgiveness, landing assistance, police rubber-banding — and in Alyx's exact pattern, feel the weight in audio and rumble while scoring and steering on the clean input. If a held can ever snags the world, make it non-colliding while held: the crowbar lesson, learned in advance.
+
+From: Alyx — inertia cheat + crowbar
+
+Lesson 16 · Systems
+City as districts, not one open world
+
+Quest 3's flagship chose contained hubs over an open city; Asgard's Wrath 2 fakes sprawl with negative space and dense pockets. For WebXR: 3–5 small, dense, hand-built districts joined by fast travel lines, each a complete 20–40-minute turf arc. Density of lines beats acreage.
+
+From: Arkham Shadow · Asgard's Wrath 2
+
+Lesson 17 · Systems
+Turf loop with a legible escalation ladder
+
+Free-roam warm-up → small tags (heat 1: slow foot patrol) → big pieces (heat 2–3: motor officers who match street speed but cannot grind or wall-ride — your lines are your escape) → heat 4: roadblocks and chopper spotlight forcing rooftop lines → cool-down objective that banks the district. Every step pre-announced on the wrist radio. Police must never follow you onto rails — that asymmetry is the whole fantasy.
+
+From: JSR escalation + grind immunity · Population: One's vertical asymmetry
+
+Lesson 18 · Systems
+Progression = repertoire + territory + cosmetics, not stats
+
+New districts unlock new verbs and lines in gadget style; tricks rank up by landing them; skates, wheels, trails and graffiti styles are cosmetic unlocks — the Gorilla Tag economy that produced $100M without power creep. Avoid Jet Island-style raw stat inflation: it breaks route design and score fairness.
+
+From: Asgard / Alyx gadgets · Hover Skate VR · Gorilla Tag
+
+Lesson 19 · Systems
+Make it clip-able and social-first, even single-player
+
+A spectator/smooth replay camera (Alyx's spectator view exists precisely for watchability), one-button run-sharing, ghost replays of friends' lines, asynchronous district leaderboards. That captures the off-platform discovery engine without betting launch on real-time multiplayer netcode in a browser.
+
+From: Gorilla Tag · Alyx spectator · Pruett, GDC 2025
+
+Lesson 20 · Systems
+Free-roam is retention; missions are teaching
+
+Structure missions as guided versions of what free-roam already allows — tag this route, escape at heat 3, beat this ghost line. Players stay for self-directed play in a consistent-rules place, and leave when content is a one-way corridor.
+
+From: Gorilla Tag · Bonelab's sandbox longevity
+
+Lesson 21 · Performance
+Budget to 72 fps locked; treat 90 as a bonus
+
+Use session.supportedFrameRates / updateTargetFrameRate(). If the city can't hold 90 in the worst district at heat 4, ship 72. Split the 13.9 ms explicitly and profile on-device, never from desktop emulation.
+
+From: Meta WebXR docs via Graspable
+
+Lesson 22 · Performance
+Draw calls are your city-size limit
+
+three.js draws per eye: an InstancedMesh for every repeated prop class, merged static geometry per block, shared materials, atlased textures. Anchor against Meta's busy-simulation rows, then find your own WebXR ceiling on-device and write it down as the district budget.
+
+From: Meta perf docs · Graspable method
+
+Lesson 23 · Performance
+Cel-shade is a performance strategy, not just an homage
+
+JSR-style flat colours = cheap materials, baked or no dynamic lights, no shadow maps (blob/AO decals), no post-processing — which also breaks foveation. Strong silhouettes and signage stay readable at speed. Set fixed foveation high (0.7–1.0 as a starting point); the periphery is motion-blurred by speed anyway.
+
+From: Graspable · Gorilla Tag · Beat Saber
+
+Lesson 24 · Performance
+Stream districts; freeze the far city
+
+Only the active district simulates — police, traffic, ambient skaters. Adjacent districts render as low-LOD shells. Nothing allocates per frame: GC hitches at speed read as sickness, not jank.
+
+From: Graspable JS discipline · Asgard's negative space
+
+The one-sentence version: Build Gorilla Tag's lesson (one embodied verb, consistent rules, no menus), on Jet Island's momentum model (slope + thrust + line), with Alyx's invisible assistance, JSR's systems (flow-protected tricks, two-tier tagging, radio-telegraphed police escalation, rails as safety), dosed in Sprint Vector-length runs inside Meta's 20–40-minute session — rendered cel-shaded and instanced to a locked WebXR 72 fps.
+
+09What the research could not verify
+
+Stated plainly, the way the research states it — gaps are not filled with invention.
+
+Jet Island's tuning numbers — not published
+
+No developer postmortem, GDC talk or blog with concrete values (jet force, gravity scale, friction model, top speeds, FOV treatment) was found, despite targeted searching. The surviving developer record is store copy and podcast interviews, and no Quest-native version exists. Any numbers for a skating game must come from its own prototyping.
+
+Acceleration vs sickness — unresolved
+
+Practitioner guidance and controlled research conflict (see §06). The only reliable arbiter is the skating game's own playtests with non-developer, VR-naive users — Meta and Unity both stress that dev teams are the worst test sample for sickness.
+
+10Sources
+
+Developer interviews, GDC talks, Meta's official documentation and specialist coverage, gathered 2026-10-27/28. Key pages were verified live during research; the rest are from the web index, as noted in the underlying report.
+
+Gorilla Tag origin — GameSpot (verified live): gamespot.com/articles/how-gorilla-tag-became-a-generational-obsession-and-conquered-vr
+Jet Island — Steam store copy: store.steampowered.com/app/587220
+Sprint Vector's Fluid Locomotion — Road to VR: roadtovr.com/survios-new-title-sprint-vector-could-be-a-watershed-moment-for-vr-locomotion
+Gravity gloves — Road to VR's Inside XR Design (verified live republication): europesays.com/uk/847458
+Quest performance budgets — Meta developer docs (verified live): developers.meta.com/vr/documentation/unity/po-perf-opt-mobile and developers.meta.com/vr/documentation/unity/unity-perf
+WebXR performance on Quest 3 — Graspable (verified live, published 2026-10-02): graspable.dev/blog/webxr-performance-budget-quest-3
+Meta comfort ratings: meta.com/help/quest/331713305046406
+Quest charts 2025 — MIXED: mixed-news.com/en/meta-quest-charts-week-8-2025, week 3, week 21
+Meta at GDC 2025 — Android Central: androidcentral.com/gaming/virtual-reality/gdc-2025-oculus-publishing-head; XRCTO: xrcto.com/en_us/10446
+Session length “Goldilocks zone” — Road to VR: roadtovr.com/meta-quest-goldilocks-zone-session-form-factor
+Alyx locomotion FAQ — Road to VR: roadtovr.com/half-life-alyx-which-vr-headset-support-compatible-oculus-quest-faq
+Population: One interview — Shacknews: shacknews.com/article/109556/population-one-vr-battle-royale-interview
+Acceleration study — Widdowson et al., Human Factors 2021: lavalle.pl/papers/WidBecMerWanLav21.pdf
+Virtual nose test — PMC: pmc.ncbi.nlm.nih.gov/articles/PMC11522211
+Physics cost in WebXR — Surma: surma.dev/things/omt-for-three-xr
+Blade & Sorcery: Nomad on Quest — Road to VR review: roadtovr.com/blade-sorcery-nomad-review-quest-2
+Batman: Arkham Shadow hands-on — Road to VR: roadtovr.com/batman-arkham-shadow-hands-on-preview-quest-3
+The crowbar — PC Gamer: pcgamer.com/valve-cut-the-crowbar-from-half-life-alyx
+Boneworks / Hexabody — Wikipedia summary: en.wikipedia.org/wiki/Boneworks
+Beat Saber scoring — Inside XR Design summary: send106.com/the-secret-to-beat-sabers-fun-isnt-what-you-think
+Vestibular / comfort guidance — Unity: unity.com/glossary/vestibular-system
+Research gathered 2026-10-27/28 from developer sources, postmortems, GDC coverage and Meta documentation, prepared as design input for Sky Rydah's — a Gr8yzone Studios Inc. project. Hero illustration is an original cel-shaded artwork created for this page, not a screenshot from any game covered. Where sources disagreed or numbers were never published, this page says so rather than filling the gap.
+[['The pattern', '#thesis'], ['The games', '#games'], ['Movement', '#movement'], ['Hands & physics', '#hands'], ['Game feel', '#feel'], ['Comfort evidence', '#comfort'], ['Performance', '#perf'], ["Lessons for Sky Rydah's", '#lessons'], ['Open questions', '#open'], ['Sources', '#sources'], ['gamespot.com/articles/how-gorilla-tag-became-a-generational-obsession-and-conque', 'https://www.gamespot.com/articles/how-gorilla-tag-became-a-generational-obsession-and-conquered-vr/1100-6526437/'], ['store.steampowered.com/app/587220', 'https://store.steampowered.com/app/587220?l=english'], ['roadtovr.com/survios-new-title-sprint-vector-could-be-a-watershed-moment-for-vr-', 'https://roadtovr.com/survios-new-title-sprint-vector-could-be-a-watershed-moment-for-vr-locomotion/'], ['europesays.com/uk/847458', 'https://www.europesays.com/uk/847458/'], ['developers.meta.com/vr/documentation/unity/po-perf-opt-mobile', 'https://developers.meta.com/vr/documentation/unity/po-perf-opt-mobile/'], ['developers.meta.com/vr/documentation/unity/unity-perf', 'https://developers.meta.com/vr/documentation/unity/unity-perf/'], ['graspable.dev/blog/webxr-performance-budget-quest-3', 'https://graspable.dev/blog/webxr-performance-budget-quest-3'], ['meta.com/help/quest/331713305046406', 'https://www.meta.com/help/quest/331713305046406/'], ['mixed-news.com/en/meta-quest-charts-week-8-2025', 'https://mixed-news.com/en/meta-quest-charts-week-8-2025/'], ['week 3', 'https://mixed-news.com/en/meta-quest-charts-week-3-2025/'], ['week 21', 'https://mixed-news.com/en/meta-quest-charts-week-21-2025/'], ['androidcentral.com/gaming/virtual-reality/gdc-2025-oculus-publishing-head', 'https://www.androidcentral.com/gaming/virtual-reality/gdc-2025-oculus-publishing-head-challenges-meta-criticism-on-quest-store-profitability'], ['xrcto.com/en_us/10446', 'https://www.xrcto.com/en_us/10446.html'], ['roadtovr.com/meta-quest-goldilocks-zone-session-form-factor', 'https://roadtovr.com/meta-quest-goldilocks-zone-session-form-factor/'], ['roadtovr.com/half-life-alyx-which-vr-headset-support-compatible-oculus-quest-faq', 'https://roadtovr.com/half-life-alyx-which-vr-headset-support-compatible-oculus-quest-faq/'], ['shacknews.com/article/109556/population-one-vr-battle-royale-interview', 'https://www.shacknews.com/article/109556/population-one-vr-battle-royale-interview-with-ceo-chia-chin-lee?amphtml=1'], ['lavalle.pl/papers/WidBecMerWanLav21.pdf', 'http://lavalle.pl/papers/WidBecMerWanLav21.pdf'], ['pmc.ncbi.nlm.nih.gov/articles/PMC11522211', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11522211/'], ['surma.dev/things/omt-for-three-xr', 'https://surma.dev/things/omt-for-three-xr/'], ['roadtovr.com/blade-sorcery-nomad-review-quest-2', 'https://roadtovr.com/blade-sorcery-nomad-review-quest-2/'], ['roadtovr.com/batman-arkham-shadow-hands-on-preview-quest-3', 'https://roadtovr.com/batman-arkham-shadow-hands-on-preview-quest-3/'], ['pcgamer.com/valve-cut-the-crowbar-from-half-life-alyx', 'https://www.pcgamer.com/valve-cut-the-crowbar-from-half-life-alyx-in-part-because-players-kept-assuming-they-were-gordon-freeman/'], ['en.wikipedia.org/wiki/Boneworks', 'https://en.wikipedia.org/wiki/Boneworks'], ['send106.com/the-secret-to-beat-sabers-fun-isnt-what-you-think', 'https://send106.com/the-secret-to-beat-sabers-fun-isnt-what-you-think-inside-xr-design/'], ['unity.com/glossary/vestibular-system', 'https://unity.com/glossary/vestibular-system']]
+[['Cel-shaded illustration of a VR skater grinding a glowing cyan rail above a gold-and-black city at dusk', 'assets/hero.webp']]

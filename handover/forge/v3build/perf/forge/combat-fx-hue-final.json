@@ -1,0 +1,112 @@
+[
+ {
+  "crew": "codee",
+  "target": 41,
+  "alt": 47,
+  "peak": 55,
+  "mean": 56,
+  "sat": 0.87,
+  "n": 91554,
+  "err": 8,
+  "PASS": true
+ },
+ {
+  "crew": "karasu",
+  "target": 356,
+  "alt": null,
+  "peak": 355,
+  "mean": 355,
+  "sat": 0.89,
+  "n": 46363,
+  "err": 1,
+  "PASS": true
+ },
+ {
+  "crew": "static",
+  "target": 270,
+  "alt": 184,
+  "peak": 275,
+  "mean": 283,
+  "sat": 0.64,
+  "n": 112421,
+  "err": 5,
+  "PASS": true
+ },
+ {
+  "crew": "anubis",
+  "target": 170,
+  "alt": 40,
+  "peak": 175,
+  "mean": 162,
+  "sat": 0.91,
+  "n": 46183,
+  "err": 5,
+  "PASS": true
+ },
+ {
+  "crew": "forest",
+  "target": 140,
+  "alt": 120,
+  "peak": 145,
+  "mean": 138,
+  "sat": 0.7,
+  "n": 66679,
+  "err": 5,
+  "PASS": true
+ },
+ {
+  "crew": "behemoth",
+  "target": 21,
+  "alt": null,
+  "peak": 25,
+  "mean": 30,
+  "sat": 0.91,
+  "n": 74215,
+  "err": 4,
+  "PASS": true
+ },
+ {
+  "crew": "genesis",
+  "target": 312,
+  "alt": 42,
+  "peak": 305,
+  "mean": 305,
+  "sat": 0.73,
+  "n": 100293,
+  "err": 7,
+  "PASS": true
+ },
+ {
+  "crew": "ttt",
+  "target": 20,
+  "alt": 220,
+  "peak": 25,
+  "mean": 23,
+  "sat": 0.73,
+  "n": 40964,
+  "err": 5,
+  "PASS": true
+ },
+ {
+  "crew": "volt",
+  "target": 327,
+  "alt": 56,
+  "peak": 335,
+  "mean": 335,
+  "sat": 0.69,
+  "n": 73875,
+  "err": 8,
+  "PASS": true
+ },
+ {
+  "crew": "rustclaw",
+  "target": 23,
+  "alt": null,
+  "peak": 25,
+  "mean": 25,
+  "sat": 0.92,
+  "n": 35954,
+  "err": 2,
+  "PASS": true
+ }
+]

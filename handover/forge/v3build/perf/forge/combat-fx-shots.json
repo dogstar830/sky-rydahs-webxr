@@ -1,0 +1,79 @@
+{
+ "base": {
+  "sceneCalls": 106,
+  "calls": 106,
+  "tris": 523566,
+  "tex": 85,
+  "prog": 79,
+  "fx": {
+   "prewarmMs": 9,
+   "sprites": 0,
+   "ink": 0,
+   "ribbons": 0,
+   "draws": 0
+  }
+ },
+ "shots": [
+  {
+   "sceneCalls": 101,
+   "calls": 101,
+   "tris": 521350,
+   "tex": 85,
+   "prog": 79,
+   "fx": {
+    "prewarmMs": 9,
+    "sprites": 41,
+    "ink": 20,
+    "ribbons": 5,
+    "draws": 3
+   },
+   "shot": "combat_fx_codee.png"
+  },
+  {
+   "sceneCalls": 101,
+   "calls": 101,
+   "tris": 521806,
+   "tex": 85,
+   "prog": 79,
+   "fx": {
+    "prewarmMs": 9,
+    "sprites": 89,
+    "ink": 11,
+    "ribbons": 12,
+    "draws": 3
+   },
+   "shot": "combat_fx_super_codee.png"
+  },
+  {
+   "sceneCalls": 100,
+   "calls": 100,
+   "tris": 521098,
+   "tex": 85,
+   "prog": 79,
+   "fx": {
+    "prewarmMs": 9,
+    "sprites": 57,
+    "ink": 13,
+    "ribbons": 0,
+    "draws": 2
+   },
+   "shot": "combat_fx_super_karasu.png"
+  },
+  {
+   "sceneCalls": 101,
+   "calls": 101,
+   "tris": 521094,
+   "tex": 85,
+   "prog": 79,
+   "fx": {
+    "prewarmMs": 9,
+    "sprites": 7,
+    "ink": 7,
+    "ribbons": 2,
+    "draws": 3
+   },
+   "shot": "combat_fx_pressured_forest.png"
+  }
+ ],
+ "errors": []
+}

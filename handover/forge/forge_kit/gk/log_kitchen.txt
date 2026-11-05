@@ -1,0 +1,42 @@
+16:21:54 | INFO: Data are loaded, start creating Blender stuff
+16:21:54 | INFO: Blender create Mesh node 0
+16:21:54 | INFO: glTF import finished in 0.23s
+Blender 4.3.2 (hash 32f5fdce0a0a built 2024-12-17 01:31:14)
+Fra:1 Mem:150.05M (Peak 195.06M) | Time:498141:21:58.80 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Mesh_0
+Fra:1 Mem:175.51M (Peak 195.06M) | Time:498141:21:58.95 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:175.50M (Peak 195.06M) | Time:498141:21:58.95 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading kitchen_nrm
+Fra:1 Mem:175.50M (Peak 195.06M) | Time:498141:21:58.95 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:199.50M (Peak 199.50M) | Time:498141:21:58.95 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading kitchen_col
+Fra:1 Mem:199.50M (Peak 199.50M) | Time:498141:21:58.95 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading kitchen_orm
+Fra:1 Mem:155.41M (Peak 380.22M) | Time:498141:22:01.15 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Mesh_0
+Fra:1 Mem:165.14M (Peak 380.22M) | Time:498141:22:01.22 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:165.14M (Peak 380.22M) | Time:498141:22:01.22 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading kitchen_orm
+Fra:1 Mem:169.15M (Peak 380.22M) | Time:498141:22:01.22 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading kitchen_col
+Fra:1 Mem:177.15M (Peak 380.22M) | Time:498141:22:01.22 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:155.41M (Peak 380.22M) | Time:498141:22:03.03 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Mesh_0
+Fra:1 Mem:165.14M (Peak 380.22M) | Time:498141:22:03.12 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:165.14M (Peak 380.22M) | Time:498141:22:03.12 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading kitchen_orm
+Fra:1 Mem:173.14M (Peak 380.22M) | Time:498141:22:03.12 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+DIMS kitchen [2.235, 0.967, 1.85]
+TEX Image_0 ['Base Color']
+TEX Image_1 ['Color']
+TEX Image_2 ['Color']
+VOXTRIS 280516
+LOTRIS kitchen 7800
+Info: Baking map saved to internal image, save it externally or pack it
+BAKED nrm
+Info: Baking map saved to internal image, save it externally or pack it
+BAKED col
+Info: Baking map saved to internal image, save it externally or pack it
+BAKED orm
+Info: Saved "kitchen_lo.blend"
+INFO Draco mesh compression is available, use library at /home/box/apps/blender-4.3.2-linux-x64/4.3/python/lib/python3.11/site-packages/libextern_draco.so
+16:22:04 | INFO: Starting glTF 2.0 export
+16:22:04 | INFO: Extracting primitive: Mesh_0.001
+16:22:04 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+16:22:04 | INFO: Primitives created: 1
+16:22:04 | INFO: Finished glTF 2.0 export in 0.10564804077148438 s
+
+DONE kitchen
+
+Blender quit

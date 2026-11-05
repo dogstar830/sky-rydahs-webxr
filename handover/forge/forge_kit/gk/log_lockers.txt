@@ -1,0 +1,42 @@
+16:21:38 | INFO: Data are loaded, start creating Blender stuff
+16:21:38 | INFO: Blender create Mesh node 0
+16:21:42 | INFO: glTF import finished in 3.42s
+Blender 4.3.2 (hash 32f5fdce0a0a built 2024-12-17 01:31:14)
+Fra:1 Mem:563.63M (Peak 750.46M) | Time:498141:22:04.22 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Mesh_0
+Fra:1 Mem:797.33M (Peak 989.78M) | Time:498141:22:06.35 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:797.33M (Peak 989.78M) | Time:498141:22:06.35 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading lockers_nrm
+Fra:1 Mem:801.34M (Peak 989.78M) | Time:498141:22:06.35 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading lockers_orm
+Fra:1 Mem:801.34M (Peak 989.78M) | Time:498141:22:06.35 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:817.34M (Peak 989.78M) | Time:498141:22:06.35 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading lockers_col
+Fra:1 Mem:602.00M (Peak 1183.89M) | Time:498141:22:10.64 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Mesh_0
+Fra:1 Mem:692.35M (Peak 1183.89M) | Time:498141:22:11.75 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:692.35M (Peak 1183.89M) | Time:498141:22:11.75 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:708.35M (Peak 1183.89M) | Time:498141:22:11.75 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading lockers_orm
+Fra:1 Mem:720.36M (Peak 1183.89M) | Time:498141:22:11.76 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading lockers_col
+Fra:1 Mem:602.00M (Peak 1318.18M) | Time:498141:22:19.14 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Mesh_0
+Fra:1 Mem:692.35M (Peak 1318.18M) | Time:498141:22:19.96 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:692.35M (Peak 1318.18M) | Time:498141:22:19.96 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:708.35M (Peak 1318.18M) | Time:498141:22:19.96 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading lockers_orm
+DIMS lockers [2.781, 1.404, 1.8]
+TEX Image_0 ['Base Color']
+TEX Image_1 ['Color']
+TEX Image_2 ['Color']
+VOXTRIS 776264
+LOTRIS lockers 7900
+Info: Baking map saved to internal image, save it externally or pack it
+BAKED nrm
+Info: Baking map saved to internal image, save it externally or pack it
+BAKED col
+Info: Baking map saved to internal image, save it externally or pack it
+BAKED orm
+Info: Saved "lockers_lo.blend"
+INFO Draco mesh compression is available, use library at /home/box/apps/blender-4.3.2-linux-x64/4.3/python/lib/python3.11/site-packages/libextern_draco.so
+16:22:24 | INFO: Starting glTF 2.0 export
+16:22:24 | INFO: Extracting primitive: Mesh_0.001
+16:22:24 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+16:22:24 | INFO: Primitives created: 1
+16:22:24 | INFO: Finished glTF 2.0 export in 0.08076095581054688 s
+
+DONE lockers
+
+Blender quit

@@ -1,0 +1,263 @@
+Blender 4.3.2 (hash 32f5fdce0a0a built 2024-12-17 01:31:14)
+Read blend: "/workspace/forge_kit/gr8/anika_hi.blend"
+Fra:1 Mem:1057.78M (Peak 1631.22M) | Time:498151:17:35.39 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1057.79M (Peak 1631.22M) | Time:498151:17:35.39 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:1300.08M (Peak 1631.22M) | Time:498151:17:36.12 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1300.07M (Peak 1631.22M) | Time:498151:17:36.12 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1300.07M (Peak 1631.22M) | Time:498151:17:36.12 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_col
+Fra:1 Mem:1435.44M (Peak 2124.09M) | Time:498151:17:39.67 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1457.22M (Peak 2124.09M) | Time:498151:17:39.67 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1464.18M (Peak 2124.09M) | Time:498151:17:39.67 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:1513.91M (Peak 2124.09M) | Time:498151:17:39.72 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1513.90M (Peak 2124.09M) | Time:498151:17:39.72 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:2025.90M (Peak 2124.09M) | Time:498151:17:39.73 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:2025.90M (Peak 2124.09M) | Time:498151:17:39.73 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:2221.90M (Peak 2221.90M) | Time:498151:17:39.73 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_col
+Fra:1 Mem:2325.91M (Peak 2325.91M) | Time:498151:17:39.73 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:1175.45M (Peak 2767.61M) | Time:498151:17:44.69 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1175.45M (Peak 2767.61M) | Time:498151:17:44.69 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1253.92M (Peak 2767.61M) | Time:498151:17:44.75 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1253.91M (Peak 2767.61M) | Time:498151:17:44.75 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1257.91M (Peak 2767.61M) | Time:498151:17:44.75 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1261.91M (Peak 2767.61M) | Time:498151:17:44.75 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:1316.61M (Peak 2767.61M) | Time:498151:17:48.24 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1317.92M (Peak 2767.61M) | Time:498151:17:48.24 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1319.23M (Peak 2767.61M) | Time:498151:17:48.24 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:1461.33M (Peak 2767.61M) | Time:498151:17:48.68 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1461.32M (Peak 2767.61M) | Time:498151:17:48.68 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1465.32M (Peak 2767.61M) | Time:498151:17:48.68 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1469.32M (Peak 2767.61M) | Time:498151:17:48.68 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:2109.32M (Peak 2767.61M) | Time:498151:17:48.68 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2137.34M (Peak 2767.61M) | Time:498151:17:48.68 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:1316.61M (Peak 2767.61M) | Time:498151:17:50.56 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1316.61M (Peak 2767.61M) | Time:498151:17:50.56 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:1461.33M (Peak 2767.61M) | Time:498151:17:51.02 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1461.32M (Peak 2767.61M) | Time:498151:17:51.02 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1461.32M (Peak 2767.61M) | Time:498151:17:51.02 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1465.32M (Peak 2767.61M) | Time:498151:17:51.02 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:1725.32M (Peak 2767.61M) | Time:498151:17:51.02 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:1118.62M (Peak 2767.61M) | Time:498151:18:10.71 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1118.62M (Peak 2767.61M) | Time:498151:18:10.71 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1280.07M (Peak 2767.61M) | Time:498151:18:11.18 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1280.06M (Peak 2767.61M) | Time:498151:18:11.18 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:1280.06M (Peak 2767.61M) | Time:498151:18:11.18 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1280.06M (Peak 2767.61M) | Time:498151:18:11.18 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:1857.06M (Peak 2767.61M) | Time:498151:18:11.18 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1921.06M (Peak 2767.61M) | Time:498151:18:11.18 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:1949.08M (Peak 2767.61M) | Time:498151:18:11.18 | Mem:1.00M, Peak:1.00M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:1191.81M (Peak 2767.61M) | Time:498151:18:13.02 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1191.81M (Peak 2767.61M) | Time:498151:18:13.02 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1283.90M (Peak 2767.61M) | Time:498151:18:13.12 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1283.89M (Peak 2767.61M) | Time:498151:18:13.12 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:1283.89M (Peak 2767.61M) | Time:498151:18:13.12 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1796.89M (Peak 2767.61M) | Time:498151:18:13.12 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1860.89M (Peak 2767.61M) | Time:498151:18:13.12 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1924.90M (Peak 2767.61M) | Time:498151:18:13.12 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:2100.91M (Peak 2767.61M) | Time:498151:18:13.12 | Mem:1.00M, Peak:1.00M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:1126.82M (Peak 2767.61M) | Time:498151:18:16.75 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1128.13M (Peak 2767.61M) | Time:498151:18:16.75 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1218.91M (Peak 2767.61M) | Time:498151:18:16.83 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1218.90M (Peak 2767.61M) | Time:498151:18:16.83 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:1218.90M (Peak 2767.61M) | Time:498151:18:16.83 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1218.90M (Peak 2767.61M) | Time:498151:18:16.83 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1346.90M (Peak 2767.61M) | Time:498151:18:16.83 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_col
+Fra:1 Mem:1346.90M (Peak 2767.61M) | Time:498151:18:16.83 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:1995.92M (Peak 2767.61M) | Time:498151:18:16.83 | Mem:1.00M, Peak:1.00M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:1996.92M (Peak 2767.61M) | Time:498151:18:16.83 | Mem:2.00M, Peak:2.00M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:2000.92M (Peak 2767.61M) | Time:498151:18:16.84 | Mem:6.00M, Peak:6.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1057.97M (Peak 2767.61M) | Time:498151:18:19.95 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1057.98M (Peak 2767.61M) | Time:498151:18:19.95 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1216.24M (Peak 2767.61M) | Time:498151:18:20.35 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1216.24M (Peak 2767.61M) | Time:498151:18:20.35 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:1216.24M (Peak 2767.61M) | Time:498151:18:20.35 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1218.24M (Peak 2767.61M) | Time:498151:18:20.35 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:1866.24M (Peak 2767.61M) | Time:498151:18:20.35 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1990.25M (Peak 2767.61M) | Time:498151:18:20.36 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1998.25M (Peak 2767.61M) | Time:498151:18:20.36 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:1997.25M (Peak 2767.61M) | Time:498151:18:20.36 | Mem:5.00M, Peak:5.00M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:2006.25M (Peak 2767.61M) | Time:498151:18:20.36 | Mem:6.00M, Peak:6.00M | Scene | Updating Images | Loading anika_LOD0_col
+Fra:1 Mem:1057.97M (Peak 2767.61M) | Time:498151:18:21.36 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1057.98M (Peak 2767.61M) | Time:498151:18:21.36 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1216.24M (Peak 2767.61M) | Time:498151:18:21.72 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1216.24M (Peak 2767.61M) | Time:498151:18:21.72 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:1216.24M (Peak 2767.61M) | Time:498151:18:21.72 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1217.24M (Peak 2767.61M) | Time:498151:18:21.72 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:1958.25M (Peak 2767.61M) | Time:498151:18:21.72 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:1115.36M (Peak 2767.61M) | Time:498151:18:38.29 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1115.36M (Peak 2767.61M) | Time:498151:18:38.29 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD1
+Fra:1 Mem:1279.48M (Peak 2767.61M) | Time:498151:18:38.79 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1279.48M (Peak 2767.61M) | Time:498151:18:38.79 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:1279.48M (Peak 2767.61M) | Time:498151:18:38.79 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1283.74M (Peak 2767.61M) | Time:498151:18:38.79 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:2099.99M (Peak 2767.61M) | Time:498151:18:38.80 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:2104.99M (Peak 2767.61M) | Time:498151:18:38.80 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:2105.99M (Peak 2767.61M) | Time:498151:18:38.80 | Mem:2.50M, Peak:2.50M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:1133.95M (Peak 2767.61M) | Time:498151:18:40.40 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1135.26M (Peak 2767.61M) | Time:498151:18:40.40 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1136.82M (Peak 2767.61M) | Time:498151:18:40.40 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1230.81M (Peak 2767.61M) | Time:498151:18:40.48 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1230.81M (Peak 2767.61M) | Time:498151:18:40.48 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:1231.06M (Peak 2767.61M) | Time:498151:18:40.48 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1231.07M (Peak 2767.61M) | Time:498151:18:40.48 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:1551.07M (Peak 2767.61M) | Time:498151:18:40.48 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1915.07M (Peak 2767.61M) | Time:498151:18:40.48 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:2047.32M (Peak 2767.61M) | Time:498151:18:40.48 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:2049.32M (Peak 2767.61M) | Time:498151:18:40.48 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:2052.32M (Peak 2767.61M) | Time:498151:18:40.48 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:2050.32M (Peak 2767.61M) | Time:498151:18:40.48 | Mem:5.50M, Peak:5.50M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:1117.71M (Peak 2767.61M) | Time:498151:18:43.90 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:1117.96M (Peak 2767.61M) | Time:498151:18:43.90 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1214.57M (Peak 2767.61M) | Time:498151:18:44.00 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1214.57M (Peak 2767.61M) | Time:498151:18:44.00 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1726.57M (Peak 2767.61M) | Time:498151:18:44.00 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:1726.57M (Peak 2767.61M) | Time:498151:18:44.00 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_col
+Fra:1 Mem:1854.83M (Peak 2767.61M) | Time:498151:18:44.00 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:1855.08M (Peak 2767.61M) | Time:498151:18:44.00 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:1856.08M (Peak 2767.61M) | Time:498151:18:44.00 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:1858.08M (Peak 2767.61M) | Time:498151:18:44.00 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1865.08M (Peak 2767.61M) | Time:498151:18:44.00 | Mem:2.50M, Peak:2.50M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:1866.08M (Peak 2767.61M) | Time:498151:18:44.00 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:996.37M (Peak 2767.61M) | Time:498151:18:46.71 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:996.37M (Peak 2767.61M) | Time:498151:18:46.71 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1159.41M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1159.40M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:1159.40M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1159.65M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:1615.67M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:1615.92M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:1937.92M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1944.92M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:1945.92M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:1945.92M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:5.50M, Peak:5.50M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:1946.92M (Peak 2767.61M) | Time:498151:18:47.10 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading anika_LOD0_col
+Fra:1 Mem:996.37M (Peak 2767.61M) | Time:498151:18:47.74 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:996.37M (Peak 2767.61M) | Time:498151:18:47.74 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD1
+Fra:1 Mem:1159.41M (Peak 2767.61M) | Time:498151:18:48.15 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1159.40M (Peak 2767.61M) | Time:498151:18:48.15 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:1159.40M (Peak 2767.61M) | Time:498151:18:48.15 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1159.40M (Peak 2767.61M) | Time:498151:18:48.15 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_col
+Fra:1 Mem:1159.40M (Peak 2767.61M) | Time:498151:18:48.15 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:1159.40M (Peak 2767.61M) | Time:498151:18:48.15 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:1899.67M (Peak 2767.61M) | Time:498151:18:48.15 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:1911.92M (Peak 2767.61M) | Time:498151:18:48.15 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:1912.92M (Peak 2767.61M) | Time:498151:18:48.15 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:1913.92M (Peak 2767.61M) | Time:498151:18:48.15 | Mem:2.50M, Peak:2.50M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:1210.17M (Peak 2767.61M) | Time:498151:19:06.47 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1210.17M (Peak 2767.61M) | Time:498151:19:06.47 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1211.56M (Peak 2767.61M) | Time:498151:19:06.47 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD1
+Fra:1 Mem:1375.33M (Peak 2767.61M) | Time:498151:19:06.99 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1375.32M (Peak 2767.61M) | Time:498151:19:06.99 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_NPC0_orm
+Fra:1 Mem:1375.32M (Peak 2767.61M) | Time:498151:19:06.99 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_col
+Fra:1 Mem:1411.32M (Peak 2767.61M) | Time:498151:19:06.99 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:1923.33M (Peak 2767.61M) | Time:498151:19:06.99 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading anika_NPC0_nrm
+Fra:1 Mem:1991.33M (Peak 2767.61M) | Time:498151:19:06.99 | Mem:8.00M, Peak:8.00M | Scene | Updating Images | Loading anika_NPC0_col
+Fra:1 Mem:2211.33M (Peak 2767.61M) | Time:498151:19:07.00 | Mem:12.00M, Peak:12.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:2211.58M (Peak 2767.61M) | Time:498151:19:07.00 | Mem:12.25M, Peak:12.25M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:2211.83M (Peak 2767.61M) | Time:498151:19:07.00 | Mem:12.50M, Peak:12.50M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:2209.83M (Peak 2767.61M) | Time:498151:19:07.00 | Mem:16.50M, Peak:16.50M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:2210.83M (Peak 2767.61M) | Time:498151:19:07.00 | Mem:17.50M, Peak:17.50M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:1214.55M (Peak 2767.61M) | Time:498151:19:09.48 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD2
+Fra:1 Mem:1215.06M (Peak 2767.61M) | Time:498151:19:09.49 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1238.47M (Peak 2767.61M) | Time:498151:19:09.49 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_anika_back.png
+Fra:1 Mem:1238.82M (Peak 2767.61M) | Time:498151:19:09.49 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1240.15M (Peak 2767.61M) | Time:498151:19:09.49 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1240.15M (Peak 2767.61M) | Time:498151:19:09.49 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD1
+Fra:1 Mem:1313.16M (Peak 2767.61M) | Time:498151:19:09.60 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1313.15M (Peak 2767.61M) | Time:498151:19:09.60 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_NPC0_orm
+Fra:1 Mem:1313.15M (Peak 2767.61M) | Time:498151:19:09.60 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1569.15M (Peak 2767.61M) | Time:498151:19:09.60 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1889.15M (Peak 2767.61M) | Time:498151:19:09.60 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_col
+Fra:1 Mem:2125.16M (Peak 2767.61M) | Time:498151:19:09.60 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_nrm
+Fra:1 Mem:2129.17M (Peak 2767.61M) | Time:498151:19:09.60 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:2137.17M (Peak 2767.61M) | Time:498151:19:09.61 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:2137.17M (Peak 2767.61M) | Time:498151:19:09.61 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:2134.16M (Peak 2767.61M) | Time:498151:19:09.61 | Mem:8.00M, Peak:8.00M | Scene | Updating Images | Loading anika_NPC0_nrm
+Fra:1 Mem:2138.16M (Peak 2767.61M) | Time:498151:19:09.61 | Mem:9.00M, Peak:9.00M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:2143.16M (Peak 2767.61M) | Time:498151:19:09.61 | Mem:14.00M, Peak:14.00M | Scene | Updating Images | Loading anika_NPC0_col
+Fra:1 Mem:2147.16M (Peak 2767.61M) | Time:498151:19:09.61 | Mem:18.00M, Peak:18.00M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:2147.41M (Peak 2767.61M) | Time:498151:19:09.61 | Mem:18.25M, Peak:18.25M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:2143.66M (Peak 2767.61M) | Time:498151:19:09.61 | Mem:22.50M, Peak:22.50M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:1218.56M (Peak 2767.61M) | Time:498151:19:14.28 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1218.56M (Peak 2767.61M) | Time:498151:19:14.28 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD1
+Fra:1 Mem:1317.17M (Peak 2767.61M) | Time:498151:19:14.41 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1317.16M (Peak 2767.61M) | Time:498151:19:14.41 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_NPC0_orm
+Fra:1 Mem:1317.16M (Peak 2767.61M) | Time:498151:19:14.41 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_orm
+Fra:1 Mem:1325.16M (Peak 2767.61M) | Time:498151:19:14.41 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:2141.17M (Peak 2767.61M) | Time:498151:19:14.41 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:2143.17M (Peak 2767.61M) | Time:498151:19:14.41 | Mem:8.00M, Peak:8.00M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:2143.17M (Peak 2767.61M) | Time:498151:19:14.41 | Mem:9.00M, Peak:9.00M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:2145.17M (Peak 2767.61M) | Time:498151:19:14.41 | Mem:10.00M, Peak:10.00M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:2145.42M (Peak 2767.61M) | Time:498151:19:14.41 | Mem:10.25M, Peak:10.25M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:2145.67M (Peak 2767.61M) | Time:498151:19:14.41 | Mem:10.50M, Peak:10.50M | Scene | Updating Images | Loading anika_NPC0_col
+Fra:1 Mem:2152.67M (Peak 2767.61M) | Time:498151:19:14.42 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading anika_NPC0_nrm
+Fra:1 Mem:1083.71M (Peak 2767.61M) | Time:498151:19:17.90 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1083.71M (Peak 2767.61M) | Time:498151:19:17.90 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1086.44M (Peak 2767.61M) | Time:498151:19:17.90 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1086.68M (Peak 2767.61M) | Time:498151:19:17.90 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD1
+Fra:1 Mem:1248.50M (Peak 2767.61M) | Time:498151:19:18.36 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1248.49M (Peak 2767.61M) | Time:498151:19:18.36 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_NPC0_orm
+Fra:1 Mem:1248.49M (Peak 2767.61M) | Time:498151:19:18.36 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:2056.51M (Peak 2767.61M) | Time:498151:19:18.37 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:2065.51M (Peak 2767.61M) | Time:498151:19:18.37 | Mem:9.00M, Peak:9.00M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:2063.51M (Peak 2767.61M) | Time:498151:19:18.37 | Mem:13.00M, Peak:13.00M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:2070.76M (Peak 2767.61M) | Time:498151:19:18.38 | Mem:14.25M, Peak:14.25M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:2071.01M (Peak 2767.61M) | Time:498151:19:18.38 | Mem:14.50M, Peak:14.50M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2080.01M (Peak 2767.61M) | Time:498151:19:18.38 | Mem:15.50M, Peak:15.50M | Scene | Updating Images | Loading anika_NPC0_nrm
+Fra:1 Mem:1083.71M (Peak 2767.61M) | Time:498151:19:19.36 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1083.71M (Peak 2767.61M) | Time:498151:19:19.36 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD0
+Fra:1 Mem:1085.20M (Peak 2767.61M) | Time:498151:19:19.36 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Anika_LOD1
+Fra:1 Mem:1248.50M (Peak 2767.61M) | Time:498151:19:19.78 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1248.50M (Peak 2767.61M) | Time:498151:19:19.78 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_NPC0_orm
+Fra:1 Mem:1248.50M (Peak 2767.61M) | Time:498151:19:19.78 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1252.50M (Peak 2767.61M) | Time:498151:19:19.78 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1252.50M (Peak 2767.61M) | Time:498151:19:19.78 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1252.50M (Peak 2767.61M) | Time:498151:19:19.78 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD0_col
+Fra:1 Mem:2052.50M (Peak 2767.61M) | Time:498151:19:19.78 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading anika_LOD1_col
+Fra:1 Mem:2068.51M (Peak 2767.61M) | Time:498151:19:19.79 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading anika_LOD1_nrm
+Fra:1 Mem:2069.51M (Peak 2767.61M) | Time:498151:19:19.79 | Mem:5.00M, Peak:5.00M | Scene | Updating Images | Loading anika_LOD1_orm
+Fra:1 Mem:2070.51M (Peak 2767.61M) | Time:498151:19:19.79 | Mem:6.00M, Peak:6.00M | Scene | Updating Images | Loading anika_LOD2_col
+Fra:1 Mem:2071.51M (Peak 2767.61M) | Time:498151:19:19.79 | Mem:7.00M, Peak:7.00M | Scene | Updating Images | Loading anika_LOD2_nrm
+Fra:1 Mem:2071.76M (Peak 2767.61M) | Time:498151:19:19.79 | Mem:7.25M, Peak:7.25M | Scene | Updating Images | Loading anika_LOD2_orm
+Fra:1 Mem:2072.01M (Peak 2767.61M) | Time:498151:19:19.79 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2076.01M (Peak 2767.61M) | Time:498151:19:19.79 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading anika_NPC0_nrm
+FOOT {'Left': {'cx': 0.14579004794359207, 'cy': -0.016740642488002777, 'L': 0.32677896320819855}, 'Right': {'cx': -0.14586251974105835, 'cy': -0.01671767234802246, 'L': 0.3266217112541199}}
+MODLEN 0.3876654952764511
+SKATE_TOP 0.2768552303314209
+ZCUT 0.33
+HEM colour (srgb) [0.909804   0.8313726  0.84509814]
+stripped verts 140337 extruded hem verts 132
+Info: Removed 0 vertices
+Info: Removed: 0 vertices, 0 edges, 0 faces
+BASE tris (welded hi) 913215
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_anika_back.png texels 10399
+LOD LOD0 tris 109357
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_anika_back.png texels 2965
+LOD LOD1 tris 36379
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_anika_back.png texels 911
+LOD LOD2 tris 11797
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_anika_back.png texels 3080
+LOD NPC0 tris 26880
+Info: Saved "anika_lods.blend"
+SAVED {'LOD0': 'Anika_LOD0', 'LOD1': 'Anika_LOD1', 'LOD2': 'Anika_LOD2', 'NPC0': 'Anika_NPC0'}
+
+Blender quit

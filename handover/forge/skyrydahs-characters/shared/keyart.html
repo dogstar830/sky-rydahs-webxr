@@ -1,0 +1,80 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Sky Rydah's — crew key art (rail grind)</title>
+<style>html,body{margin:0;height:100%;background:#05040c;overflow:hidden}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+</head><body><script type="module">
+// Key-art scene: Caali in a frontside rail grind over a neon street, cyan/purple rim light, bloom. Real-time three.js, same GLB + loader as the game.
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+const Q = new URLSearchParams(location.search); const CREW = Q.get('crew') || 'static-angels';
+const L = await import(`../${CREW}/loader.js`); const loadRider = L.loadRider;
+const CC = Number(L.DEFAULTS?.wheelGlow ?? 0x22e8f0), C2 = Number(L.DEFAULTS?.glow2 ?? CC), RC = Number(L.DEFAULTS?.rim ?? CC);
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(innerWidth, innerHeight); renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene(); scene.fog = new THREE.FogExp2(0x120a2a, 0.045);
+{ // sky gradient
+  const cv = document.createElement('canvas'); cv.width = 4; cv.height = 256; const g = cv.getContext('2d'); const gr = g.createLinearGradient(0, 0, 0, 256);
+  gr.addColorStop(0, '#05040f'); gr.addColorStop(0.55, '#1c0f3d'); gr.addColorStop(0.8, '#4a1a6a'); gr.addColorStop(1, '#0c1a3a'); g.fillStyle = gr; g.fillRect(0, 0, 4, 256);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; scene.background = t;
+}
+const camera = new THREE.PerspectiveCamera(34, innerWidth / innerHeight, 0.05, 200);
+// city blocks with window grids + neon signs
+const rnd = (() => { let s = 7; return () => (s = (s * 16807) % 2147483647) / 2147483647; })();
+const winTex = (() => { const cv = document.createElement('canvas'); cv.width = 64; cv.height = 128; const g = cv.getContext('2d'); g.fillStyle = '#07060f'; g.fillRect(0, 0, 64, 128);
+  for (let y = 4; y < 128; y += 8) for (let x = 4; x < 64; x += 8) if (Math.random() < 0.35) { g.fillStyle = Math.random() < 0.5 ? '#ffc98a' : '#7fe8ff'; g.fillRect(x, y, 4, 4); }
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; return t; })();
+for (let i = 0; i < 46; i++) {
+  const w = 2 + rnd() * 4, h = 6 + rnd() * 26, d = 2 + rnd() * 4; const side = i % 2 ? 1 : -1;
+  const x = -40 + rnd() * 80, z = -18 - rnd() * 40;
+  const tex = winTex.clone(); tex.repeat.set(w / 1.2, h / 2.4); tex.needsUpdate = true;
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshBasicMaterial({ map: tex, color: 0x9a90c0 }));
+  m.position.set(x, h / 2 - 1, z); scene.add(m);
+  if (rnd() < 0.45) { const c = [0xff2fae, CC, C2][i % 3];
+    const s = new THREE.Mesh(new THREE.PlaneGeometry(0.4 + rnd(), 2 + rnd() * 3), new THREE.MeshBasicMaterial({ color: new THREE.Color(c).multiplyScalar(0.55), toneMapped: false }));
+    s.position.set(x + side * (w / 2 + 0.05), h * 0.5 + rnd() * h * 0.3, z + d / 2 + 0.02); scene.add(s); }
+}
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshStandardMaterial({ color: 0x0b0a14, roughness: 0.95, metalness: 0.0 }));
+ground.rotation.x = -Math.PI / 2; ground.position.y = -1.0; scene.add(ground);
+// lights: cool key, cyan + purple neon rims from behind
+scene.add(new THREE.HemisphereLight(0x8a7cff, 0x1a1030, 0.9));
+const key = new THREE.DirectionalLight(0xffe6f0, 2.2); key.position.set(3, 4, 5); scene.add(key);
+const rimC = new THREE.DirectionalLight(CC, 3.0); rimC.position.set(-4, 2, -3); scene.add(rimC);
+const rimP = new THREE.DirectionalLight(0xb04dff, 2.5); rimP.position.set(4, 1.5, -4); scene.add(rimP);
+// rider
+const rider = await loadRider(scene, `../${CREW}/${CREW}-rider.glb`, {}, { lodDistances: [0, 999, 1999] });
+rider.userData.shared.rimColor.value.set(RC); rider.userData.shared.glow.value = 4.5;
+rider.userData.setExpression('focus', 0.85); rider.userData.setExpression('smirk', 0.6);
+const B = (n) => rider.getObjectByName(n);
+rider.updateMatrixWorld(true);
+const rotW = (bn, axis, deg) => { const b = B(bn); if (!b) return console.warn('no bone', bn); b.parent.updateMatrixWorld(true);
+  const pq = b.parent.getWorldQuaternion(new THREE.Quaternion()); const qw = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(...axis).normalize(), THREE.MathUtils.degToRad(deg));
+  const ql = pq.clone().invert().multiply(qw).multiply(pq); b.quaternion.premultiply(ql); b.updateMatrixWorld(true); };
+const X = [1, 0, 0], Y = [0, 1, 0], Z = [0, 0, 1];
+rotW('hips', Y, 28); rotW('spine', X, 16); rotW('chest', X, 10); rotW('spine', Y, -14); rotW('head', Y, -26); rotW('head', X, -6);
+rotW('thighL', X, -62); rotW('shinL', X, 88); rotW('footL', X, -22);
+rotW('thighR', X, -18); rotW('thighR', Z, -14); rotW('shinR', X, 52); rotW('footR', Z, 10);
+rotW('upperarmL', Z, 70); rotW('upperarmL', Y, 35); rotW('forearmL', Z, 35);
+rotW('upperarmR', Y, 55); rotW('upperarmR', Z, -10); rotW('forearmR', Y, 40);
+rider.updateMatrixWorld(true);
+const fy = Math.min(B('footL').getWorldPosition(new THREE.Vector3()).y, B('footR').getWorldPosition(new THREE.Vector3()).y);
+// rail along X under the skates
+const railY = fy - 0.2;
+const rail = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 9, 16), new THREE.MeshStandardMaterial({ color: 0x8c93b0, metalness: 0.7, roughness: 0.45 }));
+rail.rotation.z = Math.PI / 2; rail.position.set(0, railY, 0.02); scene.add(rail);
+const glowLine = new THREE.Mesh(new THREE.BoxGeometry(9, 0.006, 0.006), new THREE.MeshBasicMaterial({ color: CC, toneMapped: false })); glowLine.position.set(0, railY - 0.05, 0.02); scene.add(glowLine);
+for (let x = -14; x <= 14; x += 3.5) { const p = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, railY + 1.0, 8), rail.material); p.position.set(x, (railY - 1.0) / 2, 0.02); scene.add(p); }
+// grind sparks (additive sprites)
+const sp = (() => { const cv = document.createElement('canvas'); cv.width = cv.height = 32; const g = cv.getContext('2d'); const gr = g.createRadialGradient(16, 16, 0, 16, 16, 16);
+  gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.3, 'rgba(160,250,255,0.8)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(0, 0, 32, 32); return new THREE.CanvasTexture(cv); })();
+const contact = B('footL').getWorldPosition(new THREE.Vector3()); contact.y = railY + 0.04;
+for (let i = 0; i < 40; i++) { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: sp, color: i % 4 ? 0x7ff6ff : 0xffd2ff, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
+  const t = rnd(); s.position.set(contact.x - 0.1 - t * 1.4, contact.y + Math.sin(t * 3) * 0.25 * rnd(), contact.z + (rnd() - 0.5) * 0.3); s.scale.setScalar(0.012 + 0.03 * (1 - t)); scene.add(s); }
+camera.position.set(2.1, railY + 0.45, 3.5); camera.lookAt(-0.05, railY + 0.95, 0);
+rider.userData.setLightDir(key.position); rider.userData.update(camera, 0, 1);
+const composer = new EffectComposer(renderer); composer.addPass(new RenderPass(scene, camera));
+composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.7, 0.45, 0.86)); composer.addPass(new OutputPass());
+renderer.setAnimationLoop(() => { rider.userData.update(camera, 0, 1); composer.render(); document.title = 'READY'; });
+</script></body></html>

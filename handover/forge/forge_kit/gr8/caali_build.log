@@ -1,0 +1,400 @@
+Blender 4.3.2 (hash 32f5fdce0a0a built 2024-12-17 01:31:14)
+Read blend: "/workspace/forge_kit/gr8/caali_hi.blend"
+Fra:1 Mem:1296.26M (Peak 1485.78M) | Time:498151:19:44.97 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1305.47M (Peak 1485.78M) | Time:498151:19:44.97 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:1306.84M (Peak 1485.78M) | Time:498151:19:44.97 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:1509.88M (Peak 1546.70M) | Time:498151:19:45.66 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1509.88M (Peak 1546.70M) | Time:498151:19:45.66 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:1509.88M (Peak 1546.70M) | Time:498151:19:45.66 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1509.88M (Peak 1546.70M) | Time:498151:19:45.66 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:1509.88M (Peak 1546.70M) | Time:498151:19:45.66 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:2502.36M (Peak 2626.39M) | Time:498151:19:53.80 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:2502.36M (Peak 2626.39M) | Time:498151:19:53.80 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:2540.72M (Peak 2626.39M) | Time:498151:19:53.81 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:2571.60M (Peak 2626.39M) | Time:498151:19:53.88 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:2571.60M (Peak 2626.39M) | Time:498151:19:53.88 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:3083.60M (Peak 3083.60M) | Time:498151:19:53.88 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:3099.60M (Peak 3099.60M) | Time:498151:19:53.88 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:3163.60M (Peak 3163.60M) | Time:498151:19:53.89 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:3355.60M (Peak 3355.60M) | Time:498151:19:53.89 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:3419.60M (Peak 3419.60M) | Time:498151:19:53.89 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:1462.37M (Peak 4678.41M) | Time:498151:20:09.21 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1481.55M (Peak 4678.41M) | Time:498151:20:09.21 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1481.55M (Peak 4678.41M) | Time:498151:20:09.21 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:1482.81M (Peak 4678.41M) | Time:498151:20:09.21 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:1531.61M (Peak 4678.41M) | Time:498151:20:09.30 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1531.61M (Peak 4678.41M) | Time:498151:20:09.30 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:1531.61M (Peak 4678.41M) | Time:498151:20:09.30 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1563.61M (Peak 4678.41M) | Time:498151:20:09.30 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:1819.61M (Peak 4678.41M) | Time:498151:20:09.30 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:2460.17M (Peak 4678.41M) | Time:498151:20:15.64 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:2479.35M (Peak 4678.41M) | Time:498151:20:15.65 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:2587.77M (Peak 4678.41M) | Time:498151:20:16.00 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:2587.77M (Peak 4678.41M) | Time:498151:20:16.00 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2603.77M (Peak 4678.41M) | Time:498151:20:16.00 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:2619.77M (Peak 4678.41M) | Time:498151:20:16.00 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:3195.77M (Peak 4678.41M) | Time:498151:20:16.00 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:3195.77M (Peak 4678.41M) | Time:498151:20:16.00 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:3195.77M (Peak 4678.41M) | Time:498151:20:16.00 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:2460.17M (Peak 4678.41M) | Time:498151:20:23.53 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:2461.32M (Peak 4678.41M) | Time:498151:20:23.53 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:2461.32M (Peak 4678.41M) | Time:498151:20:23.53 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:2587.77M (Peak 4678.41M) | Time:498151:20:23.97 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:2587.77M (Peak 4678.41M) | Time:498151:20:23.97 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2587.77M (Peak 4678.41M) | Time:498151:20:23.97 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2667.77M (Peak 4678.41M) | Time:498151:20:23.97 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:2460.17M (Peak 4678.41M) | Time:498151:20:31.79 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:2485.49M (Peak 4678.41M) | Time:498151:20:31.79 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:2510.81M (Peak 4678.41M) | Time:498151:20:31.80 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:2517.12M (Peak 4678.41M) | Time:498151:20:31.80 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:2587.85M (Peak 4678.41M) | Time:498151:20:32.22 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:2587.84M (Peak 4678.41M) | Time:498151:20:32.22 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2603.84M (Peak 4678.41M) | Time:498151:20:32.22 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:2603.84M (Peak 4678.41M) | Time:498151:20:32.22 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2603.84M (Peak 4678.41M) | Time:498151:20:32.22 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:2460.17M (Peak 4678.41M) | Time:498151:20:38.72 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:2461.32M (Peak 4678.41M) | Time:498151:20:38.72 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:2587.85M (Peak 4678.41M) | Time:498151:20:39.16 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:2587.84M (Peak 4678.41M) | Time:498151:20:39.16 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:3099.84M (Peak 4678.41M) | Time:498151:20:39.16 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:3131.84M (Peak 4678.41M) | Time:498151:20:39.16 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:3131.84M (Peak 4678.41M) | Time:498151:20:39.16 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:1223.32M (Peak 4678.41M) | Time:498151:21:02.58 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1224.47M (Peak 4678.41M) | Time:498151:21:02.58 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1389.37M (Peak 4678.41M) | Time:498151:21:02.98 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1389.36M (Peak 4678.41M) | Time:498151:21:02.98 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:1389.36M (Peak 4678.41M) | Time:498151:21:02.98 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1389.36M (Peak 4678.41M) | Time:498151:21:02.98 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1389.36M (Peak 4678.41M) | Time:498151:21:02.98 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:2045.37M (Peak 4678.41M) | Time:498151:21:02.98 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2193.36M (Peak 4678.41M) | Time:498151:21:02.98 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2369.38M (Peak 4678.41M) | Time:498151:21:02.98 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1510.71M (Peak 4678.41M) | Time:498151:21:05.90 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1510.72M (Peak 4678.41M) | Time:498151:21:05.90 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1611.08M (Peak 4678.41M) | Time:498151:21:06.06 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1611.08M (Peak 4678.41M) | Time:498151:21:06.06 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:1611.08M (Peak 4678.41M) | Time:498151:21:06.06 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1611.08M (Peak 4678.41M) | Time:498151:21:06.06 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:2187.08M (Peak 4678.41M) | Time:498151:21:06.06 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:2379.08M (Peak 4678.41M) | Time:498151:21:06.06 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2575.09M (Peak 4678.41M) | Time:498151:21:06.07 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:2583.09M (Peak 4678.41M) | Time:498151:21:06.07 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:1250.72M (Peak 4678.41M) | Time:498151:21:10.93 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1251.88M (Peak 4678.41M) | Time:498151:21:10.93 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1351.09M (Peak 4678.41M) | Time:498151:21:11.10 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1351.09M (Peak 4678.41M) | Time:498151:21:11.10 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:1351.09M (Peak 4678.41M) | Time:498151:21:11.10 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1359.09M (Peak 4678.41M) | Time:498151:21:11.10 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2347.10M (Peak 4678.41M) | Time:498151:21:11.10 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1408.52M (Peak 4678.41M) | Time:498151:21:14.06 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1408.53M (Peak 4678.41M) | Time:498151:21:14.06 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1567.18M (Peak 4678.41M) | Time:498151:21:14.43 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1567.18M (Peak 4678.41M) | Time:498151:21:14.43 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:1575.18M (Peak 4678.41M) | Time:498151:21:14.43 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1575.18M (Peak 4678.41M) | Time:498151:21:14.43 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1831.18M (Peak 4678.41M) | Time:498151:21:14.43 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:1831.18M (Peak 4678.41M) | Time:498151:21:14.43 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2499.19M (Peak 4678.41M) | Time:498151:21:14.44 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1408.52M (Peak 4678.41M) | Time:498151:21:16.42 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1408.52M (Peak 4678.41M) | Time:498151:21:16.42 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1567.18M (Peak 4678.41M) | Time:498151:21:16.77 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1567.18M (Peak 4678.41M) | Time:498151:21:16.77 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:1571.18M (Peak 4678.41M) | Time:498151:21:16.77 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1575.18M (Peak 4678.41M) | Time:498151:21:16.77 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1831.18M (Peak 4678.41M) | Time:498151:21:16.77 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1831.18M (Peak 4678.41M) | Time:498151:21:16.77 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:1831.18M (Peak 4678.41M) | Time:498151:21:16.77 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2563.19M (Peak 4678.41M) | Time:498151:21:16.77 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1408.52M (Peak 4678.41M) | Time:498151:21:18.79 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1409.68M (Peak 4678.41M) | Time:498151:21:18.79 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1567.18M (Peak 4678.41M) | Time:498151:21:19.13 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1567.18M (Peak 4678.41M) | Time:498151:21:19.13 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:1575.18M (Peak 4678.41M) | Time:498151:21:19.13 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1575.18M (Peak 4678.41M) | Time:498151:21:19.13 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:2343.18M (Peak 4678.41M) | Time:498151:21:19.13 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2563.19M (Peak 4678.41M) | Time:498151:21:19.13 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1408.52M (Peak 4678.41M) | Time:498151:21:20.99 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1409.68M (Peak 4678.41M) | Time:498151:21:20.99 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1567.18M (Peak 4678.41M) | Time:498151:21:21.37 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1567.18M (Peak 4678.41M) | Time:498151:21:21.37 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:1571.18M (Peak 4678.41M) | Time:498151:21:21.37 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1575.18M (Peak 4678.41M) | Time:498151:21:21.37 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2531.19M (Peak 4678.41M) | Time:498151:21:21.37 | Mem:4.00M, Peak:4.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1194.14M (Peak 4678.41M) | Time:498151:21:38.93 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1194.14M (Peak 4678.41M) | Time:498151:21:38.93 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1369.56M (Peak 4678.41M) | Time:498151:21:39.38 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1369.56M (Peak 4678.41M) | Time:498151:21:39.38 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:1369.56M (Peak 4678.41M) | Time:498151:21:39.38 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1369.56M (Peak 4678.41M) | Time:498151:21:39.38 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:1881.56M (Peak 4678.41M) | Time:498151:21:39.38 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:1882.56M (Peak 4678.41M) | Time:498151:21:39.38 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2362.57M (Peak 4678.41M) | Time:498151:21:39.39 | Mem:1.00M, Peak:1.00M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2363.57M (Peak 4678.41M) | Time:498151:21:39.39 | Mem:2.00M, Peak:2.00M | Scene | Updating Images | Loading caali_LOD1_col
+Fra:1 Mem:2367.57M (Peak 4678.41M) | Time:498151:21:39.40 | Mem:6.00M, Peak:6.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2371.57M (Peak 4678.41M) | Time:498151:21:39.40 | Mem:10.00M, Peak:10.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1267.33M (Peak 4678.41M) | Time:498151:21:41.41 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1268.17M (Peak 4678.41M) | Time:498151:21:41.41 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1269.32M (Peak 4678.41M) | Time:498151:21:41.41 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:1271.40M (Peak 4678.41M) | Time:498151:21:41.41 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1308.78M (Peak 4678.41M) | Time:498151:21:41.42 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1381.28M (Peak 4678.41M) | Time:498151:21:41.62 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1381.27M (Peak 4678.41M) | Time:498151:21:41.62 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:1382.28M (Peak 4678.41M) | Time:498151:21:41.62 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1638.28M (Peak 4678.41M) | Time:498151:21:41.62 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:1912.28M (Peak 4678.41M) | Time:498151:21:41.62 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2198.29M (Peak 4678.41M) | Time:498151:21:41.62 | Mem:1.00M, Peak:1.00M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2199.29M (Peak 4678.41M) | Time:498151:21:41.62 | Mem:2.00M, Peak:2.00M | Scene | Updating Images | Loading caali_LOD1_col
+Fra:1 Mem:2379.29M (Peak 4678.41M) | Time:498151:21:41.63 | Mem:6.00M, Peak:6.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2383.29M (Peak 4678.41M) | Time:498151:21:41.63 | Mem:10.00M, Peak:10.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1202.34M (Peak 4678.41M) | Time:498151:21:45.08 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1203.50M (Peak 4678.41M) | Time:498151:21:45.08 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:1203.67M (Peak 4678.41M) | Time:498151:21:45.08 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1204.83M (Peak 4678.41M) | Time:498151:21:45.09 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1316.29M (Peak 4678.41M) | Time:498151:21:45.36 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1316.28M (Peak 4678.41M) | Time:498151:21:45.36 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:1316.28M (Peak 4678.41M) | Time:498151:21:45.36 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:1317.28M (Peak 4678.41M) | Time:498151:21:45.36 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2278.28M (Peak 4678.41M) | Time:498151:21:45.36 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2309.30M (Peak 4678.41M) | Time:498151:21:45.36 | Mem:1.00M, Peak:1.00M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2310.30M (Peak 4678.41M) | Time:498151:21:45.36 | Mem:2.00M, Peak:2.00M | Scene | Updating Images | Loading caali_LOD1_col
+Fra:1 Mem:2314.30M (Peak 4678.41M) | Time:498151:21:45.37 | Mem:6.00M, Peak:6.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2306.30M (Peak 4678.41M) | Time:498151:21:45.38 | Mem:22.00M, Peak:22.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1150.14M (Peak 4678.41M) | Time:498151:21:48.20 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1152.87M (Peak 4678.41M) | Time:498151:21:48.21 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1178.19M (Peak 4678.41M) | Time:498151:21:48.21 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:1178.27M (Peak 4678.41M) | Time:498151:21:48.21 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:1178.54M (Peak 4678.41M) | Time:498151:21:48.21 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1179.70M (Peak 4678.41M) | Time:498151:21:48.21 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1322.38M (Peak 4678.41M) | Time:498151:21:48.70 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1322.37M (Peak 4678.41M) | Time:498151:21:48.70 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1834.37M (Peak 4678.41M) | Time:498151:21:48.70 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1834.37M (Peak 4678.41M) | Time:498151:21:48.70 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:1962.37M (Peak 4678.41M) | Time:498151:21:48.70 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2315.39M (Peak 4678.41M) | Time:498151:21:48.71 | Mem:1.00M, Peak:1.00M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2316.39M (Peak 4678.41M) | Time:498151:21:48.71 | Mem:2.00M, Peak:2.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2320.39M (Peak 4678.41M) | Time:498151:21:48.72 | Mem:6.00M, Peak:6.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2324.39M (Peak 4678.41M) | Time:498151:21:48.72 | Mem:10.00M, Peak:10.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1150.14M (Peak 4678.41M) | Time:498151:21:49.87 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1150.14M (Peak 4678.41M) | Time:498151:21:49.87 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1322.38M (Peak 4678.41M) | Time:498151:21:50.32 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1322.37M (Peak 4678.41M) | Time:498151:21:50.32 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:1322.37M (Peak 4678.41M) | Time:498151:21:50.32 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1322.37M (Peak 4678.41M) | Time:498151:21:50.32 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2187.39M (Peak 4678.41M) | Time:498151:21:50.33 | Mem:1.00M, Peak:1.00M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2188.39M (Peak 4678.41M) | Time:498151:21:50.33 | Mem:2.00M, Peak:2.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2320.39M (Peak 4678.41M) | Time:498151:21:50.33 | Mem:6.00M, Peak:6.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2324.39M (Peak 4678.41M) | Time:498151:21:50.34 | Mem:10.00M, Peak:10.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1150.14M (Peak 4678.41M) | Time:498151:21:51.47 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1152.87M (Peak 4678.41M) | Time:498151:21:51.48 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1179.32M (Peak 4678.41M) | Time:498151:21:51.48 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:1179.50M (Peak 4678.41M) | Time:498151:21:51.48 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:1179.68M (Peak 4678.41M) | Time:498151:21:51.48 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1204.99M (Peak 4678.41M) | Time:498151:21:51.49 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1322.38M (Peak 4678.41M) | Time:498151:21:51.92 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1322.37M (Peak 4678.41M) | Time:498151:21:51.92 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:1322.37M (Peak 4678.41M) | Time:498151:21:51.92 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:1452.37M (Peak 4678.41M) | Time:498151:21:51.92 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:1612.37M (Peak 4678.41M) | Time:498151:21:51.92 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2156.37M (Peak 4678.41M) | Time:498151:21:51.93 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2187.39M (Peak 4678.41M) | Time:498151:21:51.93 | Mem:1.00M, Peak:1.00M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2188.39M (Peak 4678.41M) | Time:498151:21:51.93 | Mem:2.00M, Peak:2.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2308.39M (Peak 4678.41M) | Time:498151:21:51.93 | Mem:18.00M, Peak:18.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:2312.39M (Peak 4678.41M) | Time:498151:21:51.94 | Mem:22.00M, Peak:22.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:1150.14M (Peak 4678.41M) | Time:498151:21:52.94 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1151.29M (Peak 4678.41M) | Time:498151:21:52.94 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1322.38M (Peak 4678.41M) | Time:498151:21:53.37 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1322.37M (Peak 4678.41M) | Time:498151:21:53.37 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:1322.37M (Peak 4678.41M) | Time:498151:21:53.37 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1324.37M (Peak 4678.41M) | Time:498151:21:53.37 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2091.39M (Peak 4678.41M) | Time:498151:21:53.37 | Mem:1.00M, Peak:1.00M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2092.39M (Peak 4678.41M) | Time:498151:21:53.37 | Mem:2.00M, Peak:2.00M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2224.39M (Peak 4678.41M) | Time:498151:21:53.38 | Mem:6.00M, Peak:6.00M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2260.39M (Peak 4678.41M) | Time:498151:21:53.38 | Mem:10.00M, Peak:10.00M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1190.93M (Peak 4678.41M) | Time:498151:22:08.81 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD1
+Fra:1 Mem:1190.93M (Peak 4678.41M) | Time:498151:22:08.81 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1192.08M (Peak 4678.41M) | Time:498151:22:08.81 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:1192.26M (Peak 4678.41M) | Time:498151:22:08.81 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:1191.28M (Peak 4678.41M) | Time:498151:22:08.81 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1229.70M (Peak 4678.41M) | Time:498151:22:08.81 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1233.01M (Peak 4678.41M) | Time:498151:22:08.82 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1369.04M (Peak 4678.41M) | Time:498151:22:09.28 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1369.03M (Peak 4678.41M) | Time:498151:22:09.28 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD2_orm
+Fra:1 Mem:1369.30M (Peak 4678.41M) | Time:498151:22:09.28 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading caali_LOD2_nrm
+Fra:1 Mem:1369.55M (Peak 4678.41M) | Time:498151:22:09.28 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading caali_LOD2_col
+Fra:1 Mem:1372.56M (Peak 4678.41M) | Time:498151:22:09.28 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1372.56M (Peak 4678.41M) | Time:498151:22:09.28 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:2236.56M (Peak 4678.41M) | Time:498151:22:09.28 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2332.56M (Peak 4678.41M) | Time:498151:22:09.28 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2362.55M (Peak 4678.41M) | Time:498151:22:09.29 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:2363.55M (Peak 4678.41M) | Time:498151:22:09.29 | Mem:2.50M, Peak:2.50M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2364.55M (Peak 4678.41M) | Time:498151:22:09.29 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading caali_LOD1_col
+Fra:1 Mem:2368.55M (Peak 4678.41M) | Time:498151:22:09.29 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2372.55M (Peak 4678.41M) | Time:498151:22:09.29 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1209.52M (Peak 4678.41M) | Time:498151:22:10.75 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD1
+Fra:1 Mem:1210.46M (Peak 4678.41M) | Time:498151:22:10.75 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1211.61M (Peak 4678.41M) | Time:498151:22:10.75 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:1211.66M (Peak 4678.41M) | Time:498151:22:10.75 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:1211.84M (Peak 4678.41M) | Time:498151:22:10.76 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1249.60M (Peak 4678.41M) | Time:498151:22:10.76 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1261.77M (Peak 4678.41M) | Time:498151:22:10.76 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1328.25M (Peak 4678.41M) | Time:498151:22:11.04 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1328.25M (Peak 4678.41M) | Time:498151:22:11.04 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD2_orm
+Fra:1 Mem:1328.25M (Peak 4678.41M) | Time:498151:22:11.04 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:1328.50M (Peak 4678.41M) | Time:498151:22:11.04 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:1392.51M (Peak 4678.41M) | Time:498151:22:11.04 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:1776.51M (Peak 4678.41M) | Time:498151:22:11.05 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading caali_LOD2_nrm
+Fra:1 Mem:1776.76M (Peak 4678.41M) | Time:498151:22:11.05 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading caali_LOD2_col
+Fra:1 Mem:1777.76M (Peak 4678.41M) | Time:498151:22:11.05 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:2322.76M (Peak 4678.41M) | Time:498151:22:11.05 | Mem:2.50M, Peak:2.50M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2323.76M (Peak 4678.41M) | Time:498151:22:11.05 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading caali_LOD1_col
+Fra:1 Mem:2327.76M (Peak 4678.41M) | Time:498151:22:11.06 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2331.76M (Peak 4678.41M) | Time:498151:22:11.06 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1193.28M (Peak 4678.41M) | Time:498151:22:14.11 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD1
+Fra:1 Mem:1193.34M (Peak 4678.41M) | Time:498151:22:14.11 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1219.97M (Peak 4678.41M) | Time:498151:22:14.11 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:1220.14M (Peak 4678.41M) | Time:498151:22:14.11 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1243.45M (Peak 4678.41M) | Time:498151:22:14.12 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1251.49M (Peak 4678.41M) | Time:498151:22:14.12 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1312.01M (Peak 4678.41M) | Time:498151:22:14.31 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1312.01M (Peak 4678.41M) | Time:498151:22:14.32 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1824.01M (Peak 4678.41M) | Time:498151:22:14.32 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD2_orm
+Fra:1 Mem:1824.27M (Peak 4678.41M) | Time:498151:22:14.32 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading caali_LOD2_nrm
+Fra:1 Mem:1824.52M (Peak 4678.41M) | Time:498151:22:14.32 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading caali_LOD2_col
+Fra:1 Mem:1825.52M (Peak 4678.41M) | Time:498151:22:14.32 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:1827.52M (Peak 4678.41M) | Time:498151:22:14.32 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1826.52M (Peak 4678.41M) | Time:498151:22:14.32 | Mem:2.50M, Peak:2.50M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:1955.52M (Peak 4678.41M) | Time:498151:22:14.32 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading caali_LOD1_col
+Fra:1 Mem:1963.52M (Peak 4678.41M) | Time:498151:22:14.33 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:2087.52M (Peak 4678.41M) | Time:498151:22:14.33 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2095.52M (Peak 4678.41M) | Time:498151:22:14.33 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:2223.52M (Peak 4678.41M) | Time:498151:22:14.33 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:2251.52M (Peak 4678.41M) | Time:498151:22:14.34 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:2259.52M (Peak 4678.41M) | Time:498151:22:14.35 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2287.52M (Peak 4678.41M) | Time:498151:22:14.35 | Mem:15.50M, Peak:15.50M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:1088.57M (Peak 4678.41M) | Time:498151:22:16.95 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD1
+Fra:1 Mem:1088.87M (Peak 4678.41M) | Time:498151:22:16.95 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1108.69M (Peak 4678.41M) | Time:498151:22:16.96 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:1108.87M (Peak 4678.41M) | Time:498151:22:16.96 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:1109.05M (Peak 4678.41M) | Time:498151:22:16.96 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1134.80M (Peak 4678.41M) | Time:498151:22:16.96 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1159.24M (Peak 4678.41M) | Time:498151:22:16.96 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:17.36 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:17.36 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:17.36 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:17.36 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2241.60M (Peak 4678.41M) | Time:498151:22:17.37 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD2_orm
+Fra:1 Mem:2257.86M (Peak 4678.41M) | Time:498151:22:17.37 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading caali_LOD2_nrm
+Fra:1 Mem:2258.11M (Peak 4678.41M) | Time:498151:22:17.37 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2259.11M (Peak 4678.41M) | Time:498151:22:17.37 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:2260.11M (Peak 4678.41M) | Time:498151:22:17.37 | Mem:2.50M, Peak:2.50M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2261.11M (Peak 4678.41M) | Time:498151:22:17.37 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading caali_LOD1_col
+Fra:1 Mem:2265.11M (Peak 4678.41M) | Time:498151:22:17.37 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2269.11M (Peak 4678.41M) | Time:498151:22:17.38 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:1088.57M (Peak 4678.41M) | Time:498151:22:18.05 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1088.58M (Peak 4678.41M) | Time:498151:22:18.05 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1089.90M (Peak 4678.41M) | Time:498151:22:18.05 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1109.83M (Peak 4678.41M) | Time:498151:22:18.05 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:18.49 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:18.49 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1777.60M (Peak 4678.41M) | Time:498151:22:18.49 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD2_orm
+Fra:1 Mem:1778.10M (Peak 4678.41M) | Time:498151:22:18.49 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_1
+Fra:1 Mem:1905.86M (Peak 4678.41M) | Time:498151:22:18.50 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading caali_LOD2_nrm
+Fra:1 Mem:1906.11M (Peak 4678.41M) | Time:498151:22:18.50 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:1907.11M (Peak 4678.41M) | Time:498151:22:18.50 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:1908.11M (Peak 4678.41M) | Time:498151:22:18.50 | Mem:2.50M, Peak:2.50M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:1909.11M (Peak 4678.41M) | Time:498151:22:18.50 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading caali_LOD1_col
+Fra:1 Mem:1917.11M (Peak 4678.41M) | Time:498151:22:18.50 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading Image_2
+Fra:1 Mem:2041.11M (Peak 4678.41M) | Time:498151:22:18.50 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2049.11M (Peak 4678.41M) | Time:498151:22:18.50 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:2177.11M (Peak 4678.41M) | Time:498151:22:18.51 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:2205.11M (Peak 4678.41M) | Time:498151:22:18.51 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:2209.11M (Peak 4678.41M) | Time:498151:22:18.51 | Mem:15.50M, Peak:15.50M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2241.11M (Peak 4678.41M) | Time:498151:22:18.52 | Mem:15.50M, Peak:15.50M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:1088.57M (Peak 4678.41M) | Time:498151:22:19.23 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD1
+Fra:1 Mem:1089.51M (Peak 4678.41M) | Time:498151:22:19.23 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1119.61M (Peak 4678.41M) | Time:498151:22:19.24 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_gr8yzone_tee.png
+Fra:1 Mem:1119.78M (Peak 4678.41M) | Time:498151:22:19.24 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | Decal_decal_caali_back.png
+Fra:1 Mem:1119.96M (Peak 4678.41M) | Time:498151:22:19.24 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI.001
+Fra:1 Mem:1147.28M (Peak 4678.41M) | Time:498151:22:19.24 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1147.28M (Peak 4678.41M) | Time:498151:22:19.24 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:19.68 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:19.68 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD2_orm
+Fra:1 Mem:1265.85M (Peak 4678.41M) | Time:498151:22:19.68 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading Image_0
+Fra:1 Mem:1266.10M (Peak 4678.41M) | Time:498151:22:19.68 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_col
+Fra:1 Mem:1393.86M (Peak 4678.41M) | Time:498151:22:19.68 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading caali_LOD2_nrm
+Fra:1 Mem:1906.11M (Peak 4678.41M) | Time:498151:22:19.68 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:1907.11M (Peak 4678.41M) | Time:498151:22:19.69 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:1908.11M (Peak 4678.41M) | Time:498151:22:19.69 | Mem:2.50M, Peak:2.50M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:1909.11M (Peak 4678.41M) | Time:498151:22:19.69 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading caali_LOD1_col
+Fra:1 Mem:2045.11M (Peak 4678.41M) | Time:498151:22:19.69 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:2073.11M (Peak 4678.41M) | Time:498151:22:19.69 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2145.11M (Peak 4678.41M) | Time:498151:22:19.69 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_HD0_orm
+Fra:1 Mem:2237.11M (Peak 4678.41M) | Time:498151:22:19.70 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading caali_LOD0_nrm
+Fra:1 Mem:2245.11M (Peak 4678.41M) | Time:498151:22:19.70 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:1088.57M (Peak 4678.41M) | Time:498151:22:20.43 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | HI
+Fra:1 Mem:1088.57M (Peak 4678.41M) | Time:498151:22:20.43 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_HD0
+Fra:1 Mem:1090.57M (Peak 4678.41M) | Time:498151:22:20.43 | Mem:0.00M, Peak:0.00M | Scene | Synchronizing object | CaaliG_LOD0
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:20.92 | Mem:0.00M, Peak:0.00M | Scene | Initializing
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:20.92 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD2_orm
+Fra:1 Mem:1265.60M (Peak 4678.41M) | Time:498151:22:20.92 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_HD0_nrm
+Fra:1 Mem:2161.85M (Peak 4678.41M) | Time:498151:22:20.93 | Mem:0.00M, Peak:0.00M | Scene | Updating Images | Loading caali_LOD0_col
+Fra:1 Mem:2193.86M (Peak 4678.41M) | Time:498151:22:20.93 | Mem:0.25M, Peak:0.25M | Scene | Updating Images | Loading caali_LOD2_nrm
+Fra:1 Mem:2194.11M (Peak 4678.41M) | Time:498151:22:20.93 | Mem:0.50M, Peak:0.50M | Scene | Updating Images | Loading tmp
+Fra:1 Mem:2195.11M (Peak 4678.41M) | Time:498151:22:20.93 | Mem:1.50M, Peak:1.50M | Scene | Updating Images | Loading caali_LOD1_orm
+Fra:1 Mem:2196.11M (Peak 4678.41M) | Time:498151:22:20.93 | Mem:2.50M, Peak:2.50M | Scene | Updating Images | Loading caali_LOD1_nrm
+Fra:1 Mem:2197.11M (Peak 4678.41M) | Time:498151:22:20.93 | Mem:3.50M, Peak:3.50M | Scene | Updating Images | Loading caali_LOD1_col
+Fra:1 Mem:2265.11M (Peak 4678.41M) | Time:498151:22:20.93 | Mem:7.50M, Peak:7.50M | Scene | Updating Images | Loading caali_LOD0_orm
+Fra:1 Mem:2269.11M (Peak 4678.41M) | Time:498151:22:20.94 | Mem:11.50M, Peak:11.50M | Scene | Updating Images | Loading caali_LOD0_nrm
+FOOT {'Left': {'cx': 0.1581152379512787, 'cy': -0.011448606848716736, 'L': 0.39203929901123047}, 'Right': {'cx': -0.18138321489095688, 'cy': -0.0019526034593582153, 'L': 0.39488860964775085}}
+MODLEN 0.3876654952764511
+SKATE_TOP 0.33230534195899963
+ZCUT 0.37
+HEM colour (srgb) [0.03921569 0.03921569 0.03921569]
+stripped verts 163378 extruded hem verts 534
+Info: Removed 1 vertex
+Info: Removed: 4 vertices, 3 edges, 0 faces
+BASE tris (welded hi) 804151
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_gr8yzone_tee.png texels 89459
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_caali_back.png texels 98772
+LOD HD0 tris 255360
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_gr8yzone_tee.png texels 34001
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_caali_back.png texels 27433
+LOD LOD0 tris 109359
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_gr8yzone_tee.png texels 10071
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_caali_back.png texels 8978
+LOD LOD1 tris 36380
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_gr8yzone_tee.png texels 3304
+Info: Baking map saved to internal image, save it externally or pack it
+Info: Baking map saved to internal image, save it externally or pack it
+decal Decal_decal_caali_back.png texels 3114
+LOD LOD2 tris 11797
+Info: Saved "caali_lods.blend"
+SAVED {'HD0': 'CaaliG_HD0', 'LOD0': 'CaaliG_LOD0', 'LOD1': 'CaaliG_LOD1', 'LOD2': 'CaaliG_LOD2'}
+
+Blender quit

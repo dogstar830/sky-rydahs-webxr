@@ -1,0 +1,101 @@
+{
+ "info": {
+  "fx": [
+   "handL",
+   "footL",
+   "handR",
+   "footR",
+   "wheelL",
+   "wheelR"
+  ],
+  "api": [
+   "function",
+   "undefined",
+   "function",
+   "undefined"
+  ],
+  "attachResolved": true
+ },
+ "base": {
+  "calls": 99,
+  "fx": {
+   "prewarmMs": 28,
+   "sprites": 0,
+   "ink": 0,
+   "ribbons": 0,
+   "draws": 0
+  }
+ },
+ "start": {
+  "ok": true,
+  "side": "Left",
+  "move": "heavy"
+ },
+ "shots": [
+  {
+   "calls": 102,
+   "fx": {
+    "prewarmMs": 28,
+    "sprites": 2,
+    "ink": 2,
+    "ribbons": 2,
+    "draws": 3
+   },
+   "q": 11,
+   "hits": [],
+   "shot": "combat_fx_kick_wheel_0.png"
+  },
+  {
+   "calls": 99,
+   "fx": {
+    "prewarmMs": 28,
+    "sprites": 0,
+    "ink": 0,
+    "ribbons": 0,
+    "draws": 0
+   },
+   "q": 15,
+   "hits": [],
+   "shot": "combat_fx_kick_wheel_1.png"
+  },
+  {
+   "calls": 99,
+   "fx": {
+    "prewarmMs": 28,
+    "sprites": 0,
+    "ink": 0,
+    "ribbons": 0,
+    "draws": 0
+   },
+   "q": null,
+   "hits": [
+    [
+     "footL",
+     "Left",
+     1.0334000000000236
+    ]
+   ],
+   "shot": "combat_fx_kick_wheel_2.png"
+  },
+  {
+   "calls": 99,
+   "fx": {
+    "prewarmMs": 28,
+    "sprites": 0,
+    "ink": 0,
+    "ribbons": 0,
+    "draws": 0
+   },
+   "q": null,
+   "hits": [
+    [
+     "footL",
+     "Left",
+     1.0334000000000236
+    ]
+   ],
+   "shot": "combat_fx_kick_wheel_3.png"
+  }
+ ],
+ "errors": []
+}

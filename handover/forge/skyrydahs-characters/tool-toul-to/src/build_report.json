@@ -1,0 +1,51 @@
+{
+ "name": "tool-toul-to",
+ "lod_tris": {
+  "0": 15002,
+  "1": 7994,
+  "2": 2375
+ },
+ "modules": {
+  "body": {
+   "raw": 5112,
+   "final": 5112,
+   "budget": 10000
+  },
+  "hair": {
+   "raw": 970,
+   "final": 970,
+   "budget": 2500
+  },
+  "top": {
+   "raw": 3764,
+   "final": 2940,
+   "budget": 3000
+  },
+  "skates": {
+   "raw": 2016,
+   "final": 1960,
+   "budget": 2000
+  },
+  "accessory": {
+   "raw": 3272,
+   "final": 3272,
+   "budget": 8000
+  },
+  "glow": {
+   "raw": 748,
+   "final": 748,
+   "budget": null
+  }
+ },
+ "accessory_items": [
+  "battery",
+  "display",
+  "emblem",
+  "radio",
+  "spraycans",
+  "toolpack",
+  "welder",
+  "workwear"
+ ],
+ "fp_tris": 2956
+}
