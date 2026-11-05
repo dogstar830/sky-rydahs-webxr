@@ -1,0 +1,64 @@
+--- patch_draco.py	2026-10-29 03:26:32.476991610 -0500
++++ patch_draco.py.ktx2-candidate	2026-10-30 01:36:47.786497031 -0500
+@@ -4,9 +4,52 @@
+ # whose constructor attaches the shared DRACOLoader + window.MeshoptDecoder (if present). Call-site chains such as
+ # `new THREE.GLTFLoader().setMeshoptDecoder(window.MeshoptDecoder)` (patch_wardrobe) keep working unchanged.
+ # IKKI_URL -> quest-draco GLB (?ikki=orig -> original GLB, ?ikki=<url> override). Idempotent.
+-import re
+-f='/workspace/v3build/sky-rydahs-v3-ikki.html'; src=open(f).read()
+-if 'window.SR_GLTF_WRAP' in src: print("patch_draco: already applied"); raise SystemExit
++# KTX2 CANDIDATE (Rydah Optimizer, NOT merged): stage 2 below adds an opt-in KTX2 path, gated on ?ktx2=1. Default path untouched:
++#  stage 1 (Draco+meshopt) is byte-identical to patch_draco.py; stage 2 adds one gate script that returns immediately without ?ktx2=1.
++#  Target file override for dry runs: SR_HTML=/tmp/x.html python3 patch_draco.py.ktx2-candidate
++import re, os, json
++f=os.environ.get('SR_HTML','/workspace/v3build/sky-rydahs-v3-ikki.html'); src=open(f).read()
++def stage2():
++    global src
++    # marker must be unique to the gate: asphalt.js (inlined earlier by patch_asphalt.py) already mentions window.SR_KTX2
++    if '/*SR_KTX2_GATE*/' in src: print("patch_draco(ktx2): already applied"); return
++    # data table: default URL tail -> -ktx2 variant tail, only where the variant file exists on disk
++    CH='/workspace/skyrydahs-characters/'
++    # step 4.4 (2026-10-30): prefer the *.s4-ktx2.glb re-encodes (1K caps), fall back to the older quest2-ktx2 copies
++    cand={}
++    for c in ['anubis','behemoth','genesis','kogarasumaru','sleeping-forest','static-angels','tool-toul-to','caali','code-e']:
++        cand[f'{c}/{c}-rider.quest.glb']=[f'{c}/{c}-rider.s4-ktx2.glb', f'{c}/{c}-rider.quest2-ktx2.glb']
++    cand['wardrobe/riders/caali-g.nonormal.glb']=['wardrobe/riders/caali-g.nonormal.ktx2.glb']   # default player; ?texfull=1 (caali-g.glb) stays unmapped on purpose
++    cand['meshy/ikki-meshy-skate.quest-draco.glb']=['meshy/ikki-meshy-skate.s4-ktx2.glb']       # IKKI_URL default (?ikki=orig untouched)
++    # NO WITHHELD_CHAR entries here: this table is inlined into index.html and the PUBLIC=1 package gate fails on any 'WITHHELD_CHAR' string.
++    table={}
++    for k,vs in sorted(cand.items()):
++        for v in vs:
++            if os.path.exists(CH+v): table[k]=v; break
++    T='<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>'
++    anchor='  window.SR_GLTF=function(){ return new THREE.GLTFLoader(); }; })();</script>'
++    assert src.count(anchor)==1, ('anchor', src.count(anchor))
++    gate='''
++<script>/*SR_KTX2_GATE*//* patch_draco ktx2 candidate: OFF unless ?ktx2=1. Loads libs/ktx2/KTX2Loader.classic.js (r128 jsm, esbuild IIFE on window.THREE) + libs/basis/ (r128 transcoder) */
++(function(){ window.SR_KTX2={on:/[?&]ktx2=1(&|$)/.test(location.search)}; if(!window.SR_KTX2.on) return;
++  document.write('<script src="libs/ktx2/KTX2Loader.classic.js"><\\/script>');
++  window.SR_KTX2.map=%s; // default URL tail -> -ktx2 variant (only files that exist)
++  window.SR_KTX2.url=function(u){ if(typeof u!=="string") return u; for(const k in window.SR_KTX2.map){ if(u.endsWith(k)) return u.slice(0,u.length-k.length)+window.SR_KTX2.map[k]; } return u; };
++  function rdr(){ try{ return (typeof renderer!=="undefined"&&renderer)||window.renderer||null; }catch(e){ return window.renderer||null; } }
++  window.SR_KTX2.loader=function(){ const S=window.SR_KTX2; if(S.k2) return S.k2; const r=rdr(); if(!THREE.KTX2Loader||!r) return null;
++    S.k2=new THREE.KTX2Loader().setTranscoderPath("libs/basis/").detectSupport(r); return S.k2; };
++  // renderer is created later in init(): defer each load until it exists (detectSupport needs it), then attach the shared KTX2Loader
++  function wrapK(Orig){ if(!Orig||Orig.__srK2) return Orig;
++    class SRK2GLTFLoader extends Orig{ load(url,onLoad,onProg,onErr){ const self=this, u=window.SR_KTX2.url(url);
++        const go=()=>{ const k=window.SR_KTX2.loader(); if(!k) return requestAnimationFrame(go); if(self.setKTX2Loader&&!self.ktx2Loader) self.setKTX2Loader(k); Orig.prototype.load.call(self,u,onLoad,onProg,onErr); };
++        go(); return this; } }
++    SRK2GLTFLoader.__srK2=true; SRK2GLTFLoader.__srWrapped=true; SRK2GLTFLoader.__srOrig=Orig; return SRK2GLTFLoader; }
++  const d=Object.getOwnPropertyDescriptor(THREE,"GLTFLoader"); let cur=wrapK(d&&d.get?d.get():THREE.GLTFLoader);
++  Object.defineProperty(THREE,"GLTFLoader",{configurable:true,enumerable:true,get(){return cur;},set(v){ if(d&&d.set){ d.set(v); cur=wrapK(d.get()); } else cur=wrapK(v); }}); })();</script>''' % json.dumps(table)
++    src=src.replace(anchor, anchor+gate)
++    print("patch_draco(ktx2): gate installed; map entries:", len(table))
++if 'window.SR_GLTF_WRAP' in src:
++    print("patch_draco: already applied"); stage2(); open(f,'w').write(src); raise SystemExit
+ def rep(a,b):
+     global src
+     assert src.count(a)==1, ("anchor",a[:70],src.count(a)); src=src.replace(a,b)
+@@ -26,4 +69,4 @@
+ # legacy call sites from an earlier patch_draco revision (SR_GLTF()) still work; no call-site rewrites needed
+ rep('const IKKI_URL=(new URLSearchParams(location.search).get("ikki"))||(CHAR_BASE+"meshy/ikki-meshy-skate.glb");',
+     'const IKKI_URL=(q=>q==="orig"?CHAR_BASE+"meshy/ikki-meshy-skate.glb":q)(new URLSearchParams(location.search).get("ikki"))||(CHAR_BASE+"meshy/ikki-meshy-skate.quest-draco.glb");')
+-open(f,'w').write(src); print("patch_draco: GLTFLoader wrap installed; sites:",len(re.findall(r'new THREE\.GLTFLoader\(',src)))
++stage2(); open(f,'w').write(src); print("patch_draco: GLTFLoader wrap installed; sites:",len(re.findall(r'new THREE\.GLTFLoader\(',src)))

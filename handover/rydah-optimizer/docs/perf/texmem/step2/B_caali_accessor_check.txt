@@ -1,0 +1,13 @@
+BIN chunk identical: True 8ef1febf69067a67
+accessors 34 -> 34 identical (count/type/componentType/normalized/offset/bufferView incl meshopt): True
+meshes/attributes identical: True skins: True nodes: True
+  _BM 92976 SCALAR 5126 False
+  _SLOT 92976 SCALAR 5126 False
+  _WC 92976 VEC3 5126 False
+  _WA 92976 VEC3 5126 False
+  POSITION 92976 VEC3 5126 False
+  COLOR_0 92976 VEC4 5123 True
+  JOINTS_0 92976 VEC4 5121 False
+  NORMAL 92976 VEC3 5122 True
+  TEXCOORD_0 92976 VEC2 5123 True
+  WEIGHTS_0 92976 VEC4 5121 True

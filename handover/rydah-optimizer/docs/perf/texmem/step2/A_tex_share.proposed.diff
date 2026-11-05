@@ -1,0 +1,23 @@
+--- a/riders.js
++++ b/riders.js
+@@ -59,7 +59,19 @@
+     sm.userData.expr={ names, weights:w, set(name,val){ const t=names.indexOf(name); if(t<0) return; w[t]=val; for(let k=0;k<idx.length;k++) for(let c=0;c<3;c++){ let p=bP[k*3+c], n=bN[k*3+c]; for(let j=0;j<w.length;j++) if(w[j]){ p+=dP[j][k*3+c]*w[j]; n+=dN[j][k*3+c]*w[j]; } pos.array[idx[k]*3+c]=p; nor.array[idx[k]*3+c]=n; } pos.needsUpdate=true; nor.needsUpdate=true; } }; }
+   return sm; }
+ const _rGLTF={};
+-function rLoad(url){ return _rGLTF[url]||(_rGLTF[url]=new Promise((res,rej)=>new THREE.GLTFLoader().load(url,res,undefined,rej))); }
++// patch_tex_share (step 4.2A, Rydah Optimizer proposal): textures with identical pixels across rider GLBs (the 512x128 crew atlas
++// sha 75200a21b7cc is embedded in all 7 crew .quest.glb) are swapped for ONE shared THREE.Texture; duplicates are disposed.
++// Only images <=512x512 px and never WITHHELD_CHAR URLs (WITHHELD_CHAR stays full quality). Textures only: materials are NOT merged, so per-crew colours/uniforms are untouched. ?notexshare=1 = old behaviour.
++const _rTexShare=new Map(), _rTexOff=/[?&]notexshare=1/.test(location.search);
++function _rTexKey(t){ const im=t&&t.image; if(!im||!im.width||im.width*im.height>262144) return null;
++  try{ const c=document.createElement('canvas'); c.width=im.width; c.height=im.height; const x=c.getContext('2d'); x.drawImage(im,0,0);
++    const d=x.getImageData(0,0,c.width,c.height).data; let h1=0x811c9dc5, h2=0; for(let i=0;i<d.length;i+=4){ h1=Math.imul(h1^d[i]^(d[i+1]<<8)^(d[i+2]<<16)^(d[i+3]<<24),16777619); h2=(h2+h1)|0; }
++    return [im.width,im.height,t.flipY,t.encoding,t.wrapS,t.wrapT,(h1>>>0).toString(16),(h2>>>0).toString(16)].join('|'); }catch(e){ return null; } }
++function rShareTextures(gltf){ if(_rTexOff) return gltf; const SL=['map','emissiveMap','normalMap','roughnessMap','metalnessMap','aoMap','alphaMap'];
++  gltf.scene.traverse(o=>{ if(!o.isMesh) return; for(const m of [].concat(o.material)) for(const s of SL){ const t=m[s]; if(!t||t.userData.rShared) continue;
++    const k=_rTexKey(t); if(!k) continue; const hit=_rTexShare.get(k); if(hit&&hit!==t){ m[s]=hit; m.needsUpdate=true; t.dispose(); } else { t.userData.rShared=true; _rTexShare.set(k,t); } } });
++  return gltf; }
++function rLoad(url){ return _rGLTF[url]||(_rGLTF[url]=new Promise((res,rej)=>new THREE.GLTFLoader().load(url,g=>res(/WITHHELD_CHAR/i.test(url)?g:rShareTextures(g)),undefined,rej))); }
+ async function loadRiderR128(parent,url,crewColors,opts){ opts=opts||{}; const fp=!!opts.fp; const c=rResolve(opts.defaults||{},crewColors||{});
+   const gltf=await rLoad(url); const root=fp||!opts.clone?gltf.scene:gltf.scene; // one instance per crew file
+   const rim=Object.assign({},RRIM,opts.slotRim||{}), spec=Object.assign({},RSPEC,opts.slotSpec||{});

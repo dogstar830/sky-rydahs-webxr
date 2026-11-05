@@ -1,0 +1,17 @@
+55a56,71
+> <script>/* patch_draco ktx2 candidate: OFF unless ?ktx2=1. Loads libs/ktx2/KTX2Loader.classic.js (r128 jsm, esbuild IIFE on window.THREE) + libs/basis/ (r128 transcoder) */
+> (function(){ window.SR_KTX2={on:/[?&]ktx2=1(&|$)/.test(location.search)}; if(!window.SR_KTX2.on) return;
+>   document.write('<script src="libs/ktx2/KTX2Loader.classic.js"><\/script>');
+>   window.SR_KTX2.map={"anubis/anubis-rider.quest.glb": "anubis/anubis-rider.quest2-ktx2.glb", "behemoth/behemoth-rider.quest.glb": "behemoth/behemoth-rider.quest2-ktx2.glb", "genesis/genesis-rider.quest.glb": "genesis/genesis-rider.quest2-ktx2.glb", "kogarasumaru/kogarasumaru-rider.quest.glb": "kogarasumaru/kogarasumaru-rider.quest2-ktx2.glb", "sleeping-forest/sleeping-forest-rider.quest.glb": "sleeping-forest/sleeping-forest-rider.quest2-ktx2.glb", "static-angels/static-angels-rider.quest.glb": "static-angels/static-angels-rider.quest2-ktx2.glb", "tool-toul-to/tool-toul-to-rider.quest.glb": "tool-toul-to/tool-toul-to-rider.quest2-ktx2.glb", "wardrobe/riders/caali-g.glb": "wardrobe/riders/caali-g.quest-ktx2.glb"}; // default URL tail -> -ktx2 variant (only files that exist)
+>   window.SR_KTX2.url=function(u){ if(typeof u!=="string") return u; for(const k in window.SR_KTX2.map){ if(u.endsWith(k)) return u.slice(0,u.length-k.length)+window.SR_KTX2.map[k]; } return u; };
+>   function rdr(){ try{ return (typeof renderer!=="undefined"&&renderer)||window.renderer||null; }catch(e){ return window.renderer||null; } }
+>   window.SR_KTX2.loader=function(){ const S=window.SR_KTX2; if(S.k2) return S.k2; const r=rdr(); if(!THREE.KTX2Loader||!r) return null;
+>     S.k2=new THREE.KTX2Loader().setTranscoderPath("libs/basis/").detectSupport(r); return S.k2; };
+>   // renderer is created later in init(): defer each load until it exists (detectSupport needs it), then attach the shared KTX2Loader
+>   function wrapK(Orig){ if(!Orig||Orig.__srK2) return Orig;
+>     class SRK2GLTFLoader extends Orig{ load(url,onLoad,onProg,onErr){ const self=this, u=window.SR_KTX2.url(url);
+>         const go=()=>{ const k=window.SR_KTX2.loader(); if(!k) return requestAnimationFrame(go); if(self.setKTX2Loader&&!self.ktx2Loader) self.setKTX2Loader(k); Orig.prototype.load.call(self,u,onLoad,onProg,onErr); };
+>         go(); return this; } }
+>     SRK2GLTFLoader.__srK2=true; SRK2GLTFLoader.__srWrapped=true; SRK2GLTFLoader.__srOrig=Orig; return SRK2GLTFLoader; }
+>   const d=Object.getOwnPropertyDescriptor(THREE,"GLTFLoader"); let cur=wrapK(d&&d.get?d.get():THREE.GLTFLoader);
+>   Object.defineProperty(THREE,"GLTFLoader",{configurable:true,enumerable:true,get(){return cur;},set(v){ if(d&&d.set){ d.set(v); cur=wrapK(d.get()); } else cur=wrapK(v); }}); })();</script>

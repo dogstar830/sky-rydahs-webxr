@@ -1,0 +1,5 @@
+# No change to patch_wardrobe.py is needed. The fix is in the patch_quant_fix.py runtime patch (SR_DEQUANT inside loadIkki).
+# Permanent asset-side alternative for the Caali G owner: rebuild caali-g.glb and caali-g-hd.glb WITHOUT position quantization.
+# For example, use gltf-transform meshopt with --quantize-position 0 if the tool supports it, or Draco, or plain meshopt
+# with float positions. Another option is to also bake _WC into quantized space. After that, patch_quant_fix becomes a no-op
+# because it skips Float32 positions.

@@ -1,0 +1,8 @@
+# A. Shared crew atlas (owners: Rydah Forge + Rydah Rigger). STATIC ESTIMATE, no headset used
+Diff: A_tex_share.proposed.diff (against riders.js rLoad). Ship it as patch_tex_share.py if you prefer a pipeline step. patch --dry-run OK; node --check of the patched copy (/tmp/s2/riders.patched.js) OK.
+What it does: after each rLoad GLTF parse, every texture whose image is <=512x512 px gets a content hash (FNV over RGBA pixels plus size/flipY/encoding/wrap). A hash that is already cached swaps in the cached THREE.Texture and disposes the duplicate. Materials are NOT merged: crew colours live in per-material uniforms (uSlotColor/rimColor), so they stay exactly as they are. WITHHELD_CHAR URLs are skipped, as is anything above 512². loadRiderR128 sets the same filters/encoding on the map for every crew, so sharing is consistent.
+Saved: 7 copies of the 512x128 atlas (sha 75200a21b7cc) become 1, so about 6 x 0.33 = **~2.0 MB** GPU (static). One small canvas readback per small texture runs at load time.
+Risk: low. If one crew mutated its atlas Texture (offset/repeat), the others would pick it up too. I didn't find any such code, but it needs the rider shots.
+Fallback: ?notexshare=1.
+Asset-side alternative: re-export the 7 *-rider.quest.glb with images[0] = {"uri":"../shared/crew-atlas.png"}. GLTFLoader caches by URI, but r128 still creates one Texture per parser, so that alone doesn't dedupe and it also needs a re-export plus redeploy of 7 assets. **Recommend the loader-side change (lower risk, reversible by flag).**
+Gates (integrator): perf_overlay.py (tex MB -2), smoke CORE, graffiti.py, rider before/after shots for all 7 crews (colours identical), perf_seed7 with draw calls not rising.

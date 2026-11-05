@@ -1,0 +1,14 @@
+--- crewhouse_kit.js	2026-10-30 01:37:35.313800165 -0500
++++ /tmp/pd/crewhouse_kit.js	2026-10-30 01:39:47.844775276 -0500
+@@ -81,7 +81,10 @@
+   kitAtlasTex.needsUpdate=true; }
+ 
+ // ---------- shared materials (MeshStandardMaterial PBR + emissive neon) ----------
+-const TL=new THREE.TextureLoader(); const tx=(n,srgb)=>{ const t=TL.load('assets/kit/'+n+'.jpg'); t.wrapS=t.wrapT=THREE.RepeatWrapping; if(srgb) t.encoding=THREE.sRGBEncoding; t.anisotropy=4; return t; };
++const TL=new THREE.TextureLoader(); const K2=window.SR_KTX2&&window.SR_KTX2.on; // ?ktx2=1: assets/world_ktx2/<n>.ktx2 (512, pre-flipped, ETC1S colour/rough, UASTC normal)
++const tx=(n,srgb)=>{ if(K2){ const t=new THREE.Texture(); const go=()=>{ const L=window.SR_KTX2.loader&&window.SR_KTX2.loader(); if(!L) return requestAnimationFrame(go);
++    L.load('assets/world_ktx2/'+n+'.ktx2',c=>{ c.wrapS=c.wrapT=THREE.RepeatWrapping; if(srgb) c.encoding=THREE.sRGBEncoding; c.anisotropy=4; c.flipY=false; for(const m of Object.values(typeof MAT!=="undefined"?MAT:{})) for(const sl of ['map','normalMap','roughnessMap']) if(m&&m[sl]===t){ m[sl]=c; m.needsUpdate=true; } }); }; go(); return t; }
++  const t=TL.load('assets/kit/'+n+'.jpg'); t.wrapS=t.wrapT=THREE.RepeatWrapping; if(srgb) t.encoding=THREE.sRGBEncoding; t.anisotropy=4; return t; };
+ const U={uC1:{value:new THREE.Color(0x00e5ff)},uC2:{value:new THREE.Color(0x9a3cff)},uKL:{value:Array.from({length:8},()=>new THREE.Vector3(0,-999,0))},uKC:{value:Array.from({length:8},()=>new THREE.Color(0))}};
+ // fake neon fill lights (8 world-space points, no scene lights added -> no program churn for the rest of the world); r128 chunk names only
+ function kitify(m,isBasic){ m.onBeforeCompile=s=>{ Object.assign(s.uniforms,U);

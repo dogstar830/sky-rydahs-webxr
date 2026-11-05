@@ -1,0 +1,12 @@
+# PROPOSAL ONLY (Rydah Optimizer, 05:14 CDT). Base: v3build/graffiti.js mtime 2026-10-29 05:14:07 CDT sha1 21bdea72e4dfa2ad07909f0939fcd6556abb2880
+# Independent of other diffs; rebase onto the heat.js change. Saves 1 call by day (graffiti 6 -> 5), 0 at night. Apply: cd /workspace/v3build && patch -p1 < this
+--- a/graffiti.js	2026-10-29 05:14:07.155454135 -0500
++++ b/graffiti.js	2026-10-29 05:14:07.191454330 -0500
+@@ -346,6 +346,7 @@
+ const _grafV=new THREE.Vector3();
+ function grafTickCore(dt,xr){ if(!GRAF.ready){ if(TURF.ready&&typeof PALMA!=="undefined"&&colliders.length) try{ grafInit(); }catch(e){ console.warn("graffiti init failed",e); GRAF.ready=false; GRAF.fail=String(e); window.grafTick=null; } return; }
+   const night=grafNight(); GRAF.night=night; const U=GRAF.U; U.uTime.value=clock; U.uNight.value+=((night?1:0)-U.uNight.value)*Math.min(1,dt*3);
++  if(GRAF.glow&&!/[?&]nobatch=1/.test(location.search)) GRAF.glow.mesh.visible=U.uNight.value>.003; // DC proposal (Rydah Optimizer): glow/backlight shader discards every fragment when uNight~0, so skip its draw by day (-1 call); ?nobatch=1 keeps it always on
+   try{ if(scene.fog){ U.uFogC.value.copy(scene.fog.color); U.uFogD.value=scene.fog.density||0; } }catch(e){}
+   HEAT.decay(dt);
+   const S=window.SR_PAD, ride=State.mode==="ride", blocked=(window.PHONE&&PHONE.up)||(window.MAP&&MAP.open)||(typeof GATE!=="undefined"&&GATE.uiOpen)||(window.PAD&&(PAD.xNear==="pickup"||PAD.xNear==="gate"));

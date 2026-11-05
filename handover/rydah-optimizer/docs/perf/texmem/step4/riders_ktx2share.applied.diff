@@ -1,0 +1,7 @@
+66a67,68
+>   if(t.isCompressedTexture){ const mm=t.mipmaps&&t.mipmaps[0]; if(!mm||!mm.data) return null; const d=mm.data; let h1=0x811c9dc5, h2=0; // KTX2 (?ktx2=1): hash transcoded level-0 bytes
+>     for(let i=0;i<d.length;i++){ h1=Math.imul(h1^d[i],16777619); h2=(h2+h1)|0; } return ['ktx2',im.width,im.height,t.format,t.mipmaps.length,t.flipY,t.encoding,t.wrapS,t.wrapT,(h1>>>0).toString(16),(h2>>>0).toString(16)].join('|'); }
+73c75
+<     const k=_rTexKey(t); if(!k) continue; TS.textures++; const hit=_rTexShare.get(k); if(hit&&hit!==t){ m[s]=hit; m.needsUpdate=true; TS.shared++; TS.savedBytes+=Math.round(t.image.width*t.image.height*4*1.33); t.dispose(); } else { t.userData.rShared=true; _rTexShare.set(k,t); } } });
+---
+>     const k=_rTexKey(t); if(!k) continue; TS.textures++; const hit=_rTexShare.get(k); if(hit&&hit!==t){ m[s]=hit; m.needsUpdate=true; TS.shared++; TS.savedBytes+=t.isCompressedTexture?t.mipmaps.reduce((a,m)=>a+(m.data?m.data.byteLength:0),0):Math.round(t.image.width*t.image.height*4*1.33); t.dispose(); } else { t.userData.rShared=true; _rTexShare.set(k,t); } } });

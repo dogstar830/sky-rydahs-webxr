@@ -1,0 +1,6 @@
+# B. Caali G flat-normal strip (owners: Rydah Forge + Rydah Rigger). STATIC ESTIMATE, no headset used
+New asset: /workspace/skyrydahs-characters/wardrobe/riders/caali-g.nonormal.glb (original caali-g.glb untouched). It is a JSON-only edit: normalTexture, texture 1, image CaaliG_atlas_n and its bufferView were removed and the rest reindexed. The BIN chunk is byte-identical (sha 8ef1febf69067a67), and the 34 accessors (count/type/componentType/normalized/bufferView incl. meshopt) are identical, including _WC/_WA/_BM/_SLOT and KHR_mesh_quantization, so patch_quant_fix.py still applies. Proof: B_caali_accessor_check.txt. gltf-transform validate: 0 errors (only the pre-existing NODE_SKINNED_MESH_NON_ROOT warnings; the tangent-space warning is gone).
+Diff: B_caali_nonormal.proposed.diff (wardrobe_js/wardrobe.js URL). ?texfull=1 loads the original. patch --dry-run OK; node --check OK.
+Saved: **0 MB GPU** (the map was already dropped by noNormal:true). It saves one 2048² webp decode (~21 MB transient CPU RAM) plus decode time at spawn. The file is 112 bytes smaller (the 7 KB sits in the meshopt BIN, which was left untouched on purpose).
+Risk: very low. Deploy copies (sky-rydahs-pwa/site, deploy/) need the new file copied in, or the build will 404.
+Gates: smoke CORE, perf_overlay.py, Caali G rider before/after shots (identical), perf_seed7 draw calls not rising.

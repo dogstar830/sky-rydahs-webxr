@@ -1,0 +1,18 @@
+--- a/polish.js	2026-10-30 18:45:08.605135142 -0500
++++ b/polish.js	2026-10-30 18:45:43.020732831 -0500
+@@ -100,6 +100,15 @@
+     c=pow(c,vec3(.95)); float d=distance(vUv,vec2(.5)); c*=1.-uVig*smoothstep(.35,.85,d); gl_FragColor=vec4(c,1.); }` };
+ function setupFX(){ const W=innerWidth,H=innerHeight; const cmp=new THREE.EffectComposer(renderer); cmp.addPass(new THREE.RenderPass(scene,camera));
+   const bloom=new THREE.UnrealBloomPass(new THREE.Vector2(W/2,H/2),.75,.5,.62); cmp.addPass(bloom); cmp.addPass(new THREE.ShaderPass(GradeShader));
++  // FXBLOOM (proposal, Palma Builder for Rydah Optimizer). The composer targets are 8-bit and r128 skips tonemapping for render targets, so the
++  // UnrealBloomPass high-pass sees clamped, untonemapped linear colour. Its luma cut (.68, smoothWidth .01) is near-binary, so large mid-bright,
++  // low-saturation surfaces (lit window grids, white panels, sky) bloom at full area gain (~1.8x) and clip. Fix (high-pass only; the scene image is unchanged):
++  // a pixel feeds bloom if it is genuinely hot (luma >= ~.9, e.g. lamp cores) OR a saturated emitter whose max channel is near 1 (neon).
++  // Mid-bright greys and blues no longer qualify. Bloom strength, radius, colour and targets are unchanged.
++  { const hp=bloom.materialHighPassFilter, K='float alpha = smoothstep( luminosityThreshold, luminosityThreshold + smoothWidth, v );';
++    if(hp&&hp.fragmentShader.indexOf(K)>=0){ hp.uniforms.uFxbHot={value:new THREE.Vector4(.88,.97,.80,.95)};
++      hp.fragmentShader='uniform vec4 uFxbHot;\n'+hp.fragmentShader.replace(K,'float mx = max( texel.r, max( texel.g, texel.b ) ); float sat = ( mx - min( texel.r, min( texel.g, texel.b ) ) ) / max( mx, 1e-3 ); float alpha = max( smoothstep( max( luminosityThreshold, uFxbHot.x ), uFxbHot.y, v ), smoothstep( uFxbHot.z, uFxbHot.w, mx ) * smoothstep( .35, .6, sat ) ); /* FXBLOOM */');
++      hp.needsUpdate=true; FX.bloomHot=true; } else console.warn('[fxbloom] high-pass anchor missing; bloom unchanged'); }
+   cmp.setPixelRatio(Math.min(devicePixelRatio,1.25)); cmp.setSize(W,H); FX.composer=cmp; FX.on=true; FX.bloom=bloom; }
+ // ---- cinematic attract flyover ----
+ let FLY=null;

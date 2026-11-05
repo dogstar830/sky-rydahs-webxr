@@ -1,0 +1,11 @@
+--- a/wardrobe_js/wardrobe.js
++++ b/wardrobe_js/wardrobe.js
+@@ -12,7 +12,7 @@
+ // riders built on the wardrobe pipeline (baked GLB + rider identity). AT skate is the same Meshy module for everyone; only glow/paint/frame differ.
+ // tier: ?tier=hd|quest ; default quest on Quest/Android/iOS browsers, hd on desktop
+ const WARDROBE_TIER=(()=>{ const q=new URLSearchParams(location.search).get('tier'); if(q==='hd'||q==='quest') return q; return /OculusBrowser|Quest|Android|iPhone|iPad/i.test(navigator.userAgent)?'quest':'hd'; })();
+-const WARDROBE_RIDERS={ caali:{ name:'Caali G', crew:'codee', url:CHAR_BASE+'wardrobe/riders/'+(WARDROBE_TIER==='hd'?'caali-g-hd.glb':'caali-g.glb'), baked:'caali', fx:0, key:'caali-g',
++const WARDROBE_RIDERS={ caali:{ name:'Caali G', crew:'codee', url:CHAR_BASE+'wardrobe/riders/'+(WARDROBE_TIER==='hd'?'caali-g-hd.glb':(/[?&]texfull=1/.test(location.search)?'caali-g.glb':'caali-g.nonormal.glb')), baked:'caali', fx:0, key:'caali-g',
+   glow:0xffd700, loadout:{paint:0x2a2620, frame:0xd4a017, wheel:0xffffff}, frameLift:2.4, envI:.6, noNormal:true, defaults:{rim:0xffc940} },
+   // INTERNAL placeholder (Air Gear WITHHELD_CHAR) - local demo only; asset lives in skyrydahs-characters/WITHHELD_CHAR/ (excluded from PWA/PR)
+   WITHHELD_CHAR:{ name:'WITHHELD_CHAR', crew:'karasu', url:CHAR_BASE+'WITHHELD_CHAR/WITHHELD_CHAR-rider.glb', fx:0, key:'WITHHELD_CHAR', glow:0x00e5ff, loadout:{paint:0x0c0d10, frame:0x16181c, wheel:0x00e5ff}, envI:.9, noNormal:true, defaults:{rim:0x00e5ff} } };

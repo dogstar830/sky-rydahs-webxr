@@ -1,0 +1,33 @@
+# PROPOSAL ONLY (Rydah Optimizer, 05:14 CDT). Base: v3build/grind.js mtime 2026-10-29 05:14:07 CDT sha1 19f2bd2a99ec2d7e2e0d0173fe2a8850a70ea429
+# grind 4 -> 3 calls (wood+galv poles -> one atlas InstancedMesh). ?nobatch=1 restores the old path. Apply: cd /workspace/v3build && patch -p1 < this
+--- a/grind.js	2026-10-29 05:14:07.155454135 -0500
++++ b/grind.js	2026-10-29 05:14:07.195454352 -0500
+@@ -78,7 +78,27 @@
+   grindRails(); grindBuildCables.done||0; GRIND.meshSteel=grindTubes(GRIND.tubes.steel.concat(GRIND.tubes.hanger),M.steel,8);
+   const mk=(L,mat)=>{ if(!L.length) return; const g=new THREE.CylinderGeometry(.85,1,1,10,1,true); const im=new THREE.InstancedMesh(g,mat,L.length); const m=new THREE.Matrix4(), q=new THREE.Quaternion(), s=new THREE.Vector3(), v=new THREE.Vector3();
+     L.forEach((p,i)=>{ m.compose(v.set(p[0],p[2]/2,p[1]),q,s.set(p[3],p[2],p[3])); im.setMatrixAt(i,m); }); im.userData.grind=true; scene.add(im); return im; };
+-  GRIND.meshWood=mk(GRIND.poles.wood,M.wood); GRIND.meshGalv=mk(GRIND.poles.galv,M.galv); grindGridBuild(); grindFX(); }
++  if(/[?&]nobatch=1/.test(location.search)){ GRIND.meshWood=mk(GRIND.poles.wood,M.wood); GRIND.meshGalv=mk(GRIND.poles.galv,M.galv); }
++  else GRIND.meshWood=GRIND.meshGalv=grindPolesBatched(GRIND.poles.wood,GRIND.poles.galv,M); // DC proposal: 2 draws -> 1
++  grindGridBuild(); grindFX(); }
++// DC proposal (Rydah Optimizer): wood + galv poles share ONE InstancedMesh. Runtime 2-cell canvas atlas (wood | galv, the same
++// procedural canvases as grindMats); per-instance aPole (0 wood, 1 galv) picks the atlas half, V repeat (3 / 4), colour,
++// roughness and metalness, so each pole looks as before. Static, non-interactive: grind rails/splines (GRIND.S) untouched.
++function grindPolesBatched(W,G,M){ const L=W.concat(G); if(!L.length) return undefined;
++  const a=M.wood.map.image, b=M.galv.map.image, c=document.createElement("canvas"); c.width=a.width+b.width; c.height=Math.max(a.height,b.height);
++  const x=c.getContext("2d"); x.drawImage(a,0,0,a.width,c.height); x.drawImage(b,a.width,0,b.width,c.height);
++  const t=new THREE.CanvasTexture(c); t.anisotropy=4;
++  const mat=new THREE.MeshStandardMaterial({color:0xffffff,map:t,roughness:1,metalness:1});
++  mat.onBeforeCompile=s=>{
++    s.vertexShader="attribute float aPole;\nvarying float vPole;\n"+s.vertexShader.replace("#include <uv_vertex>","#include <uv_vertex>\n vPole=aPole;");
++    s.fragmentShader="varying float vPole;\n"+s.fragmentShader
++      .replace("#include <map_fragment>","vec2 pUv=vec2(fract(vUv.x)*.5+vPole*.5, fract(vUv.y*mix(3.,4.,vPole)));\n vec4 texelColor=mapTexelToLinear(texture2D(map,pUv));\n diffuseColor*=texelColor*vec4(mix(vec3(.722,.651,.565),vec3(.816,.839,.863),vPole),1.);")
++      .replace("#include <roughnessmap_fragment>","float roughnessFactor=mix(.92,.48,vPole);")
++      .replace("#include <metalnessmap_fragment>","float metalnessFactor=mix(0.,.75,vPole);"); };
++  mat.customProgramCacheKey=()=>"grindPolesAtlas";
++  const g=new THREE.CylinderGeometry(.85,1,1,10,1,true), P=new Float32Array(L.length); P.fill(1,W.length); g.setAttribute("aPole",new THREE.InstancedBufferAttribute(P,1));
++  const im=new THREE.InstancedMesh(g,mat,L.length), m=new THREE.Matrix4(), q=new THREE.Quaternion(), sc=new THREE.Vector3(), v=new THREE.Vector3();
++  L.forEach((p,i)=>{ m.compose(v.set(p[0],p[2]/2,p[1]),q,sc.set(p[3],p[2],p[3])); im.setMatrixAt(i,m); }); im.userData.grind=true; im.name="grind_poles_atlas"; scene.add(im); return im; }
+ // ---------- FX: spark pool, trail ribbon, vortex quad, audio ----------
+ function grindFX(){ const SP={n:160,i:0}; SP.pos=new Float32Array(SP.n*3).fill(-999); SP.col=new Float32Array(SP.n*3); SP.vel=new Float32Array(SP.n*3); SP.life=new Float32Array(SP.n); SP.base=new Float32Array(SP.n*3); SP.grav=new Float32Array(SP.n);
+   const g=new THREE.BufferGeometry(); g.setAttribute("position",new THREE.BufferAttribute(SP.pos,3)); g.setAttribute("color",new THREE.BufferAttribute(SP.col,3));

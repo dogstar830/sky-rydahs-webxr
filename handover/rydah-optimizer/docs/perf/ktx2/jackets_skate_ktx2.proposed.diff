@@ -1,0 +1,17 @@
+# PROPOSED (Rydah Optimizer -> Rydah Rigger, owner of jackets.js). NOT applied.
+# KTX2 variant of the shared v2 skate textures, only when the SR_KTX2 gate is on and its loader is ready; PNG path unchanged otherwise.
+# r128 KTX2Loader does NOT set texture.encoding from the KTX2 transfer function, so set it here (albedo sRGB, -mr/-normal Linear).
+# KTX2 files are upper-left origin = glTF convention, matching the PNG path's flipY=false.
+--- jackets.js (line ~69)
+-    const tl=new THREE.TextureLoader(), T=k=>{ const t=tl.load(SR_SKATE.tex()+k+'.png'); t.flipY=false; t.encoding=k===''?THREE.sRGBEncoding:THREE.LinearEncoding;   /* albedo sRGB; -mr/-normal stay Linear */ t.anisotropy=4; return t; };
++    const tl=new THREE.TextureLoader(), K2=(window.SR_KTX2&&window.SR_KTX2.on&&window.SR_KTX2.loader)?window.SR_KTX2.loader():null;
++    const T=k=>{ const enc=k===''?THREE.sRGBEncoding:THREE.LinearEncoding;   /* albedo sRGB; -mr/-normal stay Linear */
++      if(K2){ const ph=new THREE.Texture(); ph.flipY=false; ph.encoding=enc;   // placeholder; swapped for the CompressedTexture on load
++        const u=SR_SKATE.tex().replace(/at-skate-meshy-v2-1k$/,'ktx2/at-skate-meshy-v2-1k')+k+'.ktx2';
++        K2.load(u,t=>{ t.flipY=false; t.encoding=enc; t.anisotropy=4; for(const m of (SR_SKATE.mats||[])) for(const s of ['map','normalMap','roughnessMap','metalnessMap']) if(m[s]===ph){ m[s]=t; m.needsUpdate=true; } ph.dispose(); },undefined,
+          e=>{ console.warn('skate ktx2 failed, png',u,e); const t=tl.load(SR_SKATE.tex()+k+'.png'); t.flipY=false; t.encoding=enc; t.anisotropy=4; for(const m of (SR_SKATE.mats||[])) for(const s of ['map','normalMap','roughnessMap','metalnessMap']) if(m[s]===ph){ m[s]=t; m.needsUpdate=true; } });
+        return ph; }
++      const t=tl.load(SR_SKATE.tex()+k+'.png'); t.flipY=false; t.encoding=enc; t.anisotropy=4; return t; };
+# and register every material that shares these maps (base + each srSkateMaterial clone) so the swap reaches them:
++    SR_SKATE.mats=[mat];          // after `const mat=new THREE.MeshStandardMaterial(...)`
++    // in srSkateMaterial(base,lo): after `const m=base.clone();`  ->  (SR_SKATE.mats=SR_SKATE.mats||[]).push(m);

@@ -1,0 +1,4 @@
+# PUBLIC=1 exclude list for package_pwa.sh (path globs relative to skyrydahs-characters/)
+# WITHHELD_CHAR: local demo only until renamed (Oliver). Excludes the whole skyrydahs-characters/WITHHELD_CHAR/ folder (GLBs, src/, build script).
+WITHHELD_CHAR/*
+*WITHHELD_CHAR*

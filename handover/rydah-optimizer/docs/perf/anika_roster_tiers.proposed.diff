@@ -1,0 +1,13 @@
+# PROPOSED (Rydah Optimizer -> Rydah Rigger, owner of patch_crew_quest.py). NOT applied.
+# Problem: Quest UA currently loads anika-rider.opt-ktx2.glb unconditionally, but the SR_KTX2 gate/KTX2Loader is not in
+# the live build -> KHR_texture_basisu textures fail on Quest. Desktop/hd loads the 16.8 MB uncompressed anika-rider.glb.
+# Fix: default = Draco+webp (DRACOLoader is already live via patch_draco.py); KTX2 only via the ?ktx2=1 gate map.
+# Note: WARDROBE_RIDERS.anika inherits noNormal:true from caali, so normals are dropped at runtime on every tier
+# (the draco-webp files ship without normal maps).
+--- patch_crew_quest.py
++++ patch_crew_quest.py
+-  ... url:CHAR_BASE+'anika/'+(/OculusBrowser|Quest|Android|iPhone|iPad/i.test(navigator.userAgent)&&new URLSearchParams(location.search).get('tier')!=='hd'||new URLSearchParams(location.search).get('tier')==='quest'?'anika-rider.opt-ktx2.glb':'anika-rider.glb'), npc:CHAR_BASE+'anika/anika-npc.glb', npcQuest:CHAR_BASE+'anika/anika-npc.opt-ktx2.glb', ...
++  ... url:CHAR_BASE+'anika/'+(/[?&]texfull=1/.test(location.search)?'anika-rider.glb':'anika-rider.draco-webp.glb'), npc:CHAR_BASE+'anika/anika-npc.draco-webp.glb', npcQuest:CHAR_BASE+'anika/anika-npc.draco-webp.glb', ...
+# hd and quest both get the 2.85 MB Draco+webp rider (2K colour, same look as hd since normals are dropped anyway);
+# ?ktx2=1 rewrites anika-rider(.draco-webp).glb / anika-npc(.draco-webp).glb -> *.opt-ktx2.glb via SR_KTX2.map (patch_draco.py.ktx2-candidate).
+# npc/npcQuest are not read anywhere in the build yet (no Anika NPC spawn).
