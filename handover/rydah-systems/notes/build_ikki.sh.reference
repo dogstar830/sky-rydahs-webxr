@@ -1,0 +1,31 @@
+set -e
+cd /workspace/v3build
+python3 patch_ikki.py
+python3 patch_tickguard.py   # Rydah Systems: SR_GUARD head helper + late tick wrap (see file header); EARLY on purpose
+python3 patch_turf.py
+python3 patch_ikki_skate.py
+python3 patch_gates.py
+python3 patch_wallatk.py
+python3 patch_asphalt.py
+python3 patch_wardrobe.py
+python3 patch_facades.py
+python3 patch_bridges.py
+python3 patch_sky.py
+python3 patch_blockout.py
+python3 patch_ground.py
+python3 patch_ride_ground.py
+python3 patch_grind.py
+python3 patch_polegrind.py   # Rydah Systems: pole-grind spiral + helix FX + pooled trails (after grind)
+python3 patch_graffiti.py
+python3 patch_phone.py
+python3 patch_gamepad.py
+python3 patch_minimap.py
+python3 patch_draco.py.ktx2-candidate   # Rydah Optimizer: Draco/meshopt wrap + opt-in ?ktx2=1 KTX2 gate (gate GREEN 09:31)
+python3 patch_crew_quest.py
+python3 patch_quant_fix.py
+python3 patch_crewhouse_kit.py
+python3 patch_world_perf.py
+python3 patch_pbr_world.py   # Palma Builder: step-5 PBR world, OPT-IN ?pbr=1 (?toon=1 forces old look); default = early return
+python3 patch_pbr_base.py    # Palma Builder: PBR building-base band (pbr_base.js), OPT-IN ?pbrbase=1; layers on pbr_world (Ani approved slot 10/30)
+python3 patch_xr_fxmem.py   # Rydah Optimizer: free composer+bloom GL targets in XR, restore on sessionend (?xrfxkeep=1 off); after patch_ikki_skate (setupFX)
+python3 patch_combat_fx.py   # Rydah Forge: CombatFX attack FX API (inert unless called; ?fxdemo=1 demo; ?nocfx off). LAST: needs scene/animated globals

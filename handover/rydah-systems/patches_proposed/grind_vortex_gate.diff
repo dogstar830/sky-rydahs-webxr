@@ -1,0 +1,23 @@
+--- a/grind.js
++++ b/grind.js
+@@ -128,7 +128,7 @@
+     _grq.copy(a).addScaledVector(_grt,t); const d=_grq.distanceTo(p); if(d>maxD) continue; const o=by.get(s); if(o&&o.d<=d) continue;
+     by.set(s,{s,i,t,d,dh:Math.hypot(_grq.x-p.x,_grq.z-p.z),q:_grq.clone(),tan:_grt.clone().normalize(),arc:s.cum[i]+t*(s.cum[i+1]-s.cum[i])}); }
+   return [...by.values()]; }
+-GRIND.GROUND_SNAP={steel:.6,cable:.8,bark:.5}; GRIND.HEADON=Math.cos(20*Math.PI/180);
++GRIND.GROUND_SNAP={steel:.6,cable:.8,bark:.5}; GRIND.VORTEX_XR_CAP=.3; /* XR cap for the full-screen vortex focus (0 = off in XR) */ GRIND.HEADON=Math.cos(20*Math.PI/180);
+ // lock rules: airborne + falling = full snap radius; rising or grounded = tight radius. Poles/trunks: air press-in or head-on (<=20 deg) skate-in at speed.
+ // several candidates -> best aligned with velocity (70%) + view direction (30%), small distance penalty. 0.4 s global cooldown after jump/drop.
+ function grindTryLock(dt){ const R=Ride, p=R.group.position, G=GRIND, A=WALL.air; const prev=G.prevP||p.clone(); G.prevP=p.clone(); if(G.cd>0) return false;
+@@ -183,8 +183,9 @@
+   T.mesh.visible=T.pts.length>1; if(T.mesh.visible){ const c=G.on&&G.on.s.mat==="bark"?[1,.75,.35]:[.55,.95,1]; for(let i=0;i<T.n;i++){ const q=T.pts[Math.min(i,T.pts.length-1)], w=.07*(1-i/T.n), f=(1-i/T.n)*(i<T.pts.length?1:0);
+       T.pos.set([q[0]-q[4]*w,q[1],q[2]+q[3]*w,q[0]+q[4]*w,q[1],q[2]-q[3]*w],i*6); T.col.set([c[0]*f,c[1]*f,c[2]*f,c[0]*f,c[1]*f,c[2]*f],i*6); }
+     T.mesh.geometry.attributes.position.needsUpdate=true; T.mesh.geometry.attributes.color.needsUpdate=true; }
+-  // vortex focus strength (speed; full while grinding)
+-  const V=G.vortex.material.uniforms, sp=Ride.speed, want=State.mode==="ride"?Math.max(0,Math.min(1,(sp-7)/18))*(G.on?1:.45):0; G.vk=(G.vk||0)+(want-(G.vk||0))*Math.min(1,dt*5);
++  // vortex focus strength: ONLY while actually grinding (was also x0.45 off-grind above 7 m/s); XR: capped at 0.3 (full-screen fill per eye on Quest)
++  // and off while the pole-grind helix shows (PG.k, polegrind.js) so the two additive layers never stack in the headset
++  const V=G.vortex.material.uniforms, sp=Ride.speed, cap=xr?((window.PG&&PG.k>.02)?0:G.VORTEX_XR_CAP):1, want=State.mode==="ride"&&G.on?Math.min(cap,Math.max(0,Math.min(1,(sp-7)/18))):0; G.vk=(G.vk||0)+(want-(G.vk||0))*Math.min(1,dt*5);
+   V.uK.value=G.vk; V.uT.value=clock; V.uXR.value=xr?1:0; V.uA.value=innerWidth/innerHeight; G.vortex.visible=G.vk>.02;
+   grindAudio(!!G.on,G.on?G.on.v:0); }
+ function grindHUD(){ let d=document.getElementById("grindbal"); if(!d){ d=document.createElement("div"); d.id="grindbal"; d.className="hud"; d.style.cssText="position:fixed;left:50%;top:58%;width:120px;height:6px;margin-left:-60px;background:rgba(0,0,0,.35);border:1px solid rgba(127,233,255,.6);border-radius:3px;z-index:6;display:none";

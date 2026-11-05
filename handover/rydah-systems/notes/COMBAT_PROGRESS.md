@@ -1,0 +1,21 @@
+# COMBAT_PROGRESS (Rydah Systems) — combat slice part 1 (C1 3-hit chain, C2 sim-only hit-stop)
+- 10:50 CDT start. Backup wallatk.js.bak-sys-1050. Read combat-ff7-kh-reference.md + perf/forge/combat-fx.md.
+- Decisions (Oliver via Ani): hit-stop freezes ONLY attacker pose/attack timeline + target (Ride movement/physics never frozen); HITSTOP_SCALE=0.5 default, ?hitstop=full|off; commit lock held for the whole chain; Hold RT=super, LT=lock-on (nothing new bound there).
+- Builds: bash build_copy.sh /tmp/cmb.html only.
+- 11:00 wallatk.js C1/C2 code in (CHAIN, HITSTOP, CEV/cfxEmit, atkChainNext, target n.hs freeze, attacker A.t freeze); tests/combat_chain.py written
+- 11:08 build_copy /tmp/cmb.html ok (patch_gamepad anchor: B read via SR_PAD.justPressed('B') line instead of editing the gp line); queued cc + attacks
+- 11:12 cc run1: chain steps OK but target hidden (no __near) -> test fixed; attacks split ATK_ONLY=static + ATK_ONLY=rest (2 windows <=6 min)
+- 11:42 attacks static 33/33; rest timed out at 6 min with 14/14 passing -> split rest (NPC+moving dives) / tail (realsteer+errors+ikki). Rebuilt /tmp/cmb.html. Next: cc rerun, attacks rest+tail
+- 11:58 cc 13/15: knock sampling (test) + draw-delta method (view moved) -> wallatk n.knockLog, test compares pools on/off same view. attacks_tail running.
+- 12:05 attacks tail: realsteer 2 + errors + ikki 4 pass, ikki section cut by 6-min timeout -> new ATK_ONLY=ikki window. Rebuilt cmb; queued cc + ikki
+- 12:17 GREEN: combat_chain 15/15 (12:10-12:13); attacks 54/54 across windows: static 33/33 (11:14), rest 13/13 (11:32, NPC 7 + mouse + 5 dives; window cut after its last case), tail 3/3 (11:55: realsteer 2 + no-errors), ikki 5/5 (12:14). wallatk only gained n.knockLog after rest/tail ran. HITSTOP_SCALE=0.5 default (?hitstop=full|off).
+- 13:25 poser bridge coded in wallatk.js (bak .bak-sys-1320): CP.* (bind/teardown/onCombat unsub, atk/react setState, cancelOK gate, root motion 14 m/s / 6 m / XR 3 m via collider check, combatHitStop both sides), cpStep posed hit window (onHitFrame or fallback D+0.1), cpHeavyInput (hold J>=.35 -> heavy charge, release/auto 1.0 s, knock 2x scaled), air float .25 s at .25 gravity. All gated by CP.flag().
+- 13:35 tests: combat_chain CC_ONLY=off|poses (poses: state order, onHitFrame, cancel gate, root clamps incl XR, react, heavy, air float, teardown). build_copy ok; queued ccp, cc, atks
+- 13:45 ccp 8/10 (chain reset by 0.6 s window during long posed hits -> CHAIN.last refreshed while posed; heavy conversion fixed); cc off 14/15: 'never frozen' sampled only x -> test now x,z,speed (flaky metric, not a behaviour change)
+- 13:50 attacks static (flag off) 33/33; rebuilt cmb; queued ccp + cc
+- 14:08 attacks static 33/33 (build with swept dash + heavy hold). Next: rebuild (heavy knock logged after scaling; chain test re-places target per press), ccp + cc
+- 14:16 ccp 9/10: heavy knock 14 (<2x) because onHitFrame's poser charge overwrote ours -> max(). cc pending
+- 14:26 cc (flag off) 15/15. Rebuild with charge fix, rerun ccp
+- 14:47 ccp: heavy knock now 16 = 2x light 8 (test threshold assumed codee's 9 -> compare to the light hit); window timed out at 6 min before air float/teardown checks; rerun
+- 14:52 GREEN: ccp (combatposes=1) 10/10 (14:46), cc (flag off) 15/15 (14:20), attacks static (flag off) 33/33 (14:02). Posted ready for rebuild.
+- 23:58 CombatFX v3 wiring (bak wallatk.js.bak-sys-2350): CEV.rider=RIDERS.player, fxName per move (kick kinds->foot+side, else hand), side, fxCharge=heavy charge; poses on: landed hit forwards stored onHitFrame ev via CombatFX.fromHitFrame (one spark, haptics off) + one SR_PAD.haptic from my path, no second emit. Tests added (fxName, one emit/haptic per hit off+poses, attackStart before hit frame, fx draws <=3, heavy fxCharge).

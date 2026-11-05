@@ -1,0 +1,20 @@
+--- grind.js	2026-10-29 03:26:26.576766579 -0500
++++ grind.js (proposed)	2026-10-29 09:40:38.327182758 -0500
+@@ -134,7 +134,7 @@
+ function grindTryLock(dt){ const R=Ride, p=R.group.position, G=GRIND, A=WALL.air; const prev=G.prevP||p.clone(); G.prevP=p.clone(); if(G.cd>0) return false;
+   const vx=A?A.vx:Math.sin(R.yaw)*R.speed, vz=A?A.vz:Math.cos(R.yaw)*R.speed, vy=A?A.vy:0, hs=Math.hypot(vx,vz), vl=Math.hypot(hs,vy)||1;
+   if(!A&&(WALL.on||R.speed<5)) return false; if(A&&A.t<.08&&!(A.vy<0)) return false;
+-  const falling=!!A&&vy<=.5, fy=A?A.y:R.y; camera.getWorldDirection(_grw); const cx=_grw.x, cz=_grw.z, cl=Math.hypot(cx,cz)||1;
++  const falling=!!A&&vy<=.5, apex=!!A&&Math.abs(vy)<1.5, fy=A?A.y:R.y; /* apex (wall-kick/hop top, |vy|<1.5): full snap radius + reach a cable up to 1.5 m above the feet */ camera.getWorldDirection(_grw); const cx=_grw.x, cz=_grw.z, cl=Math.hypot(cx,cz)||1;
+   _grv.set(p.x,fy+(A?0:.3),p.z); const C=grindAll(_grv,1.6); let best=null;
+   for(const n of C){ const s=n.s, M=G.MAT[s.mat]; if(s===G.ignore&&G.ignoreT>0) continue;
+     if(s.vert){ // pole / trunk: never on a glancing pass. head-on: heading within 20 deg of the pole centre, swept so fast frames can't skip it
+@@ -143,7 +143,7 @@
+       const r=ml2<Math.pow(hs*.12+.6,2)?Math.min(n.dh,sweep):n.dh; if(A){ if(!(head>.5&&r<(falling?M.snap*.6:G.GROUND_SNAP[s.mat])+s.r)) continue; }
+       else { const h2=ml2>0?((n.q.x-prev.x)*mx+(n.q.z-prev.z)*mz)/(Math.hypot(n.q.x-prev.x,n.q.z-prev.z)*Math.sqrt(ml2)||1):head; if(Math.max(head,h2)<G.HEADON||r>G.GROUND_SNAP[s.mat]+s.r||R.speed<5) continue; }
+       const sc=1+Math.max(head,0)-r*.2; if(!best||sc>best.sc) best={n,sc,dir:1,align:.8}; continue; }
+-    const rad=falling?M.snap:G.GROUND_SNAP[s.mat]; if(n.d>rad) continue; if(A&&n.q.y>fy+.9) continue; if(!A&&(n.q.y>1.45||n.dh>rad)) continue;
++    const rad=(falling||apex)?M.snap:G.GROUND_SNAP[s.mat]; if(n.d>rad) continue; if(A&&n.q.y>fy+(apex?1.5:.9)) continue; if(!A&&(n.q.y>1.45||n.dh>rad)) continue;
+     const T=n.tan, dv=(vx*T.x+vy*T.y+vz*T.z)/vl, th=Math.hypot(T.x,T.z)||1, dc=(cx*T.x+cz*T.z)/(cl*th);
+     if(!A&&Math.abs(dv)<.25) continue; const sc=.7*Math.abs(dv)+.3*Math.abs(dc)-.25*n.d/rad; if(!best||sc>best.sc) best={n,sc,dir:dv>=0?1:-1,align:Math.abs(dv)+(A?.2:0)}; }
+   if(!best) return false; const n=best.n; G.lastPick={kind:n.s.kind,id:n.s.id,sc:best.sc,cands:C.length};
