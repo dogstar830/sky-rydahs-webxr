@@ -69,3 +69,9 @@ Each exterior ≤ ~6 draws; world ≤ 110 (dcsplit2, desktop non-XR, post off, s
 **Board/handover TODO:** DEMO_STATUS ready line + check-in; push `handover/palma-builder/` on workshop-handover.
 
 **Rust Claw status:** logo EXISTS (`shared/crew-logos/rust-claw.png`, packed slot 9). Colours NOT in `crews.js` — using graffiti.js fallbacks `#ff6a1a` / `#8b3a1a` marked TODO for Systems. Volt same (logo slot 8; colours fallback `#ff2fa0` / `#ffe600`).
+
+### 2026-11-05 11:03 CST — DONE
+- All hero shots on disk (10 files).
+- DEMO_STATUS Goals + ready check-in + Systems open item for crews.js colours.
+- Handover pushed: commit **15d9f28** (`workshop-handover` → `handover/palma-builder/`).
+- Real html md5 still `5ad0f5646468f5fef7d25f9153144e8e`.
