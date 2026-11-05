@@ -74,7 +74,7 @@ Status: **shipped default** = on in the build. **opt-in** = in the chain but beh
 | `code/pbr_base_wip.glsl` | 5 KB | Building-base GLSL chunk for the WIP. | not in chain | - | - | - | WIP |
 | `code/pbr_base_wip.js` | 30 KB | WIP fork of pbr_world.js with building-base shader work. NOT in chain. | not in chain | PBR_WORLD (would replace) | ?pbr, ?toon, ?ktx2 | pbr_base_wip.glsl | WIP |
 | `code/pbr_base_wip_inject.py` | 2 KB | Test-copy injector for pbr_base_wip.js. | not in chain (copy builds only) | - | - | pbr_base_wip.js | WIP |
-| `code/pbr_world.js` | 22 KB | Step-5 PBR world: converts ground/building materials to PBR (albedo/normal/ORM, env map, wet). DEFAULT ON since 10/30 20:11; ?toon=1 or ?pbr=0 = old toon look. | #26 patch_pbr_world.py | const/window.PBR_WORLD | ?toon=1, ?pbr=0/1, ?ktx2=1 | assets/pbr (+env_portside_day/night.png) | shipped default (build_ikki comment still says opt-in; header is authoritative) |
+| `code/pbr_world.js` | 22 KB | Step-5 PBR world: converts ground/building materials to PBR (albedo/normal/ORM, env map, wet). DEFAULT ON since 10/30 20:11; ?toon=1 or ?pbr=0 = old toon look. Day bloom threshold/strength + pbrDay high-pass removed 10/31 (Optimizer /*FXBLOOM*/ owns bloom). Exports: ENV.day/night/cube/cur, GR.exp/fog, tick/convert/boot/install. | #26 patch_pbr_world.py | const/window.PBR_WORLD | ?toon=1, ?pbr=0/1, ?ktx2=1 | assets/pbr (+env_portside_day/night.png); FX (Optimizer FXBLOOM) | shipped default (build_ikki comment still says opt-in; header is authoritative) |
 | `code/sky.js` | 1 KB | Sky dome follows day/night state live, 0 extra draws. | #11 patch_sky.py | const SKY (SKY.day) | - | scene.background, FACADE.uniforms.uDay | shipped default |
 | `code/world.js` | 31 KB | Palma City base world (islands, districts, bridges, 8 garages, colliders[], rails). ORIGINAL SOURCE (pre-workshop); the base our patches layer on. Not modified by us. | core (in base html, before all patches) | const PALMA, colliders, miniRects, rails, checkpoints, cans, tagSpots, animated, districtAt() | ?seed (world rnd) | THREE r128 | original source |
 | `code/world_perf.js` | 39 KB | Runtime draw-call pass after staticMerge: base-interior distance cull, asphalt merge, 270 m tile re-merge, sign atlas, cans. | #25 patch_world_perf.py | const WORLD_PERF (.SIGN); window.CANS_HIDE, CANS_SYNC | ?tier=, ?oldsigns=1, ?sea=1 | staticMerge, asphalt.js | shipped default |
@@ -91,7 +91,7 @@ Status: **shipped default** = on in the build. **opt-in** = in the chain but beh
 | `ref/bridges-research.md` | 5 KB | Research/design reference | - | - | - | - | - |
 | `ref/dash-road-profile-proposal.md` | 3 KB | Research/design reference | - | - | - | - | - |
 | `ref/step5-bake-plan.md` | 18 KB | Research/design reference | - | - | - | - | - |
-| `ref/step5-blowout-notes.md` | 2 KB | Research/design reference | - | - | - | - | - |
+| `ref/step5-blowout-notes.md` | 4 KB | Step-5 blowout + day-bloom removal verify notes | - | - | - | - | - |
 | `ref/step5-texture-atlas-plan.md` | 15 KB | Research/design reference | - | - | - | - | - |
 | `ref/bridges/SOURCES.txt` | 2 KB | Research/design reference | - | - | - | - | - |
 | `ref/bridges/cochrane_africatown_pd.jpg` | 245 KB | Research/design reference | - | - | - | - | - |
@@ -132,6 +132,12 @@ Status: **shipped default** = on in the build. **opt-in** = in the chain but beh
 | `shots/hero/pbr_default_street_day.png` | 3.5 MB | Hero shot (screenshot standard) | - | - | - | - | - |
 | `shots/hero/pbr_street_day_side_by_side.png` | 6.1 MB | Hero shot (screenshot standard) | - | - | - | - | - |
 | `shots/hero/pbr_street_night_side_by_side.png` | 6.0 MB | Hero shot (screenshot standard) | - | - | - | - | - |
+| `shots/hero/pbr_street_day_final.png` | 3.0 MB | PBR street day hero final (post day-bloom removal; 1920x1080 dsf1.5 tier=hd FX on seed=1) | - | - | - | - | - |
+| `shots/hero/pbr_street_night_final.png` | 3.2 MB | PBR street night hero final (neon bloom intact) | - | - | - | - | - |
+| `shots/hero/pbr_causeway_day_final.png` | 3.5 MB | PBR causeway day hero final | - | - | - | - | - |
+| `shots/hero/pbr_causeway_night_final.png` | 3.6 MB | PBR causeway night hero final | - | - | - | - | - |
+| `shots/hero/pbr_street_day_before_tweak.png` | 3.0 MB | Day street with bak-bloomtweak-0018 (pre-removal) for SBS | - | - | - | - | - |
+| `shots/hero/pbr_street_day_before_after_side_by_side.png` | 3.6 MB | Day street before/after day-bloom tweak removal SBS | - | - | - | - | - |
 | `shots/hero/spawn_view_day.png` | 626 KB | Hero shot (screenshot standard) | - | - | - | - | - |
 | `shots/hero/spawn_view_night.png` | 614 KB | Hero shot (screenshot standard) | - | - | - | - | - |
 | `tools/bldgbase_shots.py` | 3 KB | Playwright hero/before-after shot script (1920x1080 dsf1.5, tier hd, seed 1). | - | - | - | - | tool |
@@ -201,7 +207,7 @@ Boxes are [minX, minZ, maxX, maxZ] (the full set is in `data/palma.json`):
 2. **FACADE harness fix**: the shot/measure harness reads day state through the global `const FACADE` (FACADE.uniforms.uDay). It needs a proper fix so the shot scripts don't depend on that global.
 3. **Pod collision** in the Kog loft needs a height-aware check (the colliders are XZ-only, so pods block at any height).
 4. **Catwalk posts** in the garage kit are still to do.
-5. **Volt** (The 98, charging station off the boulevard) and **Rust Claw** (The Cove, salvage shed in the marina blocks) garages are newly assigned (crew ruling 2026-11-02) and **not yet placed**.
+5. **Volt** + **Rust Claw** garages: **placed** 2026-11-05 (see Update below).
 
 ## Update 2026-11-05 — Volt + Rust Claw garages (Palma Builder)
 - `code/crewhouse_kit.js` + `code/patch_crewhouse_kit.py`: inject Volt `[288,-74]` (The 98 charging station) + Rust Claw `[-165,-88]` (Cove salvage shed) into `PALMA.garages`; GATE_CODES volt=`9800` rustclaw=`1984`; per-crew exterior variants (`kitExtVolt` / `kitExtRustClaw`, ≤6 draws); logo slots volt=8 rustclaw=9; theme colour fallbacks TODO until crews.js lands.
@@ -209,3 +215,9 @@ Boxes are [minX, minZ, maxX, maxZ] (the full set is in `data/palma.json`):
 - `ref/garages-volt-rustclaw.md`: design refs + progress log.
 - `shots/hero/garage_{volt,rustclaw}_{exterior_{day,night},interior,lot_{before,after}}.png` (10 files).
 - Chain: `python3 patch_crewhouse_kit.py` (after patch_quant_fix, before patch_world_perf).
+
+## Update 2026-11-05 — Day bloom tweak removal verified (Palma Builder)
+- `code/pbr_world.js`: day-bloom tweak in `tick()` already removed 2026-10-31 00:18 (`bak-bloomtweak-0018`). No longer sets `FX.bloom.threshold/strength` via `S.bTh`/`.98`/`S.bSt`, nor injects `pbrDay` high-pass (`S.bMask`). Comment left pointing at Optimizer `/*FXBLOOM*/` in `patch_xr_fxmem.py`. `window.PBR_WORLD` exports unchanged: ENV.day/night/cube/cur, GR.exp/fog, tick/convert/boot/install.
+- Verify (build_copy `/tmp/palma_bloom.html`, FX on, seed=1): day sky blue not cyan; bloom th/st 0.68/0.6 day+night with bloomHot; no ground blowout; 0 pageerrors; draws street 80–81 / causeway 73–74.
+- Hero finals: `shots/hero/pbr_{street,causeway}_{day,night}_final.png` + `pbr_street_day_before_after_side_by_side.png`.
+- Real html md5 unchanged (`5ad0f5646468f5fef7d25f9153144e8e`). Chain: `python3 patch_pbr_world.py` (after patch_world_perf).
