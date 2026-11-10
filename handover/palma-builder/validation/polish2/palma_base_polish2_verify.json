@@ -1,0 +1,70 @@
+{
+  "errs": {
+    "base": [],
+    "base_shader": [],
+    "after": [],
+    "shader": []
+  },
+  "base": {
+    "base_on": false,
+    "pbr_on": true,
+    "after": {
+      "on": true,
+      "facade": 1,
+      "warn": [],
+      "pbr": true
+    }
+  },
+  "draws": {
+    "base_street": {
+      "world": 77,
+      "chars": 5,
+      "hud": 0,
+      "fx": 5,
+      "main_calls": 86,
+      "n": 87
+    },
+    "after_street": {
+      "world": 78,
+      "chars": 5,
+      "hud": 0,
+      "fx": 7,
+      "main_calls": 89,
+      "n": 90
+    },
+    "after_causeway": {
+      "world": 74,
+      "chars": 4,
+      "hud": 0,
+      "fx": 7,
+      "main_calls": 84,
+      "n": 85
+    },
+    "after_street_day": {
+      "world": 82,
+      "chars": 7,
+      "hud": 0,
+      "fx": 5,
+      "main_calls": 93,
+      "n": 94
+    }
+  },
+  "gameplay": {
+    "base": {
+      "colliders": 973,
+      "wallKicks": 26,
+      "wallPanels": 17,
+      "tags": 9,
+      "riderY": null,
+      "grind": true
+    },
+    "after": {
+      "colliders": 973,
+      "wallKicks": 26,
+      "wallPanels": 17,
+      "tags": 9,
+      "riderY": null
+    }
+  },
+  "ok": true
+}

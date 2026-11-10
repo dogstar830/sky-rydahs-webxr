@@ -2,6 +2,7 @@
 // Ground-floor band (0..baseH, ~3.2-5 m) on the single instanced building ShaderMaterial, after pbr_world converted it: brick / poured concrete
 // per kit, painted-steel I-beam columns + lintel, concrete fascia with inset sign panel, framed storefronts (env-cube glass + interior parallax
 // card, lit at night), steel kick plate / concrete plinth, base grime + AO. Atlas page B (assets/pbr_base/pbrB_*, CC0 ambientCG, see SOURCES.txt).
+// Finish polish2 11/05: close-range high-contrast shelves on back/side walls; hue-preserving night radiance shoulder, bounded emission.
 // Shader-only: 0 new meshes / draws; colliders, WALL_PANELS, WALL_KICKS, tag spots untouched. DEFAULT ON 2026-11-05 (Oliver via Ani): ?pbrbase=0 opts out; ?pbrbase=1 kept as force-on/no-op (needs the PBR world, so ?toon=1 / ?pbr=0 -> no-op). Contrast/scale pass 2026-11-05: larger masonry modules, thicker I-beams/frames, stronger brick mortar + glass + grime; distance-AA wall←col mix so beams/windows survive 15-40 m.
 const PBR_BASE=(()=>{ const S={on:false,warn:[],stats:{}}; const Q=location.search; if(typeof PBR_WORLD==='undefined'||!PBR_WORLD.on||/[?&]pbrbase=0(&|$)/.test(Q)) return S; S.on=true; /* DEFAULT ON 2026-11-05 (Oliver via Ani); ?pbrbase=0 = opt-out; ?pbrbase=1 kept as force-on/no-op */
   const BASE='assets/pbr_base/', K2=window.SR_KTX2&&window.SR_KTX2.on, U={bA:{value:null},bN:{value:null},bO:{value:null}};
@@ -35,21 +36,44 @@ const PBR_BASE=(()=>{ const S={on:false,warn:[],stats:{}}; const Q=location.sear
             else { float trn=min(2.45,oh-.45); float mul=ow>3.?abs(ox-ow*.5):99.; qfr=float(ox<fw||ox>ow-fw||oy>oh-fw||abs(oy-trn)<.045||mul<.04||(oy<fw)); inG=qfr<.5; }
             if(qfr>.5){ qM=qSt*.8; qNt=qSN; qRo=.35; qMe=.8; }
             else if(inG){
+              float qClose=1.-smoothstep(8.,22.,length(vWP-cameraPosition));
               vec3 T3=Tn, rd=vec3(dot(V,T3),V.y,dot(V,-n)); float rw=qSolid?ow*.56:ow, rh=qSolid?oh*.6:oh, qD=qSolid?2.4:3.6;
               vec3 ro=vec3(qSolid?ox-(ow*.5-rw*.5):ox, qSolid?oy-(oh*.55-rh*.5):oy, 0.); rd.z=max(rd.z,.02);
               float tx=rd.x>0.?(rw-ro.x)/rd.x:-ro.x/min(rd.x,-1e-4), ty=rd.y>0.?(rh-ro.y)/rd.y:-ro.y/min(rd.y,-1e-4), tz=qD/rd.z; float tt=min(tx,min(ty,tz)); vec3 hp=ro+rd*tt;
               float rn=h21(vec2(qbi+7.,vSeed)); vec3 wc=mix(vec3(.55,.5,.44),vec3(.42,.5,.55),step(.5,rn))*(.7+.3*h21(vec2(qbi,vSeed+5.)));
               vec3 ic; float lg=1.;
-              if(tt==tz){ ic=wc*(.85+.15*smoothstep(0.,rh,hp.y)); if(hp.y<1.95&&hp.x>.35&&hp.x<rw-.35){ float sy=fract(hp.y/.5), shelf=smoothstep(.0,.04,sy)*smoothstep(.12,.06,sy); vec3 pc=.45+.3*cos(6.2832*(vec3(0.,.33,.67)+rn+hp.x*.35)); float pr=smoothstep(.15,.25,sy)*smoothstep(.95,.8,sy)*(.6+.4*sin(hp.x*9.+rn*20.)); ic=mix(ic,pc*.55,pr*.55); ic=mix(ic,vec3(.08),shelf*.9); } }
-              else if(tt==ty){ ic=rd.y<0.?vec3(.16,.14,.12)*(.8+.4*step(.5,fract(floor(hp.x/.6)*.5+floor(hp.z/.6)*.5))):vec3(.75); if(rd.y>0.) lg=1.+3.*step(abs(fract(hp.z/1.2)-.5),.12)*step(abs(hp.x-rw*.5),rw*.35); }
+              if(tt==tz) ic=wc*(.85+.15*smoothstep(0.,rh,hp.y));
+              else if(tt==ty){ ic=rd.y<0.?vec3(.16,.14,.12)*(.8+.4*step(.5,fract(floor(hp.x/.6)*.5+floor(hp.z/.6)*.5))):vec3(.66,.60,.48); if(rd.y>0.) lg=1.+.3*step(abs(fract(hp.z/1.2)-.5),.12)*step(abs(hp.x-rw*.5),rw*.35); }
               else ic=wc*.75;
+              /* Shelves on back AND side walls: close views must not fall onto a blank side card.
+                 Derivative-filtered edges stay one pixel wide nearby, broaden only at distance. */
+              float su=tt==tz?hp.x:hp.z, sw=tt==tz?rw:qD;
+              if(tt!=ty&&hp.y>.12&&hp.y<1.95&&su>.16&&su<sw-.16){
+                float sy=fract(hp.y/.5), sx=fract(su/.26);
+                float ay=clamp(fwidth(hp.y)/.5*mix(1.,.55,qClose),.002,mix(.18,.055,qClose));
+                float ax=clamp(fwidth(su)/.26*mix(1.,.55,qClose),.003,mix(.35,.07,qClose));
+                float shelf=1.-smoothstep(.035-ay,.035+ay,abs(sy-.09));
+                float item=smoothstep(.14-ax,.14+ax,sx)*(1.-smoothstep(.84-ax,.84+ax,sx));
+                float stock=h21(vec2(floor(su/.26),floor(hp.y/.5)+rn*17.));
+                float pr=item*smoothstep(.20-ay,.20+ay,sy)*(1.-smoothstep(.66+stock*.20-ay,.66+stock*.20+ay,sy));
+                vec3 pc=mix(vec3(.035,.16,.22),vec3(.80,.29,.065),step(.48,stock))*(.65+.35*stock);
+                ic=mix(ic,pc,pr*.98); ic=mix(ic,vec3(.018,.023,.03),shelf);
+                float label=pr*(1.-smoothstep(.027-ay,.027+ay,abs(sy-.43)));
+                ic=mix(ic,vec3(.87,.79,.57),label*.92);
+              }
               ic*=1.-.55*smoothstep(0.,qD,hp.z*.8);
               float on=step(rn,P1.y+.35); vec3 lc=mix(LIT,vec3(1.,.92,.8),.5);
-              vec3 day=ic*.38*lg, night=ic*lc*(on*1.25+.08)*lg;
+              /* Lower lamp peak before a max-channel shoulder. Scale RGB together to retain
+                 warm colour and shelf contrast; bounded radiance still reads above dark streets. */
+              float fixture=(1.-smoothstep(.06,.14,abs(ro.y-rh*.86)))*smoothstep(.12,.22,ro.x/rw)*(1.-smoothstep(.78,.88,ro.x/rw));
+              vec3 day=ic*mix(.48,.65,qClose)*min(lg,1.2);
+              vec3 night=(ic*1.25+vec3(.10,.065,.035))*lc*(on*1.15+.02)*min(lg,1.3);
+              night+=on*fixture*vec3(.48,.32,.16);
+              float qPeak=max(night.r,max(night.g,night.b)); night*=.72/(.72+qPeak);
               vec3 inter=mix(night,day,uDay);
               vec3 gr=reflect(V,n); vec3 genv=textureCube(uEnv,vec3(-gr.x,gr.y,gr.z)).rgb; float gf=.06+.94*pow(1.-max(0.,dot(-V,n)),5.);
-              vec3 gcol=mix(inter,genv*mix(.55,1.15,uDay),clamp(gf+.45*uDay,0.,1.));
-              qE=1.; qM=gcol; qEm=night*(1.-uDay)*(1.-gf)*1.35; qAO=1.;
+              vec3 gcol=mix(inter,genv*mix(.55,1.15,uDay),clamp(gf+mix(.45,.20,qClose)*uDay,0.,1.));
+              qE=1.; qM=gcol; qEm=night*(1.-uDay)*(1.-gf)*.85; qAO=1.;
               float sm=step(.92,h21(vec2(floor(ox*3.),floor(oy*3.)+qbi)))*.05; qM+=sm;                   /* dirt smudges */
             } else { qM=qMas; }
           }

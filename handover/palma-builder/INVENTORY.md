@@ -70,7 +70,7 @@ Status: **shipped default** = on in the build. **opt-in** = in the chain but beh
 | `code/patch_pbr_world.py` | 1 KB | Injects pbr_world.js. | #26 | - | - | pbr_world.js | shipped default |
 | `code/patch_sky.py` | 1 KB | Injects sky.js. | #11 | - | - | sky.js | shipped default |
 | `code/patch_world_perf.py` | 2 KB | Injects world_perf.js. | #25 | - | - | world_perf.js | shipped default |
-| `code/pbr_base.js` | 10 KB | PBR building-base band 0..~5 m: brick/concrete per kit, steel I-beams+lintels, framed storefronts (env glass + night interiors), kick plate, grime/AO. Shader-only 0 new draws. Contrast+distance-AA fix 11/05 so band reads at 15–40 m. DEFAULT ON 2026-11-05 (Oliver via Ani). | #27 patch_pbr_base.py (after #26 pbr_world) | const PBR_BASE | ?pbrbase=0 opt-out, ?pbrbase=1 force-on/no-op, ?toon=1/?pbr=0 no-op | pbr_world.js, assets/pbr_base | shipped default |
+| `code/pbr_base.js` | 12 KB | PBR building-base band 0..~5 m: brick/concrete per kit, steel I-beams+lintels, framed storefronts (env glass + night interiors), kick plate, grime/AO. Shader-only 0 new draws. Contrast+distance-AA fix 11/05 so band reads at 15–40 m. Polish2 11/05: sharper close-range shop interiors, hue-preserving bounded night storefront emission. DEFAULT ON 2026-11-05 (Oliver via Ani). | #27 patch_pbr_base.py (after #26 pbr_world) | const PBR_BASE | ?pbrbase=0 opt-out, ?pbrbase=1 force-on/no-op, ?toon=1/?pbr=0 no-op | pbr_world.js, assets/pbr_base | shipped default |
 | `code/pbr_base_wip.glsl` | 5 KB | Building-base GLSL chunk for the WIP. | not in chain | - | - | - | WIP |
 | `code/pbr_base_wip.js` | 30 KB | WIP fork of pbr_world.js with building-base shader work. NOT in chain. | not in chain | PBR_WORLD (would replace) | ?pbr, ?toon, ?ktx2 | pbr_base_wip.glsl | WIP |
 | `code/pbr_base_wip_inject.py` | 2 KB | Test-copy injector for pbr_base_wip.js. | not in chain (copy builds only) | - | - | pbr_base_wip.js | WIP |
@@ -86,6 +86,9 @@ Status: **shipped default** = on in the build. **opt-in** = in the chain but beh
 | `data/colliders.json` | 82 KB | Exported world data (dump_world_json.py, seed 1) | - | - | - | - | - |
 | `data/ground.json` | 506 KB | Exported world data (dump_world_json.py, seed 1) | - | - | - | - | - |
 | `data/palma.json` | 2 KB | Exported world data (dump_world_json.py, seed 1) | - | - | - | - | - |
+| `notes/polish2/README.md` | 1 KB | pbrbase polish2 status (2026-11-05): shader-only interiors + bounded night emission, chain and evidence pointers. | - | - | - | - | - |
+| `notes/polish2/bldgbase-notes.md` | 21 KB | Building-base progress log through polish2 (2026-11-05). | - | - | - | - | - |
+| `notes/polish2/visual-review.md` | 3 KB | polish2 visual review: sharper close interiors, night pane no longer clips white. | - | - | - | - | - |
 | `ref/bldgbase-notes.md` | 6 KB | Research/design reference | - | - | - | - | - |
 | `ref/blockout-research.md` | 3 KB | Research/design reference | - | - | - | - | - |
 | `ref/bridges-research.md` | 5 KB | Research/design reference | - | - | - | - | - |
@@ -167,6 +170,8 @@ Status: **shipped default** = on in the build. **opt-in** = in the chain but beh
 | `tools/perf_measure.py` | 7 KB | Draw-call / frame-time measurement (per-category draws, min/mean/max over runs). | - | - | - | - | tool |
 | `tools/sign_shot.py` | 3 KB | Sign legibility shots (world_perf sign atlas vs ?oldsigns=1). | - | - | - | - | tool |
 | `tools/sky_shots.py` | 2 KB | Playwright hero/before-after shot script (1920x1080 dsf1.5, tier hd, seed 1). | - | - | - | - | tool |
+| `validation/polish2/dc2_bldgbase_polish2.json` | 9 KB | dcsplit2 polish2 draw budget (street 80-82, causeway 98-101, world max <=110). | - | - | - | - | - |
+| `validation/polish2/palma_base_polish2_verify.json` | 1 KB | polish2 runtime gate: page/shader errors, PBR_BASE on, street draw sample. | - | - | - | - | - |
 ## Ownership notes
 - `code/world.js` is from the **original source** (the pre-workshop Palma City base). We patch around it and never edited it. It's included because every coordinate below comes from it.
 - `assets/world_ktx2/*` was **produced by Rydah Optimizer** (KTX2 encodes of our kit and facade textures). Our files load it under `?ktx2=1`.
@@ -250,3 +255,6 @@ Volt canopy follow-up: code/crewhouse_kit.js dark PBR canopy #1c1e22 roughness .
 - `code/pbr_base.js` + `code/patch_pbr_base.py`: shipped default. `?pbrbase=0` opts out; `?pbrbase=1` is force-on/no-op. `?toon=1` / `?pbr=0` still no-op (needs the PBR world).
 - Oliver via Ani 2026-11-05. Window-interior / night-glow polish not in this pass.
 - Chain unchanged: `python3 patch_pbr_base.py` immediately after `patch_pbr_world.py`.
+
+## pbrbase polish2 (2026-11-05)
+shader-only polish of pbr_base.js. Sharper close-range shop interiors, hue-preserving bounded night storefront emission. Default ON, ?pbrbase=0 opts out. Chain: patch_pbr_base.py right after patch_pbr_world.py. World draws <=110 (street 80-82, causeway 98-101). Hero shots on the box at /workspace/v3build/shots/hero/bldgbase_polish2_*.
