@@ -22,6 +22,13 @@ for f in $(grep -oE '"(loaders|utils|postprocessing|shaders|libs|controls|export
 done
 # meshopt decoder (patch_wardrobe.py adds "libs/meshopt_decoder.js" to initRiders' jsdelivr examples/js list)
 grep -q '"libs/meshopt_decoder.js"' "$H" && get "https://cdn.jsdelivr.net/npm/three@$TV/examples/js/libs/meshopt_decoder.js" "examples/js/libs/meshopt_decoder.js"
+# Rydah Optimizer: prefer exact r128 copies under /workspace/v3build/vendor/three when present (sha-matched to jsdelivr 0.128.0)
+V3V="${V3B:-/workspace/v3build}/vendor/three"
+if [ -d "$V3V/examples/js" ]; then
+  for f in examples/js/loaders/GLTFLoader.js examples/js/utils/BufferGeometryUtils.js examples/js/libs/meshopt_decoder.js; do
+    if [ -s "$V3V/$f" ]; then mkdir -p "$(dirname "$OUT/vendor/three/$f")"; cp "$V3V/$f" "$OUT/vendor/three/$f"; mkdir -p "$(dirname "$VC/$f")"; cp "$V3V/$f" "$VC/$f"; fi
+  done
+fi
 # rewrite ANY spelling of a three CDN base (cdnjs/jsdelivr/unpkg, http(s) or protocol-relative, any version string: 0.128.0, $TV, r128,
 # @latest...) to the vendored copy; we always ship pinned r128/0.128.0, so a different version in the source is forced to r128.
 sed -i -E -e 's#(https?:)?//cdnjs\.cloudflare\.com/ajax/libs/three\.js/[^/"'"'"']+/three(\.min)?\.js#vendor/three/three.min.js#g' \
@@ -41,6 +48,9 @@ cpa wardrobe/riders/caali-g.nonormal.glb   # default Caali G (flat normal map st
 cpa wardrobe/riders/caali-g.glb   # Caali G (meshopt, ?player=caali); also covered by the wardrobe sweep below
 cpa anika/anika-rider.glb   # Anika (Code : E), SR_ROSTER.anika.url; Forge 2026-10-30 (Oliver approved 08:28 CDT)
 cpa anika/anika-rider.opt-ktx2.glb   # Anika Optimizer Draco+KTX2 tier (for a future ?ktx2=1 map entry)
+[ -f "$CHARS/anika/anika-rider.draco-webp.glb" ] && cpa anika/anika-rider.draco-webp.glb   # Anika default/hd tier (Rigger tiers); precached below
+# Simca SOLO rider + NPC, all public tiers (mirror Anika explicit assets; no backups).
+for f in simca/simca-rider.glb simca/simca-rider.quest.glb simca/simca-rider.quest-ktx2.glb simca/simca-npc.glb simca/simca-npc.quest.glb simca/simca-npc.quest-ktx2.glb; do cpa "$f"; done
 [ -f "$CHARS/WITHHELD_CHAR/WITHHELD_CHAR-rider.glb" ] && cpa WITHHELD_CHAR/WITHHELD_CHAR-rider.glb   # WITHHELD_CHAR wardrobe rider (URL built from CHAR_BASE, not caught by the literal-ref sweep)
 [ -f "$CHARS/WITHHELD_CHAR/WITHHELD_CHAR-npc.glb" ] && cpa WITHHELD_CHAR/WITHHELD_CHAR-npc.glb   # WITHHELD_CHAR NPC (local only; PUBLIC=1 drops it via public-exclude + gate)
 # Draco decoder (three r128 examples/js, bundled by v3build/patch_draco.py; page uses setDecoderPath("libs/draco/"))
@@ -87,6 +97,8 @@ PRE="$(cd "$OUT" && { find . -type f ! -name sw.js ! -name .nojekyll ! -name '*.
    # KTX2 assets/libs (explicit, ?ktx2=1)
    for f in $(find assets/asphalt libs/basis libs/ktx2 -type f 2>/dev/null); do echo "./$f"; done
    [ -f skyrydahs-characters/wardrobe/riders/caali-g.nonormal.glb ] && echo ./skyrydahs-characters/wardrobe/riders/caali-g.nonormal.glb   # default Caali G (step 4.2B)
+   # default-path rider GLBs (Rydah Optimizer 2026-11-05): crew NPC *.quest.glb, caali-rider.glb, Anika draco-webp; guarded
+   for f in skyrydahs-characters/*/*-rider.quest.glb skyrydahs-characters/caali/caali-rider.glb skyrydahs-characters/anika/anika-rider.draco-webp.glb; do [ -f "$f" ] && echo "./$f"; done
    # decoders (explicit, so they stay precached even if the generic file list changes)
    for f in libs/draco/DRACOLoader.js libs/draco/draco_wasm_wrapper.js libs/draco/draco_decoder.wasm libs/draco/draco_decoder.js vendor/three/three.min.js vendor/three/examples/js/libs/meshopt_decoder.js vendor/three/examples/js/loaders/GLTFLoader.js vendor/three/examples/js/utils/BufferGeometryUtils.js $(find vendor -type f -name '*.js'); do [ -f "$f" ] && echo "./$f"; done; } | sed 's#^\./#./#' | sort -u | sed 's/.*/  "&",/')"
 cat > "$OUT/sw.js" <<S
