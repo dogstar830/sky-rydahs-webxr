@@ -1,10 +1,10 @@
-// ===== RIDER_STYLE (Rydah Forge, 2026-10-30): Oliver's Option 3 "stylized realistic" rider shading. OPT-IN ?riderstyle=opt3 (off by default) =====
+// ===== RIDER_STYLE (Rydah Forge, 2026-10-30): Oliver's Option 3 "stylized realistic" rider shading. OPT-IN ?riderstyle=opt3 (default via window.RIDER_STYLE_DEFAULT='opt3'; ?riderstyle=old reverts) =====
 // Per Optimizer's opt3 direction (perf/rider-style-opt3-constraints.md): PBR consistent with pbr_world (shared Portside PMREM from PBR_WORLD.ENV[cur],
 // renderer ACES + PBR_WORLD.GR exposure, toneMapped), crew-colour fresnel rim on the GEOMETRIC normal, hair spec, gentle shadow tint, skin warmth,
 // rim+spec capped so lit riders stay < .85 luma (FXBLOOM hot band), NO outline. Crew NPCs: toon -> PBR, inverted hull disabled (3 -> 2 draws each).
-// Colour convention unchanged (renderer outputEncoding Linear; body maps Linear as ikki_skate sets them) so body/skate/crew don't drift apart.
-// Fixed program keys per original shader ('rider-opt3|'+origKey); per-rider colours are uniforms only. Prewarmed with renderer.compile after each swap.
-const RIDER_STYLE=(()=>{ const q=new URLSearchParams(location.search), S={on:q.get('riderstyle')==='opt3', mats:[], stats:{body:0,skate:0,crew:0,other:0,hullOff:0,skip:0}, envKey:null};
+// Colour: albedo maps switched to sRGBEncoding on body+skate+crew together (also fixes ikki_skate's forced Linear at runtime); rider shaders encode LinearTosRGB after tonemapping so they sit on the Linear-output game. Cap .70 linear = .85 display luma.
+// Fixed program keys per original shader ('rider-opt3|'+origKey); per-rider colours are uniforms only. Old toon/outline materials are disposed after the swap so their programs are released.
+const RIDER_STYLE=(()=>{ const q=new URLSearchParams(location.search), DEF=window.RIDER_STYLE_DEFAULT||'old', RS=q.get('riderstyle')||DEF, TIER=q.get('tier')||(window.WARDROBE_TIER)||'', S={on:RS==='opt3', def:DEF, tier:TIER, mats:[], old:new Set(), stats:{body:0,skate:0,crew:0,other:0,hullOff:0,skip:0}, envKey:null};
   const OPT3=`
 { vec3 rsV=normalize(vViewPosition); float rsNdv=clamp(dot(rsGN,rsV),0.,1.); float rsFr=pow(1.-rsNdv,3.);
   float rsL=dot(outgoingLight,vec3(.2126,.7152,.0722));
@@ -13,16 +13,20 @@ const RIDER_STYLE=(()=>{ const q=new URLSearchParams(location.search), S={on:q.g
   outgoingLight+=dc*vec3(.09,.03,.015)*rsSkin*(.5+.5*rsFr);                                                                     // subsurface-ish warmth
   float rsH=uRsHair*pow(clamp(1.-abs(rsGN.y-.45)*2.2,0.,1.),6.)*(1.-.6*roughnessFactor);                                       // hair spec band
   vec3 rsAdd=uRsRim*min(rsFr*.25,.25)+vec3(min(rsH*.3,.3));
-  float rsRoom=max(.85-dot(outgoingLight,vec3(.2126,.7152,.0722)),0.); float rsAL=dot(rsAdd,vec3(.2126,.7152,.0722));
-  outgoingLight+=rsAdd*min(1.,rsRoom/max(rsAL,1e-4)); }                                                                          // cap: lit rider < .85 luma
+  float rsRoom=max(.70-dot(outgoingLight,vec3(.2126,.7152,.0722)),0.); float rsAL=dot(rsAdd,vec3(.2126,.7152,.0722));
+  outgoingLight+=rsAdd*min(1.,rsRoom/max(rsAL,1e-4)); }                                                                          // cap: lit rider < .85 display luma (.70 linear)
 #include <output_fragment>`;
   function inject(s,U){ Object.assign(s.uniforms,U);
     s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\n uniform vec3 uRsRim; uniform float uRsHair;')
       .replace('#include <normal_fragment_begin>','#include <normal_fragment_begin>\n vec3 rsGN=normal;')
-      .replace('#include <output_fragment>',OPT3); }
+      .replace('#include <output_fragment>',OPT3)
+      .replace('#include <encodings_fragment>','#include <encodings_fragment>\n gl_FragColor=LinearTosRGB(gl_FragColor);'); }   // sRGB albedo in -> sRGB out (rider-local; ACES from renderer.toneMapping, XR too)
   function rimOf(root){ const u=root.userData||{}; for(const k of ['rim','rimColor']) if(u[k]!=null) return new THREE.Color(u[k]);
     const d=u.defaults||(u.def&&u.def.defaults)||(u.cfg&&u.cfg.defaults); if(d&&d.rim!=null) return new THREE.Color(d.rim); if(u.glow!=null) return new THREE.Color(u.glow); return null; }
-  function track(m){ m.toneMapped=true; S.mats.push(m); const P=window.PBR_WORLD; if(P&&P.on&&P.mats&&!P.mats.includes(m)) P.mats.push(m); }
+  function P0(){ const P=window.PBR_WORLD; return (P&&P.on&&P.ENV)?P.ENV[P.ENV.cur||'night']:null; }
+  function track(m){ m.toneMapped=true; if(m.map){ m.map.encoding=THREE.sRGBEncoding; m.map.needsUpdate=true; } if(/quest/.test(S.tier)&&m.normalMap){ m.normalMap=null; }
+    { const E=P0(); if(E){ m.envMap=E; m.envMapIntensity=Math.min(m.envMapIntensity||1,1.0); } }   /* PMREM before first compile -> no ikkiEnv-cube variant program */
+    S.mats.push(m); const P=window.PBR_WORLD; if(P&&P.on&&P.mats&&!P.mats.includes(m)) P.mats.push(m); }
   // body / skate / wardrobe items: keep the original material (Rigger's onBeforeCompile), chain opt3 after it
   function upStd(m,kind,rim){ if(m.userData.rs) return; const prev=m.onBeforeCompile, key=(m.customProgramCacheKey&&m.customProgramCacheKey!==THREE.Material.prototype.customProgramCacheKey)?m.customProgramCacheKey.call(m):'';
     const U={uRsRim:{value:rim||new THREE.Color(0x9fd8ff)},uRsHair:{value:kind==='hair'?1:0}}; m.userData.rs=U;
@@ -41,21 +45,22 @@ const RIDER_STYLE=(()=>{ const q=new URLSearchParams(location.search), S={on:q.g
         .replace('#include <roughnessmap_fragment>','#include <roughnessmap_fragment>\n roughnessFactor=mix(.68,.32,clamp(sspec,0.,1.));')
         .replace('#include <emissivemap_fragment>','#include <emissivemap_fragment>\n totalEmissiveRadiance+=slc*semi+mix(vec3(1.),slc,.3)*hlMask*shl*.6;');
       inject(s,U); };
-    m.customProgramCacheKey=()=>'rider-opt3|crew'; o.material=m; track(m); S.stats.crew++; }
+    m.customProgramCacheKey=()=>'rider-opt3|crew'; S.old.add(t); o.material=m; track(m); S.stats.crew++; }
   function hull(o){ const m=o.material; return m&&m.isShaderMaterial&&m.side===THREE.BackSide&&m.uniforms&&m.uniforms.uThick; }
   function convert(o,root,rim){ const m=o.material; if(!m||Array.isArray(m)||m.userData.rs){ return; }
-    if(hull(o)){ m.visible=false; m.userData.rs=1; S.stats.hullOff++; return; }                    // no outline pass in opt3 (material.visible=false -> 0 draws)
+    if(hull(o)){ o.visible=false; m.visible=false; m.userData.rs=1; S.old.add(m); S.stats.hullOff++; return; }                    // no outline pass in opt3 (material.visible=false -> 0 draws)
     if(m.isMeshToonMaterial){ if(m.customProgramCacheKey&&m.customProgramCacheKey()==='rider-toon-r128') upToon(o,rim); else S.stats.skip++; return; }
     if(m.isMeshStandardMaterial&&!m.transparent){ const key=m.customProgramCacheKey?m.customProgramCacheKey.call(m):''; const hair=/hair|braid|pigtail/i.test(o.name+' '+(m.name||''));
       const kind=hair?'hair':/ikki-pbr/.test(key)?'body':/skate/.test(key)?'skate':'other'; upStd(m,kind,rim); S.stats[kind==='hair'?'other':kind]++; return; }
     S.stats.skip++; }   // glow (MeshBasic), sprites, blob shadows stay as they are
   function roots(){ const R=typeof RIDERS!=='undefined'?RIDERS:window.RIDERS, out=[]; if(!R) return out;
     for(const k of ['player','fp','ikkiNpc','akitoNpc']) if(R[k]&&R[k].isObject3D) out.push(R[k]);
-    for(const n of (R.npcs||[])){ const g=n&&(n.isObject3D?n:(n.group||n.root||n.mesh)); if(g&&g.isObject3D) out.push(g); } return out; }
+    for(const n of (R.npcs||[])){ const g=n&&(n.isObject3D?n:(n.holder||n.group||n.root||(n.r&&n.r.isObject3D&&n.r))); if(g&&g.isObject3D) out.push(g); } return out; }
   function sweep(){ const n0=S.mats.length; for(const r of roots()){ let rim=null; r.traverse(o=>{ if(!rim) rim=rimOf(o); }); r.traverse(o=>{ if(o.isMesh&&!o.isSprite) convert(o,r,rim); }); }
-    if(S.mats.length>n0){ S.envKey=null; try{ renderer.compile(scene,camera); }catch(e){} } }   // prewarm: new programs compile here, never mid-gameplay per frame
+    if(S.mats.length>n0){ S.envKey=null; freeOld();   /* no renderer.compile(scene) prewarm: it compiled ~15 unrelated world/FX programs (gate). Rider programs compile on first draw, during load */ } }   // prewarm: new programs compile here, never mid-gameplay per frame
   function env(){ const P=window.PBR_WORLD; if(!(P&&P.on&&P.ENV)) return; const k=P.ENV.cur||'night', t=P.ENV[k]; if(!t) return; const key=k+'|'+S.mats.length; if(S.envKey===key) return;
     S.envKey=key; for(const m of S.mats){ m.envMap=t; m.envMapIntensity=Math.min(m.envMapIntensity||1,1.0); m.needsUpdate=true; } S.envSrc='PBR_WORLD.'+k; }
+  function freeOld(){ const used=new Set(); for(const r of roots()) r.traverse(o=>{ if(o.isMesh&&o.visible&&o.material) used.add(o.material); }); for(const m of S.old){ if(!used.has(m)){ try{ m.dispose(); }catch(e){} S.old.delete(m); S.stats.freed=(S.stats.freed||0)+1; } } }   // release toon/outline programs so opt3 nets out
   S.sweep=sweep; S.env=env;
   if(S.on){ let f=0; (function rsLoop(){ try{ if(f++%30===0) sweep(); env(); }catch(e){ S.err=String(e); } requestAnimationFrame(rsLoop); })(); }
   return S; })();

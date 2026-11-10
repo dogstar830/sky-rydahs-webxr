@@ -1,13 +1,27 @@
 # Rydah Forge — Workshop Handover Inventory
 
 - **Bot:** Rydah Forge (characters / wardrobe / skates / kit props / CombatFX / rider shading / Forge tools)
-- **Date:** 2026-11-05 (America/Chicago)
+- **Date:** 2026-11-05 (America/Chicago); **updated 2026-11-09** (opt3 rider shading + close shots + Simca)
 - **Branch:** `workshop-handover` → folder `handover/forge/`
 - **Repo visibility:** PUBLIC (`dogstar830/sky-rydahs-webxr`)
 - **Privacy:** ALL Akito/Agito files are **local-only** (excluded from this handover regardless of visibility), per Ani integrator update + DEMO_STATUS RULES. Listed at the bottom.
-- **Packaged files:** 1168
-- **Total size:** 1467.38 MB (1538657733 bytes)
+- **Packaged files:** 1219
+- **Total size:** 1595.16 MB (1672641563 bytes)
 - **Excluded from pack:** backups (`*.bak*`), intermediates (`*prespring*`, `*prerebind*`, `*v2raw*`, `*presym*`, `*.prefix-*`, `*.static-*`, `*.nrm768*`), Blender caches (`*.blend1`), `__pycache__`, and `.blend` sources ≥ 50 MB.
+
+## Git LFS required
+
+All `.glb`, `.png`, `.jpg`, `.webp`, `.blend`, and `.npz` files under `handover/forge/` are **Git LFS objects** (see the repo-root `.gitattributes`). A plain `git clone`, a GitHub zip download, a raw link, or a GitHub Pages fetch only gives ~130-byte pointer stubs — not the real binaries.
+
+To materialize the real files after a clone:
+
+```
+git lfs install && git lfs pull
+```
+
+On this workshop box, `git-lfs` is at `/home/box/.local/bin/git-lfs` (add that directory to `PATH` if `git lfs` is not found).
+
+GitHub Pages, `raw.githubusercontent.com` links, and the “Download ZIP” button only serve those pointer stubs. For browser tests, use the non-LFS copies in `handover/rydah-rigger/assets/` or `handover/rydah-optimizer/assets/`, or serve this folder from a local server after a `git lfs pull`.
 
 ## Code chain (build_ikki.sh)
 
@@ -20,7 +34,7 @@ Forge-owned / Forge-initiated steps in `/workspace/v3build/build_ikki.sh` (1-ind
 | 22 | `patch_minimap.py` | `minimap_v2.js` | `?minimap=old` | live |
 | 25 | `patch_quant_fix.py` | (inline SR_DEQUANT) | `?dequant=0` | live |
 | 31 (LAST) | `patch_combat_fx.py` | `combat_fx.js` | `?fxdemo=1`, `?nocfx` | live |
-| — | `patch_rider_style.py` | `rider_style.js` | `?riderstyle=opt3` | **NOT in chain** (standalone staged) |
+| — | `patch_rider_style.py` | `rider_style.js` | `?riderstyle=opt3` | opt-in; official gate PASS; hook after `patch_pbr_base.py`, before `patch_xr_fxmem.py` (Ani wiring next rebuild) |
 | — | `tools/deinterleave.py` | CLI | — | tool (offline) |
 
 ### Code file details
@@ -90,12 +104,12 @@ Forge-owned / Forge-initiated steps in `/workspace/v3build/build_ikki.sh` (1-ind
 - **Status:** live
 
 #### `v3build/patch_rider_style.py`
-- **Type/size/md5:** py, 614 B, `e05abd30798fcdcf2d986210d16da37e`
-- **What it does:** Inlines rider_style.js Option 3 stylized-realistic shading before main loop.
-- **Chain order:** NOT in build_ikki.sh — standalone: python3 patch_rider_style.py /tmp/<copy>.html
-- **URL flags:** ?riderstyle=opt3 (module itself is opt-in)
+- **Type/size/md5:** py, 663 B, `5fcf4e3be7a1d6926d3e655be3e01ae4`
+- **What it does:** Inlines rider_style.js Option 3 stylized-realistic shading before `// ===== LOOP =====`.
+- **Chain order:** Hook for `build_ikki.sh`: after `patch_pbr_base.py`, before `patch_xr_fxmem.py` (Ani wiring into the next rebuild). Still opt-in at runtime.
+- **URL flags:** ?riderstyle=opt3 (default remains the old look)
 - **Dependencies:** rider_style.js, RIDERS, PBR_WORLD env when present, MeshStandardMaterial riders
-- **Status:** staged (opt-in; gate not run)
+- **Status:** opt-in; official gate PASS; ready for rebuild
 
 #### `v3build/patch_wardrobe.py`
 - **Type/size/md5:** py, 7.8 KB, `be0ebe08ea19e01bec4125d21d99d403`
@@ -114,12 +128,29 @@ Forge-owned / Forge-initiated steps in `/workspace/v3build/build_ikki.sh` (1-ind
 - **Status:** WIP/archive
 
 #### `v3build/rider_style.js`
-- **Type/size/md5:** js, 7.4 KB, `5fe683975043661ae502905895912d92`
-- **What it does:** Option 3 rider shading: rim/fresnel, hair spec, share PMREM, drop toon hull; opt-in.
-- **Chain order:** Inlined only if patch_rider_style.py is run (not in default chain)
-- **URL flags:** ?riderstyle=opt3
-- **Dependencies:** Optimizer constraints perf/rider-style-opt3-constraints.md; PBR_WORLD
-- **Status:** staged
+- **Type/size/md5:** js, 8.8 KB, `45ca2ff822c6d9b4624fe66494f3cfc7`
+- **What it does:** Option 3 stylized-realistic rider shading: shared PMREM/env, fresnel rim in crew colour, hair/metal spec, drop toon hull; luma capped under the FX bloom band.
+- **Chain order:** Inlined by patch_rider_style.py (hook after patch_pbr_base.py, before patch_xr_fxmem.py)
+- **URL flags:** ?riderstyle=opt3 (default off)
+- **Dependencies:** Optimizer constraints perf/rider-style-opt3-constraints.md; PBR_WORLD; official gate PASS (see v3build/perf/forge/rider-style-opt3.md)
+- **Status:** opt-in; official gate PASS; ready for rebuild
+
+#### `v3build/rider_style_opt3_shots.py`
+- **Type/size/md5:** py, 3.4 KB, `f4c62de362663059f578e0bc28747cba`
+- **What it does:** Renders chase-distance before/after hero shots of Caali, Anika and Ikki (day and night) plus a contact sheet.
+- **Chain order:** Offline shot tool; not in build_ikki.sh
+- **URL flags:** uses ?riderstyle=opt3 / default for the after/before pairs
+- **Dependencies:** built HTML, .testlock, hero shot harness
+- **Status:** tool
+
+#### `v3build/rider_style_opt3_close_shots.py`
+- **Type/size/md5:** py, 5.3 KB, `b87b136187286d310870426952659045`
+- **What it does:** Close-up (~3/4 front, rider filling ~60% of the frame) before/after pairs with locked camera/time and NPCs hidden; builds the close contact sheet.
+- **Chain order:** Offline shot tool; not in build_ikki.sh
+- **URL flags:** uses ?riderstyle=opt3 / default for the after/before pairs
+- **Dependencies:** built HTML, .testlock, hero shot harness
+- **Status:** tool
+
 
 #### `v3build/wardrobe_js/wardrobe.js`
 - **Type/size/md5:** js, 5.3 KB, `3593fa562c2cf0d421c1edba8fdb598c`
@@ -227,6 +258,8 @@ Forge-owned / Forge-initiated steps in `/workspace/v3build/build_ikki.sh` (1-ind
 | `skyrydahs-characters/static-angels/src/build_rider.py` | py | 8.7 KB | `cb1c45dffef59b7621503c610678a9c1` | Crew character asset build_rider.py | live |
 | `skyrydahs-characters/static-angels/src/shoot.sh` | sh | 187 B | `554af5bd834aeeca64e09f02a46587b5` | Crew character asset shoot.sh | live |
 | `skyrydahs-characters/tool-toul-to/src/build_rider.py` | py | 13.2 KB | `48d6a3ef04ef1c420c833557ca6cd46c` | Crew character asset build_rider.py | live |
+| `v3build/rider_style_opt3_close_shots.py` | py | 5.3 KB | `b87b136187286d310870426952659045` | Close-up (~3/4 front, rider ~60% of frame) opt3 before/after shots with locked camera/time and NPCs hidden; builds close contact sheet. | tool |
+| `v3build/rider_style_opt3_shots.py` | py | 3.4 KB | `f4c62de362663059f578e0bc28747cba` | Chase-distance opt3 before/after hero shots for Caali, Anika, Ikki (day/night) plus contact sheet. | tool |
 | `v3build/tests/combat_fx_hue.py` | py | 2.4 KB | `bf32fa45a8ef2536ff5c27df15815de3` | combat_fx_hue.py | live |
 | `v3build/tests/combat_fx_kick.py` | py | 3.7 KB | `f38397506b1f8f15df1e489094cd22dd` | combat_fx_kick.py | live |
 | `v3build/tests/combat_fx_shots.py` | py | 3.1 KB | `fbab99e49b2bc6e2c343c9a8d90a7537` | combat_fx_shots.py | live |
@@ -1062,6 +1095,13 @@ Forge-owned / Forge-initiated steps in `/workspace/v3build/build_ikki.sh` (1-ind
 | `skyrydahs-characters/shared/skeleton/rider-skeleton.bones.json` | json | 64.4 KB | `c2c1ef76552ffd4c356bb113dfc5623b` | — | Shared Mixamo rider skeleton | Rigger bind | live |
 | `skyrydahs-characters/shared/skeleton/rider-skeleton.glb` | glb | 27.3 KB | `46cf26e936058052d26eccf19f08710c` | tris=4; joints=91; meshes=SkeletonProxy | Shared Mixamo rider skeleton | Rigger bind | live |
 | `skyrydahs-characters/shared/upgrade_hero.py` | py | 8.6 KB | `60b1bad11d701e91ce0e13ce6ee6aa7d` | — | upgrade_hero.py | — | live |
+| `skyrydahs-characters/simca/simca-npc.glb` | glb | 817.4 KB | `d06bd6e2da84454eb99fa4a3994722d2` | tris=27994; joints=155; LODs=Simca_NPC0 + 8 hair locks | Simca NPC / crowd (28k tris, 155 joints, 8 hair locks). | package_pwa + roster (solo / unaffiliated) | ready for rebuild |
+| `skyrydahs-characters/simca/simca-npc.quest-ktx2.glb` | glb | 1.39 MB | `4ea675cf11209537801d2fe2b506b251` | tris=27994; joints=155; LODs=Simca_NPC0 + 8 hair locks | Simca NPC Quest KTX2 variant. | package_pwa + roster (solo / unaffiliated) | ready for rebuild |
+| `skyrydahs-characters/simca/simca-npc.quest.glb` | glb | 817.4 KB | `9a557ac99aa43a300ab8e27e77e47d53` | tris=27994; joints=155; LODs=Simca_NPC0 + 8 hair locks | Simca NPC Quest variant (Draco). | package_pwa + roster (solo / unaffiliated) | ready for rebuild |
+| `skyrydahs-characters/simca/simca-rider.glb` | glb | 2.98 MB | `4ab768a8caa588360b726bc91a8cd9a5` | tris=161249; joints=155; LODs=Simca_LOD0,Simca_LOD1,Simca_LOD2 + 8 hair locks | Simca player LOD0-2, solo/unaffiliated (white/green), 8 hair-lock spring chains (155 joints). | package_pwa + roster (solo / unaffiliated) | ready for rebuild |
+| `skyrydahs-characters/simca/simca-rider.quest-ktx2.glb` | glb | 4.21 MB | `c2eaf989ed5f831babfd1b0051ffcd77` | tris=161249; joints=155; LODs=Simca_LOD0,Simca_LOD1,Simca_LOD2 + 8 hair locks | Simca player Quest KTX2 variant. | package_pwa + roster (solo / unaffiliated) | ready for rebuild |
+| `skyrydahs-characters/simca/simca-rider.quest.glb` | glb | 2.83 MB | `ef9996905ba34e7ef0ffdcb7d1cad8b4` | tris=161249; joints=155; LODs=Simca_LOD0,Simca_LOD1,Simca_LOD2 + 8 hair locks | Simca player Quest variant (Draco). | package_pwa + roster (solo / unaffiliated) | ready for rebuild |
+| `skyrydahs-characters/simca/simca-springs.md` | md | 2.6 KB | `580c2d7c22ef159adea0181453061655` | — | Simca spring-bone doc (copy next to the models): 8 hair chains × 8 bones, 155 joints. | — | live |
 | `skyrydahs-characters/sleeping-forest/loader.js` | js | 1.3 KB | `9a5372dd1d251087d16a735246745c88` | — | Crew character asset loader.js | riders.js SR_CREW_GLB | live |
 | `skyrydahs-characters/sleeping-forest/renders/34.png` | png | 156.5 KB | `1e674cead45f3001dd613edbc99718bf` | — | Crew character asset 34.png | riders.js SR_CREW_GLB | live |
 | `skyrydahs-characters/sleeping-forest/renders/back.png` | png | 140.7 KB | `bf8f01391330f7e19722b98f20f255a5` | — | Crew character asset back.png | riders.js SR_CREW_GLB | live |
@@ -1247,9 +1287,18 @@ Forge-owned / Forge-initiated steps in `/workspace/v3build/build_ikki.sh` (1-ind
 | `skyrydahs-ref/characters/caali-anika-2026-10-30/caali-anika-ref3-pole-grind.jpg` | jpg | 843.7 KB | `0bf5d9bd53d6024233c8a4dd174802c4` | — | caali-anika-ref3-pole-grind.jpg | — | live |
 | `skyrydahs-ref/characters/caali-anika-2026-10-30/forge-plan.md` | md | 15.3 KB | `f03c5b69947c97b47138d6f398d909ef` | — | forge-plan.md | — | live |
 | `skyrydahs-ref/characters/caali-g-rerig-plan.md` | md | 3.1 KB | `23ddd71c057939647589239fa0259b3a` | — | caali-g-rerig-plan.md | — | live |
-| `skyrydahs-ref/characters/character-bible.md` | md | 14.4 KB | `154ea6ea7da3fa3c09a691512c650a9d` | — | character-bible.md | — | live |
+| `skyrydahs-ref/characters/character-bible.md` | md | 15.9 KB | `1389f3009bd0be774c9a48b4ec6ac28e` | — | Character bible (updated 2026-11-05 with Simca — solo / unaffiliated, the Migratory Bird). | — | live |
 | `skyrydahs-ref/characters/meshy-batch-plan.md` | md | 7.8 KB | `c3fdf289291c68299571203a6dd0959a` | — | meshy-batch-plan.md | — | live |
+| `skyrydahs-ref/characters/simca-springs.md` | md | 2.6 KB | `580c2d7c22ef159adea0181453061655` | — | Simca spring-bone doc: 8 hair chains × 8 bones on Head, 155 joints; export notes for Rigger. | — | live |
 | `skyrydahs-ref/meshy-prompts-crews.md` | md | 21.7 KB | `0f47f6284cf02e704fb54b736965fd6e` | — | meshy-prompts-crews.md | — | live |
+| `skyrydahs-ref/simca/refs-2026-11-05/contact.jpg` | jpg | 114.1 KB | `f3da33067e1a977f503a95f6f77f134e` | — | Simca reference still contact.jpg (2026-11-05). | — | ref-shot |
+| `skyrydahs-ref/simca/refs-2026-11-05/ref1.jpg` | jpg | 43.0 KB | `0dd9bf49dd0c0241d5a016ebc8ab009b` | — | Simca reference still ref1.jpg (2026-11-05). | — | ref-shot |
+| `skyrydahs-ref/simca/refs-2026-11-05/ref2.jpg` | jpg | 26.3 KB | `8ee501adabcae35c2cc29ee78f8aff23` | — | Simca reference still ref2.jpg (2026-11-05). | — | ref-shot |
+| `skyrydahs-ref/simca/refs-2026-11-05/ref3.jpg` | jpg | 49.2 KB | `2c8448080c70471162f815ee8dc111aa` | — | Simca reference still ref3.jpg (2026-11-05). | — | ref-shot |
+| `skyrydahs-ref/simca/refs-2026-11-05/ref4.jpg` | jpg | 8.7 KB | `de45d4633e99f93528c459d3d22444f0` | — | Simca reference still ref4.jpg (2026-11-05). | — | ref-shot |
+| `skyrydahs-ref/simca/refs-2026-11-05/ref5.jpg` | jpg | 5.6 KB | `6b56614e501eafc9c42e2a25334e84f6` | — | Simca reference still ref5.jpg (2026-11-05). | — | ref-shot |
+| `skyrydahs-ref/simca/refs-2026-11-05/ref6.jpg` | jpg | 20.3 KB | `425a18ce5f2b6ee4038d42aded29d0dd` | — | Simca reference still ref6.jpg (2026-11-05). | — | ref-shot |
+| `skyrydahs-ref/simca/refs-2026-11-05/ref7.jpg` | jpg | 27.6 KB | `17dd4a422308492a54c449a2c9f8a444` | — | Simca reference still ref7.jpg (2026-11-05). | — | ref-shot |
 | `tools/deinterleave.py` | py | 1.7 KB | `efacb7576f87caa9bb0d906aba44f821` | — | Rewrites GLB accessors from interleaved to non-interleaved buffers (fixes mergeBufferGeometries). | GLB files (esp. at-skate-meshy*.glb) | tool |
 | `v3build/combat_fx.js` | js | 44.1 KB | `3bb87245062ca0bcb0a416159702b8cf` | — | CombatFX API: emit/hit/slash/lightning/stagger/super/lockOn/trail/attach/fromHitFrame; per-crew palettes; max 3 draws. | THREE, scene, SR_PAD optional, rider userData.fx (Rigger srFX) | live |
 | `v3build/gamepad.js` | js | 10.3 KB | `52e471720805b2fc1a00f728997f4cce` | — | Xbox/standard pad layer: sticks, buttons, triggers, SR_PAD.haptic(evt,opts) with comfort scale. | Gamepad API + optional XR gamepad haptic actuators | live |
@@ -1258,7 +1307,7 @@ Forge-owned / Forge-initiated steps in `/workspace/v3build/build_ikki.sh` (1-ind
 | `v3build/patch_gamepad.py` | py | 7.1 KB | `840d419d42fc3a77c0987fce65dd2487` | — | Injects gamepad.js as window.SR_PAD; routes navigator.getGamepads through it; haptics API used by CombatFX. | gamepad.js; XR renderer.xr session for pulses; Systems/combat callers of SR_PAD.haptic | live (Forge-initiated; Optimizer extended haptics) |
 | `v3build/patch_minimap.py` | py | 1.0 KB | `14734f38be23f809abc254bd7b259aa1` | — | Injects minimap_v2.js Watch Dogs-style tilted GPS minimap + direction markers. | minimap_v2.js, map.js, icons.js, phone HUD | live |
 | `v3build/patch_quant_fix.py` | py | 2.4 KB | `9746c0f2b2d25abcc7e915303fff369e` | — | Dequantizes KHR_mesh_quantization POSITION back to float metres and fixes skin IBM so AT wheel centres (_WC) spin correctly. | Skinned wardrobe/Ikki riders with quantized POSITION; IKKI_AT_VERT / _WC attributes | live |
-| `v3build/patch_rider_style.py` | py | 614 B | `e05abd30798fcdcf2d986210d16da37e` | — | Inlines rider_style.js Option 3 stylized-realistic shading before main loop. | rider_style.js, RIDERS, PBR_WORLD env when present, MeshStandardMaterial riders | staged (opt-in; gate not run) |
+| `v3build/patch_rider_style.py` | py | 663 B | `5fcf4e3be7a1d6926d3e655be3e01ae4` | — | Inlines rider_style.js Option 3 shading before // ===== LOOP =====. Hook: after patch_pbr_base.py, before patch_xr_fxmem.py. Opt-in ?riderstyle=opt3. | rider_style.js, RIDERS, PBR_WORLD env when present | opt-in; official gate PASS; ready for rebuild |
 | `v3build/patch_wardrobe.py` | py | 7.8 KB | `be0ebe08ea19e01bec4125d21d99d403` | — | Injects wardrobe system + Caali G as default player on shared Meshy skeleton/skate poser; wires WARDROBE_RIDERS, outfit apply, hide slots. | wardrobe_js/wardrobe.js (inlined/loaded), jackets.js AT skate API, riders.js loadIkki, CHAR_BASE assets under skyrydahs-characters/ | live |
 | `v3build/patch_wardrobe_v6pre.py` | py | 5.9 KB | `f87700fec224bbfe069b0abd9efda8d3` | — | Older wardrobe patch variant (v6pre); superseded by patch_wardrobe.py. | wardrobe_v6pre.js | WIP/archive |
 | `v3build/perf/forge/at-skate-v2.md` | md | 6.4 KB | `091685abebdb856bda7285b8defc81f1` | — | Doc at-skate-v2.md | — | doc |
@@ -1283,6 +1332,7 @@ Forge-owned / Forge-initiated steps in `/workspace/v3build/build_ikki.sh` (1-ind
 | `v3build/perf/forge/combat-fx-shots.json` | json | 1.2 KB | `12936c8302e565f4de8ef38a96c16cd5` | — | Doc combat-fx-shots.json | — | doc |
 | `v3build/perf/forge/combat-fx.md` | md | 13.2 KB | `ab30654d1fe026e456f1066b67db0925` | — | Doc combat-fx.md | — | doc |
 | `v3build/perf/forge/deinterleave-guard.diff` | diff | 1.1 KB | `405a15e405dcab36f3c1f6a8bee858cd` | — | Doc deinterleave-guard.diff | — | doc |
+| `v3build/perf/forge/rider-style-opt3.md` | md | 3.0 KB | `da06c645d25cb07a270a1f158a58789b` | — | Opt3 rider-style gate results (official PASS) and build-hook notes. | — | doc |
 | `v3build/perf/rider-style-opt3-constraints.md` | md | 5.6 KB | `0413bbc63f86be340c317bb80423d008` | — | rider-style-opt3-constraints.md | — | live |
 | `v3build/perf/rider-style-opt3-gate.md` | md | 1.8 KB | `ea11f2cb9412d51addf98e2d7b52da8f` | — | rider-style-opt3-gate.md | — | live |
 | `v3build/props/kit/couch.glb` | glb | 284.5 KB | `a143bbc991e90d5a5fb3a604fe5c2864` | tris=5500; meshes=Mesh_0.001 | Garage kit prop couch | crewhouse_kit.js kitProp/kitPodGlb/kitDroneGlb | live |
@@ -1311,7 +1361,9 @@ Forge-owned / Forge-initiated steps in `/workspace/v3build/build_ikki.sh` (1-ind
 | `v3build/props/kit/preview_tv.png` | png | 647.6 KB | `a0bf9753da6172366d35b40f531a5895` | — | preview_tv.png | — | live |
 | `v3build/props/kit/tv.glb` | glb | 7.2 KB | `704c628e4ccdaa3eaa59a05930970290` | tris=86; meshes=screen,tv_body | Garage kit prop tv | crewhouse_kit.js kitProp/kitPodGlb/kitDroneGlb | live |
 | `v3build/props/kit/tv.ktx2.glb` | glb | 7.6 KB | `ff7097fc62f2847d36283181aca4508a` | tris=86; meshes=screen,tv_body | Garage kit prop tv.ktx2 | crewhouse_kit.js kitProp/kitPodGlb/kitDroneGlb | staged |
-| `v3build/rider_style.js` | js | 7.4 KB | `5fe683975043661ae502905895912d92` | — | Option 3 rider shading: rim/fresnel, hair spec, share PMREM, drop toon hull; opt-in. | Optimizer constraints perf/rider-style-opt3-constraints.md; PBR_WORLD | staged |
+| `v3build/rider_style.js` | js | 8.8 KB | `45ca2ff822c6d9b4624fe66494f3cfc7` | — | Option 3 stylized-realistic rider shading: shared PMREM/env, fresnel rim in crew colour, hair/metal spec, drop toon hull; opt-in ?riderstyle=opt3. Official gate PASS (−1 draw). | Inlined by patch_rider_style.py; PBR_WORLD | opt-in; official gate PASS; ready for rebuild |
+| `v3build/rider_style_opt3_close_shots.py` | py | 5.3 KB | `b87b136187286d310870426952659045` | — | Close-up (~3/4 front, rider ~60% of frame) opt3 before/after shots with locked camera/time and NPCs hidden; builds close contact sheet. | — | tool |
+| `v3build/rider_style_opt3_shots.py` | py | 3.4 KB | `f4c62de362663059f578e0bc28747cba` | — | Chase-distance opt3 before/after hero shots for Caali, Anika, Ikki (day/night) plus contact sheet. | — | tool |
 | `v3build/shots/hero/anika_34_vs_ref.png` | png | 3.26 MB | `ad6fec4bf6f30e0747085b35848af50f` | — | Forge hero shot anika_34_vs_ref.png | — | ref-shot |
 | `v3build/shots/hero/anika_front_vs_ref.png` | png | 3.25 MB | `d9f82e3fc1f6a23f1ca0e0928cc8d747` | — | Forge hero shot anika_front_vs_ref.png | — | ref-shot |
 | `v3build/shots/hero/build_AI4_anika.png` | png | 2.83 MB | `dd34c6c74feb8c6d7c15f819718694d3` | — | Forge hero shot build_AI4_anika.png | — | ref-shot |
@@ -1339,6 +1391,38 @@ Forge-owned / Forge-initiated steps in `/workspace/v3build/build_ikki.sh` (1-ind
 | `v3build/shots/hero/combat_fx_super_karasu.png` | png | 3.06 MB | `ee3edc59a0c7666ffef85a5807d73c85` | — | Forge hero shot combat_fx_super_karasu.png | — | ref-shot |
 | `v3build/shots/hero/combat_fx_ttt.png` | png | 2.76 MB | `7cd429a034ed5cd41856e2a956725d18` | — | Forge hero shot combat_fx_ttt.png | — | ref-shot |
 | `v3build/shots/hero/combat_fx_volt.png` | png | 2.77 MB | `8658d234d9e0662b738358b010a4d48d` | — | Forge hero shot combat_fx_volt.png | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_anika_day_after.png` | png | 4.18 MB | `9b5dd8bf84579cb713e8f01f35942a24` | — | Forge hero shot rider_style_opt3_anika_day_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_anika_day_before.png` | png | 4.16 MB | `f00e17050180cd525a8c12a8f2c30a98` | — | Forge hero shot rider_style_opt3_anika_day_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_anika_night_after.png` | png | 4.32 MB | `cee7beb86fbd601ec6eab001f93bd442` | — | Forge hero shot rider_style_opt3_anika_night_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_anika_night_before.png` | png | 4.33 MB | `5517f56c72cc69b1271ff7db9bb4bb38` | — | Forge hero shot rider_style_opt3_anika_night_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_caali_day_after.png` | png | 4.20 MB | `4d3dd8ff33fddae0ca07c260f1e1a177` | — | Forge hero shot rider_style_opt3_caali_day_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_caali_day_before.png` | png | 4.20 MB | `65212c6bf21491cee947d3aee48cadca` | — | Forge hero shot rider_style_opt3_caali_day_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_caali_night_after.png` | png | 4.33 MB | `9a284bdb6118dd5380cbd80f8f069982` | — | Forge hero shot rider_style_opt3_caali_night_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_caali_night_before.png` | png | 4.35 MB | `2c3405247c14eb671c516798498033e9` | — | Forge hero shot rider_style_opt3_caali_night_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_anika_day_after.png` | png | 3.35 MB | `11c830028b41b7ce31eead950fdea669` | — | Forge hero shot rider_style_opt3_close_anika_day_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_anika_day_before.png` | png | 3.31 MB | `faa2fca0d770619e2659303a061efc89` | — | Forge hero shot rider_style_opt3_close_anika_day_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_anika_night_after.png` | png | 3.47 MB | `36f028f457c859fb9f4cbc2bc08947f9` | — | Forge hero shot rider_style_opt3_close_anika_night_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_anika_night_before.png` | png | 3.43 MB | `cfaa3e72a7ce6177698bf0a3c3c4b06a` | — | Forge hero shot rider_style_opt3_close_anika_night_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_caali_day_after.png` | png | 3.37 MB | `93f6089e780c979d5a793c0c885c6b99` | — | Forge hero shot rider_style_opt3_close_caali_day_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_caali_day_before.png` | png | 3.32 MB | `28c21727b1ff30f39d123f91d40ba4c1` | — | Forge hero shot rider_style_opt3_close_caali_day_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_caali_night_after.png` | png | 3.48 MB | `66e9336e57c6789a5d2b673e7c84036c` | — | Forge hero shot rider_style_opt3_close_caali_night_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_caali_night_before.png` | png | 3.41 MB | `1967fa7748ea9b90457cb1377df564ab` | — | Forge hero shot rider_style_opt3_close_caali_night_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_contact.png` | png | 3.98 MB | `4763dd1e49c04b0a07cffb4dadca670a` | — | Opt3 close-up before/after contact sheet (Caali, Anika, Ikki; day/night; NPCs hidden). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_ikki_day_after.png` | png | 3.36 MB | `21781b336256750452de9793064ae45e` | — | Forge hero shot rider_style_opt3_close_ikki_day_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_ikki_day_before.png` | png | 3.34 MB | `b6e8d1a82b60e2f6572e90765e6a99dc` | — | Forge hero shot rider_style_opt3_close_ikki_day_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_ikki_night_after.png` | png | 3.48 MB | `190cbbe3dd46f1b43078565d59337fc8` | — | Forge hero shot rider_style_opt3_close_ikki_night_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_close_ikki_night_before.png` | png | 3.45 MB | `f780d68551d3ab256cdd2bba278ad16a` | — | Forge hero shot rider_style_opt3_close_ikki_night_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_contact.png` | png | 1.70 MB | `de392d76dfddacdad9e02ba91f9879dd` | — | Opt3 chase-distance before/after contact sheet (Caali, Anika, Ikki; day/night). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_ikki_day_after.png` | png | 4.23 MB | `88a9d2ccaf1950a53a96ee5aef704154` | — | Forge hero shot rider_style_opt3_ikki_day_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_ikki_day_before.png` | png | 4.22 MB | `4f97b12eaf1fef10de6b99d4301350d4` | — | Forge hero shot rider_style_opt3_ikki_day_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_ikki_night_after.png` | png | 4.37 MB | `685fce834c75d8ad8ce9ec3c14f6240d` | — | Forge hero shot rider_style_opt3_ikki_night_after.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/rider_style_opt3_ikki_night_before.png` | png | 4.34 MB | `fca3c29c381d31d023caad54ffcd12b4` | — | Forge hero shot rider_style_opt3_ikki_night_before.png (opt3 rider shading before/after). | — | ref-shot |
+| `v3build/shots/hero/simca_34.png` | png | 2.13 MB | `c8f8914915ee3be0f771d049c5e25581` | — | Simca 3/4 review shot. | — | ref-shot |
+| `v3build/shots/hero/simca_back.png` | png | 2.07 MB | `1b4e646135240818ee17d7d07ea3ae4a` | — | Simca back review shot. | — | ref-shot |
+| `v3build/shots/hero/simca_contact.png` | png | 5.07 MB | `261203d61f060a2bcaa3587a24a301c6` | — | Simca turnaround contact sheet. | — | ref-shot |
+| `v3build/shots/hero/simca_face.png` | png | 2.29 MB | `a2a8d2ed7def7f67d6ca72b660408bda` | — | Simca face close-up. | — | ref-shot |
+| `v3build/shots/hero/simca_front.png` | png | 2.13 MB | `148d6a8e2ab49a5d6902651a9d84566a` | — | Simca front review shot. | — | ref-shot |
+| `v3build/shots/hero/simca_vs_ref.png` | png | 3.08 MB | `4d2f36e96ec939556b705511c3bc5b8b` | — | Simca vs reference comparison. | — | ref-shot |
 | `v3build/shots/hero/skate_v2_hubs_ingame.png` | png | 2.51 MB | `1a997b06eb71966bce2ed2dd286f6cbe` | — | Forge hero shot skate_v2_hubs_ingame.png | — | ref-shot |
 | `v3build/shots/hero/skate_v2_hubs_ingame_before.png` | png | 2.49 MB | `cbbc105b5bbb02e68553d92dd3b14697` | — | Forge hero shot skate_v2_hubs_ingame_before.png | — | ref-shot |
 | `v3build/shots/hero/skate_v2_vs_old.png` | png | 3.09 MB | `d7bc7ea3b940d8bdcc5ad3a7e318a7ab` | — | Forge hero shot skate_v2_vs_old.png | — | ref-shot |
@@ -1431,12 +1515,37 @@ Per DEMO_STATUS RULES and Ani (2026-11-05): Akito stays out of public PRs/deploy
 | `/workspace/forge_kit/akito_sj/raster.py` | akito-privacy |
 | `/workspace/forge_kit/akito_sj/sj_build.py` | akito-privacy |
 | `/workspace/forge_kit/akito_sj/sj_build.v1.py` | akito-privacy |
+| `/workspace/rigwork/akito/akito-dark2-npc.dec.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/rigwork/akito/akito-dark2-npc.quest-ktx2.dec.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/rigwork/akito/akito-dark2-npc.quest.dec.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/rigwork/akito/akito-dark2-rider.dec.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/rigwork/akito/akito-dark2-rider.dec.test.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/rigwork/akito/akito-dark2-rider.quest-ktx2.dec.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/rigwork/akito/akito-dark2-rider.quest.dec.glb` | akito-privacy (dark2 local-only) |
 | `/workspace/skyrydahs-characters/akito/akito-dark-npc.glb` | akito-privacy |
 | `/workspace/skyrydahs-characters/akito/akito-dark-npc.s4-ktx2.glb` | akito-privacy |
 | `/workspace/skyrydahs-characters/akito/akito-dark-npc.s4.glb` | akito-privacy |
 | `/workspace/skyrydahs-characters/akito/akito-dark-rider.glb` | akito-privacy |
 | `/workspace/skyrydahs-characters/akito/akito-dark-rider.s4-ktx2.glb` | akito-privacy |
 | `/workspace/skyrydahs-characters/akito/akito-dark-rider.s4.glb` | akito-privacy |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-npc.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-npc.glb.bak-pre-fixv2` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-npc.prerig-20261105-1245.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest-ktx2.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest-ktx2.glb.bak-cuff-20261105-152226` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest-ktx2.prerig-20261105-1245.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest.glb.bak-cuff-20261105-152226` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest.prerig-20261105-1245.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-rider.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-rider.glb.bak-pre-fixv2` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-rider.prerig-20261105-1245.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest-ktx2.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest-ktx2.glb.bak-cuff-20261105-152226` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest-ktx2.prerig-20261105-1245.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest.glb` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest.glb.bak-cuff-20261105-152226` | akito-privacy (dark2 local-only) |
+| `/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest.prerig-20261105-1245.glb` | akito-privacy (dark2 local-only) |
 | `/workspace/skyrydahs-characters/akito/akito-npc.bak-forge-preskate-20261030.glb` | akito-privacy |
 | `/workspace/skyrydahs-characters/akito/akito-npc.glb` | akito-privacy |
 | `/workspace/skyrydahs-characters/akito/akito-npc.glb.bak-0500-202610290527` | akito-privacy |
@@ -1516,7 +1625,7 @@ Per DEMO_STATUS RULES and Ani (2026-11-05): Akito stays out of public PRs/deploy
 | `/workspace/v3build/shots/hero/akito_v2skate_34.png` | akito-privacy |
 | `/workspace/v3build/shots/hero/akito_v2skate_front.png` | akito-privacy |
 
-Total local-only paths recorded: **90**.
+Total local-only paths recorded: **115**.
 
 Also local-only (not enumerated file-by-file if already covered): `/workspace/forge_kit/akito_sj/`, `/workspace/skyrydahs-ref/akito/`, `/workspace/skyrydahs-characters/akito/`, `/workspace/v3build/shots/hero/akito_*`, `/workspace/rigwork/akito/`, `/workspace/shots/akito/`.
 
@@ -1526,4 +1635,6 @@ Also local-only (not enumerated file-by-file if already covered): `/workspace/fo
 - Backup/intermediate GLBs and PNGs matching bak/prespring/prerebind/v2raw/presym/prefix/static/nrm768.
 - Non-Forge hero shots under `v3build/shots/hero/` (Palma/Optimizer/Systems world A/B plates). Forge-authored finals included: `combat_fx_*`, `skate_v2*`, `skatev2_*`, `anika_*`, `caali_v2_*`, `build_AI*_anika/caali`.
 - Order named `forgerider.py`; on disk the tool is `forge_kit/gr8/fix/fixrider.py` (included).
-- `patch_rider_style.py` / `rider_style.js` are packaged but **not** wired into `build_ikki.sh` yet.
+- `patch_rider_style.py` / `rider_style.js` are packaged and **official gate PASS** (opt-in `?riderstyle=opt3`). Hook for `build_ikki.sh`: after `patch_pbr_base.py`, before `patch_xr_fxmem.py` (Ani wiring into the next rebuild; default look unchanged).
+- Simca `meshy/` raw Meshy export and `*.bak*` / `*.prerig-*` backups were left out (current rigged rider/npc × base/quest/quest-ktx2 only).
+- Akito dark2 (`akito-dark2-*.glb` and related) is **local-only**; paths are listed in § Local-only and are not in this public repo.

@@ -6,3 +6,15 @@ Character art, wardrobe, A-T skates, crew logos/coins, garage kit props, CombatF
 
 - `INVENTORY.md` — every file (path, type, size, md5, GLB tris/LODs/joints, loader, status) + code chain/flags/deps
 - `UNITY_NOTES.md` — skeleton, A-T sockets/scale, shading, CombatFX, LOD/texture budgets, open issues
+
+## Git LFS required
+
+All `.glb`, `.png`, `.jpg`, `.webp`, `.blend`, and `.npz` files under `handover/forge/` are **Git LFS objects**. A plain clone, a GitHub zip download, a raw link, or a GitHub Pages fetch only gives ~130-byte pointer stubs — not the real binaries.
+
+```
+git lfs install && git lfs pull
+```
+
+On this workshop box, `git-lfs` is at `/home/box/.local/bin/git-lfs` (add that directory to `PATH` if `git lfs` is not found).
+
+For browser tests, use the non-LFS copies in `handover/rydah-rigger/assets/` or `handover/rydah-optimizer/assets/`, or serve this folder from a local server after a `git lfs pull`.

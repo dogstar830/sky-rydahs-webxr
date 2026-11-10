@@ -1,22 +1,6 @@
 [
   [
-    "/workspace/forge_kit/akito_sj/paint_new.py",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/forge_kit/akito_sj/sj_build.v1.py",
-    "akito-privacy"
-  ],
-  [
     "/workspace/forge_kit/akito_sj/ao_build.py",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/forge_kit/akito_sj/sj_build.py",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/forge_kit/akito_sj/raster.py",
     "akito-privacy"
   ],
   [
@@ -24,95 +8,51 @@
     "akito-privacy"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_v2skate_front.png",
+    "/workspace/forge_kit/akito_sj/paint_new.py",
     "akito-privacy"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_straitjacket_back.bak-forge-v1.png",
+    "/workspace/forge_kit/akito_sj/raster.py",
     "akito-privacy"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_straitjacket_34.bak-forge-v1.png",
+    "/workspace/forge_kit/akito_sj/sj_build.py",
     "akito-privacy"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_v2skate_34.png",
+    "/workspace/forge_kit/akito_sj/sj_build.v1.py",
     "akito-privacy"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_straitjacket_back.png",
-    "akito-privacy"
+    "/workspace/rigwork/akito/akito-dark2-npc.dec.glb",
+    "akito-privacy (dark2 local-only)"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_dark_front.png",
-    "akito-privacy"
+    "/workspace/rigwork/akito/akito-dark2-npc.quest-ktx2.dec.glb",
+    "akito-privacy (dark2 local-only)"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_straitjacket_34.png",
-    "akito-privacy"
+    "/workspace/rigwork/akito/akito-dark2-npc.quest.dec.glb",
+    "akito-privacy (dark2 local-only)"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_straitjacket_front.png",
-    "akito-privacy"
+    "/workspace/rigwork/akito/akito-dark2-rider.dec.glb",
+    "akito-privacy (dark2 local-only)"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_dark_34.png",
-    "akito-privacy"
+    "/workspace/rigwork/akito/akito-dark2-rider.dec.test.glb",
+    "akito-privacy (dark2 local-only)"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_straitjacket_front.bak-forge-v1.png",
-    "akito-privacy"
+    "/workspace/rigwork/akito/akito-dark2-rider.quest-ktx2.dec.glb",
+    "akito-privacy (dark2 local-only)"
   ],
   [
-    "/workspace/v3build/shots/hero/akito_dark_back.png",
-    "akito-privacy"
+    "/workspace/rigwork/akito/akito-dark2-rider.quest.dec.glb",
+    "akito-privacy (dark2 local-only)"
   ],
   [
-    "/workspace/skyrydahs-characters/akito/akito-dark-npc.s4.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-npc.bak-forge-preskate-20261030.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-straitjacket-npc.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-rider.s4-ktx2.bakedskate-20261030-1026.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-straitjacket-npc.bak-forge-v1-20261030.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-rider.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-npc.glb.bak-0500-202610290527",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-straitjacket-rider.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-npc.s4-ktx2.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-dark-rider.s4.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-straitjacket-npc.s4-ktx2.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-dark-rider.s4-ktx2.glb",
+    "/workspace/skyrydahs-characters/akito/akito-dark-npc.glb",
     "akito-privacy"
   ],
   [
@@ -120,51 +60,7 @@
     "akito-privacy"
   ],
   [
-    "/workspace/skyrydahs-characters/akito/akito-springs.md",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-straitjacket-npc.prestrapspring-20261030-2115.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-straitjacket-rider.prestrapspring-20261030-2115.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-rider.s4.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-rider.bak-forge-preskate-20261030.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-npc.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-dark-npc.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-straitjacket-rider.bak-forge-v1-20261030.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-straps-rig-report.json",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-npc.s4-ktx2.bakedskate-20261030-1026.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-rider.s4.bakedskate-20261030-1026.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/akito-straitjacket-rider.s4-ktx2.glb",
+    "/workspace/skyrydahs-characters/akito/akito-dark-npc.s4.glb",
     "akito-privacy"
   ],
   [
@@ -172,11 +68,103 @@
     "akito-privacy"
   ],
   [
-    "/workspace/skyrydahs-characters/akito/akito-rider.glb.bak-0500-202610290527",
+    "/workspace/skyrydahs-characters/akito/akito-dark-rider.s4-ktx2.glb",
     "akito-privacy"
   ],
   [
-    "/workspace/skyrydahs-characters/akito/akito-rider.s4-ktx2.glb",
+    "/workspace/skyrydahs-characters/akito/akito-dark-rider.s4.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-npc.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-npc.glb.bak-pre-fixv2",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-npc.prerig-20261105-1245.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest-ktx2.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest-ktx2.glb.bak-cuff-20261105-152226",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest-ktx2.prerig-20261105-1245.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest.glb.bak-cuff-20261105-152226",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-npc.quest.prerig-20261105-1245.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-rider.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-rider.glb.bak-pre-fixv2",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-rider.prerig-20261105-1245.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest-ktx2.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest-ktx2.glb.bak-cuff-20261105-152226",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest-ktx2.prerig-20261105-1245.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest.glb.bak-cuff-20261105-152226",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-dark2-rider.quest.prerig-20261105-1245.glb",
+    "akito-privacy (dark2 local-only)"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-npc.bak-forge-preskate-20261030.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-npc.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-npc.glb.bak-0500-202610290527",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-npc.s4-ktx2.bakedskate-20261030-1026.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-npc.s4-ktx2.glb",
     "akito-privacy"
   ],
   [
@@ -188,7 +176,51 @@
     "akito-privacy"
   ],
   [
-    "/workspace/skyrydahs-characters/akito/akito-straitjacket-rider.s4.glb",
+    "/workspace/skyrydahs-characters/akito/akito-rider.bak-forge-preskate-20261030.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-rider.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-rider.glb.bak-0500-202610290527",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-rider.s4-ktx2.bakedskate-20261030-1026.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-rider.s4-ktx2.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-rider.s4.bakedskate-20261030-1026.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-rider.s4.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-springs.md",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-straitjacket-npc.bak-forge-v1-20261030.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-straitjacket-npc.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-straitjacket-npc.prestrapspring-20261030-2115.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-straitjacket-npc.s4-ktx2.glb",
     "akito-privacy"
   ],
   [
@@ -196,7 +228,71 @@
     "akito-privacy"
   ],
   [
+    "/workspace/skyrydahs-characters/akito/akito-straitjacket-rider.bak-forge-v1-20261030.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-straitjacket-rider.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-straitjacket-rider.prestrapspring-20261030-2115.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-straitjacket-rider.s4-ktx2.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-straitjacket-rider.s4.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/akito-straps-rig-report.json",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/akito-npc-raw.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/akito-rider-raw.glb",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/akito_atlas_c.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/akito_atlas_c_eyes.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/akito_atlas_mr.png",
+    "akito-privacy"
+  ],
+  [
     "/workspace/skyrydahs-characters/akito/src/build_akito.py",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/build_akito_v2pre.py",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/build_akito_v3b.py",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/dump_islands.py",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/img0_normal.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/img1_texture_0.png",
     "akito-privacy"
   ],
   [
@@ -208,63 +304,7 @@
     "akito-privacy"
   ],
   [
-    "/workspace/skyrydahs-characters/akito/src/img0_normal.png",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/repair_tex_v3pre.py",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/img1_texture_0.png",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/dump_islands.py",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/build_akito_v3b.py",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/akito-rider-raw.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/repair_tex.py",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/akito-npc-raw.glb",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/akito_atlas_c_eyes.png",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/build_akito_v2pre.py",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/akito_atlas_mr.png",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/akito_atlas_c.png",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/renders/akito_face_front_3pt.png",
-    "akito-privacy"
-  ],
-  [
     "/workspace/skyrydahs-characters/akito/src/renders/akito_body_front_3pt.png",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/renders/akito_face_blender.png",
     "akito-privacy"
   ],
   [
@@ -272,19 +312,35 @@
     "akito-privacy"
   ],
   [
+    "/workspace/skyrydahs-characters/akito/src/renders/akito_face_blender.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/renders/akito_face_front_3pt.png",
+    "akito-privacy"
+  ],
+  [
     "/workspace/skyrydahs-characters/akito/src/renders/akito_review_sheet_3pt.png",
     "akito-privacy"
   ],
   [
-    "/workspace/skyrydahs-characters/akito/src/v2/img2_texture_0_metallic_roughness.png",
+    "/workspace/skyrydahs-characters/akito/src/repair_tex.py",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/repair_tex_v3pre.py",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/v2/akito_atlas_c.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-characters/akito/src/v2/akito_atlas_mr.png",
     "akito-privacy"
   ],
   [
     "/workspace/skyrydahs-characters/akito/src/v2/hair_mask_1k.png",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/v2/tex_tinted_4k.png",
     "akito-privacy"
   ],
   [
@@ -296,15 +352,11 @@
     "akito-privacy"
   ],
   [
+    "/workspace/skyrydahs-characters/akito/src/v2/img2_texture_0_metallic_roughness.png",
+    "akito-privacy"
+  ],
+  [
     "/workspace/skyrydahs-characters/akito/src/v2/islands.npz",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/v2/akito_atlas_mr.png",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-characters/akito/src/v2/akito_atlas_c.png",
     "akito-privacy"
   ],
   [
@@ -312,11 +364,11 @@
     "akito-privacy"
   ],
   [
-    "/workspace/skyrydahs-ref/akito/akito-details.md",
+    "/workspace/skyrydahs-characters/akito/src/v2/tex_tinted_4k.png",
     "akito-privacy"
   ],
   [
-    "/workspace/skyrydahs-ref/akito/akito-straitjacket-refs.md",
+    "/workspace/skyrydahs-ref/akito/akito-details.md",
     "akito-privacy"
   ],
   [
@@ -324,23 +376,11 @@
     "akito-privacy"
   ],
   [
-    "/workspace/skyrydahs-ref/akito/refs-2026-10-30/ref5.jpg",
+    "/workspace/skyrydahs-ref/akito/akito-straitjacket-refs.md",
     "akito-privacy"
   ],
   [
     "/workspace/skyrydahs-ref/akito/refs-2026-10-30/README.md",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-ref/akito/refs-2026-10-30/ref6.jpg",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-ref/akito/refs-2026-10-30/ref8.jpg",
-    "akito-privacy"
-  ],
-  [
-    "/workspace/skyrydahs-ref/akito/refs-2026-10-30/ref4.jpg",
     "akito-privacy"
   ],
   [
@@ -356,7 +396,67 @@
     "akito-privacy"
   ],
   [
+    "/workspace/skyrydahs-ref/akito/refs-2026-10-30/ref4.jpg",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-ref/akito/refs-2026-10-30/ref5.jpg",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-ref/akito/refs-2026-10-30/ref6.jpg",
+    "akito-privacy"
+  ],
+  [
     "/workspace/skyrydahs-ref/akito/refs-2026-10-30/ref7.jpg",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/skyrydahs-ref/akito/refs-2026-10-30/ref8.jpg",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_dark_34.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_dark_back.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_dark_front.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_straitjacket_34.bak-forge-v1.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_straitjacket_34.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_straitjacket_back.bak-forge-v1.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_straitjacket_back.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_straitjacket_front.bak-forge-v1.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_straitjacket_front.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_v2skate_34.png",
+    "akito-privacy"
+  ],
+  [
+    "/workspace/v3build/shots/hero/akito_v2skate_front.png",
     "akito-privacy"
   ]
 ]

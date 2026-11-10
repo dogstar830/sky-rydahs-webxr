@@ -28,6 +28,16 @@ Colours are hex; "glow" = A-T `glow` slot and jacket neon piping. Mismatch IDs r
 - Modular meshes: hair `anika_braids` · head `anika_head` · top `anika_sailor_top` pink #E0457B crop, pale-pink sailor collar #F6C9D6, **red neckerchief #C8102E**, GR8YZONE patch/print + gold sleeve emblem · pants slot `anika_pleated_skirt` pink #E85A8C, **gold trim #FFD700** + accessory `anika_skirt_chain` gold · legwear (new slot pending) `anika_thighhighs_bows` white #F4F4F2, **pink bows #F28AB0** · bare hands (shared anatomical hands).
 - A-T: standard black shell, paint #0B0B0D, frame #C9A227, wheel #1C1C20, **glow #FFD700**. Pink/cyan/violet light trails = FX only (Q4).
 
+
+### Simca — 'the Migratory Bird' — free-flying rider (NEW 2026-11-05)
+- Source: `skyrydahs-ref/simca/refs-2026-11-05/` (ref1–ref7 + contact.jpg). Meshy: `skyrydahs-characters/simca/meshy/Meshy_AI_Pink_Haired_Cadet_1105160116_texture.glb`. Files: `simca/simca-rider.glb`, `simca/simca-npc.glb` (91-joint shared rider skeleton).
+- Role: spots Caali G's potential first; free-flying scout / Migratory Bird.
+- Style: slim (≈Anika height or slightly taller), fair skin; **very long bubblegum-pink hair** (split locks for swing bones); **dark green peaked cadet cap with goggles** on brim (rigid head-attached); large expressive eyes.
+- Outfit: **white dress/sailor uniform** with **dark green sailor-collar trim** and **red neck ribbon**; dark fingerless gloves; **green knee boots** (A·T boot uppers; shared black-shell v2 skate mounted at runtime). Optional yellow harness straps.
+- Crew colours: **white / green** (paint #0B0B0D shared black shell, frame #1F5E36 green, wheel #EEF2EC, glow #2ECC71 PROPOSED — match Sleeping Forest green family until Oliver locks a Simca-specific glow).
+- A-T: standard black-shell v2, 2 big wheels; keep green boot uppers to the ankle socket.
+- Notes for Rigger: 6 back hair locks + 2 side locks (`Simca_HairBack_00..05`, `Simca_HairSideL_06`, `Simca_HairSideR_07`) cut from the original Meshy hair sheet, with lengthways edge loops (rings≈103–117) for swing-bone chains; cap #1F4A2A + goggles stay rigid on Head. Files also ship `.quest.glb` / `.quest-ktx2.glb`.
+
 ### Ikki — Kogarasumaru — leader / mentor (MVP)
 - Source: existing `meshy/ikki-meshy-rigged.glb` (original purple texture, NOT the cyan bake) + Oliver lock.
 - Style: spiky black hair, wiry, cocky grin; signature: **original purple outfit** (crew-rule exception) + crow patch.
