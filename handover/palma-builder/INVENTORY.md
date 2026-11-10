@@ -258,3 +258,5 @@ Volt canopy follow-up: code/crewhouse_kit.js dark PBR canopy #1c1e22 roughness .
 
 ## pbrbase polish2 (2026-11-05)
 shader-only polish of pbr_base.js. Sharper close-range shop interiors, hue-preserving bounded night storefront emission. Default ON, ?pbrbase=0 opts out. Chain: patch_pbr_base.py right after patch_pbr_world.py. World draws <=110 (street 80-82, causeway 98-101). Hero shots on the box at /workspace/v3build/shots/hero/bldgbase_polish2_*.
+
+Kog garage fixes (2026-11-10): TV moved to the front wall out of the upstairs hero camera, with its mirrored screen text fixed. Box colliders added to the 3 loft catwalk posts (colliders 973 to 1003 across 10 kit garages). kitDraco() guard so the kit props load even if the shared Draco loader is replaced. World draws are 110 or fewer. Hero shots are on the box at /workspace/v3build/shots/hero/kog_upstairs_kogfix*.png and {causeway,blockout}_hero_{day,night}.png.

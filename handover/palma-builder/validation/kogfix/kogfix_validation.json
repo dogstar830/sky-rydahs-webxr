@@ -1,0 +1,968 @@
+{
+ "started": "2026-11-09 22:23:55 CST",
+ "html": "/tmp/palma_kogfix.html",
+ "served": "v3build/palma_kogfix.html",
+ "real_md5_before": "fcaea2efb88800de9967f5ffc16addbe",
+ "baseline_real_html": {
+  "total": 973,
+  "kitUp": 310,
+  "garages": 10,
+  "posts": [
+   {
+    "crew": "codee",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "codee",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "codee",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "karasu",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "karasu",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "karasu",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "static",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "static",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "static",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "behemoth",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "behemoth",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "behemoth",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "anubis",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "anubis",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "anubis",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "ttt",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "ttt",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "ttt",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "genesis",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "genesis",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "genesis",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "forest",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "forest",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "forest",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "volt",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "volt",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "volt",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "rustclaw",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "rustclaw",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": -1
+   },
+   {
+    "crew": "rustclaw",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": -1
+   }
+  ],
+  "postsFound": 0,
+  "pageerrors": []
+ },
+ "baseline_invariants": {
+  "colliders": 973,
+  "wallKicks": 26,
+  "wallPanels": 17
+ },
+ "counts": {
+  "total": 1003,
+  "kitUp": 340,
+  "garages": 10,
+  "posts": [
+   {
+    "crew": "codee",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 578
+   },
+   {
+    "crew": "codee",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 579
+   },
+   {
+    "crew": "codee",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 580
+   },
+   {
+    "crew": "karasu",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 620
+   },
+   {
+    "crew": "karasu",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 621
+   },
+   {
+    "crew": "karasu",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 622
+   },
+   {
+    "crew": "static",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 662
+   },
+   {
+    "crew": "static",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 663
+   },
+   {
+    "crew": "static",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 664
+   },
+   {
+    "crew": "behemoth",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 704
+   },
+   {
+    "crew": "behemoth",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 705
+   },
+   {
+    "crew": "behemoth",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 706
+   },
+   {
+    "crew": "anubis",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 746
+   },
+   {
+    "crew": "anubis",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 747
+   },
+   {
+    "crew": "anubis",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 748
+   },
+   {
+    "crew": "ttt",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 788
+   },
+   {
+    "crew": "ttt",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 789
+   },
+   {
+    "crew": "ttt",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 790
+   },
+   {
+    "crew": "genesis",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 830
+   },
+   {
+    "crew": "genesis",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 831
+   },
+   {
+    "crew": "genesis",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 832
+   },
+   {
+    "crew": "forest",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 872
+   },
+   {
+    "crew": "forest",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 873
+   },
+   {
+    "crew": "forest",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 874
+   },
+   {
+    "crew": "volt",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 914
+   },
+   {
+    "crew": "volt",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 915
+   },
+   {
+    "crew": "volt",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 916
+   },
+   {
+    "crew": "rustclaw",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 956
+   },
+   {
+    "crew": "rustclaw",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 957
+   },
+   {
+    "crew": "rustclaw",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 958
+   }
+  ],
+  "postsFound": 30
+ },
+ "invariants": {
+  "colliders": 1003,
+  "wallKicks": 26,
+  "wallPanels": 17
+ },
+ "passthrough": [
+  {
+   "post": [
+    3.85,
+    2
+   ],
+   "ctrl": false,
+   "postsActive": 3,
+   "frames": 90,
+   "maxAlongPastPostCentre": -0.48,
+   "endLocal": [
+    3.37,
+    2
+   ],
+   "lateralDev": -0.0,
+   "y": 0.01
+  },
+  {
+   "post": [
+    3.85,
+    2
+   ],
+   "ctrl": true,
+   "postsActive": 0,
+   "frames": 90,
+   "maxAlongPastPostCentre": 15.75,
+   "endLocal": [
+    19.6,
+    2
+   ],
+   "lateralDev": -0.0,
+   "y": 0.14
+  },
+  {
+   "post": [
+    3.85,
+    6.5
+   ],
+   "ctrl": false,
+   "postsActive": 3,
+   "frames": 90,
+   "maxAlongPastPostCentre": -0.48,
+   "endLocal": [
+    3.37,
+    6.5
+   ],
+   "lateralDev": -0.0,
+   "y": 0.01
+  },
+  {
+   "post": [
+    3.85,
+    6.5
+   ],
+   "ctrl": true,
+   "postsActive": 0,
+   "frames": 90,
+   "maxAlongPastPostCentre": 0.05,
+   "endLocal": [
+    3.9,
+    6.5
+   ],
+   "lateralDev": -0.0,
+   "y": 0.01
+  },
+  {
+   "post": [
+    -5.6,
+    -5.9
+   ],
+   "ctrl": false,
+   "postsActive": 3,
+   "frames": 90,
+   "maxAlongPastPostCentre": -0.9,
+   "endLocal": [
+    -4.7,
+    -5.9
+   ],
+   "lateralDev": 0,
+   "y": 0.01
+  },
+  {
+   "post": [
+    -5.6,
+    -5.9
+   ],
+   "ctrl": true,
+   "postsActive": 0,
+   "frames": 90,
+   "maxAlongPastPostCentre": -0.9,
+   "endLocal": [
+    -4.7,
+    -5.9
+   ],
+   "lateralDev": 0,
+   "y": 0.01
+  }
+ ],
+ "gate_page_errors": [],
+ "gate_page_shader_errors": [],
+ "hd_counts": {
+  "total": 1003,
+  "kitUp": 340,
+  "garages": 10,
+  "posts": [
+   {
+    "crew": "codee",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 578
+   },
+   {
+    "crew": "codee",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 579
+   },
+   {
+    "crew": "codee",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 580
+   },
+   {
+    "crew": "karasu",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 620
+   },
+   {
+    "crew": "karasu",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 621
+   },
+   {
+    "crew": "karasu",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 622
+   },
+   {
+    "crew": "static",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 662
+   },
+   {
+    "crew": "static",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 663
+   },
+   {
+    "crew": "static",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 664
+   },
+   {
+    "crew": "behemoth",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 704
+   },
+   {
+    "crew": "behemoth",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 705
+   },
+   {
+    "crew": "behemoth",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 706
+   },
+   {
+    "crew": "anubis",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 746
+   },
+   {
+    "crew": "anubis",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 747
+   },
+   {
+    "crew": "anubis",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 748
+   },
+   {
+    "crew": "ttt",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 788
+   },
+   {
+    "crew": "ttt",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 789
+   },
+   {
+    "crew": "ttt",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 790
+   },
+   {
+    "crew": "genesis",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 830
+   },
+   {
+    "crew": "genesis",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 831
+   },
+   {
+    "crew": "genesis",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 832
+   },
+   {
+    "crew": "forest",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 872
+   },
+   {
+    "crew": "forest",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 873
+   },
+   {
+    "crew": "forest",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 874
+   },
+   {
+    "crew": "volt",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 914
+   },
+   {
+    "crew": "volt",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 915
+   },
+   {
+    "crew": "volt",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 916
+   },
+   {
+    "crew": "rustclaw",
+    "post": [
+     -5.6,
+     -5.9
+    ],
+    "idx": 956
+   },
+   {
+    "crew": "rustclaw",
+    "post": [
+     3.85,
+     6.5
+    ],
+    "idx": 957
+   },
+   {
+    "crew": "rustclaw",
+    "post": [
+     3.85,
+     2
+    ],
+    "idx": 958
+   }
+  ],
+  "postsFound": 30
+ },
+ "tv_check": {
+  "glbTv": false
+ },
+ "shots_frames": {
+  "kog_upstairs_kogfix": 65,
+  "kog_upstairs_tv_kogfix": 65,
+  "causeway_hero_night": 66,
+  "blockout_hero_night": 65,
+  "causeway_hero_day": 65,
+  "blockout_hero_day": 65
+ },
+ "pageerrors": [],
+ "shader_errors": [],
+ "dcsplit2_rc": 0,
+ "dcsplit2": {
+  "errors": [],
+  "causeway": {
+   "world": [
+    101,
+    101,
+    101
+   ],
+   "chars": [
+    7,
+    7,
+    7
+   ],
+   "fx": [
+    6,
+    6,
+    6
+   ],
+   "n": [
+    114,
+    114,
+    114
+   ]
+  },
+  "b98": {
+   "world": [
+    92,
+    93.3,
+    96
+   ],
+   "chars": [
+    4,
+    4,
+    4
+   ],
+   "fx": [
+    3,
+    4.3,
+    5
+   ],
+   "n": [
+    101,
+    101.7,
+    103
+   ]
+  },
+  "aerial": {
+   "world": [
+    93,
+    94,
+    95
+   ],
+   "chars": [
+    4,
+    4,
+    4
+   ],
+   "fx": [
+    3,
+    4,
+    5
+   ],
+   "n": [
+    102,
+    102,
+    102
+   ]
+  },
+  "street": {
+   "world": [
+    77,
+    79,
+    80
+   ],
+   "chars": [
+    7,
+    7,
+    7
+   ],
+   "fx": [
+    5,
+    5,
+    5
+   ],
+   "n": [
+    89,
+    91,
+    92
+   ]
+  }
+ },
+ "real_md5_after": "fcaea2efb88800de9967f5ffc16addbe",
+ "ended": "2026-11-09 23:00:40 CST"
+}

@@ -180,7 +180,7 @@ function buildUp(){ const R=new THREE.Group(); R.name='kit_up'; const B=mkB(); C
   bx(B,'metal',2.2,.14,16,4.9,CW,0,STEEL); bx(B,'metal',.12,.25,16,3.82,CW-.15,0,BLK); neon(B,.06,.04,15.4,3.85,CW-.3,0); neon(B,.06,.04,7,-2.2+0,CW-.3,-7.9);
   for(let x=-5.8;x<=1.4;x+=.6) bx(B,'metal',.04,1,.04,x,CW+.5,-5.82,BLK); bx(B,'metal',7.6,.05,.05,-2.2,CW+1,-5.82,BLK); bx(B,'metal',7.6,.04,.04,-2.2,CW+.55,-5.82,BLK);
   for(let z=-5.4;z<=7.8;z+=.6) bx(B,'metal',.04,1,.04,3.82,CW+.5,z,BLK); bx(B,'metal',.05,.05,13.4,3.82,CW+1,1.1,BLK); bx(B,'metal',.04,.04,13.4,3.82,CW+.55,1.1,BLK);
-  for(const [x,z] of [[-5.6,-5.9],[3.85,6.5],[3.85,2.0]]) bx(B,'metal',.06,CW,.06,x,CW/2,z,BLK);
+  for(const [x,z] of [[-5.6,-5.9],[3.85,6.5],[3.85,2.0]]){ bx(B,'metal',.06,CW,.06,x,CW/2,z,BLK); KIT.upCol.push([x-.08,x+.08,z-.08,z+.08]); } // catwalk support posts + footprint colliders (Nov 9 close-out: skater can't pass through)
   // stair: steel stringers + treads with cyan nosing, up to the right catwalk
   { const x0=1.2,x1=3.8, z=-6.9, n=14; for(const dz of [-.5,.5]) bx(B,'metal',Math.hypot(x1-x0,CW)+.2,.12,.06,(x0+x1)/2,CW/2,z+dz,BLK,null,[0,0,Math.atan2(CW,x1-x0)]);
     for(let i=0;i<n;i++){ const t=(i+.5)/n; bx(B,'metal',.22,.04,.95,x0+t*(x1-x0),t*CW,z,STEEL); neon(B,.03,.03,.95,x0+t*(x1-x0)-.11,t*CW+.02,z); }
@@ -195,9 +195,8 @@ function buildUp(){ const R=new THREE.Group(); R.name='kit_up'; const B=mkB(); C
     put(B,'neon',new THREE.TorusGeometry(1.07,.06,8,32),[4.05,CW+1.15,z],[0,H2,0],[1,1,1],0xffffff,CK); neon(B,.02,1.8,.02,4.03,CW+1.15,z,CK); }); KPROP=null;
   [-5.4,-2.8,-.2].forEach((z,i)=>{ pl(B,'pod'+(i+4),.44,.22,2.55,CW+1.75,z+.3,[0,-H2,0]); pl(B,'pod'+(i+4),.36,.18,2.55,CW+.5,z-.3,[0,-H2,0]); });
   [1,2,3].forEach(i=>pl(B,'pod'+i,.36,.18,[-4.75,-2.25,.25][i-1]-.1,CW+2.15,-4.6,null));
-  KPROP='tv'; // big wall TV (racing game) + media console under the back catwalk
-  bx(B,'metal',4.0,2.35,.1,-2.6,1.75,-7.93,0x050505); pl(B,'tv',3.8,2.15,-2.6,1.75,-7.87,null); neon(B,4.0,.03,.03,-2.6,.56,-7.86); bx(B,'metal',3.4,.5,.5,-2.5,.25,-7.6,BLK); neon(B,3.3,.02,.02,-2.5,.5,-7.34);
-  for(let i=0;i<5;i++) addI(P.can,[-3.8+i*.55,.56,-7.5],null,[1,1,1],i%2?0xd0d4d8:0x101215,i%3?null:CK);
+  KPROP='tv'; // wall TV (racing game): Nov 9 close-out moved from the back wall (half-blocked behind couch/catwalk in the upstairs hero camera) to the FRONT wall, facing the 2nd couch; wall-mounted only (front strip is skate lane: no console, no floor footprint)
+  bx(B,'metal',2.65,1.55,.1,-.7,1.42,7.93,0x050505); pl(B,'tv',2.53,1.43,-.7,1.42,7.87,[0,Math.PI,0]); neon(B,2.65,.03,.03,-.7,.62,7.86);
   // plant by the TV
   cy(B,'soft',.18,.4,-4.4,.2,-7.4,0x111111); for(let k=0;k<7;k++) put(B,'soft',GB,[-4.4+Math.sin(k)*.15,.75+k*.06,-7.4+Math.cos(k)*.15],[k*.6,k,0],[.05,.6,.18],0x1e4a2a);
   KPROP='lockers'; // sticker-covered locker bank
@@ -382,7 +381,7 @@ function buildDown(){ const R=new THREE.Group(); R.name='kit_down'; const B=mkB(
 // ---------- skates (shared black-shell Meshy A-T, cyan/crew tint, instanced) ----------
 KIT.skateSpots={ up:[[-5.5,.32,-.45,0,-0.35],[-5.55,.32,-.95,0,-0.3],[-5.6,.32,3.2,0,-.35],[1.7,.32,-2.2,1.2,0],[-.35,1.3,-7.8,0,0],[.15,1.3,-7.8,0,0],[.65,1.3,-7.8,0,0],[-.1,1.9,-7.8,0,0],[.4,1.9,-7.8,0,0],[3.43,1.05,-4.4,H2,0],[3.43,1.55,-4.4,H2,0],[3.43,2.05,-4.4,H2,0],[2.2,.72,-7.5,0,0]], down:null };
 async function kitSkates(){ try{ const url=(typeof SR_SKATE!=='undefined'&&SR_SKATE.url)?SR_SKATE.url():(typeof CHAR_BASE!=='undefined'?CHAR_BASE:'skyrydahs-characters/')+'wardrobe/skates/at-skate-meshy.glb'; // same base + file as the rider skates (SR_SKATE)
-  const L=new THREE.GLTFLoader(); if(!window.SR_DRACO&&THREE.DRACOLoader){ window.SR_DRACO=new THREE.DRACOLoader(); window.SR_DRACO.setDecoderPath('libs/draco/'); } if(window.SR_DRACO) L.setDRACOLoader(window.SR_DRACO); if(window.MeshoptDecoder&&L.setMeshoptDecoder) L.setMeshoptDecoder(window.MeshoptDecoder); let g=null; try{ g=await new Promise((res,rej)=>L.load(url,res,undefined,rej)); }catch(e){ g=null; }
+  const L=new THREE.GLTFLoader(); { const dl=kitDraco(); if(dl) L.setDRACOLoader(dl); } if(window.MeshoptDecoder&&L.setMeshoptDecoder) L.setMeshoptDecoder(window.MeshoptDecoder); let g=null; try{ g=await new Promise((res,rej)=>L.load(url,res,undefined,rej)); }catch(e){ g=null; }
   let src=null; if(!g) g={scene:kitStandInSkate()}; g.scene.traverse(o=>{ if(o.isMesh&&(!src||/LOD1/.test(o.name))) src=o; }); if(!src) throw new Error('no skate mesh');
   KIT.skateSrc=g.parser?'glb':'standin'; const geo=src.geometry.clone(); geo.computeBoundingBox(); const bb=geo.boundingBox, s=.3/(bb.max.y-bb.min.y||1); geo.translate(-(bb.min.x+bb.max.x)/2,-bb.min.y,-(bb.min.z+bb.max.z)/2); geo.scale(s,s,s);
   const m0=src.material; const mat=kitify(new THREE.MeshStandardMaterial({map:m0.map||null,normalMap:m0.normalMap||null,color:0x2a2d33,roughness:.45,metalness:.35,emissive:0x00e5ff,emissiveIntensity:.0,emissiveMap:null}),false);
@@ -399,12 +398,15 @@ function kitStandInSkate(){ const B=mkB(); for(const sx of [-.11,.11]){ bx(B,'so
   for(let k=0;k<4;k++) cy(B,'soft',.035,.028,sx,.035,-.11+k*.075,0x00e5ff,[0,0,H2]); }
   const b=B.soft, g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.Float32BufferAttribute(b.p,3)); g.setAttribute('normal',new THREE.Float32BufferAttribute(b.n,3)); g.setAttribute('uv',new THREE.Float32BufferAttribute(b.u,2));
   const sc=new THREE.Group(); const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x2a2d33})); m.name='ATSkate_LOD1'; sc.add(m); return sc; }
+// Nov 9: the loader-fail HUD's wasm probe can set window.SR_DRACO to a plain {failed,mime} object before any real loader exists;
+// passing that to setDRACOLoader threw 'this.dracoLoader.preload is not a function' and every kit GLB fell back to procedural. Use SR_DRACO only if it is a real DRACOLoader.
+function kitDraco(){ const d=window.SR_DRACO; if(d&&typeof d.preload==='function') return d; if(!THREE.DRACOLoader) return null; if(!KIT.draco){ KIT.draco=new THREE.DRACOLoader(); KIT.draco.setDecoderPath('libs/draco/'); if(!d) window.SR_DRACO=KIT.draco; } return KIT.draco; }
 // ---------- Meshy prop swap: props/kit/manifest.json lists available <name>.glb; missing -> procedural stays (no 404s) ----------
-const KIT_PROP_FIT={ tv:{c:[-2.6,.68,-7.9],k:2.4,ry:0}, lockers:{c:[-6.0,0,5.9],k:1,ry:H2}, couch:{c:[-1.4,0,-2.85],k:1.2,ry:0,inst:[[-1.4,-2.85,0,1.2],[-.7,3.75,Math.PI,1.0]]},
+const KIT_PROP_FIT={ tv:{c:[-.7,.7,7.95],k:1.6,ry:Math.PI}, /* Nov 9: front wall, out of the upstairs hero camera, under the middle shelf (y 2.3) */ lockers:{c:[-6.0,0,5.9],k:1,ry:H2}, couch:{c:[-1.4,0,-2.85],k:1.2,ry:0,inst:[[-1.4,-2.85,0,1.2],[-.7,3.75,Math.PI,1.0]]},
   kitchen:{c:[5.5,0,5.0],k:1,ry:-H2}, desk:{c:[4.95,0,.5],k:1.3,ry:H2} }; // lockers: 2-row unit pushed into the back wall so only the front row shows
 async function kitProp(name,fallbackFn){ try{ const m=KIT.manifest||(KIT.manifest=await fetch('props/kit/manifest.json').then(r=>r.ok?r.json():{props:[]}).catch(()=>({props:[]})));
   if(!(m.props||[]).includes(name)) return fallbackFn&&fallbackFn();
-  const L=new THREE.GLTFLoader(); if(!window.SR_DRACO&&THREE.DRACOLoader){ window.SR_DRACO=new THREE.DRACOLoader(); window.SR_DRACO.setDecoderPath('libs/draco/'); } if(window.SR_DRACO) L.setDRACOLoader(window.SR_DRACO); if(window.MeshoptDecoder&&L.setMeshoptDecoder) L.setMeshoptDecoder(window.MeshoptDecoder); const g=await new Promise((res,rej)=>L.load('props/kit/'+name+'.glb',res,undefined,rej)); return g.scene; }catch(e){ return fallbackFn&&fallbackFn(); } }
+  const L=new THREE.GLTFLoader(); { const dl=kitDraco(); if(dl) L.setDRACOLoader(dl); } if(window.MeshoptDecoder&&L.setMeshoptDecoder) L.setMeshoptDecoder(window.MeshoptDecoder); const g=await new Promise((res,rej)=>L.load('props/kit/'+name+'.glb',res,undefined,rej)); return g.scene; }catch(e){ return fallbackFn&&fallbackFn(); } }
 function kitFit(obj,F){ if(F.k){ const h=new THREE.Group(); h.add(obj); h.scale.setScalar(F.k); h.rotation.y=F.ry; h.position.set(F.c[0],F.c[1],F.c[2]); h.traverse(o=>{ o.layers.enable(KIT_LAYER); if(o.isMesh){ o.userData.noMerge=true; o.userData.mod='kit'; o.frustumCulled=false; } }); h.name='kit_prop'; return h; } const box=new THREE.Box3().setFromObject(obj), sz=box.getSize(new THREE.Vector3()), ctr=box.getCenter(new THREE.Vector3()); const w=Math.abs(F.ry)>.1?[F.s[2],F.s[1],F.s[0]]:F.s;
   const k=Math.min(w[0]/(sz.x||1),w[1]/(sz.y||1),w[2]/(sz.z||1)); const h=new THREE.Group(); obj.position.sub(ctr); h.add(obj); h.scale.setScalar(k); h.rotation.y=F.ry; h.position.set(F.c[0],F.c[1],F.c[2]);
   h.traverse(o=>{ if(o.isMesh){ o.userData.noMerge=true; o.frustumCulled=false; } }); h.name='kit_prop'; return h; }
@@ -423,7 +425,7 @@ function kitPropMat(name,sc){ sc.traverse(o=>{ if(!o.isMesh) return; const m=o.m
   if(name==='desk'){ KIT.deskMat=m; m.emissive.set(KIT.theme?KIT.theme.c1:'#19e6ff').lerp(new THREE.Color(1,1,1),.35); m.emissiveIntensity=2.2; } // only the laptop screen is emissive
   if(name==='tv'&&(o.name==='screen'||m.name==='screen')){ const c=document.createElement('canvas'); c.width=512; c.height=288; KIT.tvCanvas=c; kitTvTex(); const t=new THREE.CanvasTexture(c); t.encoding=THREE.sRGBEncoding; KIT.tvTex=t; m.map=t; m.emissiveMap=t; m.color.set(0xffffff); m.emissive.set(0xffffff); m.emissiveIntensity=.6; m.toneMapped=true; }
   m.needsUpdate=true; }); }
-function kitTvTex(){ const c=KIT.tvCanvas; if(!c||!CELLS.tv) return; const r=CELLS.tv, g2=c.getContext("2d"); g2.setTransform(-1,0,0,-1,512,288); g2.drawImage(AT,r.x,r.y,r.w,r.h,0,0,512,288); if(KIT.tvTex) KIT.tvTex.needsUpdate=true; }
+function kitTvTex(){ const c=KIT.tvCanvas; if(!c||!CELLS.tv) return; const r=CELLS.tv, g2=c.getContext("2d"); g2.setTransform(1,0,0,-1,0,288); g2.drawImage(AT,r.x,r.y,r.w,r.h,0,0,512,288); /* Nov 9: was (-1,0,0,-1) -> HUD text on the GLB screen read mirrored; v-flip only */ if(KIT.tvTex) KIT.tvTex.needsUpdate=true; }
 // small PMREM of a garage-like interior, applied ONLY to kit gloss materials (pods, drones, skates) — never scene.environment
 function kitEnv(){ if(KIT.env!==undefined) return KIT.env; try{ const r=window.renderer||(typeof renderer!=='undefined'?renderer:null); if(!r||!THREE.PMREMGenerator){ return KIT.env=null; }
   const sc=new THREE.Scene(), bm=c=>new THREE.MeshBasicMaterial({color:c,side:THREE.BackSide}); const room=new THREE.Mesh(new THREE.BoxGeometry(12,6,16),bm(0x15181c)); sc.add(room);
