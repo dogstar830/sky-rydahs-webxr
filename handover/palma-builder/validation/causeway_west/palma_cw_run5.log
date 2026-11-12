@@ -1,0 +1,31 @@
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: waiting on live pid 565071 (Rydah Optimizer: rider LOD measure pass2 + smoke (SwiftShader, Systems ON + 7-crew wait), max 30 min, 10:30 CST (pid 565071))
+tl_acquire: got lock pid=568211
+== dump A 10:38
+{"npcs": [7, true], "counts": {"colliders": 1003, "kicks": 26, "panels": 17}, "night_nofan": {"world_per_frame": [97, 94, 94, 92, 92], "chars_per_frame": [7, 7, 7, 7, 7], "fx": 6, "total": 110, "info_calls": 105, "world_npc_rooted": 1}, "night_fan": {"world_per_frame": [95, 95, 95, 95, 95], "chars_per_frame": [25, 25, 25, 25, 25], "fx": 6, "total": 126, "info_calls": 126, "world_npc_rooted": 4}, "day_nofan": {"world_per_frame": [91, 91, 91, 91, 91], "chars_per_frame": [7, 7, 7, 7, 7], "fx": 6, "total": 104, "info_calls": 104, "world_npc_rooted": 1}, "day_fan": {"world_per_frame": [94, 94, 94, 94, 94], "chars_per_frame": [25, 25, 25, 25, 25], "fx": 6, "total": 125, "info_calls": 124, "world_npc_rooted": 4}, "errors": []}
+ERRORS []
+== done 10:41
+tl_release: released

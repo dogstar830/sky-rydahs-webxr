@@ -1,0 +1,54 @@
+--- crewhouse_kit.js.bak-cw-20261112-092035	2026-11-11 22:06:13.121426881 -0600
++++ crewhouse_kit.js	2026-11-12 09:20:35.296973448 -0600
+@@ -521,6 +521,27 @@
+   const m=new THREE.Mesh(g,mat); m.name=name||'kit_ext'; m.userData.noMerge=true; m.userData.mod='kit_ext'; m.frustumCulled=true; parent.add(m); return m; }
+ function kitExtPushCol(G,boxes){ const th=G.th,[gx,gz]=G.pos; const W=(lx,lz)=>[gx+lx*Math.cos(th)+lz*Math.sin(th), gz-lx*Math.sin(th)+lz*Math.cos(th)];
+   for(const [a0,a1,b0,b1] of boxes){ const a=W(a0,b0), b=W(a1,b1); colliders.push({minX:Math.min(a[0],b[0]),maxX:Math.max(a[0],b[0]),minZ:Math.min(a[1],b[1]),maxZ:Math.max(a[1],b[1]),kit_ext:1,g:G}); } }
++// far-LOD (Palma Nov 12, causeway_west budget): beyond KIT_EXT_FAR m from the camera, the opaque PBR parts of an exterior (InstancedMesh + merged
++// meshes sharing no material) are swapped for ONE pre-merged vertex-colour mesh; neon/glass stay live. Same colours, root-local space, so nothing moves.
++const KIT_EXT_FAR=150, KIT_EXT_FAR_H=12, KIT_EXT_LODS=[];
++function kitExtFarLod(root,names){ try{
++  const parts=root.children.filter(o=>names.includes(o.name)&&o.isMesh&&o.material&&o.material.isMeshStandardMaterial&&!o.material.transparent);
++  if(parts.length<2) return null; const geos=[], m4=new THREE.Matrix4(), mi=new THREE.Matrix4(); let rough=0, metal=0, nv=0;
++  for(const o of parts){ const n=o.isInstancedMesh?o.count:1; const base=o.geometry.index?o.geometry.toNonIndexed():o.geometry.clone();
++    for(const k of Object.keys(base.attributes)) if(k!=='position'&&k!=='normal') base.deleteAttribute(k);
++    const c=o.material.color, cnt=base.attributes.position.count;
++    for(let i=0;i<n;i++){ const g=base.clone(); o.updateMatrix(); if(o.isInstancedMesh){ o.getMatrixAt(i,mi); m4.multiplyMatrices(o.matrix,mi); } else m4.copy(o.matrix);
++      g.applyMatrix4(m4); const col=new Float32Array(cnt*3); for(let j=0;j<cnt;j++){ col[j*3]=c.r; col[j*3+1]=c.g; col[j*3+2]=c.b; } g.setAttribute('color',new THREE.BufferAttribute(col,3)); geos.push(g);
++      rough+=o.material.roughness*cnt; metal+=o.material.metalness*cnt; nv+=cnt; } }
++  const g=THREE.BufferGeometryUtils.mergeBufferGeometries(geos,false); if(!g) return null;
++  const mat=new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:rough/nv,metalness:metal/nv});
++  const far=new THREE.Mesh(g,mat); far.name=root.name+'_far'; far.userData.noMerge=true; far.userData.mod='kit_ext'; far.visible=false; root.add(far);
++  const L={root,parts,far,isFar:false}; KIT_EXT_LODS.push(L); return far; }catch(e){ console.warn('kitExtFarLod',e); return null; } }
++const _kfl=new THREE.Vector3(), _kfc=new THREE.Vector3();
++function kitExtLodTick(){ if(!KIT_EXT_LODS.length||typeof camera==='undefined') return; if(/[?&]kitlod=0\b/.test(location.search)) return; camera.getWorldPosition(_kfc);
++  for(const L of KIT_EXT_LODS){ L.root.getWorldPosition(_kfl); const d=_kfl.distanceTo(_kfc); const f=L.isFar?d>KIT_EXT_FAR-KIT_EXT_FAR_H:d>KIT_EXT_FAR;
++    if(f!==L.isFar){ L.isFar=f; L.far.visible=f; for(const o of L.parts) o.visible=!f; } } }
++window.KIT_EXT_LODS=KIT_EXT_LODS;
+ function kitExtVolt(G){ // EV charging plaza: canopy + glass kiosk + bollards + neon (target ~6 draws)
+   // Canopy underside clearance >=3.5 m (deck y=3.85, th=.18 -> underside 3.76). No footprint AABB (2D colliders would block under-pass); posts+kiosk+bollards already collide. Thin deck is non-walkable (no ground height).
+   // Ani 14:00: underside was a blown-out 0xffe600 MeshBasic slab — dark PBR deck + thin tone-mapped emissive strips only.
+@@ -551,6 +572,7 @@
+   root.add(boll);
+   // kiosk + bollard row only (canopy footprint intentionally NOT an xz collider — would block the 3.76 m under-pass)
+   kitExtPushCol(G,[[-6.3,-4.1,5.5,7.6],[-2.5,3.5,3.9,4.6]]);
++  kitExtFarLod(root,['kit_ext_volt_dark','kit_ext_volt_steel','kit_ext_volt_bollards']);
+   G.extVariant=root; return root; }
+ function kitExtRustClaw(G){ // corrugated salvage shed + marina salvage (target ~6 draws)
+   const M=kitExtMats(), root=new THREE.Group(); root.name='kit_ext_rustclaw'; root.userData.noMerge=true; G.group.add(root);
+@@ -581,6 +603,7 @@
+   // hook torus can't easily merge with boxes of different type into same draw with different mat — add as part of steel already? Add separate chain mesh would be draw 7.
+   // Fold hook into steel draw by approximating with small boxes already in steel merge; skip torus to hold budget.
+   kitExtPushCol(G,[[-5.8,-3.2,5.0,7.4],[3.4,5.8,5.2,7.2],[2.8,3.8,0,.6]]);
++  kitExtFarLod(root,['kit_ext_rc_panels','kit_ext_rc_steel','kit_ext_rc_crates','kit_ext_rc_plates','kit_ext_rc_buoys']);
+   G.extVariant=root; return root; }
+ function kitPaintEmblem(crew,css){ // black disc + neon ring + kit_logos atlas slot (matches world.js emblemTex frame)
+   const c=document.createElement('canvas'); c.width=c.height=512; const x=c.getContext('2d');
+@@ -618,6 +641,6 @@
+ function kitExtAll(){ if(typeof garages==='undefined'||!garages.length) return; if(!(THREE.BufferGeometryUtils&&THREE.BufferGeometryUtils.mergeBufferGeometries)) return setTimeout(kitExtAll,250); for(const G of garages) kitExtVariant(G); }
+ window.kitExtVariant=kitExtVariant; window.kitExtAll=kitExtAll; window.kitExtVolt=kitExtVolt; window.kitExtRustClaw=kitExtRustClaw; window.kitFixEmblems=kitFixEmblems;
+ function kitInit(){ if(typeof garages==='undefined'||!garages.length||typeof scene==='undefined'||!THREE.GLTFLoader||typeof animated==='undefined'){ return setTimeout(kitInit,300); }
+-  if(/nokit/.test(location.search)) return; try{ kitExtAll(); kitBuild(); kitFixEmblems(); animated.push(kitTick); window.KIT_READY=true; }catch(e){ console.warn('crewhouse kit failed',e); } }
++  if(/nokit/.test(location.search)) return; try{ kitExtAll(); kitBuild(); kitFixEmblems(); animated.push(kitTick); animated.push(kitExtLodTick); window.KIT_READY=true; }catch(e){ console.warn('crewhouse kit failed',e); } }
+ setTimeout(kitInit,0);
+ })();

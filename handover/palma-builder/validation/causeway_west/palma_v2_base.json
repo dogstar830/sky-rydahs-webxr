@@ -1,0 +1,1188 @@
+{
+ "url": "http://localhost:8765/v3build/palma_cw_base.html?chars=/skyrydahs-characters/&player=ikki&nofx&seed=1",
+ "time": "2026-11-12 10:05:06 CST",
+ "frames": 30,
+ "budget": {
+  "total": 150,
+  "world": 110,
+  "charsfx": 40
+ },
+ "cameras": {
+  "causeway_west_night": {
+   "max": {
+    "calls": 138,
+    "world": 112,
+    "chars": 25,
+    "fx": 2,
+    "charsfx": 27,
+    "triangles": 401874,
+    "est": 152
+   },
+   "median": {
+    "calls": 135.0,
+    "world": 109.0,
+    "chars": 25.0,
+    "fx": 1.0,
+    "charsfx": 26.0,
+    "triangles": 400914.0
+   },
+   "cam": [
+    39.5,
+    9,
+    -309
+   ],
+   "geometries": 946,
+   "textures": 99,
+   "byModule": [
+    {
+     "module": "[Mesh:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 36,
+     "objects": 36
+    },
+    {
+     "module": "[Group:] [world]",
+     "cls": "world",
+     "draws": 29,
+     "objects": 29
+    },
+    {
+     "module": "[Group:] [chars]",
+     "cls": "chars",
+     "draws": 25,
+     "objects": 25
+    },
+    {
+     "module": "[Mesh:PlaneGeometry] [world]",
+     "cls": "world",
+     "draws": 11,
+     "objects": 11
+    },
+    {
+     "module": "[Mesh:BoxGeometry] [world]",
+     "cls": "world",
+     "draws": 11,
+     "objects": 11
+    },
+    {
+     "module": "[Mesh:CylinderGeometry] [world]",
+     "cls": "world",
+     "draws": 9,
+     "objects": 9
+    },
+    {
+     "module": "[Mesh:ConeGeometry] [world]",
+     "cls": "world",
+     "draws": 4,
+     "objects": 4
+    },
+    {
+     "module": "[Mesh:TorusGeometry] [world]",
+     "cls": "world",
+     "draws": 3,
+     "objects": 3
+    },
+    {
+     "module": "[LineSegments:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 3,
+     "objects": 3
+    },
+    {
+     "module": "heat_cops [world]",
+     "cls": "world",
+     "draws": 3,
+     "objects": 3
+    },
+    {
+     "module": "[Mesh:SphereGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Mesh:InstancedBufferGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Points:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Mesh:CircleGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "PooledFX [fx]",
+     "cls": "fx",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_brick [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_metal [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_glass [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_asphalt [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_glow [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_icons [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "bo_kickwalls_0 [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "[Mesh:IcosahedronGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "[Mesh:RingGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "pbr_bridge_deck [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    }
+   ]
+  },
+  "causeway_west_day": {
+   "max": {
+    "calls": 140,
+    "world": 114,
+    "chars": 25,
+    "fx": 2,
+    "charsfx": 27,
+    "triangles": 402050,
+    "est": 154
+   },
+   "median": {
+    "calls": 135.0,
+    "world": 109.0,
+    "chars": 25.0,
+    "fx": 1.0,
+    "charsfx": 26.0,
+    "triangles": 400912.0
+   },
+   "cam": [
+    39.5,
+    9,
+    -309
+   ],
+   "geometries": 946,
+   "textures": 99,
+   "byModule": [
+    {
+     "module": "[Mesh:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 36,
+     "objects": 36
+    },
+    {
+     "module": "[Group:] [world]",
+     "cls": "world",
+     "draws": 29,
+     "objects": 29
+    },
+    {
+     "module": "[Group:] [chars]",
+     "cls": "chars",
+     "draws": 25,
+     "objects": 25
+    },
+    {
+     "module": "[Mesh:PlaneGeometry] [world]",
+     "cls": "world",
+     "draws": 11,
+     "objects": 11
+    },
+    {
+     "module": "[Mesh:BoxGeometry] [world]",
+     "cls": "world",
+     "draws": 11,
+     "objects": 11
+    },
+    {
+     "module": "[Mesh:CylinderGeometry] [world]",
+     "cls": "world",
+     "draws": 11,
+     "objects": 11
+    },
+    {
+     "module": "[Mesh:ConeGeometry] [world]",
+     "cls": "world",
+     "draws": 4,
+     "objects": 4
+    },
+    {
+     "module": "[Mesh:TorusGeometry] [world]",
+     "cls": "world",
+     "draws": 3,
+     "objects": 3
+    },
+    {
+     "module": "[LineSegments:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 3,
+     "objects": 3
+    },
+    {
+     "module": "heat_cops [world]",
+     "cls": "world",
+     "draws": 3,
+     "objects": 3
+    },
+    {
+     "module": "[Mesh:SphereGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Mesh:InstancedBufferGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Points:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Mesh:CircleGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "PooledFX [fx]",
+     "cls": "fx",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_brick [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_metal [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_glass [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_asphalt [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_glow [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_icons [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "bo_kickwalls_0 [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "[Mesh:IcosahedronGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "[Mesh:RingGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "pbr_bridge_deck [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    }
+   ]
+  },
+  "b98_day": {
+   "max": {
+    "calls": 125,
+    "world": 100,
+    "chars": 25,
+    "fx": 0,
+    "charsfx": 25,
+    "triangles": 390076,
+    "est": 139
+   },
+   "median": {
+    "calls": 125.0,
+    "world": 100.0,
+    "chars": 25.0,
+    "fx": 0.0,
+    "charsfx": 25.0,
+    "triangles": 386908.0
+   },
+   "cam": [
+    296,
+    9,
+    -222
+   ],
+   "geometries": 955,
+   "textures": 101,
+   "byModule": [
+    {
+     "module": "[Mesh:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 41,
+     "objects": 41
+    },
+    {
+     "module": "[Group:] [chars]",
+     "cls": "chars",
+     "draws": 25,
+     "objects": 25
+    },
+    {
+     "module": "[Group:] [world]",
+     "cls": "world",
+     "draws": 18,
+     "objects": 18
+    },
+    {
+     "module": "[Mesh:CylinderGeometry] [world]",
+     "cls": "world",
+     "draws": 12,
+     "objects": 12
+    },
+    {
+     "module": "[Mesh:PlaneGeometry] [world]",
+     "cls": "world",
+     "draws": 10,
+     "objects": 10
+    },
+    {
+     "module": "[Mesh:BoxGeometry] [world]",
+     "cls": "world",
+     "draws": 9,
+     "objects": 9
+    },
+    {
+     "module": "heat_cops [world]",
+     "cls": "world",
+     "draws": 3,
+     "objects": 3
+    },
+    {
+     "module": "[Mesh:TorusGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[LineSegments:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Mesh:InstancedBufferGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Points:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Mesh:ConeGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Mesh:SphereGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "[Mesh:CircleGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_brick [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_metal [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_glass [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_asphalt [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_icons [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "bo_kickwalls_0 [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "[Mesh:IcosahedronGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "[Mesh:RingGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "pbr_bridge_deck [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    }
+   ]
+  },
+  "portside_day": {
+   "max": {
+    "calls": 127,
+    "world": 100,
+    "chars": 27,
+    "fx": 0,
+    "charsfx": 27,
+    "triangles": 417154,
+    "est": 132
+   },
+   "median": {
+    "calls": 126.0,
+    "world": 99.0,
+    "chars": 27.0,
+    "fx": 0.0,
+    "charsfx": 27.0,
+    "triangles": 416818.0
+   },
+   "cam": [
+    15,
+    6,
+    -50
+   ],
+   "geometries": 957,
+   "textures": 103,
+   "byModule": [
+    {
+     "module": "[Mesh:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 37,
+     "objects": 37
+    },
+    {
+     "module": "[Group:] [chars]",
+     "cls": "chars",
+     "draws": 27,
+     "objects": 27
+    },
+    {
+     "module": "[Group:] [world]",
+     "cls": "world",
+     "draws": 15,
+     "objects": 15
+    },
+    {
+     "module": "[Mesh:BoxGeometry] [world]",
+     "cls": "world",
+     "draws": 11,
+     "objects": 11
+    },
+    {
+     "module": "[Mesh:PlaneGeometry] [world]",
+     "cls": "world",
+     "draws": 10,
+     "objects": 10
+    },
+    {
+     "module": "[Mesh:CylinderGeometry] [world]",
+     "cls": "world",
+     "draws": 5,
+     "objects": 5
+    },
+    {
+     "module": "[Mesh:TorusGeometry] [world]",
+     "cls": "world",
+     "draws": 3,
+     "objects": 3
+    },
+    {
+     "module": "[LineSegments:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 3,
+     "objects": 3
+    },
+    {
+     "module": "heat_cops [world]",
+     "cls": "world",
+     "draws": 3,
+     "objects": 3
+    },
+    {
+     "module": "[Mesh:SphereGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Mesh:InstancedBufferGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Points:BufferGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Mesh:IcosahedronGeometry] [world]",
+     "cls": "world",
+     "draws": 2,
+     "objects": 2
+    },
+    {
+     "module": "[Mesh:CircleGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_brick [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_metal [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_glass [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_asphalt [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "graffiti_icons [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "bo_kickwalls_0 [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "[Mesh:RingGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "[Mesh:ConeGeometry] [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    },
+    {
+     "module": "pbr_bridge_deck [world]",
+     "cls": "world",
+     "draws": 1,
+     "objects": 1
+    }
+   ]
+  }
+ },
+ "npcs": [
+  6,
+  true
+ ],
+ "tier": null,
+ "world_perf": {
+  "start": 13985.79999999702,
+  "interiors": 0,
+  "asphalt": [
+   2,
+   1
+  ],
+  "batch": [
+   56,
+   5
+  ],
+  "streaks": 28,
+  "tier": "desktop",
+  "inkTiles": 27,
+  "details": [
+   313,
+   12
+  ],
+  "cans": 82,
+  "pools": [
+   22,
+   2,
+   20
+  ],
+  "poolMerge": [
+   24,
+   49,
+   49,
+   21,
+   16,
+   16,
+   32,
+   32,
+   20,
+   22,
+   22,
+   10,
+   3,
+   3
+  ],
+  "rings": 9,
+  "beams": 4,
+  "holo": 1,
+  "search": 4,
+  "signs": [
+   104,
+   1
+  ],
+  "ms": 65,
+  "singles": [
+   31,
+   3,
+   39
+  ]
+ },
+ "perdraw": {
+  "causeway_west_night": {
+   "frames": 30,
+   "world": 112,
+   "chars": 25,
+   "fx": 2,
+   "hud": 0,
+   "n": 138,
+   "calls": 138,
+   "sum_eq_calls": false,
+   "autoReset": true,
+   "proposed_rule_world_to_fx": 5,
+   "peak_world_top": [
+    [
+     "[Mesh:BufferGeometry]",
+     36
+    ],
+    [
+     "[Group:]",
+     25
+    ],
+    [
+     "[Mesh:PlaneGeometry]",
+     11
+    ],
+    [
+     "[Mesh:BoxGeometry]",
+     7
+    ],
+    [
+     "[Mesh:ConeGeometry]",
+     4
+    ],
+    [
+     "[Mesh:TorusGeometry]",
+     3
+    ],
+    [
+     "[Mesh:CylinderGeometry]",
+     3
+    ],
+    [
+     "[LineSegments:BufferGeometry]",
+     3
+    ],
+    [
+     "heat_cops",
+     3
+    ],
+    [
+     "[Mesh:SphereGeometry]",
+     2
+    ],
+    [
+     "[Mesh:InstancedBufferGeometry]",
+     2
+    ],
+    [
+     "[Points:BufferGeometry]",
+     2
+    ],
+    [
+     "[Mesh:CircleGeometry]",
+     1
+    ],
+    [
+     "[Mesh:IcosahedronGeometry]",
+     1
+    ],
+    [
+     "graffiti_icons",
+     1
+    ],
+    [
+     "bo_kickwalls_0",
+     1
+    ],
+    [
+     "pbr_bridge_deck",
+     1
+    ],
+    [
+     "graffiti_brick",
+     1
+    ],
+    [
+     "graffiti_metal",
+     1
+    ],
+    [
+     "graffiti_asphalt",
+     1
+    ],
+    [
+     "[Mesh:RingGeometry]",
+     1
+    ],
+    [
+     "graffiti_glass",
+     1
+    ],
+    [
+     "graffiti_glow",
+     1
+    ]
+   ],
+   "skin_not_chars": [],
+   "roots": 19
+  },
+  "causeway_west_day": {
+   "frames": 30,
+   "world": 114,
+   "chars": 25,
+   "fx": 2,
+   "hud": 0,
+   "n": 140,
+   "calls": 140,
+   "sum_eq_calls": false,
+   "autoReset": true,
+   "proposed_rule_world_to_fx": 5,
+   "peak_world_top": [
+    [
+     "[Mesh:BufferGeometry]",
+     36
+    ],
+    [
+     "[Group:]",
+     25
+    ],
+    [
+     "[Mesh:PlaneGeometry]",
+     11
+    ],
+    [
+     "[Mesh:BoxGeometry]",
+     7
+    ],
+    [
+     "[Mesh:CylinderGeometry]",
+     5
+    ],
+    [
+     "[Mesh:ConeGeometry]",
+     4
+    ],
+    [
+     "[Mesh:TorusGeometry]",
+     3
+    ],
+    [
+     "[LineSegments:BufferGeometry]",
+     3
+    ],
+    [
+     "heat_cops",
+     3
+    ],
+    [
+     "[Mesh:SphereGeometry]",
+     2
+    ],
+    [
+     "[Mesh:InstancedBufferGeometry]",
+     2
+    ],
+    [
+     "[Points:BufferGeometry]",
+     2
+    ],
+    [
+     "[Mesh:CircleGeometry]",
+     1
+    ],
+    [
+     "[Mesh:IcosahedronGeometry]",
+     1
+    ],
+    [
+     "graffiti_icons",
+     1
+    ],
+    [
+     "bo_kickwalls_0",
+     1
+    ],
+    [
+     "pbr_bridge_deck",
+     1
+    ],
+    [
+     "graffiti_brick",
+     1
+    ],
+    [
+     "graffiti_metal",
+     1
+    ],
+    [
+     "graffiti_asphalt",
+     1
+    ],
+    [
+     "[Mesh:RingGeometry]",
+     1
+    ],
+    [
+     "graffiti_glass",
+     1
+    ],
+    [
+     "graffiti_glow",
+     1
+    ]
+   ],
+   "skin_not_chars": [],
+   "roots": 19
+  },
+  "b98_day": {
+   "frames": 30,
+   "world": 100,
+   "chars": 25,
+   "fx": 0,
+   "hud": 0,
+   "n": 125,
+   "calls": 125,
+   "sum_eq_calls": true,
+   "autoReset": true,
+   "proposed_rule_world_to_fx": 2,
+   "peak_world_top": [
+    [
+     "[Mesh:BufferGeometry]",
+     41
+    ],
+    [
+     "[Group:]",
+     14
+    ],
+    [
+     "[Mesh:PlaneGeometry]",
+     10
+    ],
+    [
+     "[Mesh:BoxGeometry]",
+     7
+    ],
+    [
+     "[Mesh:CylinderGeometry]",
+     4
+    ],
+    [
+     "heat_cops",
+     3
+    ],
+    [
+     "[Mesh:TorusGeometry]",
+     2
+    ],
+    [
+     "[LineSegments:BufferGeometry]",
+     2
+    ],
+    [
+     "[Mesh:ConeGeometry]",
+     2
+    ],
+    [
+     "[Mesh:InstancedBufferGeometry]",
+     2
+    ],
+    [
+     "[Points:BufferGeometry]",
+     2
+    ],
+    [
+     "[Mesh:SphereGeometry]",
+     1
+    ],
+    [
+     "[Mesh:CircleGeometry]",
+     1
+    ],
+    [
+     "[Mesh:IcosahedronGeometry]",
+     1
+    ],
+    [
+     "graffiti_icons",
+     1
+    ],
+    [
+     "bo_kickwalls_0",
+     1
+    ],
+    [
+     "pbr_bridge_deck",
+     1
+    ],
+    [
+     "graffiti_brick",
+     1
+    ],
+    [
+     "graffiti_metal",
+     1
+    ],
+    [
+     "graffiti_asphalt",
+     1
+    ],
+    [
+     "[Mesh:RingGeometry]",
+     1
+    ],
+    [
+     "graffiti_glass",
+     1
+    ]
+   ],
+   "skin_not_chars": [],
+   "roots": 19
+  },
+  "portside_day": {
+   "frames": 30,
+   "world": 100,
+   "chars": 27,
+   "fx": 0,
+   "hud": 0,
+   "n": 127,
+   "calls": 127,
+   "sum_eq_calls": true,
+   "autoReset": true,
+   "proposed_rule_world_to_fx": 4,
+   "peak_world_top": [
+    [
+     "[Mesh:BufferGeometry]",
+     37
+    ],
+    [
+     "[Group:]",
+     14
+    ],
+    [
+     "[Mesh:PlaneGeometry]",
+     10
+    ],
+    [
+     "[Mesh:BoxGeometry]",
+     7
+    ],
+    [
+     "[Mesh:CylinderGeometry]",
+     5
+    ],
+    [
+     "[Mesh:TorusGeometry]",
+     3
+    ],
+    [
+     "[LineSegments:BufferGeometry]",
+     3
+    ],
+    [
+     "heat_cops",
+     3
+    ],
+    [
+     "[Mesh:SphereGeometry]",
+     2
+    ],
+    [
+     "[Mesh:IcosahedronGeometry]",
+     2
+    ],
+    [
+     "[Mesh:InstancedBufferGeometry]",
+     2
+    ],
+    [
+     "[Points:BufferGeometry]",
+     2
+    ],
+    [
+     "[Mesh:CircleGeometry]",
+     1
+    ],
+    [
+     "graffiti_icons",
+     1
+    ],
+    [
+     "bo_kickwalls_0",
+     1
+    ],
+    [
+     "pbr_bridge_deck",
+     1
+    ],
+    [
+     "graffiti_brick",
+     1
+    ],
+    [
+     "graffiti_metal",
+     1
+    ],
+    [
+     "graffiti_asphalt",
+     1
+    ],
+    [
+     "[Mesh:RingGeometry]",
+     1
+    ],
+    [
+     "[Mesh:ConeGeometry]",
+     1
+    ],
+    [
+     "graffiti_glass",
+     1
+    ]
+   ],
+   "skin_not_chars": [],
+   "roots": 19
+  }
+ },
+ "errors": [],
+ "summary": "18/23 passed"
+}

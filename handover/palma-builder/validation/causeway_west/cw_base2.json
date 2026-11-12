@@ -1,0 +1,9315 @@
+{
+ "npcs": [
+  7,
+  true
+ ],
+ "counts": {
+  "colliders": 1003,
+  "kicks": 26,
+  "panels": 17
+ },
+ "night_nofan": {
+  "world_per_frame": [
+   102,
+   102,
+   99,
+   99,
+   97
+  ],
+  "chars_per_frame": [
+   7,
+   7,
+   7,
+   7,
+   7
+  ],
+  "fx": 6,
+  "total": 115,
+  "info_calls": 110,
+  "world_npc_rooted": 1,
+  "draws": [
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-309",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "ShaderMaterial::B2EA31",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     39.5,
+     9,
+     -309
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "TorusGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     14,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": "cans",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-36,-24",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::D0DDDD",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -35.7,
+     0.3,
+     -24
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     24,
+     0.5,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "TorusGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     14,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -24,
+     0.5,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshBasicMaterial::F55446",
+    "map": false,
+    "inst": true,
+    "wp": "cans",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CircleGeometry",
+    "mat": "MeshToonMaterial::BA0282",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-150,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::C21FA3",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -150,
+     23,
+     -60
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::EE1C7B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::FC439B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::85A11B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@173,79",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::B616E1",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     172.7,
+     2.4,
+     79
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-361",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::B8895C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     4.5,
+     -361
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     24,
+     0.6,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-206,-45",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -206,
+     0.6,
+     -45
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@10,190",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     10,
+     0.6,
+     190
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::A64F59",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshBasicMaterial::C37AE8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "IcosahedronGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::7E40AC",
+    "map": true,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::4174E0",
+    "map": true,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::05F155",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::D3F42E",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::A62A0F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::8852EA",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::30BAFF",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::EF216B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::ACBC94",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::46A49A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::48348C",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::1D58ED",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::6954A0",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::A73343",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::196209",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::196209",
+    "map": false,
+    "inst": true,
+    "wp": "pm",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::27EE65",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::27EE65",
+    "map": false,
+    "inst": true,
+    "wp": "pm",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::E92A33",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_icons|Mesh|@0,0",
+    "name": "graffiti_icons",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::66B630",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshLambertMaterial::C33C58",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::DA096A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "bo_kickwalls_0|Mesh|@0,0",
+    "name": "bo_kickwalls_0",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:bo_kickwall_concrete:E4B605",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::B629CA",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::B629CA",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::5A4704",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::A01455",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::8E85FE",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@60,-80",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::BF01FA",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     60,
+     0,
+     -80
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::BF01FA",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@15,70",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::BF01FA",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     15,
+     0,
+     70
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "pbr_bridge_deck|Mesh|@0,0",
+    "name": "pbr_bridge_deck",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::BC48D9",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_steel",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::254552",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_panels",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::5845A1",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_plates",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::97373B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_crates",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::673B9F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_buoys",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshStandardMaterial::7DA02B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@288,-74",
+    "name": "kit_ext_volt_bollards",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshStandardMaterial::FC0EAE",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     288,
+     0,
+     -74
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_neon",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::665DAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "CaaliG_LOD2",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::A54A6E",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     108.9,
+     0.2,
+     -81.9
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "ATSkateV2_LOD2",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:20D271",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     0.2,
+     -81.9
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@41,-265",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::D9E9FB",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     41.1,
+     -0.0,
+     -265
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@41,-265",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::931D06",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     41.1,
+     -0.0,
+     -265
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@41,-265",
+    "name": "ATSkateV2_LOD2",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:421F47",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     41.1,
+     -0.0,
+     -265
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "TorusGeometry",
+    "mat": "MeshBasicMaterial::85B42A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::5A4E6F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_brick|Mesh|@0,0",
+    "name": "graffiti_brick",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::59D500",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_metal|Mesh|@0,0",
+    "name": "graffiti_metal",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::DABEF7",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_asphalt|Mesh|@0,0",
+    "name": "graffiti_asphalt",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::EEC2C3",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": true,
+    "top": "|Group|@41,-265",
+    "name": "CrewPatch_forest",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::C7E184",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     41.2,
+     1.4,
+     -265
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "CrewPatch_caali-g",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::4F8CC5",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     1.5,
+     -81.7
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "PooledFX|Mesh|@0,0",
+    "name": "PooledFX",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::AC6349",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-150,224",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::ED492E",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -150,
+     -2.4,
+     224
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@5,64",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::FF1F30",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     5,
+     3.1,
+     64.1
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-47,13",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::3505A4",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -47,
+     2.5,
+     13.1
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Points|@0,0",
+    "name": "",
+    "type": "Points",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::3A7C75",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Points|@0,0",
+    "name": "",
+    "type": "Points",
+    "geo": "BufferGeometry",
+    "mat": "PointsMaterial::85B4DB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "ShaderMaterial::DAC4C0",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::275458",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::07B826",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::134187",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "RingGeometry",
+    "mat": "MeshBasicMaterial::F9B53B",
+    "map": false,
+    "inst": true,
+    "wp": "rings",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::B34340",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshBasicMaterial::9AD304",
+    "map": false,
+    "inst": true,
+    "wp": "search",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::642CBD",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::91A860",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::16C89F",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C4AF0B",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshBasicMaterial::C0ACCD",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::2CFBD4",
+    "map": false,
+    "inst": false,
+    "wp": "holo",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0.1,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::063B74",
+    "map": false,
+    "inst": false,
+    "wp": "holo",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0.1,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Mesh|@40,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::AD9686",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -60
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Mesh|@40,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::FC6CC3",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -60
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-75,-106",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::134187",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -75,
+     -2.4,
+     -106
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-75,-115",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -75,
+     -2.4,
+     -115
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshBasicMaterial::6A91A8",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     108.9,
+     0.9,
+     -81.9
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@40,-275",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::2D10E8",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     7,
+     -285
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@43,31",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "ShaderMaterial::1113D7",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     43.3,
+     0,
+     31.5
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@109,-82",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "ShaderMaterial::4AD997",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     0,
+     -81.9
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_glass|Mesh|@0,0",
+    "name": "graffiti_glass",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::AAD43E",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "graffiti_glow|Mesh|@0,0",
+    "name": "graffiti_glow",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::8D5AB6",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "trails_ring|Mesh|@0,0",
+    "name": "trails_ring",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::BC6D8F",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   }
+  ]
+ },
+ "night_fan": {
+  "world_per_frame": [
+   100,
+   100,
+   100,
+   100,
+   100
+  ],
+  "chars_per_frame": [
+   25,
+   25,
+   25,
+   25,
+   25
+  ],
+  "fx": 6,
+  "total": 131,
+  "info_calls": 131,
+  "world_npc_rooted": 4,
+  "draws": [
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-309",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "ShaderMaterial::B2EA31",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     39.5,
+     9,
+     -309
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     24,
+     0.5,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "TorusGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     14,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -24,
+     0.5,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CircleGeometry",
+    "mat": "MeshToonMaterial::BA0282",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-150,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::C21FA3",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -150,
+     23,
+     -60
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::EE1C7B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::FC439B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::85A11B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@173,79",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::B616E1",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     172.7,
+     2.4,
+     79
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-361",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::B8895C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     4.5,
+     -361
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     24,
+     0.6,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-206,-45",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -206,
+     0.6,
+     -45
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@10,190",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     10,
+     0.6,
+     190
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::A64F59",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshBasicMaterial::C37AE8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "IcosahedronGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::7E40AC",
+    "map": true,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::4174E0",
+    "map": true,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::05F155",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::D3F42E",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::A62A0F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::8852EA",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::30BAFF",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::EF216B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::ACBC94",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::46A49A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::48348C",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::1D58ED",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::6954A0",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::A73343",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::196209",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::196209",
+    "map": false,
+    "inst": true,
+    "wp": "pm",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::27EE65",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::27EE65",
+    "map": false,
+    "inst": true,
+    "wp": "pm",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::E92A33",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_icons|Mesh|@0,0",
+    "name": "graffiti_icons",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::66B630",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshLambertMaterial::C33C58",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::DA096A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "bo_kickwalls_0|Mesh|@0,0",
+    "name": "bo_kickwalls_0",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:bo_kickwall_concrete:E4B605",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::B629CA",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::B629CA",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::5A4704",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::A01455",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::8E85FE",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@60,-80",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::BF01FA",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     60,
+     0,
+     -80
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::BF01FA",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@245,-75",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::4D879D",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     245,
+     0,
+     -75
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@205,30",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::E6D73B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     205,
+     0,
+     30
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "pbr_bridge_deck|Mesh|@0,0",
+    "name": "pbr_bridge_deck",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::BC48D9",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_steel",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::254552",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_panels",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::5845A1",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_plates",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::97373B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_crates",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::673B9F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_buoys",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshStandardMaterial::7DA02B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@288,-74",
+    "name": "kit_ext_volt_bollards",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshStandardMaterial::FC0EAE",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     288,
+     0,
+     -74
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_neon",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::665DAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "CaaliG_LOD2",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::A54A6E",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     108.9,
+     0.2,
+     -81.9
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "ATSkateV2_LOD2",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:20D271",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     0.2,
+     -81.9
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@44,-299",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::EFE015",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     44.2,
+     0,
+     -299
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@44,-299",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::06ABD1",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     44.2,
+     0,
+     -299
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@44,-299",
+    "name": "ATSkateV2_LOD1",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:6902F5",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     44.2,
+     0,
+     -299
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@40,-294",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::26CEBA",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40.2,
+     -0.0,
+     -294
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@40,-294",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::2BDBA8",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40.2,
+     -0.0,
+     -294
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@40,-294",
+    "name": "ATSkateV2_LOD1",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:8D17A5",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     40.2,
+     -0.0,
+     -294
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@36,-289",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::DE10A5",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     36.2,
+     0,
+     -289
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@36,-289",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::505C11",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     36.2,
+     0,
+     -289
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@36,-289",
+    "name": "ATSkateV2_LOD1",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:E69FF3",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     36.2,
+     0,
+     -289
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@38,-301",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::84E8B9",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     38,
+     0,
+     -301.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@38,-301",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::24A728",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     38,
+     0,
+     -301.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@38,-301",
+    "name": "ATSkateV2_LOD0",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:297877",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     38,
+     0,
+     -301.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@34,-296",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::D9E9FB",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     34,
+     -0.0,
+     -296.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@34,-296",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::931D06",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     34,
+     -0.0,
+     -296.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@34,-296",
+    "name": "ATSkateV2_LOD1",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:421F47",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     34,
+     -0.0,
+     -296.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@30,-291",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::87C8EE",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     30,
+     0,
+     -291.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@30,-291",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::593015",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     30,
+     0,
+     -291.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@30,-291",
+    "name": "ATSkateV2_LOD1",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:96C257",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     30,
+     0,
+     -291.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@32,-303",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::17002A",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     31.7,
+     -0.0,
+     -303.2
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@32,-303",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::DEDA1D",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     31.7,
+     -0.0,
+     -303.2
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@32,-303",
+    "name": "ATSkateV2_LOD0",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:09D474",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     31.7,
+     -0.0,
+     -303.2
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "TorusGeometry",
+    "mat": "MeshBasicMaterial::85B42A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::5A4E6F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_brick|Mesh|@0,0",
+    "name": "graffiti_brick",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::59D500",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_metal|Mesh|@0,0",
+    "name": "graffiti_metal",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::DABEF7",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_asphalt|Mesh|@0,0",
+    "name": "graffiti_asphalt",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::EEC2C3",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": true,
+    "top": "|Group|@40,-294",
+    "name": "CrewPatch_karasu",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::C7E184",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     40.3,
+     1.4,
+     -294.1
+    ]
+   },
+   {
+    "k": "world",
+    "npc": true,
+    "top": "|Group|@34,-296",
+    "name": "CrewPatch_forest",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::C7E184",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     34,
+     1.3,
+     -296.1
+    ]
+   },
+   {
+    "k": "world",
+    "npc": true,
+    "top": "|Group|@36,-289",
+    "name": "CrewPatch_anubis",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::C7E184",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     36.2,
+     1.4,
+     -289.1
+    ]
+   },
+   {
+    "k": "world",
+    "npc": true,
+    "top": "|Group|@30,-291",
+    "name": "CrewPatch_genesis",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::C7E184",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     30,
+     1.4,
+     -291.3
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "CrewPatch_caali-g",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::4F8CC5",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     1.6,
+     -81.7
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "PooledFX|Mesh|@0,0",
+    "name": "PooledFX",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::AC6349",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-150,224",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::ED492E",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -150,
+     -2.4,
+     224
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Points|@0,0",
+    "name": "",
+    "type": "Points",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::3A7C75",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Points|@0,0",
+    "name": "",
+    "type": "Points",
+    "geo": "BufferGeometry",
+    "mat": "PointsMaterial::85B4DB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "ShaderMaterial::DAC4C0",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::275458",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::07B826",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::134187",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "RingGeometry",
+    "mat": "MeshBasicMaterial::F9B53B",
+    "map": false,
+    "inst": true,
+    "wp": "rings",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::B34340",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshBasicMaterial::9AD304",
+    "map": false,
+    "inst": true,
+    "wp": "search",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::642CBD",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::91A860",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::16C89F",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C4AF0B",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshBasicMaterial::C0ACCD",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::2CFBD4",
+    "map": false,
+    "inst": false,
+    "wp": "holo",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0.1,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::063B74",
+    "map": false,
+    "inst": false,
+    "wp": "holo",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0.1,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Mesh|@40,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::AD9686",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -60
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Mesh|@40,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::FC6CC3",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -60
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshBasicMaterial::6A91A8",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     108.9,
+     0.9,
+     -81.9
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@245,-106",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::134187",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     245,
+     -2.4,
+     -106
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@245,-115",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     245,
+     -2.4,
+     -115
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-225",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -225
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@40,-275",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::2D10E8",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     7,
+     -285
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@43,31",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "ShaderMaterial::1113D7",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     43.3,
+     0,
+     31.5
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@109,-82",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "ShaderMaterial::4AD997",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     0,
+     -81.9
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_glass|Mesh|@0,0",
+    "name": "graffiti_glass",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::AAD43E",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "graffiti_glow|Mesh|@0,0",
+    "name": "graffiti_glow",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::8D5AB6",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "trails_ring|Mesh|@0,0",
+    "name": "trails_ring",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::BC6D8F",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   }
+  ]
+ },
+ "day_nofan": {
+  "world_per_frame": [
+   96,
+   96,
+   96,
+   96,
+   96
+  ],
+  "chars_per_frame": [
+   7,
+   7,
+   7,
+   7,
+   7
+  ],
+  "fx": 6,
+  "total": 109,
+  "info_calls": 109,
+  "world_npc_rooted": 1,
+  "draws": [
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-309",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "ShaderMaterial::B2EA31",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     39.5,
+     9,
+     -309
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     24,
+     0.5,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "TorusGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     14,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -24,
+     0.5,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CircleGeometry",
+    "mat": "MeshToonMaterial::BA0282",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-150,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::C21FA3",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -150,
+     23,
+     -60
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::EE1C7B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::FC439B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::85A11B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@173,79",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::B616E1",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     172.7,
+     2.4,
+     79
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-361",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::B8895C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     4.5,
+     -361
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     24,
+     0.6,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-206,-45",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -206,
+     0.6,
+     -45
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@10,190",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     10,
+     0.6,
+     190
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::A64F59",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshBasicMaterial::C37AE8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "IcosahedronGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::7E40AC",
+    "map": true,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::4174E0",
+    "map": true,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::05F155",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::D3F42E",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::A62A0F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::8852EA",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::30BAFF",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::EF216B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::ACBC94",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::46A49A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::48348C",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::1D58ED",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::6954A0",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::A73343",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::196209",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::196209",
+    "map": false,
+    "inst": true,
+    "wp": "pm",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::27EE65",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::E92A33",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_icons|Mesh|@0,0",
+    "name": "graffiti_icons",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::66B630",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshLambertMaterial::C33C58",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::DA096A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "bo_kickwalls_0|Mesh|@0,0",
+    "name": "bo_kickwalls_0",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:bo_kickwall_concrete:E4B605",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::B629CA",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::B629CA",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::5A4704",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::A01455",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::8E85FE",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@60,-80",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::BF01FA",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     60,
+     0,
+     -80
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::BF01FA",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@245,-75",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::4D879D",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     245,
+     0,
+     -75
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@205,30",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::E6D73B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     205,
+     0,
+     30
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "pbr_bridge_deck|Mesh|@0,0",
+    "name": "pbr_bridge_deck",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::BC48D9",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_steel",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::254552",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_panels",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::5845A1",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_plates",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::97373B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_crates",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::673B9F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_buoys",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshStandardMaterial::7DA02B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@288,-74",
+    "name": "kit_ext_volt_bollards",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshStandardMaterial::FC0EAE",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     288,
+     0,
+     -74
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_neon",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::665DAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "CaaliG_LOD2",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::A54A6E",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     108.9,
+     0.2,
+     -81.9
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "ATSkateV2_LOD2",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:20D271",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     0.2,
+     -81.9
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@38,-266",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::D9E9FB",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     37.8,
+     0,
+     -265.7
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@38,-266",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::931D06",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     37.8,
+     0,
+     -265.7
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@38,-266",
+    "name": "ATSkateV2_LOD2",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:421F47",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     37.8,
+     0,
+     -265.7
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "TorusGeometry",
+    "mat": "MeshBasicMaterial::85B42A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::5A4E6F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_brick|Mesh|@0,0",
+    "name": "graffiti_brick",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::59D500",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_metal|Mesh|@0,0",
+    "name": "graffiti_metal",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::DABEF7",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_asphalt|Mesh|@0,0",
+    "name": "graffiti_asphalt",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::EEC2C3",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": true,
+    "top": "|Group|@38,-266",
+    "name": "CrewPatch_forest",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::C7E184",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     37.9,
+     1.4,
+     -265.6
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "CrewPatch_caali-g",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::4F8CC5",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     1.6,
+     -81.7
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "PooledFX|Mesh|@0,0",
+    "name": "PooledFX",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::AC6349",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-150,224",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::ED492E",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -150,
+     -2.4,
+     224
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Points|@0,0",
+    "name": "",
+    "type": "Points",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::3A7C75",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Points|@0,0",
+    "name": "",
+    "type": "Points",
+    "geo": "BufferGeometry",
+    "mat": "PointsMaterial::85B4DB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "ShaderMaterial::DAC4C0",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::275458",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::07B826",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::134187",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "RingGeometry",
+    "mat": "MeshBasicMaterial::F9B53B",
+    "map": false,
+    "inst": true,
+    "wp": "rings",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::B34340",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshBasicMaterial::9AD304",
+    "map": false,
+    "inst": true,
+    "wp": "search",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::642CBD",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::91A860",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::16C89F",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C4AF0B",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshBasicMaterial::C0ACCD",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::2CFBD4",
+    "map": false,
+    "inst": false,
+    "wp": "holo",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0.1,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::063B74",
+    "map": false,
+    "inst": false,
+    "wp": "holo",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0.1,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Mesh|@40,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::AD9686",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -60
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Mesh|@40,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::FC6CC3",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -60
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshBasicMaterial::6A91A8",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     108.9,
+     0.9,
+     -81.9
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@245,-106",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::134187",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     245,
+     -2.4,
+     -106
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@245,-115",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     245,
+     -2.4,
+     -115
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-225",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -225
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@40,-275",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::2D10E8",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     7,
+     -285
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@43,31",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "ShaderMaterial::1113D7",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     43.3,
+     0,
+     31.5
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@109,-82",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "ShaderMaterial::4AD997",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     0,
+     -81.9
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_glass|Mesh|@0,0",
+    "name": "graffiti_glass",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::AAD43E",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "graffiti_glow|Mesh|@0,0",
+    "name": "graffiti_glow",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::8D5AB6",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "trails_ring|Mesh|@0,0",
+    "name": "trails_ring",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::BC6D8F",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   }
+  ]
+ },
+ "day_fan": {
+  "world_per_frame": [
+   99,
+   99,
+   99,
+   99,
+   99
+  ],
+  "chars_per_frame": [
+   25,
+   25,
+   25,
+   25,
+   25
+  ],
+  "fx": 6,
+  "total": 130,
+  "info_calls": 129,
+  "world_npc_rooted": 4,
+  "draws": [
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-309",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "ShaderMaterial::B2EA31",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     39.5,
+     9,
+     -309
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshBasicMaterial::C642FC",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     24,
+     0.5,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "TorusGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     14,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::3BDEAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -24,
+     0.5,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CircleGeometry",
+    "mat": "MeshToonMaterial::BA0282",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-150,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::C21FA3",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -150,
+     23,
+     -60
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::EE1C7B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::FC439B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|LineSegments|@0,0",
+    "name": "",
+    "type": "LineSegments",
+    "geo": "BufferGeometry",
+    "mat": "LineBasicMaterial::85A11B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@173,79",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::B616E1",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     172.7,
+     2.4,
+     79
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-361",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::B8895C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     4.5,
+     -361
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@24,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     24,
+     0.6,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-206,-45",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -206,
+     0.6,
+     -45
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@10,190",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::F3AD2C",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     10,
+     0.6,
+     190
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::A64F59",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshBasicMaterial::C37AE8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "IcosahedronGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshToonMaterial::6B09F8",
+    "map": false,
+    "inst": true,
+    "wp": "details",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::7E40AC",
+    "map": true,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::4174E0",
+    "map": true,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::05F155",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::D3F42E",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::A62A0F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::8852EA",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::30BAFF",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::EF216B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::ACBC94",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::46A49A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::48348C",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::1D58ED",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::6954A0",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::A73343",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::196209",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshToonMaterial::196209",
+    "map": false,
+    "inst": true,
+    "wp": "pm",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::27EE65",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::E92A33",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_icons|Mesh|@0,0",
+    "name": "graffiti_icons",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::66B630",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshLambertMaterial::C33C58",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::DA096A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "bo_kickwalls_0|Mesh|@0,0",
+    "name": "bo_kickwalls_0",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:bo_kickwall_concrete:E4B605",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::B629CA",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::B629CA",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::5A4704",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::A01455",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::8E85FE",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@60,-80",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::BF01FA",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     60,
+     0,
+     -80
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::BF01FA",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@245,-75",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::4D879D",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     245,
+     0,
+     -75
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@205,30",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshStandardMaterial::E6D73B",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     205,
+     0,
+     30
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "pbr_bridge_deck|Mesh|@0,0",
+    "name": "pbr_bridge_deck",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::BC48D9",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_steel",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::254552",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_panels",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::5845A1",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_plates",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::97373B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_crates",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshStandardMaterial::673B9F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_buoys",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshStandardMaterial::7DA02B",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@288,-74",
+    "name": "kit_ext_volt_bollards",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshStandardMaterial::FC0EAE",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     288,
+     0,
+     -74
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@-165,-88",
+    "name": "kit_ext_rc_neon",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::665DAB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": "kit_ext",
+    "noMerge": true,
+    "pos": [
+     -165,
+     0,
+     -88
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "CaaliG_LOD2",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial::A54A6E",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     108.9,
+     0.2,
+     -81.9
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "ATSkateV2_LOD2",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:20D271",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     0.2,
+     -81.9
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@44,-299",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::EFE015",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     44.2,
+     0,
+     -299
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@44,-299",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::06ABD1",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     44.2,
+     0,
+     -299
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@44,-299",
+    "name": "ATSkateV2_LOD1",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:6902F5",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     44.2,
+     0,
+     -299
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@40,-294",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::26CEBA",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40.2,
+     -0.0,
+     -294
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@40,-294",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::2BDBA8",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40.2,
+     -0.0,
+     -294
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@40,-294",
+    "name": "ATSkateV2_LOD1",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:8D17A5",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     40.2,
+     -0.0,
+     -294
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@36,-289",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::DE10A5",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     36.2,
+     0,
+     -289
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@36,-289",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::505C11",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     36.2,
+     0,
+     -289
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@36,-289",
+    "name": "ATSkateV2_LOD1",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:E69FF3",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     36.2,
+     0,
+     -289
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@38,-301",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::84E8B9",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     38,
+     0,
+     -301.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@38,-301",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::24A728",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     38,
+     0,
+     -301.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@38,-301",
+    "name": "ATSkateV2_LOD0",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:297877",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     38,
+     0,
+     -301.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@34,-296",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::D9E9FB",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     34,
+     -0.0,
+     -296.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@34,-296",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::931D06",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     34,
+     -0.0,
+     -296.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@34,-296",
+    "name": "ATSkateV2_LOD1",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:421F47",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     34,
+     -0.0,
+     -296.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@30,-291",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::87C8EE",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     30,
+     0,
+     -291.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@30,-291",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::593015",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     30,
+     0,
+     -291.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@30,-291",
+    "name": "ATSkateV2_LOD1",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:96C257",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     30,
+     0,
+     -291.1
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@32,-303",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshToonMaterial::17002A",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     31.7,
+     -0.0,
+     -303.2
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@32,-303",
+    "name": "",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::DEDA1D",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     31.7,
+     -0.0,
+     -303.2
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": true,
+    "top": "|Group|@32,-303",
+    "name": "ATSkateV2_LOD0",
+    "type": "SkinnedMesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshStandardMaterial:M1_at_skate:09D474",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     31.7,
+     -0.0,
+     -303.2
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "TorusGeometry",
+    "mat": "MeshBasicMaterial::85B42A",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BoxGeometry",
+    "mat": "MeshBasicMaterial::5A4E6F",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_brick|Mesh|@0,0",
+    "name": "graffiti_brick",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::59D500",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_metal|Mesh|@0,0",
+    "name": "graffiti_metal",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::DABEF7",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_asphalt|Mesh|@0,0",
+    "name": "graffiti_asphalt",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::EEC2C3",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": true,
+    "top": "|Group|@40,-294",
+    "name": "CrewPatch_karasu",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::C7E184",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     40.3,
+     1.4,
+     -294.1
+    ]
+   },
+   {
+    "k": "world",
+    "npc": true,
+    "top": "|Group|@34,-296",
+    "name": "CrewPatch_forest",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::C7E184",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     34,
+     1.4,
+     -296
+    ]
+   },
+   {
+    "k": "world",
+    "npc": true,
+    "top": "|Group|@36,-289",
+    "name": "CrewPatch_anubis",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::C7E184",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     36.2,
+     1.4,
+     -289.1
+    ]
+   },
+   {
+    "k": "world",
+    "npc": true,
+    "top": "|Group|@30,-291",
+    "name": "CrewPatch_genesis",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::C7E184",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     30,
+     1.4,
+     -291.3
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "CrewPatch_caali-g",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::4F8CC5",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     1.5,
+     -81.7
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "PooledFX|Mesh|@0,0",
+    "name": "PooledFX",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::AC6349",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@-150,224",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::ED492E",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     -150,
+     -2.4,
+     224
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Points|@0,0",
+    "name": "",
+    "type": "Points",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::3A7C75",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Points|@0,0",
+    "name": "",
+    "type": "Points",
+    "geo": "BufferGeometry",
+    "mat": "PointsMaterial::85B4DB",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "heat_cops|Mesh|@0,0",
+    "name": "heat_cops",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "ShaderMaterial::DAC4C0",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::275458",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::07B826",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::134187",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "RingGeometry",
+    "mat": "MeshBasicMaterial::F9B53B",
+    "map": false,
+    "inst": true,
+    "wp": "rings",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::B34340",
+    "map": false,
+    "inst": false,
+    "wp": true,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "ConeGeometry",
+    "mat": "MeshBasicMaterial::9AD304",
+    "map": false,
+    "inst": true,
+    "wp": "search",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::642CBD",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::91A860",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::16C89F",
+    "map": true,
+    "inst": false,
+    "wp": "signs",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::C4AF0B",
+    "map": false,
+    "inst": false,
+    "wp": "p2",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "CylinderGeometry",
+    "mat": "MeshBasicMaterial::C0ACCD",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::2CFBD4",
+    "map": false,
+    "inst": false,
+    "wp": "holo",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0.1,
+     0
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@0,0",
+    "name": "",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "MeshBasicMaterial::063B74",
+    "map": false,
+    "inst": false,
+    "wp": "holo",
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0.1,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Mesh|@40,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::AD9686",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -60
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "|Mesh|@40,-60",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::FC6CC3",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -60
+    ]
+   },
+   {
+    "k": "chars",
+    "npc": false,
+    "top": "|Group|@109,-82",
+    "name": "",
+    "type": "Mesh",
+    "geo": "SphereGeometry",
+    "mat": "MeshBasicMaterial::6A91A8",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     108.9,
+     0.9,
+     -81.9
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@245,-106",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::134187",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     245,
+     -2.4,
+     -106
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@245,-115",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     245,
+     -2.4,
+     -115
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@40,-225",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::48EBE0",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     -2.4,
+     -225
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Group|@40,-275",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "MeshBasicMaterial::2D10E8",
+    "map": true,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     40,
+     7,
+     -285
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@43,31",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "ShaderMaterial::1113D7",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     43.3,
+     0,
+     31.5
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "|Mesh|@109,-82",
+    "name": "",
+    "type": "Mesh",
+    "geo": "PlaneGeometry",
+    "mat": "ShaderMaterial::4AD997",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     108.9,
+     0,
+     -81.9
+    ]
+   },
+   {
+    "k": "world",
+    "npc": false,
+    "top": "graffiti_glass|Mesh|@0,0",
+    "name": "graffiti_glass",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::AAD43E",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "graffiti_glow|Mesh|@0,0",
+    "name": "graffiti_glow",
+    "type": "Mesh",
+    "geo": "InstancedBufferGeometry",
+    "mat": "ShaderMaterial::8D5AB6",
+    "map": false,
+    "inst": true,
+    "wp": null,
+    "mod": null,
+    "noMerge": false,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "k": "fx",
+    "npc": false,
+    "top": "trails_ring|Mesh|@0,0",
+    "name": "trails_ring",
+    "type": "Mesh",
+    "geo": "BufferGeometry",
+    "mat": "ShaderMaterial::BC6D8F",
+    "map": false,
+    "inst": false,
+    "wp": null,
+    "mod": null,
+    "noMerge": true,
+    "pos": [
+     0,
+     0,
+     0
+    ]
+   }
+  ]
+ },
+ "errors": []
+}

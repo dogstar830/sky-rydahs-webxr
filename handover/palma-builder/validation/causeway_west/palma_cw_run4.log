@@ -1,0 +1,46 @@
+tl_acquire: waiting on live pid 530459 (Rydah Systems: gate-gr_4a_s2, max 6 min, 09:59 (pid 530459))
+tl_acquire: waiting on live pid 530459 (Rydah Systems: gate-gr_4a_s2, max 6 min, 09:59 (pid 530459))
+tl_acquire: waiting on live pid 530459 (Rydah Systems: gate-gr_4a_s2, max 6 min, 09:59 (pid 530459))
+tl_acquire: waiting on live pid 530459 (Rydah Systems: gate-gr_4a_s2, max 6 min, 09:59 (pid 530459))
+tl_acquire: waiting on live pid 530459 (Rydah Systems: gate-gr_4a_s2, max 6 min, 09:59 (pid 530459))
+tl_acquire: waiting on live pid 530459 (Rydah Systems: gate-gr_4a_s2, max 6 min, 09:59 (pid 530459))
+tl_acquire: waiting on live pid 530459 (Rydah Systems: gate-gr_4a_s2, max 6 min, 09:59 (pid 530459))
+tl_acquire: waiting on live pid 530459 (Rydah Systems: gate-gr_4a_s2, max 6 min, 09:59 (pid 530459))
+tl_acquire: waiting on live pid 530459 (Rydah Systems: gate-gr_4a_s2, max 6 min, 09:59 (pid 530459))
+tl_acquire: waiting on live pid 530459 (Rydah Systems: gate-gr_4a_s2, max 6 min, 09:59 (pid 530459))
+tl_acquire: got lock pid=539305
+== dump base 10:01
+DUMP causeway_west_night on {"frames": 30, "world": 115, "chars": 49, "fx": 2, "hud": 0, "calls": 165, "sum_eq_calls": false, "roots": 21, "skin_not_chars": [], "w_est": 115, "est_chars": 49, "est_fx": 2} detail_draws 164
+DUMP causeway_west_night off {"frames": 30, "world": 113, "chars": 6, "fx": 0, "hud": 0, "calls": 119, "sum_eq_calls": true, "roots": 21, "skin_not_chars": [], "w_est": 113, "est_chars": 6, "est_fx": 0} detail_draws 119
+DUMP causeway_west_day on {"frames": 30, "world": 114, "chars": 47, "fx": 2, "hud": 0, "calls": 162, "sum_eq_calls": false, "roots": 21, "skin_not_chars": [], "w_est": 114, "est_chars": 47, "est_fx": 2} detail_draws 160
+DUMP causeway_west_day off {"frames": 30, "world": 112, "chars": 6, "fx": 0, "hud": 0, "calls": 118, "sum_eq_calls": true, "roots": 21, "skin_not_chars": [], "w_est": 112, "est_chars": 6, "est_fx": 0} detail_draws 118
+PASS no page errors
+RESULT 7 / 7
+== cams base 10:05
+FAIL alpha roster: 7 crew NPCs + Ikki NPC loaded npcs=6 ikkiNpc=True
+PERDRAW causeway_west_night {"frames": 30, "world": 112, "chars": 25, "fx": 2, "hud": 0, "n": 138, "calls": 138, "sum_eq_calls": false, "autoReset": true, "proposed_rule_world_to_fx": 5, "skin_not_chars": [], "roots": 19}
+PERDRAW causeway_west_day {"frames": 30, "world": 114, "chars": 25, "fx": 2, "hud": 0, "n": 140, "calls": 140, "sum_eq_calls": false, "autoReset": true, "proposed_rule_world_to_fx": 5, "skin_not_chars": [], "roots": 19}
+PERDRAW b98_day {"frames": 30, "world": 100, "chars": 25, "fx": 0, "hud": 0, "n": 125, "calls": 125, "sum_eq_calls": true, "autoReset": true, "proposed_rule_world_to_fx": 2, "skin_not_chars": [], "roots": 19}
+PERDRAW portside_day {"frames": 30, "world": 100, "chars": 27, "fx": 0, "hud": 0, "n": 127, "calls": 127, "sum_eq_calls": true, "autoReset": true, "proposed_rule_world_to_fx": 4, "skin_not_chars": [], "roots": 19}
+FAIL causeway_west_night: per-draw buckets sum to renderer calls every frame n=138 calls=138 autoReset=True
+FAIL causeway_west_day: per-draw buckets sum to renderer calls every frame n=140 calls=140 autoReset=True
+FAIL causeway_west_night: world<=110 max=112
+FAIL causeway_west_day: world<=110 max=114
+RESULT 18 / 23
+== dump A 10:09
+DUMP causeway_west_night on {"frames": 30, "world": 110, "chars": 45, "fx": 2, "hud": 0, "calls": 156, "sum_eq_calls": false, "roots": 21, "skin_not_chars": [], "w_est": 110, "est_chars": 45, "est_fx": 2} detail_draws 155
+DUMP causeway_west_night off {"frames": 30, "world": 108, "chars": 4, "fx": 0, "hud": 0, "calls": 112, "sum_eq_calls": true, "roots": 21, "skin_not_chars": [], "w_est": 108, "est_chars": 4, "est_fx": 0} detail_draws 112
+DUMP causeway_west_day on {"frames": 30, "world": 109, "chars": 43, "fx": 2, "hud": 0, "calls": 153, "sum_eq_calls": false, "roots": 21, "skin_not_chars": [], "w_est": 109, "est_chars": 43, "est_fx": 2} detail_draws 151
+DUMP causeway_west_day off {"frames": 30, "world": 107, "chars": 4, "fx": 0, "hud": 0, "calls": 111, "sum_eq_calls": true, "roots": 21, "skin_not_chars": [], "w_est": 107, "est_chars": 4, "est_fx": 0} detail_draws 111
+PASS no page errors
+RESULT 7 / 7
+== cams A 10:12
+PERDRAW causeway_west_night {"frames": 30, "world": 109, "chars": 28, "fx": 2, "hud": 0, "n": 138, "calls": 138, "sum_eq_calls": false, "autoReset": true, "proposed_rule_world_to_fx": 5, "skin_not_chars": [], "roots": 21}
+PERDRAW causeway_west_day {"frames": 30, "world": 109, "chars": 28, "fx": 2, "hud": 0, "n": 138, "calls": 138, "sum_eq_calls": false, "autoReset": true, "proposed_rule_world_to_fx": 5, "skin_not_chars": [], "roots": 21}
+PERDRAW b98_day {"frames": 30, "world": 96, "chars": 28, "fx": 0, "hud": 0, "n": 124, "calls": 124, "sum_eq_calls": true, "autoReset": true, "proposed_rule_world_to_fx": 4, "skin_not_chars": [], "roots": 21}
+PERDRAW portside_day {"frames": 30, "world": 95, "chars": 31, "fx": 0, "hud": 0, "n": 126, "calls": 126, "sum_eq_calls": true, "autoReset": true, "proposed_rule_world_to_fx": 4, "skin_not_chars": [], "roots": 21}
+FAIL causeway_west_night: per-draw buckets sum to renderer calls every frame n=138 calls=138 autoReset=True
+FAIL causeway_west_day: per-draw buckets sum to renderer calls every frame n=138 calls=138 autoReset=True
+RESULT 21 / 23
+== done 10:16
+tl_release: released
