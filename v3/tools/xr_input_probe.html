@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Sky Rydahs — XR Input Probe</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%233dff8a'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #0e1116; --bg2: #171c24; --bg3: #202833;
+    --ink: #e8eef7; --dim: #8b98a8; --line: #2a3340;
+    --ok: #3dff8a; --ok-ink: #062014; --warn: #ffd36a;
+    --bad: #ff5d5d; --accent: #7ad3ff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font: 22px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  body { padding: 16px 16px 80px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  h2 { font-size: 20px; margin: 22px 0 8px; color: var(--accent); }
+  .sub { color: var(--dim); font-size: 16px; margin: 0 0 16px; }
+  #err { display: none; background: #3a1212; border: 2px solid var(--bad);
+    color: #ffd0d0; padding: 12px 14px; margin: 0 0 16px; border-radius: 10px;
+    white-space: pre-wrap; word-break: break-word; }
+  #err.show { display: block; }
+  .hero { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0 20px; align-items: stretch; }
+  button, a.btn { appearance: none; border: 0; border-radius: 14px;
+    font: 700 22px/1.1 system-ui, sans-serif; padding: 18px 22px;
+    min-height: 64px; cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink); background: var(--bg3); border: 2px solid var(--line); }
+  #btnVR { background: var(--ok); color: var(--ok-ink); border-color: #8cffb5;
+    font-size: 32px; min-width: 280px; min-height: 88px; flex: 1 1 280px; }
+  #btnVR:disabled { filter: grayscale(.4) brightness(.7); cursor: not-allowed; }
+  #btnExit { background: #5a1d1d; border-color: var(--bad); }
+  #btnDownload { background: #1d3a5a; border-color: var(--accent); color: #d7f1ff; }
+  #btnSkip { background: #3a3420; border-color: var(--warn); color: var(--warn); }
+  button:active { transform: scale(0.98); }
+  button[hidden], a[hidden], section[hidden] { display: none !important; }
+  .cards { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .cards { grid-template-columns: 1fr 1fr; } }
+  .card { background: var(--bg2); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+  .k { color: var(--dim); font-size: 14px; text-transform: uppercase; letter-spacing: .06em; }
+  #promptTitle { font-size: 26px; font-weight: 800; margin: 4px 0; }
+  #promptHint, #promptMeta { color: var(--dim); font-size: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--dim); font-weight: 600; font-size: 13px; text-transform: uppercase; }
+  #logtail { max-height: 260px; overflow: auto; background: #0a0d11; border: 1px solid var(--line);
+    border-radius: 10px; padding: 10px; white-space: pre-wrap; word-break: break-word; color: #c5d0dc;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 15px; }
+  #steps { list-style: none; padding: 0; margin: 0; }
+  #steps li { padding: 6px 0; color: var(--dim); }
+  #steps li.now { color: var(--warn); font-weight: 700; }
+  #steps li.done { color: var(--ok); }
+  #steps li.skip { color: #c98989; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; background: var(--bg3); font-size: 13px; margin-right: 6px; }
+  .pill.ok { background: #163524; color: var(--ok); }
+  .pill.bad { background: #3a1212; color: var(--bad); }
+  .pill.warn { background: #3a3118; color: var(--warn); }
+  #xrCanvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: none; background: #000; }
+  body.in-vr #xrCanvas { display: block; }
+  body.in-vr .page { visibility: hidden; }
+  .page { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
+  .howto { font-size: 18px; }
+  .howto ol { padding-left: 1.2em; margin: 8px 0; }
+</style>
+</head>
+<body>
+<canvas id="xrCanvas"></canvas>
+<div class="page">
+  <h1>Sky Rydahs — XR Input Probe</h1>
+  <p class="sub">Standalone Quest 3S input map. Does not touch the game or its save. Results decide the menu button map.</p>
+  <div id="err" role="alert"></div>
+  <div class="hero">
+    <button id="btnVR" type="button">ENTER VR</button>
+    <button id="btnExit" type="button" hidden>Exit VR</button>
+    <button id="btnStart2d" type="button">Start 2D checklist (Xbox pad)</button>
+    <button id="btnSkip" type="button">Skip this prompt</button>
+    <button id="btnReset" type="button">Reset log</button>
+    <a id="btnDownload" class="btn" hidden href="#" download="sr_input_probe.json">Download JSON</a>
+  </div>
+  <section class="card howto">
+    <div class="k">2-minute procedure</div>
+    <ol>
+      <li>Pair the Xbox pad in Quest settings if you will test it. Confirm it appears in the live readout below.</li>
+      <li>Tap <b>ENTER VR</b>. Follow the prompts on the panel in front of you. Any new press or stick push advances; a timeout also skips.</li>
+      <li>When asked to press the left Touch <b>menu (☰)</b> button, press it. The session may pause or exit — that is expected and is the result we need.</li>
+      <li>After VR ends, review the summary table, tap <b>Download JSON</b>, and send that file to Anika / Systems.</li>
+    </ol>
+    <p class="sub">A copy is also stored in this browser as localStorage key <code>sr_input_probe_v1</code>. Hard-refresh this page before a retest so you are not on a cached copy.</p>
+  </section>
+  <div class="cards">
+    <section class="card"><div class="k">Session</div><div id="sessInfo">Checking WebXR…</div></section>
+    <section class="card">
+      <div class="k">Current prompt</div>
+      <div id="promptTitle">Idle — start the checklist or enter VR.</div>
+      <div id="promptHint"></div>
+      <div id="promptMeta"></div>
+    </section>
+  </div>
+  <h2>Live readout</h2>
+  <section class="card" id="livePads">No gamepads seen yet. Press a button on the Xbox pad, or enter VR with Touch controllers.</section>
+  <h2>Checklist</h2>
+  <section class="card"><ol id="steps"></ol></section>
+  <h2>Summary (input → index)</h2>
+  <section class="card" id="summaryCard">
+    <div id="prevNote" class="sub"></div>
+    <div id="summaryBody">No results yet.</div>
+  </section>
+  <h2>Event log (tail)</h2>
+  <div id="logtail"></div>
+</div>
+<script>
+(function () {
+  "use strict";
+
+  var STORAGE_KEY = "sr_input_probe_v1";
+  var DEADZONE = 0.03;
+  var AXIS_EDGE = 0.55;
+  var ARM_MS = 350;
+  var DEFAULT_TIMEOUT = 12000;
+  var MENU_TIMEOUT = 16000;
+  var LOG_CAP = 8000;
+  var SAVE_MIN_MS = 400;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var elErr = $("err");
+  var elSess = $("sessInfo");
+  var elPads = $("livePads");
+  var elPromptTitle = $("promptTitle");
+  var elPromptHint = $("promptHint");
+  var elPromptMeta = $("promptMeta");
+  var elSteps = $("steps");
+  var elSummary = $("summaryBody");
+  var elPrev = $("prevNote");
+  var elLog = $("logtail");
+  var elCanvas = $("xrCanvas");
+  var btnVR = $("btnVR");
+  var btnExit = $("btnExit");
+  var btnStart2d = $("btnStart2d");
+  var btnSkip = $("btnSkip");
+  var btnReset = $("btnReset");
+  var btnDownload = $("btnDownload");
+
+  var errors = [];
+  var pollingPaused = false;
+  var nowMs = function () { return (performance && performance.now) ? performance.now() : Date.now(); };
+  var iso = function () { try { return new Date().toISOString(); } catch (e) { return String(Date.now()); } };
+  var t0 = nowMs();
+  var rel = function () { return Math.round((nowMs() - t0) * 10) / 10; };
+  var round4 = function (v) { return Math.round((+v || 0) * 10000) / 10000; };
+
+  function showError(err, where) {
+    try {
+      var msg = (err && err.stack) ? String(err.stack) : String(err);
+      if (where) msg = where + ": " + msg;
+      errors.push({ t: rel(), iso: iso(), msg: msg });
+      elErr.textContent = errors.map(function (e) { return e.msg; }).slice(-6).join("\n\n");
+      elErr.className = "show";
+      logEvent({ type: "error", message: msg });
+    } catch (e2) {}
+  }
+
+  window.addEventListener("error", function (ev) {
+    showError((ev && ev.error) || ev.message || ev, "window.error");
+  });
+  window.addEventListener("unhandledrejection", function (ev) {
+    showError((ev && ev.reason) || ev, "unhandledrejection");
+  });
+
+  var PROMPTS = [
+    { id: "touch-right-a", title: "Press A on right Touch", group: "touch", hint: "Right controller, lower face button (A)." },
+    { id: "touch-right-b", title: "Press B on right Touch", group: "touch", hint: "Right controller, upper face button (B)." },
+    { id: "touch-right-trigger", title: "Press the right Touch trigger", group: "touch", hint: "Index-finger trigger on the right controller." },
+    { id: "touch-right-grip", title: "Squeeze the right Touch grip", group: "touch", hint: "Grip / squeeze on the right controller." },
+    { id: "touch-right-stick-click", title: "Click the right Touch stick (R3)", group: "touch", hint: "Press the right thumbstick down." },
+    { id: "touch-right-stick-up", title: "Push right Touch stick up", group: "touch", hint: "Deflect the right thumbstick forward / up." },
+    { id: "touch-right-stick-right", title: "Push right Touch stick right", group: "touch", hint: "Deflect the right thumbstick to the right." },
+    { id: "touch-left-x", title: "Press X on left Touch", group: "touch", hint: "Left controller, lower face button (X)." },
+    { id: "touch-left-y", title: "Press Y on left Touch", group: "touch", hint: "Left controller, upper face button (Y)." },
+    { id: "touch-left-trigger", title: "Press the left Touch trigger", group: "touch" },
+    { id: "touch-left-grip", title: "Squeeze the left Touch grip", group: "touch" },
+    { id: "touch-left-stick-click", title: "Click the left Touch stick (L3)", group: "touch" },
+    { id: "touch-left-stick-up", title: "Push left stick up", group: "touch", hint: "Deflect the left thumbstick forward / up." },
+    { id: "touch-left-stick-right", title: "Push left Touch stick right", group: "touch" },
+    { id: "touch-menu", title: "Press menu button", group: "touch-menu", hint: "Left Touch menu (the ☰ button). The session may pause or exit — that is expected.", timeout: MENU_TIMEOUT },
+    { id: "xbox-a", title: "Press Xbox A", group: "xbox" },
+    { id: "xbox-b", title: "Press Xbox B", group: "xbox" },
+    { id: "xbox-x", title: "Press Xbox X", group: "xbox" },
+    { id: "xbox-y", title: "Press Xbox Y", group: "xbox" },
+    { id: "xbox-lb", title: "Press Xbox LB", group: "xbox" },
+    { id: "xbox-rb", title: "Press Xbox RB", group: "xbox" },
+    { id: "xbox-lt", title: "Press Xbox LT", group: "xbox", hint: "Fully pull the left trigger." },
+    { id: "xbox-rt", title: "Press Xbox RT", group: "xbox", hint: "Fully pull the right trigger." },
+    { id: "xbox-dpad-up", title: "Press Xbox D-pad Up", group: "xbox" },
+    { id: "xbox-dpad-down", title: "Press Xbox D-pad Down", group: "xbox" },
+    { id: "xbox-dpad-left", title: "Press Xbox D-pad Left", group: "xbox" },
+    { id: "xbox-dpad-right", title: "Press Xbox D-pad Right", group: "xbox" },
+    { id: "xbox-l3", title: "Press Xbox L3", group: "xbox", hint: "Click the left stick." },
+    { id: "xbox-r3", title: "Press Xbox R3", group: "xbox", hint: "Click the right stick." },
+    { id: "xbox-ls-up", title: "Push Xbox left stick up", group: "xbox" },
+    { id: "xbox-rs-up", title: "Push Xbox right stick up", group: "xbox" },
+    { id: "xbox-view", title: "Press Xbox View", group: "xbox", hint: "View / Back — two overlapping squares." },
+    { id: "xbox-menu", title: "Press Xbox Menu", group: "xbox", hint: "Menu / Start — three lines, near Y." },
+    { id: "xbox-guide", title: "Press Xbox (Guide) button", group: "xbox", hint: "The Xbox logo button. It may be reserved by the system." }
+  ];
+
+  var state = {
+    xrSupported: null,
+    featuresRequested: ["local-floor", "hand-tracking"],
+    featuresGranted: [],
+    refSpaceType: null,
+    immersive: false,
+    visibilityState: "page",
+    sessionEndedReason: null,
+    seenNavPadsIn2D: false,
+    seenNavPadsInVR: false,
+    seenXboxIn2D: false,
+    seenXboxInVR: false,
+    menuButtonObservation: null
+  };
+
+  var log = {
+    meta: {
+      version: 1,
+      title: "sr_input_probe_v1",
+      startedAt: iso(),
+      userAgent: (typeof navigator !== "undefined" && navigator.userAgent) || "",
+      language: (typeof navigator !== "undefined" && navigator.language) || ""
+    },
+    events: [],
+    flags: {},
+    errors: errors
+  };
+
+  var prevPads = {};
+  var liveCache = { xr: [], nav: [], text: "", stamp: 0 };
+  var lastSaveAt = 0;
+  var lastDomAt = 0;
+  var objectUrl = null;
+  var logTailDirty = true;
+  var capped = false;
+
+  var guide = {
+    active: false,
+    index: -1,
+    armed: false,
+    armAt: 0,
+    startedAt: 0,
+    timeoutMs: DEFAULT_TIMEOUT,
+    baseline: null,
+    results: []
+  };
+
+  function currentPrompt() {
+    if (!guide.active || guide.index < 0 || guide.index >= PROMPTS.length) return null;
+    return PROMPTS[guide.index];
+  }
+  function promptTag() {
+    var p = currentPrompt();
+    return p ? p.id : null;
+  }
+
+  function logEvent(ev) {
+    try {
+      ev = ev || {};
+      ev.t = (ev.t != null) ? ev.t : rel();
+      ev.iso = ev.iso || iso();
+      if (ev.prompt == null) ev.prompt = promptTag();
+      if (capped) {
+        log.flags.logCapped = true;
+        return ev;
+      }
+      log.events.push(ev);
+      if (log.events.length >= LOG_CAP) {
+        capped = true;
+        log.flags.logCapped = true;
+        log.events.push({ type: "log-capped", t: rel(), iso: iso(), n: log.events.length });
+      }
+      logTailDirty = true;
+      scheduleSave(false);
+      return ev;
+    } catch (e) {
+      try { showError(e, "logEvent"); } catch (e2) {}
+      return ev;
+    }
+  }
+
+  function flushSave(force) {
+    try {
+      lastSaveAt = nowMs();
+      log.meta.updatedAt = iso();
+      log.meta.immersive = state.immersive;
+      log.flags = Object.assign({}, log.flags, {
+        seenNavPadsIn2D: state.seenNavPadsIn2D,
+        seenNavPadsInVR: state.seenNavPadsInVR,
+        seenXboxIn2D: state.seenXboxIn2D,
+        seenXboxInVR: state.seenXboxInVR,
+        menuButtonObservation: state.menuButtonObservation,
+        xrSupported: state.xrSupported,
+        featuresRequested: state.featuresRequested,
+        featuresGranted: state.featuresGranted,
+        refSpaceType: state.refSpaceType
+      });
+      var payload = serializeLog(log);
+      try { localStorage.setItem(STORAGE_KEY, payload); } catch (e) {
+        log.flags.localStorageError = String(e && e.message ? e.message : e);
+      }
+      refreshDownload(payload, force);
+    } catch (e) { showError(e, "flushSave"); }
+  }
+
+  var saveTimer = null;
+  function scheduleSave(force) {
+    if (force) { flushSave(true); return; }
+    var dt = nowMs() - lastSaveAt;
+    if (dt >= SAVE_MIN_MS) { flushSave(false); return; }
+    if (saveTimer) return;
+    saveTimer = setTimeout(function () {
+      saveTimer = null;
+      flushSave(false);
+    }, Math.max(40, SAVE_MIN_MS - dt));
+  }
+
+  function serializeLog(src) {
+    return JSON.stringify(src || log);
+  }
+
+  function refreshDownload(payload, force) {
+    try {
+      if (!btnDownload) return;
+      var json = payload || serializeLog(log);
+      if (objectUrl) {
+        try { URL.revokeObjectURL(objectUrl); } catch (e) {}
+        objectUrl = null;
+      }
+      var blob = new Blob([json], { type: "application/json" });
+      objectUrl = URL.createObjectURL(blob);
+      var stamp = (log.meta.updatedAt || log.meta.startedAt || "").replace(/[:.]/g, "-");
+      btnDownload.href = objectUrl;
+      btnDownload.download = "sr_input_probe_" + stamp + ".json";
+      if (force || log.events.length) btnDownload.hidden = false;
+    } catch (e) { showError(e, "refreshDownload"); }
+  }
+
+  function classifyPad(pad) {
+    if (!pad) return "none";
+    var id = String(pad.id || "").toLowerCase();
+    var mapping = String(pad.mapping || "");
+    if (mapping === "xr-standard") return "xr";
+    if (/xbox|xinput|x-box|045e|microsoft/.test(id)) return "xbox";
+    if (/oculus|touch|meta quest|quest|pico|vive|wmr|openxr|handheld/.test(id)) return "xr-like";
+    if (mapping === "standard") return "standard-gamepad";
+    return "other";
+  }
+
+  function snapshotButtons(pad) {
+    var out = [];
+    var n = (pad && pad.buttons && pad.buttons.length) || 0;
+    for (var i = 0; i < n; i++) {
+      var b = pad.buttons[i] || {};
+      out.push({ i: i, pressed: !!b.pressed, touched: !!b.touched, value: round4(b.value) });
+    }
+    return out;
+  }
+  function snapshotAxes(pad) {
+    var out = [];
+    var n = (pad && pad.axes && pad.axes.length) || 0;
+    for (var i = 0; i < n; i++) out.push({ i: i, value: round4(pad.axes[i]) });
+    return out;
+  }
+
+  function ensurePrev(key, nb, na) {
+    var st = prevPads[key];
+    if (!st || st.nb !== nb || st.na !== na) {
+      st = {
+        nb: nb, na: na, init: false,
+        bVal: new Float32Array(nb),
+        bPr: new Uint8Array(nb),
+        bTo: new Uint8Array(nb),
+        axes: new Float32Array(na),
+        mapping: "", id: ""
+      };
+      prevPads[key] = st;
+    }
+    return st;
+  }
+
+  function padChanged(st, pad, nb, na) {
+    if (!st.init) return true;
+    if (st.mapping !== String(pad.mapping || "") || st.id !== String(pad.id || "")) return true;
+    var i, b, v;
+    for (i = 0; i < nb; i++) {
+      b = pad.buttons[i] || {};
+      v = +b.value || 0;
+      if ((b.pressed ? 1 : 0) !== st.bPr[i]) return true;
+      if ((b.touched ? 1 : 0) !== st.bTo[i]) return true;
+      if (Math.abs(v - st.bVal[i]) > DEADZONE) return true;
+    }
+    for (i = 0; i < na; i++) {
+      if (Math.abs((+pad.axes[i] || 0) - st.axes[i]) > DEADZONE) return true;
+    }
+    return false;
+  }
+
+  function writePrev(st, pad, nb, na) {
+    st.init = true;
+    st.mapping = String(pad.mapping || "");
+    st.id = String(pad.id || "");
+    var i, b;
+    for (i = 0; i < nb; i++) {
+      b = pad.buttons[i] || {};
+      st.bVal[i] = +b.value || 0;
+      st.bPr[i] = b.pressed ? 1 : 0;
+      st.bTo[i] = b.touched ? 1 : 0;
+    }
+    for (i = 0; i < na; i++) st.axes[i] = +pad.axes[i] || 0;
+  }
+
+  function collectChanges(st, pad, nb, na) {
+    var changed = [];
+    var i, b, v, pv;
+    for (i = 0; i < nb; i++) {
+      b = pad.buttons[i] || {};
+      v = +b.value || 0;
+      if (!st.init || (b.pressed ? 1 : 0) !== st.bPr[i] || (b.touched ? 1 : 0) !== st.bTo[i] || Math.abs(v - st.bVal[i]) > DEADZONE) {
+        pv = st.init ? round4(st.bVal[i]) : null;
+        changed.push({ kind: "button", i: i, pressed: !!b.pressed, touched: !!b.touched, value: round4(v), prevValue: pv });
+      }
+    }
+    for (i = 0; i < na; i++) {
+      v = +pad.axes[i] || 0;
+      if (!st.init || Math.abs(v - st.axes[i]) > DEADZONE) {
+        changed.push({ kind: "axis", i: i, value: round4(v), prevValue: st.init ? round4(st.axes[i]) : null });
+      }
+    }
+    return changed;
+  }
+
+  function capturePad(kind, key, pad, extra) {
+    if (!pad) return null;
+    try {
+      var nb = (pad.buttons && pad.buttons.length) || 0;
+      var na = (pad.axes && pad.axes.length) || 0;
+      var st = ensurePrev(key, nb, na);
+      if (!padChanged(st, pad, nb, na)) {
+        maybeAdvance(kind, key, pad, extra, st);
+        return null;
+      }
+      var changed = collectChanges(st, pad, nb, na);
+      var ev = {
+        type: "pad-change",
+        src: kind,
+        key: key,
+        id: pad.id || "",
+        index: (pad.index != null) ? pad.index : null,
+        mapping: pad.mapping || "",
+        class: classifyPad(pad),
+        buttonsLength: nb,
+        axesLength: na,
+        buttons: snapshotButtons(pad),
+        axes: snapshotAxes(pad),
+        changed: changed
+      };
+      if (extra) {
+        ev.handedness = extra.handedness;
+        ev.targetRayMode = extra.targetRayMode;
+        ev.profiles = extra.profiles;
+        ev.hasGamepad = true;
+      }
+      writePrev(st, pad, nb, na);
+      logEvent(ev);
+      maybeAdvance(kind, key, pad, extra, st);
+      texDirty = true;
+      return ev;
+    } catch (e) {
+      showError(e, "capturePad " + key);
+      return null;
+    }
+  }
+
+  function baselineFromPad(pad) {
+    var b = [], a = [], i;
+    var nb = (pad.buttons && pad.buttons.length) || 0;
+    var na = (pad.axes && pad.axes.length) || 0;
+    for (i = 0; i < nb; i++) {
+      var btn = pad.buttons[i] || {};
+      b[i] = { pressed: !!btn.pressed, value: +btn.value || 0 };
+    }
+    for (i = 0; i < na; i++) a[i] = +pad.axes[i] || 0;
+    return { b: b, a: a };
+  }
+
+  function rememberBaseline(key, pad) {
+    if (!guide.baseline) guide.baseline = {};
+    guide.baseline[key] = baselineFromPad(pad);
+  }
+
+  function maybeAdvance(kind, key, pad, extra, st) {
+    if (!guide.active || !guide.armed) {
+      if (guide.active && !guide.armed && pad) rememberBaseline(key, pad);
+      return;
+    }
+    var base = (guide.baseline && guide.baseline[key]) || { b: [], a: [] };
+    var i, btn, v, was, edge = false, info = null;
+    var nb = (pad.buttons && pad.buttons.length) || 0;
+    var na = (pad.axes && pad.axes.length) || 0;
+    for (i = 0; i < nb; i++) {
+      btn = pad.buttons[i] || {};
+      v = +btn.value || 0;
+      was = base.b[i] || { pressed: false, value: 0 };
+      if ((btn.pressed || v >= 0.7) && !was.pressed && was.value < 0.5) {
+        edge = true;
+        info = { kind: "button", i: i, value: round4(v), src: kind, key: key, class: classifyPad(pad), handedness: extra && extra.handedness, id: pad.id || "", mapping: pad.mapping || "" };
+        break;
+      }
+    }
+    if (!edge) {
+      for (i = 0; i < na; i++) {
+        v = +pad.axes[i] || 0;
+        was = (base.a[i] != null) ? base.a[i] : 0;
+        if (Math.abs(v) >= AXIS_EDGE && Math.abs(was) < AXIS_EDGE) {
+          edge = true;
+          info = { kind: "axis", i: i, value: round4(v), src: kind, key: key, class: classifyPad(pad), handedness: extra && extra.handedness, id: pad.id || "", mapping: pad.mapping || "" };
+          break;
+        }
+      }
+    }
+    if (edge) advanceGuide("input", info);
+  }
+
+  function pollNavigatorGamepads() {
+    var list = [];
+    try {
+      var gp = (navigator.getGamepads && navigator.getGamepads()) || [];
+      var i, pad;
+      for (i = 0; i < gp.length; i++) {
+        pad = gp[i];
+        if (!pad) continue;
+        list.push(pad);
+        if (state.immersive) state.seenNavPadsInVR = true;
+        else state.seenNavPadsIn2D = true;
+        if (classifyPad(pad) === "xbox") {
+          if (state.immersive) state.seenXboxInVR = true;
+          else state.seenXboxIn2D = true;
+        }
+        capturePad("nav", "nav:" + String(pad.index) + ":" + String(pad.id || ""), pad, null);
+      }
+    } catch (e) { showError(e, "getGamepads"); }
+    liveCache.nav = list;
+    return list;
+  }
+
+  function pollXRSources(session) {
+    var out = [];
+    if (!session) return out;
+    try {
+      var sources = session.inputSources || [];
+      var i, src, extra, key;
+      for (i = 0; i < sources.length; i++) {
+        src = sources[i];
+        extra = {
+          handedness: src.handedness || "",
+          targetRayMode: src.targetRayMode || "",
+          profiles: src.profiles ? Array.prototype.slice.call(src.profiles) : [],
+          hasHand: !!src.hand
+        };
+        out.push({ extra: extra, hasGamepad: !!src.gamepad });
+        key = "xr:" + extra.handedness + ":" + extra.targetRayMode + ":" + extra.profiles.join(",");
+        if (src.gamepad) capturePad("xr", key, src.gamepad, extra);
+        else if (!prevPads[key]) {
+          prevPads[key] = { nb: 0, na: 0, init: true };
+          logEvent({
+            type: "xr-source-no-gamepad",
+            src: "xr",
+            key: key,
+            handedness: extra.handedness,
+            targetRayMode: extra.targetRayMode,
+            profiles: extra.profiles,
+            hasHand: extra.hasHand
+          });
+        }
+      }
+    } catch (e) { showError(e, "pollXRSources"); }
+    liveCache.xr = out;
+    return out;
+  }
+
+  function renderSteps() {
+    var html = "";
+    for (var i = 0; i < PROMPTS.length; i++) {
+      var cls = "";
+      var res = guide.results[i];
+      if (guide.active && i === guide.index) cls = "now";
+      else if (res) cls = (res.how === "timeout" || res.how === "skip") ? "skip" : "done";
+      html += "<li class=\"" + cls + "\">" + (i + 1) + ". " + escapeHtml(PROMPTS[i].title);
+      if (res && res.mappingText) html += " — " + escapeHtml(res.mappingText);
+      html += "</li>";
+    }
+    elSteps.innerHTML = html;
+  }
+
+  function setPromptDom() {
+    var p = currentPrompt();
+    if (!p) {
+      elPromptTitle.textContent = guide.active ? "Checklist complete." : "Idle — start the checklist or enter VR.";
+      elPromptHint.textContent = "";
+      elPromptMeta.textContent = "";
+      return;
+    }
+    var left = Math.max(0, guide.timeoutMs - (nowMs() - guide.startedAt));
+    elPromptTitle.textContent = p.title;
+    elPromptHint.textContent = p.hint || "";
+    elPromptMeta.textContent = "Step " + (guide.index + 1) + " / " + PROMPTS.length +
+      "  ·  " + (guide.armed ? "listening" : "arming…") +
+      "  ·  skip in " + (Math.ceil(left / 1000)) + "s";
+  }
+
+  function startGuide(fromIdx) {
+    guide.active = true;
+    guide.index = (fromIdx == null ? 0 : fromIdx) - 1;
+    guide.results = guide.results || [];
+    nextPrompt(true);
+    logEvent({ type: "guide-start", from: fromIdx || 0 });
+    renderSteps();
+    texDirty = true;
+  }
+
+  function nextPrompt(first) {
+    guide.index += 1;
+    if (guide.index >= PROMPTS.length) {
+      finishGuide("complete");
+      return;
+    }
+    var p = PROMPTS[guide.index];
+    guide.armed = false;
+    guide.startedAt = nowMs();
+    guide.timeoutMs = p.timeout || DEFAULT_TIMEOUT;
+    guide.baseline = {};
+    try {
+      var gp = (navigator.getGamepads && navigator.getGamepads()) || [];
+      for (var i = 0; i < gp.length; i++) if (gp[i]) rememberBaseline("nav:" + gp[i].index + ":" + (gp[i].id || ""), gp[i]);
+    } catch (e) {}
+    setTimeout(function () {
+      if (currentPrompt() && currentPrompt().id === p.id) {
+        guide.armed = true;
+        guide.armAt = nowMs();
+        texDirty = true;
+        setPromptDom();
+      }
+    }, ARM_MS);
+    logEvent({ type: "prompt-start", prompt: p.id, title: p.title, group: p.group, first: !!first });
+    setPromptDom();
+    renderSteps();
+    texDirty = true;
+  }
+
+  function advanceGuide(how, info) {
+    if (!guide.active || guide.index < 0) return;
+    var p = currentPrompt();
+    if (!p) return;
+    var mappingText = formatMapping(info);
+    var rec = { id: p.id, title: p.title, how: how, info: info || null, mappingText: mappingText, t: rel() };
+    guide.results[guide.index] = rec;
+    logEvent({ type: how === "input" ? "prompt-advance" : (how === "timeout" ? "prompt-timeout" : "prompt-skip"), prompt: p.id, title: p.title, how: how, info: info || null, mappingText: mappingText });
+    if (p.id === "touch-menu" && !state.menuButtonObservation) {
+      if (how === "timeout") {
+        state.menuButtonObservation = "no-page-event-before-timeout";
+        logEvent({ type: "menu-button-observation", observation: state.menuButtonObservation });
+      } else if (how === "input") {
+        state.menuButtonObservation = "produced-input";
+        logEvent({ type: "menu-button-observation", observation: state.menuButtonObservation, info: info || null });
+      }
+    }
+    nextPrompt(false);
+  }
+
+  function finishGuide(why) {
+    guide.active = false;
+    guide.armed = false;
+    logEvent({ type: "guide-end", why: why || "complete" });
+    setPromptDom();
+    renderSteps();
+    renderSummary();
+    flushSave(true);
+    texDirty = true;
+    elPromptTitle.textContent = "Checklist complete — exit VR if you are still in the session, then download the JSON.";
+  }
+
+  function formatMapping(info) {
+    if (!info) return "";
+    var src = info.src || "";
+    var hand = info.handedness ? (" " + info.handedness) : "";
+    var cls = info.class ? (" " + info.class) : "";
+    if (info.kind === "button") return src + hand + cls + " button[" + info.i + "] value=" + info.value;
+    if (info.kind === "axis") return src + hand + cls + " axis[" + info.i + "] value=" + info.value;
+    return JSON.stringify(info);
+  }
+
+  function tickGuide() {
+    if (!guide.active) return;
+    setPromptDom();
+    if (nowMs() - guide.startedAt >= guide.timeoutMs) {
+      advanceGuide("timeout", null);
+    }
+  }
+
+  function buildSummary(srcLog) {
+    srcLog = srcLog || log;
+    var events = (srcLog && srcLog.events) || [];
+    var flags = (srcLog && srcLog.flags) || {};
+    var rows = [];
+    var i, ev, p, windowEvents, j, mapped, vis, ended, how;
+
+    function eventsForPrompt(id) {
+      var out = [], k, e, started = false;
+      for (k = 0; k < events.length; k++) {
+        e = events[k];
+        if (e.type === "prompt-start" && e.prompt === id) { started = true; out = []; continue; }
+        if (!started) continue;
+        if (e.type === "prompt-start" && e.prompt !== id) break;
+        out.push(e);
+        if (e.type === "prompt-advance" || e.type === "prompt-timeout" || e.type === "prompt-skip" || e.type === "guide-end") break;
+      }
+      return out;
+    }
+
+    for (i = 0; i < PROMPTS.length; i++) {
+      p = PROMPTS[i];
+      windowEvents = eventsForPrompt(p.id);
+      mapped = null;
+      vis = [];
+      ended = false;
+      how = windowEvents.length ? "open" : "not-run";
+      for (j = 0; j < windowEvents.length; j++) {
+        ev = windowEvents[j];
+        if (ev.type === "prompt-advance") { how = "mapped"; if (ev.info) mapped = ev.info; }
+        if (ev.type === "prompt-timeout") how = "timeout";
+        if (ev.type === "prompt-skip") how = "skip";
+        if (ev.type === "xr-visibilitychange" || ev.type === "document-visibilitychange") vis.push(ev);
+        if (ev.type === "xr-end" || ev.type === "session-end") ended = true;
+      }
+      var notes = [];
+      if (p.id === "touch-menu") {
+        if (ended) notes.push("XR session ended during this prompt");
+        vis.forEach(function (v) {
+          notes.push((v.type === "xr-visibilitychange" ? "session.visibilityState=" : "document.visibilityState=") + (v.visibilityState || ""));
+        });
+        if (flags.menuButtonObservation) notes.push("observation: " + flags.menuButtonObservation);
+      }
+      var mappingText = mapped ? formatMapping(mapped) : (how === "timeout" ? "timeout — no input captured" : (how === "not-run" ? "not run" : how));
+      if (!mapped && how === "mapped") mappingText = "advanced (see log)";
+      rows.push({
+        id: p.id, title: p.title, group: p.group, how: how,
+        mapping: mapped, mappingText: mappingText, notes: notes.join("; ")
+      });
+    }
+
+    return {
+      generatedAt: iso(),
+      userAgent: (srcLog.meta && srcLog.meta.userAgent) || (navigator && navigator.userAgent) || "",
+      xrSupported: flags.xrSupported,
+      featuresGranted: flags.featuresGranted || [],
+      xboxVisibleIn2D: !!flags.seenXboxIn2D,
+      xboxVisibleWhileImmersive: !!flags.seenXboxInVR,
+      navGamepadsVisibleWhileImmersive: !!flags.seenNavPadsInVR,
+      menuButtonObservation: flags.menuButtonObservation || null,
+      rows: rows,
+      table: rows.filter(function (r) { return r.how !== "not-run"; }).map(function (r) {
+        return { input: r.title, index: r.mappingText, how: r.how, notes: r.notes };
+      })
+    };
+  }
+
+  function renderSummary(srcLog) {
+    try {
+      var sum = buildSummary(srcLog || log);
+      var html = "";
+      html += "<p>Xbox pad visible in 2D: <span class=\"pill " + (sum.xboxVisibleIn2D ? "ok" : "warn") + "\">" + (sum.xboxVisibleIn2D ? "yes" : "no") + "</span>";
+      html += " Xbox pad visible while immersive: <span class=\"pill " + (sum.xboxVisibleWhileImmersive ? "ok" : "warn") + "\">" + (sum.xboxVisibleWhileImmersive ? "yes" : "no") + "</span></p>";
+      html += "<p>Menu button observation: <b>" + escapeHtml(String(sum.menuButtonObservation || "not yet observed")) + "</b></p>";
+      html += "<table><thead><tr><th>Input</th><th>Index / mapping</th><th>How</th><th>Notes</th></tr></thead><tbody>";
+      sum.rows.forEach(function (r) {
+        html += "<tr><td>" + escapeHtml(r.title) + "</td><td>" + escapeHtml(r.mappingText) + "</td><td>" + escapeHtml(r.how) + "</td><td>" + escapeHtml(r.notes || "") + "</td></tr>";
+      });
+      html += "</tbody></table>";
+      elSummary.innerHTML = html;
+      return sum;
+    } catch (e) {
+      showError(e, "renderSummary");
+      return null;
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function liveText() {
+    var lines = [];
+    var i, p, held, bi, b, ai, av, ax, c;
+    lines.push("mode: " + (state.immersive ? "immersive-vr" : "2D") + "  visibility: " + state.visibilityState);
+    if (liveCache.xr && liveCache.xr.length) {
+      lines.push("XR sources (" + liveCache.xr.length + "):");
+      liveCache.xr.forEach(function (s) {
+        var e = s.extra || {};
+        lines.push("  · " + (e.handedness || "?") + "  ray=" + (e.targetRayMode || "") + "  gamepad=" + (s.hasGamepad ? "yes" : "no") + "  hand=" + (e.hasHand ? "yes" : "no"));
+        lines.push("    profiles: " + ((e.profiles || []).join(", ") || "(none)"));
+      });
+    } else if (state.immersive) {
+      lines.push("XR sources: none this frame");
+    }
+    var pads = liveCache.nav || [];
+    if (!pads.length) lines.push("navigator.getGamepads(): none");
+    else {
+      lines.push("navigator.getGamepads() (" + pads.length + "):");
+      for (i = 0; i < pads.length; i++) {
+        p = pads[i];
+        c = classifyPad(p);
+        held = [];
+        for (bi = 0; bi < (p.buttons || []).length; bi++) {
+          b = p.buttons[bi];
+          if (b && (b.pressed || b.value > 0.15)) held.push("b" + bi + "=" + round4(b.value));
+        }
+        ax = [];
+        for (ai = 0; ai < (p.axes || []).length; ai++) {
+          av = +p.axes[ai] || 0;
+          if (Math.abs(av) > 0.08) ax.push("a" + ai + "=" + round4(av));
+        }
+        lines.push("  [" + p.index + "] " + c + "  map=" + (p.mapping || "(empty)") + "  id=" + (p.id || ""));
+        lines.push("    buttons=" + ((p.buttons && p.buttons.length) || 0) + "  axes=" + ((p.axes && p.axes.length) || 0) +
+          (held.length ? "  held: " + held.join(", ") : "") + (ax.length ? "  axes: " + ax.join(", ") : ""));
+      }
+    }
+    if (state.immersive) lines.push("Xbox visible in this immersive session: " + (state.seenXboxInVR ? "YES" : "not yet"));
+    return lines.join("\n");
+  }
+
+  function refreshLiveDom(force) {
+    var t = nowMs();
+    if (!force && t - lastDomAt < 100) return;
+    lastDomAt = t;
+    var text = liveText();
+    if (text !== liveCache.text || force) {
+      liveCache.text = text;
+      elPads.innerHTML = "<pre style=\"margin:0;white-space:pre-wrap;font:15px/1.35 ui-monospace,Menlo,Consolas,monospace\">" + escapeHtml(text) + "</pre>";
+      texDirty = true;
+    }
+    if (logTailDirty) {
+      logTailDirty = false;
+      var evs = log.events;
+      var start = Math.max(0, evs.length - 18);
+      var tail = [];
+      for (var i = start; i < evs.length; i++) {
+        var e = evs[i];
+        tail.push(String(e.t) + "  " + e.type + (e.prompt ? "  [" + e.prompt + "]" : "") + (e.mappingText ? "  " + e.mappingText : "") + (e.changed && e.changed[0] ? "  " + e.changed[0].kind + "[" + e.changed[0].i + "]" : "") + (e.message ? "  " + e.message : "") + (e.visibilityState ? "  vis=" + e.visibilityState : ""));
+      }
+      elLog.textContent = tail.join("\n") || "(no events yet)";
+    }
+    setPromptDom();
+  }
+
+  function refreshSessInfo() {
+    var bits = [];
+    bits.push("<span class=\"pill " + (state.xrSupported ? "ok" : "bad") + "\">WebXR immersive-vr: " + (state.xrSupported == null ? "?" : (state.xrSupported ? "supported" : "not supported")) + "</span>");
+    bits.push("<span class=\"pill\">UA logged</span>");
+    if (state.immersive) bits.push("<span class=\"pill ok\">IN VR</span>");
+    if (state.featuresGranted && state.featuresGranted.length) bits.push("<span class=\"pill\">granted: " + escapeHtml(state.featuresGranted.join(", ")) + "</span>");
+    if (state.refSpaceType) bits.push("<span class=\"pill\">space: " + escapeHtml(state.refSpaceType) + "</span>");
+    elSess.innerHTML = bits.join(" ");
+  }
+
+  var gl = null, xrSession = null, xrLayer = null, refSpace = null;
+  var prog = null, buf = null, uMvp = null, tex = null, texDirty = true;
+  var panelCanvas = null, panelCtx = null;
+  var panelModel = new Float32Array(16);
+  var tmpA = new Float32Array(16), mvp = new Float32Array(16), viewMat = new Float32Array(16);
+  var panelPlaced = false;
+  var lastCountdownDraw = 0;
+
+  function ident(out) {
+    out[0]=1;out[1]=0;out[2]=0;out[3]=0;
+    out[4]=0;out[5]=1;out[6]=0;out[7]=0;
+    out[8]=0;out[9]=0;out[10]=1;out[11]=0;
+    out[12]=0;out[13]=0;out[14]=0;out[15]=1;
+    return out;
+  }
+  function mul(out, a, b) {
+    var a00=a[0],a01=a[1],a02=a[2],a03=a[3],a10=a[4],a11=a[5],a12=a[6],a13=a[7],a20=a[8],a21=a[9],a22=a[10],a23=a[11],a30=a[12],a31=a[13],a32=a[14],a33=a[15];
+    var i, b0, b1, b2, b3;
+    for (i = 0; i < 4; i++) {
+      b0=b[i*4]; b1=b[i*4+1]; b2=b[i*4+2]; b3=b[i*4+3];
+      out[i*4]   = a00*b0 + a10*b1 + a20*b2 + a30*b3;
+      out[i*4+1] = a01*b0 + a11*b1 + a21*b2 + a31*b3;
+      out[i*4+2] = a02*b0 + a12*b1 + a22*b2 + a32*b3;
+      out[i*4+3] = a03*b0 + a13*b1 + a23*b2 + a33*b3;
+    }
+    return out;
+  }
+  function invertRigid(out, m) {
+    var r00=m[0],r01=m[4],r02=m[8];
+    var r10=m[1],r11=m[5],r12=m[9];
+    var r20=m[2],r21=m[6],r22=m[10];
+    var tx=m[12],ty=m[13],tz=m[14];
+    out[0]=r00; out[1]=r01; out[2]=r02; out[3]=0;
+    out[4]=r10; out[5]=r11; out[6]=r12; out[7]=0;
+    out[8]=r20; out[9]=r21; out[10]=r22; out[11]=0;
+    out[12]=-(r00*tx + r10*ty + r20*tz);
+    out[13]=-(r01*tx + r11*ty + r21*tz);
+    out[14]=-(r02*tx + r12*ty + r22*tz);
+    out[15]=1;
+    return out;
+  }
+  function placePanel(out, m) {
+    var lx = -m[8], lz = -m[10];
+    var len = Math.hypot(lx, lz) || 1;
+    lx /= len; lz /= len;
+    var dist = 1.5, w = 1.55, h = 0.87;
+    var px = m[12] + lx * dist;
+    var py = m[13] - 0.05;
+    var pz = m[14] + lz * dist;
+    /* right = cross(look, worldUp) */
+    var rx = -lz, rz = lx;
+    ident(out);
+    out[0] = rx * (w / 2); out[1] = 0; out[2] = rz * (w / 2);
+    out[4] = 0; out[5] = h / 2; out[6] = 0;
+    out[8] = -lx; out[9] = 0; out[10] = -lz;
+    out[12] = px; out[13] = py; out[14] = pz;
+    return out;
+  }
+
+  function compile(type, src) {
+    var sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+      throw new Error("shader: " + gl.getShaderInfoLog(sh));
+    }
+    return sh;
+  }
+
+  function initGL() {
+    if (gl) return gl;
+    var opts = { alpha: false, antialias: false, xrCompatible: true, depth: true, stencil: false, preserveDrawingBuffer: false };
+    gl = elCanvas.getContext("webgl2", opts) || elCanvas.getContext("webgl", opts);
+    if (!gl) throw new Error("WebGL not available — cannot render the VR panel. 2D logging still works.");
+    try { if (gl.makeXRCompatible) gl.makeXRCompatible(); } catch (e) {}
+    var vs = compile(gl.VERTEX_SHADER, "attribute vec2 aPos;attribute vec2 aUv;uniform mat4 uMvp;varying vec2 vUv;void main(){vUv=aUv;gl_Position=uMvp*vec4(aPos,0.0,1.0);}");
+    var fs = compile(gl.FRAGMENT_SHADER, "precision mediump float;varying vec2 vUv;uniform sampler2D uTex;void main(){gl_FragColor=texture2D(uTex,vUv);}");
+    prog = gl.createProgram();
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.bindAttribLocation(prog, 0, "aPos");
+    gl.bindAttribLocation(prog, 1, "aUv");
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error("program: " + gl.getProgramInfoLog(prog));
+    uMvp = gl.getUniformLocation(prog, "uMvp");
+    buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,0,1, 1,-1,1,1, -1,1,0,0, 1,1,1,0]), gl.STATIC_DRAW);
+    panelCanvas = document.createElement("canvas");
+    panelCanvas.width = 1024;
+    panelCanvas.height = 576;
+    panelCtx = panelCanvas.getContext("2d");
+    tex = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, panelCanvas);
+    texDirty = true;
+    return gl;
+  }
+
+  function wrapText(ctx, text, x, y, maxW, lineH) {
+    var words = String(text).split(" "), line = "", i, test;
+    for (i = 0; i < words.length; i++) {
+      test = line ? (line + " " + words[i]) : words[i];
+      if (ctx.measureText(test).width > maxW && line) {
+        ctx.fillText(line, x, y);
+        y += lineH;
+        line = words[i];
+      } else line = test;
+    }
+    if (line) ctx.fillText(line, x, y);
+  }
+
+  function drawPanelTexture() {
+    var ctx = panelCtx;
+    if (!ctx) return;
+    var w = panelCanvas.width, h = panelCanvas.height;
+    ctx.fillStyle = "#10161e";
+    ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = "#3dff8a";
+    ctx.lineWidth = 8;
+    ctx.strokeRect(8, 8, w - 16, h - 16);
+    ctx.fillStyle = "#7ad3ff";
+    ctx.font = "600 28px system-ui,sans-serif";
+    ctx.fillText("Sky Rydahs  ·  XR Input Probe", 36, 52);
+    var p = currentPrompt();
+    ctx.fillStyle = "#ffd36a";
+    ctx.font = "800 48px system-ui,sans-serif";
+    var title = p ? p.title : (guide.active ? "Checklist complete" : "Look at this panel. Checklist starting…");
+    wrapText(ctx, title, 36, 120, w - 72, 56);
+    ctx.fillStyle = "#c5d0dc";
+    ctx.font = "600 28px system-ui,sans-serif";
+    wrapText(ctx, (p && p.hint) ? p.hint : "Any new press or stick push advances. Wait to skip.", 36, 250, w - 72, 34);
+    if (p) {
+      var left = Math.max(0, guide.timeoutMs - (nowMs() - guide.startedAt));
+      ctx.fillStyle = "#8b98a8";
+      ctx.font = "600 24px system-ui,sans-serif";
+      ctx.fillText("Step " + (guide.index + 1) + " / " + PROMPTS.length + "    skip in " + Math.ceil(left / 1000) + "s    " + (guide.armed ? "listening" : "arming"), 36, 340);
+    }
+    ctx.fillStyle = "#e8eef7";
+    ctx.font = "22px ui-monospace,Menlo,Consolas,monospace";
+    var live = (liveCache.text || "").split("\n").slice(0, 7);
+    var y = 390;
+    for (var i = 0; i < live.length; i++) {
+      ctx.fillText(live[i].slice(0, 90), 36, y);
+      y += 26;
+    }
+    if (errors.length) {
+      ctx.fillStyle = "#ff5d5d";
+      ctx.font = "600 22px system-ui,sans-serif";
+      ctx.fillText("ERROR: " + String(errors[errors.length - 1].msg).slice(0, 80), 36, h - 28);
+    }
+  }
+
+  function uploadPanelTexture() {
+    if (!gl || !tex) return;
+    if (!texDirty && (nowMs() - lastCountdownDraw) < 250) return;
+    if (guide.active) lastCountdownDraw = nowMs();
+    drawPanelTexture();
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, gl.RGBA, gl.UNSIGNED_BYTE, panelCanvas);
+    texDirty = false;
+  }
+
+  function onXRFrame(t, frame) {
+    if (!xrSession) return;
+    try {
+      xrSession.requestAnimationFrame(onXRFrame);
+      pollNavigatorGamepads();
+      pollXRSources(xrSession);
+      tickGuide();
+      refreshLiveDom(false);
+      var pose = frame.getViewerPose(refSpace);
+      if (pose && !panelPlaced) {
+        var m = pose.transform.matrix;
+        placePanel(panelModel, m);
+        panelPlaced = true;
+        logEvent({ type: "panel-placed", x: round4(m[12]), y: round4(m[13]), z: round4(m[14]) });
+      }
+      var layer = xrSession.renderState.baseLayer;
+      if (!layer || !gl) return;
+      gl.bindFramebuffer(gl.FRAMEBUFFER, layer.framebuffer);
+      gl.clearColor(0.04, 0.05, 0.07, 1);
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      if (!pose) return;
+      uploadPanelTexture();
+      gl.useProgram(prog);
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.enableVertexAttribArray(0);
+      gl.enableVertexAttribArray(1);
+      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 16, 0);
+      gl.vertexAttribPointer(1, 2, gl.FLOAT, false, 16, 8);
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.disable(gl.DEPTH_TEST);
+      for (var i = 0; i < pose.views.length; i++) {
+        var view = pose.views[i];
+        var vp = layer.getViewport(view);
+        gl.viewport(vp.x, vp.y, vp.width, vp.height);
+        invertRigid(viewMat, view.transform.matrix);
+        mul(tmpA, viewMat, panelModel);
+        mul(mvp, view.projectionMatrix, tmpA);
+        gl.uniformMatrix4fv(uMvp, false, mvp);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      }
+    } catch (e) {
+      showError(e, "onXRFrame");
+    }
+  }
+
+  function describeSource(src) {
+    if (!src) return null;
+    return {
+      handedness: src.handedness || "",
+      targetRayMode: src.targetRayMode || "",
+      profiles: src.profiles ? Array.prototype.slice.call(src.profiles) : [],
+      hasGamepad: !!src.gamepad,
+      hasHand: !!src.hand,
+      mapping: (src.gamepad && src.gamepad.mapping) || "",
+      buttonsLength: (src.gamepad && src.gamepad.buttons && src.gamepad.buttons.length) || 0,
+      axesLength: (src.gamepad && src.gamepad.axes && src.gamepad.axes.length) || 0
+    };
+  }
+
+  function observeMenuSideEffect(kind, vis) {
+    var p = currentPrompt();
+    if (!p || p.id !== "touch-menu") return;
+    var obs = kind + (vis ? (":" + vis) : "");
+    state.menuButtonObservation = obs;
+    logEvent({ type: "menu-button-observation", observation: obs, visibilityState: vis || null });
+  }
+
+  function attachSessionEvents(session) {
+    var types = ["select", "selectstart", "selectend", "squeeze", "squeezestart", "squeezeend", "inputsourceschange", "visibilitychange", "end"];
+    types.forEach(function (type) {
+      session.addEventListener(type, function (ev) {
+        try {
+          var rec = { type: (type === "visibilitychange" ? "xr-visibilitychange" : (type === "end" ? "xr-end" : "xr-" + type)) };
+          if (type === "visibilitychange") {
+            rec.visibilityState = session.visibilityState;
+            state.visibilityState = session.visibilityState;
+            if (session.visibilityState !== "visible") observeMenuSideEffect("session-visibility", session.visibilityState);
+            if (session.visibilityState === "visible" && panelPlaced) panelPlaced = false;
+            flushSave(true);
+          }
+          if (type === "end") {
+            rec.visibilityState = session.visibilityState;
+            observeMenuSideEffect("session-end", session.visibilityState);
+            onSessionEnded("end-event");
+          }
+          if (ev && ev.inputSource) rec.inputSource = describeSource(ev.inputSource);
+          if (type === "inputsourceschange") {
+            rec.added = []; rec.removed = [];
+            var a = ev.added || [], r = ev.removed || [], i;
+            for (i = 0; i < a.length; i++) rec.added.push(describeSource(a[i]));
+            for (i = 0; i < r.length; i++) rec.removed.push(describeSource(r[i]));
+            rec.all = [];
+            var all = session.inputSources || [];
+            for (i = 0; i < all.length; i++) rec.all.push(describeSource(all[i]));
+          }
+          logEvent(rec);
+          texDirty = true;
+        } catch (e) { showError(e, "xr:" + type); }
+      });
+    });
+  }
+
+  async function requestRefSpace(session) {
+    var kinds = ["local-floor", "local", "viewer"];
+    var i, last = null;
+    for (i = 0; i < kinds.length; i++) {
+      try {
+        var space = await session.requestReferenceSpace(kinds[i]);
+        state.refSpaceType = kinds[i];
+        return space;
+      } catch (e) { last = e; }
+    }
+    throw last || new Error("no reference space");
+  }
+
+  async function enterVR() {
+    try {
+      if (!navigator.xr || !navigator.xr.requestSession) throw new Error("WebXR not available in this browser.");
+      initGL();
+      var session = null;
+      var optionSets = [
+        { optionalFeatures: ["local-floor", "hand-tracking"] },
+        { optionalFeatures: ["local-floor"] },
+        {}
+      ];
+      var lastErr = null;
+      for (var i = 0; i < optionSets.length && !session; i++) {
+        try {
+          state.featuresRequested = (optionSets[i].optionalFeatures || []).slice();
+          session = await navigator.xr.requestSession("immersive-vr", optionSets[i]);
+        } catch (e) { lastErr = e; }
+      }
+      if (!session) throw lastErr || new Error("requestSession(immersive-vr) failed");
+      xrSession = session;
+      if (session.enabledFeatures) state.featuresGranted = Array.prototype.slice.call(session.enabledFeatures);
+      attachSessionEvents(session);
+      try { await gl.makeXRCompatible(); } catch (e) {}
+      xrLayer = new XRWebGLLayer(session, gl, { antialias: false, framebufferScaleFactor: 0.8 });
+      await session.updateRenderState({ baseLayer: xrLayer });
+      refSpace = await requestRefSpace(session);
+      panelPlaced = false;
+      state.immersive = true;
+      state.visibilityState = session.visibilityState || "visible";
+      document.body.classList.add("in-vr");
+      btnExit.hidden = false;
+      btnVR.disabled = true;
+      logEvent({ type: "session-start", featuresRequested: state.featuresRequested, featuresGranted: state.featuresGranted, refSpaceType: state.refSpaceType, visibilityState: state.visibilityState });
+      refreshSessInfo();
+      if (!guide.active) startGuide(0);
+      flushSave(true);
+      session.requestAnimationFrame(onXRFrame);
+    } catch (e) {
+      showError(e, "enterVR");
+      refreshSessInfo();
+    }
+  }
+
+  function onSessionEnded(why) {
+    if (!state.immersive && !xrSession) return;
+    try {
+      state.immersive = false;
+      state.sessionEndedReason = why || "end";
+      logEvent({ type: "session-end", reason: why || "end", visibilityState: xrSession ? xrSession.visibilityState : state.visibilityState });
+      xrSession = null;
+      refSpace = null;
+      document.body.classList.remove("in-vr");
+      btnExit.hidden = true;
+      btnVR.disabled = false;
+      renderSummary();
+      flushSave(true);
+      refreshSessInfo();
+      refreshLiveDom(true);
+    } catch (e) { showError(e, "onSessionEnded"); }
+  }
+
+  async function exitVR() {
+    try {
+      if (xrSession) {
+        try { await xrSession.end(); } catch (e) { onSessionEnded("exit-failed-then-forced"); }
+      } else onSessionEnded("exit-button");
+    } catch (e) { showError(e, "exitVR"); }
+  }
+
+  function tick2D() {
+    try {
+      if (pollingPaused) return;
+      if (!state.immersive) {
+        pollNavigatorGamepads();
+        tickGuide();
+        refreshLiveDom(false);
+      }
+    } catch (e) { showError(e, "tick2D"); }
+  }
+
+  document.addEventListener("visibilitychange", function () {
+    try {
+      logEvent({ type: "document-visibilitychange", visibilityState: document.visibilityState });
+      if (document.visibilityState !== "visible") observeMenuSideEffect("document-visibility", document.visibilityState);
+      flushSave(true);
+    } catch (e) { showError(e, "document.visibilitychange"); }
+  });
+  window.addEventListener("pagehide", function () { try { flushSave(true); } catch (e) {} });
+  window.addEventListener("gamepadconnected", function (ev) {
+    try {
+      var pad = ev.gamepad;
+      logEvent({ type: "gamepadconnected", id: pad && pad.id, index: pad && pad.index, mapping: pad && pad.mapping, class: classifyPad(pad), buttonsLength: pad && pad.buttons && pad.buttons.length, axesLength: pad && pad.axes && pad.axes.length });
+      refreshLiveDom(true);
+    } catch (e) { showError(e, "gamepadconnected"); }
+  });
+  window.addEventListener("gamepaddisconnected", function (ev) {
+    try {
+      var pad = ev.gamepad;
+      logEvent({ type: "gamepaddisconnected", id: pad && pad.id, index: pad && pad.index });
+      refreshLiveDom(true);
+    } catch (e) { showError(e, "gamepaddisconnected"); }
+  });
+
+  btnVR.addEventListener("click", function () { enterVR(); });
+  btnExit.addEventListener("click", function () { exitVR(); });
+  btnStart2d.addEventListener("click", function () { if (!guide.active) startGuide(0); });
+  btnSkip.addEventListener("click", function () { if (guide.active) advanceGuide("skip", null); });
+  btnReset.addEventListener("click", function () {
+    try {
+      log.events = [];
+      log.flags = {};
+      log.meta.startedAt = iso();
+      errors.length = 0;
+      elErr.className = "";
+      elErr.textContent = "";
+      capped = false;
+      prevPads = {};
+      guide.active = false;
+      guide.index = -1;
+      guide.results = [];
+      state.seenNavPadsIn2D = false;
+      state.seenNavPadsInVR = false;
+      state.seenXboxIn2D = false;
+      state.seenXboxInVR = false;
+      state.menuButtonObservation = null;
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      elSummary.innerHTML = "Log reset.";
+      elPrev.textContent = "";
+      logEvent({ type: "reset" });
+      renderSteps();
+      setPromptDom();
+      flushSave(true);
+    } catch (e) { showError(e, "reset"); }
+  });
+
+  function loadPrevious() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      var prev = JSON.parse(raw);
+      if (!prev || !prev.events) return;
+      elPrev.textContent = "This browser already has a saved probe from " + ((prev.meta && (prev.meta.updatedAt || prev.meta.startedAt)) || "earlier") + ". Download JSON will include a new run once you start. The previous summary is shown below until then.";
+      renderSummary(prev);
+      refreshDownload(raw, true);
+    } catch (e) {
+      elPrev.textContent = "A previous localStorage value could not be parsed: " + e;
+    }
+  }
+
+  async function checkXR() {
+    try {
+      if (!navigator.xr || !navigator.xr.isSessionSupported) {
+        state.xrSupported = false;
+      } else {
+        state.xrSupported = await navigator.xr.isSessionSupported("immersive-vr");
+      }
+    } catch (e) {
+      state.xrSupported = false;
+      showError(e, "isSessionSupported");
+    }
+    if (!state.xrSupported) btnVR.textContent = "ENTER VR (not supported here)";
+    refreshSessInfo();
+    logEvent({ type: "boot", xrSupported: state.xrSupported, userAgent: navigator.userAgent });
+  }
+
+  renderSteps();
+  loadPrevious();
+  checkXR();
+  setInterval(tick2D, 50);
+  tick2D();
+
+  function runSelfTest() {
+    var checks = [];
+    function ok(name, pass, detail) {
+      checks.push({ name: name, pass: !!pass, detail: detail || "" });
+    }
+    pollingPaused = true;
+    var orig = navigator.getGamepads;
+    try {
+      var buttons = [];
+      var i;
+      for (i = 0; i < 17; i++) buttons.push({ pressed: false, touched: false, value: 0 });
+      var stub = {
+        id: "Xbox Wireless Controller (STANDARD GAMEPAD Vendor: 045e Product: 0b13)",
+        index: 0,
+        connected: true,
+        mapping: "standard",
+        buttons: buttons,
+        axes: [0, 0, 0, 0],
+        timestamp: 1
+      };
+      navigator.getGamepads = function () { return [stub, null, null, null]; };
+
+      log.events = log.events.filter(function (e) { return e.type === "boot"; });
+      prevPads = {};
+      state.seenXboxIn2D = false;
+      state.menuButtonObservation = null;
+      guide.active = false;
+      guide.index = -1;
+      guide.results = [];
+      capped = false;
+
+      pollNavigatorGamepads();
+      ok("sees stub gamepad", state.seenXboxIn2D && liveCache.nav.length === 1, "seenXboxIn2D=" + state.seenXboxIn2D);
+
+      buttons[0] = { pressed: true, touched: true, value: 1 };
+      stub.timestamp = 2;
+      pollNavigatorGamepads();
+      var padEv = null;
+      for (i = log.events.length - 1; i >= 0; i--) {
+        if (log.events[i].type === "pad-change") { padEv = log.events[i]; break; }
+      }
+      ok("logs button 0 press", !!(padEv && padEv.changed && padEv.changed.some(function (c) { return c.kind === "button" && c.i === 0 && c.pressed; })), padEv ? JSON.stringify(padEv.changed) : "no pad-change");
+      ok("records raw axis values", !!(padEv && padEv.axes && padEv.axes.length === 4), padEv && padEv.axes && String(padEv.axes.length));
+
+      var nBefore = log.events.length;
+      stub.axes[0] = 0.01;
+      pollNavigatorGamepads();
+      ok("deadzone filters tiny axis noise", log.events.length === nBefore, "events +" + (log.events.length - nBefore));
+      stub.axes[0] = 0.5;
+      pollNavigatorGamepads();
+      var axisEv = null;
+      for (i = log.events.length - 1; i >= 0; i--) {
+        if (log.events[i].type === "pad-change") { axisEv = log.events[i]; break; }
+      }
+      ok("logs real axis change with raw 0.5", !!(axisEv && axisEv.axes && axisEv.axes[0] && axisEv.axes[0].value === 0.5), axisEv && JSON.stringify(axisEv.axes));
+      stub.axes[0] = 0;
+      buttons[0] = { pressed: false, touched: false, value: 0 };
+      pollNavigatorGamepads();
+
+      var aIdx = -1;
+      for (i = 0; i < PROMPTS.length; i++) if (PROMPTS[i].id === "xbox-a") { aIdx = i; break; }
+      startGuide(aIdx);
+      ok("prompt is xbox-a", promptTag() === "xbox-a", "prompt=" + promptTag());
+      guide.armed = true;
+      rememberBaseline("nav:0:" + stub.id, stub);
+      buttons[0] = { pressed: true, touched: true, value: 1 };
+      /* held-from-baseline should not advance; reset to unpressed baseline first */
+      buttons[0] = { pressed: false, touched: false, value: 0 };
+      rememberBaseline("nav:0:" + stub.id, stub);
+      pollNavigatorGamepads();
+      ok("unpressed baseline does not advance", promptTag() === "xbox-a", "prompt=" + promptTag());
+      buttons[0] = { pressed: true, touched: true, value: 1 };
+      pollNavigatorGamepads();
+      var adv = null;
+      for (i = log.events.length - 1; i >= 0; i--) {
+        if (log.events[i].type === "prompt-advance" && log.events[i].prompt === "xbox-a") { adv = log.events[i]; break; }
+      }
+      ok("advance event tagged xbox-a button[0]", !!(adv && adv.info && adv.info.kind === "button" && adv.info.i === 0), adv ? JSON.stringify(adv.info) : "no advance");
+
+      var mIdx = -1;
+      for (i = 0; i < PROMPTS.length; i++) if (PROMPTS[i].id === "touch-menu") { mIdx = i; break; }
+      guide.active = true;
+      guide.index = mIdx - 1;
+      nextPrompt(false);
+      guide.armed = true;
+      logEvent({ type: "xr-visibilitychange", visibilityState: "hidden", prompt: "touch-menu" });
+      observeMenuSideEffect("session-visibility", "hidden");
+      ok("menu observation recorded", state.menuButtonObservation === "session-visibility:hidden", String(state.menuButtonObservation));
+
+      flushSave(true);
+      var sum = buildSummary(log);
+      var rowA = null, rowM = null;
+      for (i = 0; i < sum.rows.length; i++) {
+        if (sum.rows[i].id === "xbox-a") rowA = sum.rows[i];
+        if (sum.rows[i].id === "touch-menu") rowM = sum.rows[i];
+      }
+      ok("summary maps Xbox A to button[0]", !!(rowA && rowA.mapping && rowA.mapping.i === 0 && /button\[0\]/.test(rowA.mappingText)), rowA && rowA.mappingText);
+      ok("summary notes menu visibility hidden", !!(rowM && /hidden/.test(rowM.notes || "")), rowM && rowM.notes);
+
+      var json = serializeLog(log);
+      ok("JSON serializes", !!(json && json.charAt(0) === "{" && json.indexOf("sr_input_probe_v1") !== -1), "len=" + (json && json.length));
+      var stored = null;
+      try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) { stored = null; }
+      ok("localStorage sr_input_probe_v1 written", !!(stored && stored.indexOf("xbox-a") !== -1), stored ? ("len=" + stored.length) : "null");
+      ok("Download JSON href is a blob", !!(btnDownload.href && btnDownload.href.indexOf("blob:") === 0), btnDownload.href || "");
+
+      var parsed = JSON.parse(json);
+      var sum2 = buildSummary(parsed);
+      ok("summary runs on serialized synthetic log", !!(sum2 && sum2.rows && sum2.rows.length === PROMPTS.length && sum2.table), sum2 && sum2.rows && String(sum2.rows.length));
+    } catch (e) {
+      checks.push({ name: "runSelfTest threw", pass: false, detail: String(e && e.stack ? e.stack : e) });
+    }
+    pollingPaused = false;
+    try {
+      if (orig) navigator.getGamepads = orig;
+    } catch (e) {}
+    var failed = checks.filter(function (c) { return !c.pass; });
+    var result = { ok: failed.length === 0, passed: checks.length - failed.length, failed: failed.length, checks: checks, errors: errors.slice() };
+    try {
+      document.body.setAttribute("data-selftest", result.ok ? "pass" : "fail");
+      var pre = document.createElement("pre");
+      pre.id = "selftest-report";
+      pre.textContent = JSON.stringify(result, null, 2);
+      document.body.appendChild(pre);
+    } catch (e) {}
+    return result;
+  }
+
+  window.SRInputProbe = {
+    buildSummary: buildSummary,
+    serializeLog: serializeLog,
+    getLog: function () { return log; },
+    runSelfTest: runSelfTest,
+    prompts: PROMPTS,
+    pollNavigatorGamepads: pollNavigatorGamepads,
+    STORAGE_KEY: STORAGE_KEY
+  };
+
+  if (/[?&]selftest=1(?:&|$)/.test(location.search || "")) {
+    try {
+      var result = runSelfTest();
+      window.__PROBE_SELFTEST = result;
+      console.log("SR_INPUT_PROBE_SELFTEST " + JSON.stringify(result));
+    } catch (e) {
+      window.__PROBE_SELFTEST = { ok: false, error: String(e && e.stack ? e.stack : e) };
+      showError(e, "selftest");
+    }
+  }
+})();
+</script>
+</body>
+</html>
