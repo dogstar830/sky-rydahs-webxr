@@ -88,7 +88,7 @@ body:not(.showctl) #objective{display:none!important}
   const S=window.SR_KTX2;
   S.on=k==="1"||(!!SR_KTX2_QUEST_DEFAULT&&tier==="quest"&&k!=="0");
   S.tier=tier; S.failopen=1; S.fellBack=S.fellBack||0;
-  S.map={"anika/anika-npc.draco-webp.glb": "anika/anika-npc.opt-ktx2.glb", "anika/anika-rider.draco-webp.glb": "anika/anika-rider.opt-ktx2.glb", "anubis/anubis-rider.quest.glb": "anubis/anubis-rider.s4-ktx2.glb", "behemoth/behemoth-rider.quest.glb": "behemoth/behemoth-rider.s4-ktx2.glb", "genesis/genesis-rider.quest.glb": "genesis/genesis-rider.s4-ktx2.glb", "kogarasumaru/kogarasumaru-rider.quest.glb": "kogarasumaru/kogarasumaru-rider.s4-ktx2.glb", "meshy/ikki-meshy-skate.quest-draco.glb": "meshy/ikki-meshy-skate.s4-ktx2.glb", "sleeping-forest/sleeping-forest-rider.quest.glb": "sleeping-forest/sleeping-forest-rider.s4-ktx2.glb", "static-angels/static-angels-rider.quest.glb": "static-angels/static-angels-rider.s4-ktx2.glb", "tool-toul-to/tool-toul-to-rider.quest.glb": "tool-toul-to/tool-toul-to-rider.s4-ktx2.glb", "wardrobe/riders/caali-g-hd.glb": "wardrobe/riders/caali-g-hd.ktx2.glb", "wardrobe/riders/caali-g.nonormal.glb": "wardrobe/riders/caali-g.nonormal.ktx2.glb"};
+  S.map={"anika/anika-npc.draco-webp.glb": "anika/anika-npc.opt-ktx2.glb", "anika/anika-rider.draco-webp.glb": "anika/anika-rider.opt-ktx2.glb", "anubis/anubis-rider.quest.glb": "anubis/anubis-rider.s4-ktx2.glb", "behemoth/behemoth-rider.quest.glb": "behemoth/behemoth-rider.s4-ktx2.glb", "genesis/genesis-rider.quest.glb": "genesis/genesis-rider.s4-ktx2.glb", "kogarasumaru/kogarasumaru-rider.quest.glb": "kogarasumaru/kogarasumaru-rider.s4-ktx2.glb", "meshy/ikki-meshy-skate.quest-draco.glb": "meshy/ikki-meshy-skate.s4-ktx2.glb", "sleeping-forest/sleeping-forest-rider.quest.glb": "sleeping-forest/sleeping-forest-rider.s4-ktx2.glb", "static-angels/static-angels-rider.quest.glb": "static-angels/static-angels-rider.s4-ktx2.glb", "tool-toul-to/tool-toul-to-rider.quest.glb": "tool-toul-to/tool-toul-to-rider.s4-ktx2.glb", "wardrobe/riders/caali-g-hd.glb": "wardrobe/riders/caali-g-hd.ktx2.glb", "wardrobe/riders/caali-g.nonormal.glb": "wardrobe/riders/caali-g.nonormal.ktx2.glb", "anika/anika-fp.glb": "anika/anika-fp.opt-ktx2.glb"};
   S.rev={}; for(const key in S.map) S.rev[S.map[key]]=key;
   S.url=function(u){ if(typeof u!=="string"||!S.on||S.failed) return u; for(const key in S.map){ if(u.endsWith(key)) return u.slice(0,u.length-key.length)+S.map[key]; } return u; };
   S.orig=function(u){ if(typeof u!=="string") return u;
@@ -841,7 +841,7 @@ function rPose(R,ph,stride,crouch,lean,armSw,t){ const B=R.userData.bones, S=R.u
 // ===== Ikki (Meshy AI GLB, Mixamo rig, Walking/Running clips via AnimationMixer) =====
 // ?player=ikki makes him the player (Caali stays default); he always skates a Running loop as an NPC near the start.
 const SR_ROSTER={ caali:{ key:'caali', name:'Caali G', available:true },
-  anika:{ key:'anika', name:'Anika', crew:'codee' /* Code : E with Caali G (Oliver 2026-10-30). Gr8yzone is Caali's shirt brand, not a crew */, glow:0xffd700, wheel:0xffd700, accent:0xff5fa2, url:CHAR_BASE+'anika/'+(/[?&]texfull=1/.test(location.search)?'anika-rider.glb':'anika-rider.draco-webp.glb'), npc:CHAR_BASE+'anika/anika-npc.draco-webp.glb', npcQuest:CHAR_BASE+'anika/anika-npc.draco-webp.glb', /* Optimizer 08:50 tiers: draco-webp default; the SR_KTX2 gate/loader is now in the build (?ktx2=1), and its SR_KTX2.map rewrites anika-rider/anika-npc .draco-webp.glb -> .opt-ktx2.glb under ?ktx2=1 (Optimizer); without the gate she loads draco-webp */ feel:'PROPOSED', available:true /* Oliver approved 2026-10-30 (via Ani) */, status:'available' } };
+  anika:{ key:'anika', name:'Anika', crew:'codee', fp:CHAR_BASE+'anika/anika-fp.glb' /* Rigger 11-12: own FP arms/legs (founder ruling 13:25 ET) */ /* Code : E with Caali G (Oliver 2026-10-30). Gr8yzone is Caali's shirt brand, not a crew */, glow:0xffd700, wheel:0xffd700, accent:0xff5fa2, url:CHAR_BASE+'anika/'+(/[?&]texfull=1/.test(location.search)?'anika-rider.glb':'anika-rider.draco-webp.glb'), npc:CHAR_BASE+'anika/anika-npc.draco-webp.glb', npcQuest:CHAR_BASE+'anika/anika-npc.draco-webp.glb', /* Optimizer 08:50 tiers: draco-webp default; the SR_KTX2 gate/loader is now in the build (?ktx2=1), and its SR_KTX2.map rewrites anika-rider/anika-npc .draco-webp.glb -> .opt-ktx2.glb under ?ktx2=1 (Optimizer); without the gate she loads draco-webp */ feel:'PROPOSED', available:true /* Oliver approved 2026-10-30 (via Ani) */, status:'available' } };
 const PLAYER_MODE=(q=>SR_ROSTER[q]&&!SR_ROSTER[q].available?(console.info('[roster] '+SR_ROSTER[q].name+': '+SR_ROSTER[q].status+' -> playing Caali G'),'caali'):q)((new URLSearchParams(location.search).get("player")||"caali").toLowerCase()); // default player = Caali G (wardrobe); ?player=forge -> old Forge Caali
 const SR_CAALI_REF_H=1.916; // Caali G height reference (the Forge Caali bbox height Caali G was fitted at, so every rider keeps its scale)
 const IKKI_URL=(q=>q==="orig"?CHAR_BASE+"meshy/ikki-meshy-skate.glb":q)(new URLSearchParams(location.search).get("ikki"))||(CHAR_BASE+"meshy/ikki-meshy-skate.quest-draco.glb"); // LOD0/1/2 + merged skates + crow emblem
@@ -1562,7 +1562,9 @@ function initRiders(){
 }
 /*SR_VRBODY1*/
 function srVrPresenting(){ try{ return !!(renderer&&renderer.xr&&renderer.xr.isPresenting); }catch(e){ return false; } }
-function srFpCrew(){ const k=(typeof PLAYER_MODE==='string'?PLAYER_MODE:'caali'), d=(k==='forge'?'caali':k); return CREWS.find(c=>c.dir===d)||null; }
+/*SR_ANIKAVR1*/const SR_VRFP_CREW_FALLBACK_DEFAULT=false; /* founder ruling pending: true = riders without their own -fp borrow their crew's -fp in VR */
+window.SR_VRFP_CREW_FALLBACK=(q=>q==='1'?true:q==='0'?false:(typeof window.SR_VRFP_CREW_FALLBACK==='boolean'?window.SR_VRFP_CREW_FALLBACK:SR_VRFP_CREW_FALLBACK_DEFAULT))(new URLSearchParams(location.search).get('vrfpfb'));
+function srFpCrew(){ const k=(typeof PLAYER_MODE==='string'?PLAYER_MODE:'caali'), d=(k==='forge'?'caali':k); const own=CREWS.find(c=>c.dir===d); if(own) return own; if(!window.SR_VRFP_CREW_FALLBACK) return null; const R=(typeof SR_ROSTER!=='undefined')&&SR_ROSTER[k], f=R&&R.crew?CREWS.find(c=>c.garage===R.crew):null; if(f&&typeof RIDERS!=='undefined'&&!RIDERS.fpFallback&&!(typeof SR_ROSTER!=='undefined'&&SR_ROSTER[k]&&SR_ROSTER[k].fp)){ RIDERS.fpFallback=k+'->'+f.dir+'-fp'; console.info('[vrbody] no -fp for '+k+'; SR_VRFP_CREW_FALLBACK on: using crew '+f.crew+' -fp ('+f.dir+'/'+f.file+'-fp.glb)'); } return f||null; }
 function srFpUrl(){ if(/[?&]vrfp=0\b/.test(location.search)) return null; const k=(typeof PLAYER_MODE==='string'?PLAYER_MODE:'caali');
   const R=(typeof SR_ROSTER!=='undefined')&&SR_ROSTER[k]; if(R&&R.fp!==undefined) return R.fp||null;   // roster may name (or null out) its own -fp
   const cr=srFpCrew(); return cr?CHAR_BASE+cr.dir+"/"+cr.file+"-fp.glb":null; }                       // no -fp for this rider -> nothing (never CREWS[0])
@@ -1571,21 +1573,65 @@ async function riderEnterVR(){ RIDERS.vrOn=true;
     for(const ch of Ride.group.children) if(ch!==Ride.aura&&ch.visible&&ch!==RIDERS.fp){ ch.visible=false; RIDERS.vrHid.push(ch); } return; }
   RIDERS.vrPending=false; RIDERS.player.visible=false;
   if(RIDERS.fp===null&&!RIDERS.fpTried){ RIDERS.fpTried=true; const url=srFpUrl(), cr=srFpCrew();
+    if(!url&&!/[?&]vrfp=0\b/.test(location.search)){ const nm=((typeof SR_ROSTER!=='undefined'&&SR_ROSTER[PLAYER_MODE])||{name:PLAYER_MODE}).name, m='vr body: no first-person model for '+nm, pf=RIDERS.fail; RIDERS.warn=RIDERS.warn||m; try{ if(typeof srLoadHud==='function'){ srLoadHud(m); RIDERS.fail=pf; const X=window.SR_LOAD_XR; if(X&&X.mesh){ clearTimeout(X.hideT); X.hideT=setTimeout(()=>{ try{ X.mesh.visible=false; }catch(_){} },8000); } } else console.warn(m); }catch(_){ RIDERS.fail=pf; } } /*SR_ANIKAVR1 visible*/
     if(url){ const gen=(RIDERS.vrGen=(RIDERS.vrGen||0)+1);
       try{ const d=(cr&&cr.defaults)||CREWS[0].defaults; RIDERS.fp=await loadRiderR128(Ride.group,url,{wheelGlow:new THREE.Color(d.wheelGlow).getHex()},Object.assign({defaults:d,crewName:cr?cr.crew:''},cr?cr.opts:{},{fp:true,vr:true})); RIDERS.fp.visible=false; }
       catch(e){ RIDERS.fp=null; RIDERS.warn=RIDERS.warn||('fp:'+((e&&(e.message||e.type))||'load')+' '+String(url).split('/').pop()); console.warn("fp load failed",e); }
       if(gen!==RIDERS.vrGen) return; } }
-  if(RIDERS.fp) RIDERS.fp.visible=!!RIDERS.vrOn&&srVrPresenting(); }
+  if(RIDERS.fp){ RIDERS.fp.visible=!!RIDERS.vrOn&&srVrPresenting(); srVrhApplyFp(); } }
 function riderExitVR(){ RIDERS.vrOn=false; RIDERS.vrPending=false; RIDERS.vrGen=(RIDERS.vrGen||0)+1;
   if(RIDERS.player) RIDERS.player.visible=true; else for(const ch of (RIDERS.vrHid||[])) ch.visible=true;   // procedural body back only if no GLB replaced it
-  RIDERS.vrHid=[]; if(RIDERS.fp) RIDERS.fp.visible=false; }
+  RIDERS.vrHid=[]; if(RIDERS.fp) RIDERS.fp.visible=false; srVrhDetach(); }
+/*SR_VRHEIGHT1*/
+const SR_VRH_AUTHORED_EYE=1.60; /* Rigger: both -fp (anika-fp, caali-fp). FP hips 0.90; full-rider eye 1.65 at hips 0.95 => derived eye ~1.56; natural range 1.55–1.65. */
+const SR_VRH={EYE:1.6,SEATED:1.2,LOCAL_EV:.4,WIN:1.5,TRIM_MAX:.10,KEY:"skyrydahs.vrheight.v1"};
+function srVrhStore(){ try{ return JSON.parse(localStorage.getItem(SR_VRH.KEY)||"null")||{}; }catch(e){ return {}; } }
+function srVrhTrim(){ const q=new URLSearchParams(location.search).get("vrtrim"); let cm=(q!=null&&q!=="")?parseFloat(q):srVrhStore().trim; if(!isFinite(cm)) cm=0; return Math.max(-10,Math.min(10,cm))/100; }
+function srVrhSetTrim(cm,persist){ cm=+cm; if(!isFinite(cm)) return false; cm=Math.max(-10,Math.min(10,cm)); if(persist!==false){ const d=srVrhStore(); d.trim=cm; try{ localStorage.setItem(SR_VRH.KEY,JSON.stringify(d)); }catch(e){} } const V=RIDERS.vrh; if(V&&V.locked){ if(V.seated&&!V.noFloor){ V.floor=SR_VRH.EYE-(V.raw||0); } else { const base=V.noFloor?SR_VRH.EYE:(V.raw||SR_VRH.EYE); V.used=Math.max(.8,Math.min(2.2,base+cm/100)); } srVrhApplyFp(); } return true; }
+function srFpRestHeight(fp){ if(!fp) return 0; if(fp.userData&&fp.userData.srFpRestH>0) return fp.userData.srFpRestH;
+  const sx=fp.scale.x,sy=fp.scale.y,sz=fp.scale.z; fp.scale.set(1,1,1); fp.updateMatrixWorld(true);
+  const box=new THREE.Box3(), tmp=new THREE.Box3(), inv=new THREE.Matrix4().copy(fp.matrixWorld).invert(), m=new THREE.Matrix4();
+  fp.traverse(o=>{ if(!(o.isMesh||o.isSkinnedMesh)||!o.geometry) return; if(!o.geometry.boundingBox) o.geometry.computeBoundingBox(); tmp.copy(o.geometry.boundingBox).applyMatrix4(m.multiplyMatrices(inv,o.matrixWorld)); box.union(tmp); });
+  fp.scale.set(sx,sy,sz); fp.updateMatrixWorld(true);
+  const h=box.max.y-Math.min(0,box.min.y); if(h>0.3&&h<3){ if(fp.userData) fp.userData.srFpRestH=h; return h; } return 0; }
+function srVrhApplyFp(){ const fp=RIDERS.fp; if(!fp||!fp.scale||!RIDERS.vrOn) return;
+  const url=(typeof srFpUrl==="function"&&srFpUrl())||"";
+  if(fp.userData&&fp.userData.srFpUrl!==url){ delete fp.userData.srFpRestH; fp.userData.srFpUrl=url; }
+  const V=RIDERS.vrh;
+  if(V&&V.seated&&!V.noFloor){ if(Math.abs(fp.scale.x-1)>1e-4) fp.scale.setScalar(1); return; }
+  const H=V&&V.used; if(!H) return;
+  const sc=Math.max(.85,Math.min(1.2,H/SR_VRH_AUTHORED_EYE));
+  if(Math.abs(fp.scale.x-sc)>1e-4) fp.scale.setScalar(sc); }
+function srVrhLockFrom(med){ const V=RIDERS.vrh||(RIDERS.vrh={}); V.raw=med; if(!V.noFloor&&med<SR_VRH.LOCAL_EV) V.noFloor=true; const trim=srVrhTrim(); V.seated=(!V.noFloor&&med<SR_VRH.SEATED);
+  if(V.noFloor){ V.used=Math.max(.8,Math.min(2.2,SR_VRH.EYE+trim)); V.floor=SR_VRH.EYE; }
+  else if(V.seated){ V.used=SR_VRH_AUTHORED_EYE; V.floor=SR_VRH.EYE-med; }
+  else { V.used=Math.max(.8,Math.min(2.2,med+trim)); V.floor=0; }
+  V.locked=true; srVrhApplyFp(); }
+function srVrhBindSpace(space){ const V=RIDERS.vrh||(RIDERS.vrh={}); if(V._rs&&V._onReset) try{ V._rs.removeEventListener("reset",V._onReset); }catch(e){} V._rs=space; V._onReset=function(){ srVrhOnReset(); }; if(space&&space.addEventListener) space.addEventListener("reset",V._onReset); }
+function srVrhOnReset(){ const V=RIDERS.vrh||(RIDERS.vrh={}); V.samples=[]; V.t0=0; V.locked=false; V.used=0; V.raw=0; V.seated=false; V.floor=V.noFloor?SR_VRH.EYE:0; /* typ/noFloor stay — the reference-space type did not change */ }
+function srVrhDetach(){ const V=RIDERS.vrh; if(V){ if(V._rs&&V._onReset) try{ V._rs.removeEventListener("reset",V._onReset); }catch(e){} V._rs=null; V.floor=0; V.locked=false; V.samples=[]; V.t0=0; } if(RIDERS.fp&&RIDERS.fp.scale) RIDERS.fp.scale.set(1,1,1); }
+function srVrhTick(){ if(typeof srVrPresenting==="function"? !srVrPresenting():!(renderer&&renderer.xr&&renderer.xr.isPresenting)) return;
+  const V=RIDERS.vrh||(RIDERS.vrh={}); let y=0; try{ renderer.xr.getCamera(camera); y=camera.position.y; }catch(e){} V.eye=y;
+  if(!V.locked){ V.samples=V.samples||[]; V.t0=V.t0||performance.now(); V.samples.push(y); if(V.samples.length>120) V.samples.shift();
+    const t=(performance.now()-V.t0)/1000;
+    if(!V.noFloor&&V.samples.length>=8&&t>=.3){ const r=V.samples.slice(-8); if(r.every(v=>v<SR_VRH.LOCAL_EV)){ V.noFloor=true; V.floor=SR_VRH.EYE; } }
+    if(t>=SR_VRH.WIN&&V.samples.length>=8){ const a=V.samples.slice().sort((p,q)=>p-q); srVrhLockFrom(a[a.length>>1]); } }
+  srVrhApplyFp(); }
+async function srVrhAttach(session){ let typ="local-floor", noFloor=false;
+  try{ await session.requestReferenceSpace("local-floor"); }catch(e){ typ="local"; noFloor=true; }
+  renderer.xr.setReferenceSpaceType(typ); await renderer.xr.setSession(session);
+  const rs=renderer.xr.getReferenceSpace&&renderer.xr.getReferenceSpace();
+  RIDERS.vrh={noFloor:noFloor,typ:typ,samples:[],t0:0,locked:false,floor:noFloor?SR_VRH.EYE:0,used:0,raw:0,seated:false};
+  srVrhBindSpace(rs); camera.position.set(0,0,0); camera.rotation.set(0,0,0); riderEnterVR();
+  session.addEventListener("end",()=>{ srVrhDetach(); rig.position.set(0,0,0); rig.rotation.set(0,0,0); riderExitVR(); }); }
+window.SR_VRHEIGHT={ setTrim:srVrhSetTrim, trim:()=>srVrhTrim()*100, state:()=>RIDERS.vrh, lockFrom:srVrhLockFrom, reset:srVrhOnReset, restHeight:srFpRestHeight, AUTHORED_EYE:SR_VRH_AUTHORED_EYE };
 const _np=new THREE.Vector3();
 function updateRiders(dt){ if(!RIDERS.ready&&!RIDERS.player) return; const cam=camera, R=Ride, sp=R.speed/R.maxSpeed;
-  if(RIDERS.player&&RIDERS.player.userData.ikki){ RIDERS.player.userData.drive(dt,sp,R.grinding,clock,R.boost); RIDERS.player.userData.update(cam,dt,R.boost); if(RIDERS.ref&&RIDERS.ref.holder.visible){ rPose(RIDERS.ref.r,0,0,.12,.18,0,clock); RIDERS.ref.r.userData.update(cam,dt,0); } }
+  if(RIDERS.player&&RIDERS.player.userData.ikki){ RIDERS.player.userData.drive(dt,sp,R.grinding,clock,R.boost); RIDERS.player.userData.update(cam,dt,R.boost); /*SR_RIDERS_GUARD_V1*/if(RIDERS.ref&&RIDERS.ref.r&&RIDERS.ref.r.userData&&RIDERS.ref.r.userData.bones&&RIDERS.ref.holder.visible){ rPose(RIDERS.ref.r,0,0,.12,.18,0,clock); if(RIDERS.ref.r.userData.update) RIDERS.ref.r.userData.update(cam,dt,0); } }
   else if(RIDERS.player){ const ph=clock*(4+sp*6); rPose(RIDERS.player,ph,R.grinding?0:.55*Math.min(1,sp*1.5),R.grinding?.35:.12+sp*.25,.18+sp*.25,.35*Math.min(1,sp*1.5),clock); RIDERS.player.userData.update(cam,dt,R.boost);
     const U=RIDERS.player.userData; if(U.expressions.length){ const bl=(clock%4.2)<.14?1:0, fo=R.boost>.3?1:0; if(bl!==U._bl){ U.setExpression('blink',bl); U._bl=bl; } if(fo!==U._fo){ U.setExpression('focus',fo); U._fo=fo; } } }
   if(RIDERS.vrPending&&RIDERS.player){ if(srVrPresenting()) riderEnterVR(); else riderExitVR(); } /*SR_VRBODY1 pending apply, before render*/
-  if(RIDERS.fp) RIDERS.fp.userData.update(cam,dt,R.boost);
+  if(RIDERS.fp){ srVrhApplyFp(); RIDERS.fp.userData.update(cam,dt,R.boost); } /*SR_VRHEIGHT1*/
   if(RIDERS.npcX2&&RIDERS.ikkiNpc&&RIDERS.ikkiNpc.c){ const n=RIDERS.npcX2, I=RIDERS.ikkiNpc; n.ph+=dt; const a=n.ph*.42+Math.PI, c=I.c; n.holder.position.set(c[0]+Math.sin(a)*6.5,0,c[1]+Math.sin(a)*Math.cos(a)*4); const a2=a+.05; n.holder.rotation.y=Math.atan2(Math.cos(a2)*6.5,(Math.cos(a2)*Math.cos(a2)-Math.sin(a2)*Math.sin(a2))*4); n.holder.visible=n.holder.position.distanceToSquared(cam.position)<70*70; if(n.holder.visible){ n.r.userData.drive(dt,.8,false,clock); n.r.userData.update(cam,dt,.3); } else { for(const s of n.r.userData.skates) s.visible=false; if(n.r.userData.crow) n.r.userData.crow.visible=false; } }
   if(RIDERS.ikkiNpc){ const n=RIDERS.ikkiNpc, L=IKKI_NPC_LOOP; n.ph+=dt; if(!n.c){ const g=garages.find(q=>q.crew===L.garage); n.c=g?[g.pos[0]+Math.sin(g.th)*L.out,g.pos[1]+Math.cos(g.th)*L.out]:[55,30]; n.prev=null; }
     const a=n.ph*L.speed, x=n.c[0]+Math.sin(a)*L.rx, z=n.c[1]+Math.sin(a*2)*L.rz; n.holder.position.set(x,0,z);
@@ -4872,8 +4918,17 @@ function grafPlace(){ const out=[], used=[]; let n=0; const far=(x,z,r)=>used.ev
       if(na<1){ const ax=f.x+f.nx*4.2, az=f.z+f.nz*4.2; if(grafFree(ax,az)&&far(ax,az,4)){ add({size:na?"S":"M",surf:"asphalt",x:ax,z:az,y:.035,nx:f.nx,nz:f.nz,ground:true,kind:"street"}); na++; continue; } } } }
   return out; }
 // ---- build meshes
+// Palma Nov 12: heaven spots g2/g11/g13/g19/g29/g35 had no standable approach -> moved onto the nearest grapple deck/catwalk inside the same TURF district box.
+// Free-standing roof billboard 3.4 m in from the deck's grapple edge, n faces the grapple landing (the approach); roof = deck height; ids/order unchanged. ?tagmove=0 = off.
+const GRAF_HEAVEN_MOVES={g2:{from:[180,55.93],x:197.0,z:-37.4,roof:10.958,nx:0,nz:1},g11:{from:[4.7,141.72],x:60.0,z:32.4,roof:5.4,nx:0,nz:1},g13:{from:[259.91,-69.44],x:259.91,z:-59.56,roof:9.831,nx:0,nz:1},g19:{from:[-149.49,-27.14],x:-149.49,z:-30.61,roof:9.085,nx:0,nz:1},g29:{from:[225.93,137.52],x:225.93,z:148.41,roof:6.304,nx:0,nz:1},g35:{from:[-76.66,-51.77],x:-75.0,z:-32.4,roof:5.4,nx:0,nz:-1}};
+function grafHeavenMoves(L){ if(/[?&]tagmove=0\b/.test(location.search)) return 0; let n=0; const D={g2:'EAST BLOCKS',g11:'PORTSIDE TERMINAL',g13:'THE 98 \u00b7 BILLBOARD MILE',g19:'THE COVE',g29:'THE STRIP',g35:'THE YARD'}; GRAF.heavenMap={};
+  for(const k in GRAF_HEAVEN_MOVES){ const m=GRAF_HEAVEN_MOVES[k]; let best=null, bd=8; // v2: match the live heaven spot by district + position (ids shift between builds), not by id
+    for(const s of L){ if(!s.heaven||s.moved||s.district!==D[k]) continue; const d=Math.hypot(s.x-m.from[0],s.z-m.from[1]); if(d<bd){ bd=d; best=s; } }
+    if(!best){ const c=L.filter(s=>s.heaven&&!s.moved&&s.district===D[k]); if(c.length===1) best=c[0]; } // sole heaven spot in that district
+    if(!best){ console.warn('grafHeavenMoves: no heaven spot for '+k+' in '+D[k]+', skipped'); continue; }
+    best.x=m.x; best.z=m.z; best.roof=m.roof; best.y=m.roof+1.75; best.nx=m.nx; best.nz=m.nz; best.moved=true; GRAF.heavenMap[k]=best.id; n++; } return n; }
 function grafInit(){ const PAL=GRAF.pal=grafPalette();
-  GRAF.spots=grafPlace(); GRAF.flushed=(typeof turfFlush==='function')?turfFlush(GRAF.spots,s=>s.ground?null:s.y):[]; // same wall-penetration fix as legacy turf (x/z only, ids kept)
+  GRAF.spots=grafPlace(); GRAF.flushed=(typeof turfFlush==='function')?turfFlush(GRAF.spots,s=>s.ground?null:s.y):[]; GRAF.heavenMoved=grafHeavenMoves(GRAF.spots); // same wall-penetration fix as legacy turf (x/z only, ids kept)
   const atlas=grafAtlas(), noise=grafNoise();
   const U={ uAtlas:{value:atlas}, uNoise:{value:noise}, uTime:{value:0}, uNight:{value:1}, uFogC:{value:new THREE.Color(0x000000)}, uFogD:{value:0},
     uBase:{value:PAL.map(p=>p.base)}, uDark:{value:PAL.map(p=>p.dark)}, uLight:{value:PAL.map(p=>p.light)}, uAcc:{value:PAL.map(p=>p.accent)}, uNeon:{value:PAL.map(p=>p.neon)} };
@@ -5221,15 +5276,19 @@ window.heatTick=function(dt,xr){ try{ if(window.GRAF&&GRAF.ready) tick(dt,false)
 //   chars/fx = estimated draws of visible, frustum-passing objects under a character/FX root (dc_probe rules);
 //   world = calls - chars - fx (so world+chars+fx == calls exactly; sky/background lands in world).
 (function(){
-  const CHAR_RE=/rider|player|ikki|wardrobe|skate|caali|npc|jacket/i, FX_RE=/trail|fx|particle|spark|sprite|aura|speedline|reticle/i;
+  const FX_RE=/trail|fx|particle|spark|sprite|aura|speedline|reticle/i;
   function G(n){ try{ return eval(n); }catch(e){ return window[n]; } } // top-level let bindings
+  // Systems 11-12 (skate fix): chars = REAL rider ownership only (Ride.group, every RIDERS entry's holder / root incl. npcX2, and descendants).
+  // The old CHAR_RE name match (rider|player|ikki|wardrobe|skate|...) put world props such as the crew-house display skates
+  // (kit_skates_up / kit_skates_down, ATSkate_LOD1) in chars. Name matching is no longer used for chars.
   function roots(){ const ch=new Set(), fx=new Set(); const Rd=G('Ride'), RI=G('RIDERS'), GR=G('GRIND');
-    if(Rd&&Rd.group) ch.add(Rd.group);
-    if(RI){ (RI.npcs||[]).forEach(n=>n.holder&&ch.add(n.holder)); if(RI.ikkiNpc&&RI.ikkiNpc.holder) ch.add(RI.ikkiNpc.holder); if(RI.ref&&RI.ref.holder) ch.add(RI.ref.holder); }
+    const add=o=>{ if(o&&o.isObject3D) ch.add(o); };
+    if(Rd&&Rd.group) add(Rd.group);
+    if(RI){ for(const k of Object.keys(RI)){ const v=RI[k]; for(const e of (Array.isArray(v)?v:[v])){ if(!e||typeof e!=='object') continue; add(e); add(e.holder); add(e.r); } } }
     if(GR&&GR.spk&&GR.spk.pts) fx.add(GR.spk.pts); return {ch,fx}; }
   function topName(o){ let a=o,last=o; while(a.parent&&a.parent.type!=='Scene'){ last=a.parent; a=a.parent; } return last.name||('['+last.type+':'+((last.geometry&&last.geometry.type)||'')+']'); }
   function classify(o,R){ let a=o; while(a){ if(R.fx.has(a)) return 'fx'; if(R.ch.has(a)) return 'chars'; a=a.parent; }
-    a=o; while(a&&a.type!=='Scene'){ const n=a.name||''; if(FX_RE.test(n)) return 'fx'; if(CHAR_RE.test(n)) return 'chars'; a=a.parent; }
+    a=o; while(a&&a.type!=='Scene'){ const n=a.name||''; if(FX_RE.test(n)) return 'fx'; a=a.parent; }
     if(o.isSprite) return 'fx'; return 'world'; }
   function estimate(){ const S=G('scene'), C=G('camera'); S.updateMatrixWorld(true); C.updateMatrixWorld(true);
     const fr=new THREE.Frustum().setFromProjectionMatrix(new THREE.Matrix4().multiplyMatrices(C.projectionMatrix,C.matrixWorldInverse));
@@ -5245,7 +5304,7 @@ window.heatTick=function(dt,xr){ try{ if(window.GRAF&&GRAF.ready) tick(dt,false)
     const calls=i.render.calls, chars=e.cls.chars, fx=e.cls.fx;
     return {label:label||'',calls,triangles:i.render.triangles,geometries:i.memory.geometries,textures:i.memory.textures,
       world:Math.max(0,calls-chars-fx),chars,fx,est:e.cls.world+chars+fx,estWorld:e.cls.world,byModule:e.byModule}; }
-  window.DC_METER={sample,estimate,version:1};
+  window.DC_METER={sample,estimate,version:2};
 })();
 
 // ===== ?perf=1 QUEST PERF OVERLAY (perf_overlay.js, Rydah Systems) — thin HUD on Rydah Optimizer's DC_METER (perf/drawcalls/dc_meter.js).
@@ -5544,6 +5603,13 @@ if(o.userData.worldPerf&&o.userData.worldPerf!==true) return; for(let a=o;a;a=a.
     st.sea=[SEA.groups.map(g=>g.G.length),!!SEA.dual]; }
   function wpSeaCheck(){ for(const g of SEA.groups){ if(g.undone) continue; if(g.G.some((o,i)=>{ o.updateMatrixWorld(); return !o.matrixWorld.equals(g.snap[i]); })){ g.undone=true; g.m.visible=false; g.G.forEach(o=>o.visible=true); } }
     const d=SEA.dual; if(d&&!d.undone){ d.a.updateMatrixWorld(); d.b.updateMatrixWorld(); if(!d.a.matrixWorld.equals(d.snap[0])||!d.b.matrixWorld.equals(d.snap[1])){ d.undone=true; d.m.visible=false; d.a.visible=d.b.visible=true; } } }
+  // 14. far gate decor (gates.js moving-part meshes Gate_toon_*/Gate_glow_* + lightbox CrewPatch_* under garage groups; Palma Nov 12, causeway_west budget):
+  // beyond GF.R m (fog 70..360: >=72% fogged) moved to layer 29 so the camera skips them; gates.js keeps full control of .visible. ?gatefar=0 disables.
+  const GF={list:[],R:280,H:12}; function packGateFar(){ if(/[?&]gatefar=0\b/.test(location.search)||typeof garages==='undefined') return;
+    for(const G of garages){ if(!G.group) continue; G.group.traverse(o=>{ if((o.isMesh)&&/^(Gate_(toon|glow)_|CrewPatch_)/.test(o.name||'')){ if(!o.geometry.boundingSphere) o.geometry.computeBoundingSphere(); GF.list.push({o,far:false,mask:o.layers.mask}); } }); }
+    st.gateFar=GF.list.length; }
+  const _gfp=new THREE.Vector3(); function gateFarTick(cp){ for(const g of GF.list){ g.o.getWorldPosition(_gfp); const d=_gfp.distanceTo(cp); const f=g.far?d>GF.R-GF.H:d>GF.R;
+    if(f!==g.far){ g.far=f; if(f){ g.mask=g.o.layers.mask; g.o.layers.set(29); } else g.o.layers.mask=g.mask; } } }
   function run(batchOut){ if(/[?&]noperf\b/.test(location.search)) return; st.start=performance.now();
     // 1. crew-base interiors
     if(typeof BASE_MATS!=='undefined'){ const mats=new Set(Object.values(BASE_MATS)); scene.traverse(o=>{ if(o.isMesh&&mats.has(o.material)){ if(!o.geometry.boundingSphere) o.geometry.computeBoundingSphere();
@@ -5571,9 +5637,10 @@ if(o.userData.worldPerf&&o.userData.worldPerf!==true) return; for(let a=o;a;a=a.
     try{ packHolo(); packSearch(); }catch(e){ console.warn('world_perf holo/search failed',e); }
     try{ atlasSigns(); }catch(e){ console.warn('world_perf atlas failed',e); }
     try{ singles(); }catch(e){ console.warn('world_perf singles failed',e); }
+    try{ packGateFar(); }catch(e){ console.warn('world_perf gatefar failed',e); }
     st.ms=Math.round(performance.now()-st.start); WORLD_PERF.stats=st; }
   const _dj=new THREE.Vector3(1e9,0,0);
-  function tick(){ if(typeof camera==='undefined') return; camera.getWorldPosition(_cp); wpCanTick(); if(SIGN.list.length) signTick(_cp); if((++tf%20)===0){ applyTier(); tierCull(_cp); } if((tf%10)===3||_dj.distanceToSquared(_cp)>64) wpPoolTick(_cp); if((tf%60)===11) wpSeaCheck(); if((tf%10)===5) for(const g of PM) wpPoolMergeSync(g); if(DG.length&&((tf%15)===0||_dj.distanceToSquared(_cp)>64)){ detTick(_cp); _dj.copy(_cp); } /* refill at once on camera moves > 8 m since last fill (respawn/teleport) */ if((tf%15)===7) ringTick(); if(BEAM.mat) BEAM.mat.opacity=BEAM.src.opacity; searchTick(); for(const n of near) n.o.visible=n.c.distanceToSquared(_cp)<n.r*n.r; }
+  function tick(){ if(typeof camera==='undefined') return; camera.getWorldPosition(_cp); wpCanTick(); if(SIGN.list.length) signTick(_cp); if((++tf%20)===0){ applyTier(); tierCull(_cp); } if((tf%10)===7&&GF.list.length) gateFarTick(_cp); if((tf%10)===3||_dj.distanceToSquared(_cp)>64) wpPoolTick(_cp); if((tf%60)===11) wpSeaCheck(); if((tf%10)===5) for(const g of PM) wpPoolMergeSync(g); if(DG.length&&((tf%15)===0||_dj.distanceToSquared(_cp)>64)){ detTick(_cp); _dj.copy(_cp); } /* refill at once on camera moves > 8 m since last fill (respawn/teleport) */ if((tf%15)===7) ringTick(); if(BEAM.mat) BEAM.mat.opacity=BEAM.src.opacity; searchTick(); for(const n of near) n.o.visible=n.c.distanceToSquared(_cp)<n.r*n.r; }
   return { run, tick, stats:null, near, SIGN, detFill:(p)=>{ if(DG.length){ for(const g of DG) g.key=''; detTick(p); } } }; // detFill: probe/teleport hook
 })();
 // hook: capture what staticMerge creates, then run once it reports window.__merge
@@ -5917,6 +5984,199 @@ window.RIDER_STYLE=RIDER_STYLE;
 
 // ===== LOOP =====
 let frame=0, VRV=null;
+/*SR_MENU_INPUT_V1*/
+// ===== SR_INPUT: semantic input layer (Rydah Systems, menu build order step 2, 2026-11-12). =====
+// Device events -> semantic actions. Sources merged every frame (OR): Xbox standard pad (via SR_PAD levels), Quest Touch xr-standard
+// (XRSession.inputSources, whenever an XR session is presenting; NO !SR_PAD.connected lockout), keyboard fallback (window._k/_kp).
+// Data-driven: SR_INPUT.MAP is the device->action table; SR_INPUT.applyMap(partial) / SR_INPUT.fromProbe(probeJson) recompile it with no
+// code change (tools/xr_input_probe.html JSON, key sr_input_probe_v1). Optional override in localStorage 'sr_input_map_v1' (read once at
+// load; written only by an explicit SR_INPUT.saveMap()). Never touches skyrydahs-save-v1 / 'skyrydahs'.
+// Rules: edge-detected presses; auto-repeat 400 ms then every 120 ms (nav + scroll + page only); stick hysteresis engage .5 / release .3
+// (one dominant direction at a time); repeat clock = the game's frame dt (animate dt), so it is frame-rate independent on Quest.
+// ONE consumer per frame: overlay stack > menu (State.mode!="ride") > gate keypad > map > phone > gameplay. Subscribers only get actions
+// when their owner is the current consumer ('*' = passive observer). Menu consumer: the canvas-menu adapter writes Input.pUp/pDown/pLeft/
+// pRight/pSelect/pBack/pStart from the layer (repeat included) and swallows gameplay input (Input.mag/boost/tag/pDash). Every button held
+// while the menu consumes stays MASKED for gameplay until released (SR_PAD.cur/down, pad.js PAD.cur, PAD.edge on the consuming frame,
+// srXRInput sel/back/tag/boost), so a confirm that starts or resumes the ride can't also jump/attack/tag. Phone, map and gate keypad stay on
+// their current pad.js paths (the layer only reports them as consumer). No per-frame allocation; no draw calls (debug readout is DOM).
+(function(){
+  if(window.SR_INPUT&&window.SR_INPUT.__v) return;
+  const ACTIONS=["up","down","left","right","confirm","back","tabPrev","tabNext","secPrev","secNext","scrollUp","scrollDown","menu","view","alt1","alt2"];
+  const NA=ACTIONS.length, AI={}; for(let i=0;i<NA;i++) AI[ACTIONS[i]]=i;
+  const ALIAS={pageUp:"secPrev",pageDown:"secNext",navUp:"up",navDown:"down",navLeft:"left",navRight:"right",select:"confirm",start:"menu",pause:"menu",cancel:"back"};
+  const REPEATS={up:1,down:1,left:1,right:1,secPrev:1,secNext:1,scrollUp:1,scrollDown:1};
+  // ---------- DEFAULT MAP (data only; probe JSON / applyMap override any part) ----------
+  const MAP={
+    repeat:{delay:400,rate:120},            // ms
+    stick:{engage:.5,release:.3,scrollDeadzone:.15},
+    pad:{ // W3C "standard" mapping (Xbox): button index -> action(s)
+      buttons:{0:"confirm",1:"back",2:"alt1",3:"alt2",4:"tabPrev",5:"tabNext",6:"secPrev",7:"secNext",8:"view",9:"menu",12:"up",13:"down",14:"left",15:"right"},
+      triggerPress:.3,                      // LT/RT analog press threshold (same as SR_PAD)
+      sticks:[{x:0,y:1,role:"nav"},{x:2,y:3,role:"scroll"}] },
+    xr:{ // xr-standard: 0 trigger, 1 squeeze, 3 stick click, 4 A/X, 5 B/Y; thumbstick axes[2]/[3] (fallback [0]/[1] on 2-axis runtimes)
+      right:{buttons:{0:"confirm",1:"back",4:"confirm",5:"back"},stick:"scrollTabs"},
+      left:{buttons:{0:"confirm",1:"back",4:"alt1",5:"back"},stick:"nav"},
+      axes:[2,3],fallbackAxes:[0,1] },
+    keys:{ArrowUp:"up",KeyW:"up",ArrowDown:"down",KeyS:"down",ArrowLeft:"left",KeyA:"left",ArrowRight:"right",KeyD:"right",
+      Enter:"confirm",Space:"confirm",Escape:["back","menu"],Backspace:"back",KeyQ:"tabPrev",KeyE:"tabNext",PageUp:"secPrev",PageDown:"secNext",Tab:"view"}
+  };
+  // ---------- compiled tables (rebuilt only by compile(); never per frame) ----------
+  let padB=new Int16Array(0), keyCodes=[], keyAct=new Int16Array(0), xrB=[new Int16Array(0),new Int16Array(0)], xrStick=["nav","scrollTabs"];
+  let padSticks=[], REP_D=.4, REP_R=.12, ENG=.5, REL=.3, SDZ=.15, TRIG=.3;
+  function acts(v){ const out=[]; (Array.isArray(v)?v:[v]).forEach(n=>{ n=ALIAS[n]||n; if(n in AI) out.push(AI[n]); }); return out; }
+  function pairs(tbl){ const L=[]; for(const k in tbl||{}){ const i=+k; if(!(i>=0)) continue; for(const a of acts(tbl[k])) L.push(i,a); } return Int16Array.from(L); }
+  function compile(){
+    padB=pairs(MAP.pad.buttons); xrB=[pairs(MAP.xr.left&&MAP.xr.left.buttons),pairs(MAP.xr.right&&MAP.xr.right.buttons)];
+    xrStick=[(MAP.xr.left&&MAP.xr.left.stick)||"nav",(MAP.xr.right&&MAP.xr.right.stick)||"scrollTabs"];
+    const kc=[], ka=[]; for(const k in MAP.keys) for(const a of acts(MAP.keys[k])){ kc.push(k); ka.push(a); } keyCodes=kc; keyAct=Int16Array.from(ka);
+    padSticks=(MAP.pad.sticks||[]).map(s=>({x:s.x|0,y:s.y|0,role:s.role||"nav"}));
+    REP_D=(MAP.repeat.delay||400)/1000; REP_R=(MAP.repeat.rate||120)/1000; ENG=MAP.stick.engage||.5; REL=MAP.stick.release||.3; SDZ=MAP.stick.scrollDeadzone||.15; TRIG=MAP.pad.triggerPress||.3; }
+  function merge(dst,src){ for(const k in src){ const v=src[k]; if(v&&typeof v==="object"&&!Array.isArray(v)&&dst[k]&&typeof dst[k]==="object"&&!Array.isArray(dst[k])) merge(dst[k],v); else dst[k]=v; } return dst; }
+  // ---------- per-frame state (typed arrays, reused) ----------
+  const lvl=new Uint8Array(NA), prev=new Uint8Array(NA), press=new Uint8Array(NA), rel=new Uint8Array(NA), rep=new Uint8Array(NA), held=new Float32Array(NA), next=new Float32Array(NA), count=new Uint32Array(NA);
+  const repOK=new Uint8Array(NA); for(const n in REPEATS) repOK[AI[n]]=1;
+  // stick hysteresis per stick slot: 0 pad L, 1 pad R, 2 xr left hand, 3 xr right hand, 4/5 spare. dir: -1 none, else action idx; sc = scroll dir
+  const stDir=new Int16Array(8).fill(-1), stSc=new Int16Array(8).fill(-1), stTab=new Int16Array(8).fill(-1);
+  const padMask=new Uint8Array(32), relMask=new Uint8Array(32); let xrHold=false, kbHold=false;
+  const LOGN=256, logA=new Int16Array(LOGN), logT=new Float32Array(LOGN), logF=new Uint32Array(LOGN), logK=new Uint8Array(LOGN); let logI=0;
+  const NUM=new Float64Array(4); // 0 nav.x 1 nav.y 2 scroll 3 event held ms (typed: no heap-number boxing per frame)
+  const EV={action:"",kind:"",consumer:"",frame:0,repeat:false}; Object.defineProperty(EV,"held",{get(){ return NUM[3]; },enumerable:true});
+  const subs=[];
+  const S={ __v:1, ACTIONS, MAP, manual:false, adapter:true, consumer:"menu", overlay:[], frame:0,
+    state:{}, nav:{get x(){ return NUM[0]; },get y(){ return NUM[1]; }}, src:{pad:false,xr:0,kb:false}, counts:count };
+  Object.defineProperty(S,"scroll",{get(){ return NUM[2]; },enumerable:true});
+  for(const n of ACTIONS) S.state[n]=false;
+  // ---------- sources ----------
+  const XY=new Float64Array(2); // stick scratch: doubles passed through a typed array, never as boxed call args
+  function hyst(slot,role){ // nav: one dominant direction with engage/release hysteresis
+    const x=XY[0], y=XY[1], ax=Math.abs(x), ay=Math.abs(y);
+    if(role==="nav"){ let d=stDir[slot];
+      if(d>=0){ const c=d===0?-y:d===1?y:d===2?-x:x; if(c<REL) d=-1; }
+      if(d<0){ if(ay>=ax&&ay>ENG) d=y<0?0:1; else if(ax>ay&&ax>ENG) d=x<0?2:3; }
+      stDir[slot]=d; if(d>=0) lvl[d]=1; if(ax>Math.abs(NUM[0])) NUM[0]=x; if(ay>Math.abs(NUM[1])) NUM[1]=y; return; }
+    // scroll (Y) [+ tabs on X for scrollTabs]
+    if(ay>SDZ&&ay>Math.abs(NUM[2])) NUM[2]=y<-1?-1:y>1?1:y;
+    let s=stSc[slot]; if(s>=0){ const c=s===AI.scrollUp?-y:y; if(c<REL) s=-1; } if(s<0&&ay>ENG&&ay>=ax) s=y<0?AI.scrollUp:AI.scrollDown; stSc[slot]=s; if(s>=0) lvl[s]=1;
+    if(role==="scrollTabs"){ let t=stTab[slot]; if(t>=0){ const c=t===AI.tabPrev?-x:x; if(c<REL) t=-1; } if(t<0&&ax>ENG&&ax>ay) t=x<0?AI.tabPrev:AI.tabNext; stTab[slot]=t; if(t>=0) lvl[t]=1; } }
+  function readPad(){ const P=window.SR_PAD; const p=P&&P.connected?P.pad:null; S.src.pad=!!p;
+    if(!p){ for(let s=0;s<2;s++){ stDir[s]=stSc[s]=stTab[s]=-1; } return; }
+    const B=p.buttons||[], A=p.axes||[];
+    for(let k=0;k<padB.length;k+=2){ const i=padB[k], b=B[i]; if(b&&(b.pressed||((i===6||i===7)&&(b.value||0)>TRIG))) lvl[padB[k+1]]=1; }
+    for(let s=0;s<padSticks.length&&s<2;s++){ const q=padSticks[s]; XY[0]=A[q.x]||0; XY[1]=A[q.y]||0; hyst(s,q.role); } }
+  function xrSession(){ try{ return typeof renderer!=="undefined"&&renderer.xr&&renderer.xr.isPresenting&&renderer.xr.getSession?renderer.xr.getSession():(S.xrSessionOverride||null); }catch(e){ return null; } }
+  function readXR(){ const ses=S.xrSessionOverride||xrSession(); S.src.xr=0; const L=ses&&ses.inputSources; let anyB=false;
+    if(!L){ for(let s=2;s<4;s++){ stDir[s]=stSc[s]=stTab[s]=-1; } return false; }
+    const ax0=MAP.xr.axes[0], ay0=MAP.xr.axes[1], fx=MAP.xr.fallbackAxes[0], fy=MAP.xr.fallbackAxes[1];
+    for(let i=0;i<L.length;i++){ const s=L[i], g=s&&s.gamepad; if(!g) continue; S.src.xr++; const h=s.handedness==="right"?1:0, B=g.buttons||[], A=g.axes||[], T=xrB[h];
+      for(let k=0;k<T.length;k+=2){ const b=B[T[k]]; if(b&&b.pressed){ lvl[T[k+1]]=1; } }
+      for(let k=0;k<B.length&&k<8;k++) if(B[k]&&B[k].pressed) anyB=true;
+      const four=A.length>Math.max(ax0,ay0); XY[0]=(four?A[ax0]:A[fx])||0; XY[1]=(four?A[ay0]:A[fy])||0; hyst(2+h,xrStick[h]); }
+    return anyB; }
+  function readKeys(){ const K=window._k, KP=window._kp; let any=false; S.src.kb=false; if(!K&&!KP) return false;
+    for(let k=0;k<keyCodes.length;k++){ const c=keyCodes[k]; if((K&&K[c])||(KP&&KP[c])){ lvl[keyAct[k]]=1; any=true; } }
+    S.src.kb=any; return any; }
+  // ---------- consumer ----------
+  function resolve(){ try{
+    if(S.overlay.length) return S.overlay[S.overlay.length-1];
+    if(typeof State!=="undefined"&&State.mode!=="ride") return "menu";
+    if(typeof GATE!=="undefined"&&GATE.uiOpen) return "gate";
+    if(window.MAP&&window.MAP.open) return "map"; // window.MAP = the game map (local MAP is the input table)
+    if(window.PHONE&&PHONE.up) return "phone";
+    return "gameplay"; }catch(e){ return "gameplay"; } }
+  // ---------- emit / subscribe ----------
+  function emit(a,kind,isRep){ const name=typeof a==="number"?ACTIONS[a]:(ALIAS[a]||a); EV.action=name; EV.kind=kind||"press"; EV.repeat=!!isRep; EV.consumer=S.consumer; EV.frame=S.frame;
+    const ai=AI[name]; NUM[3]=ai>=0?held[ai]*1000:0;
+    for(let i=0;i<subs.length;i++){ const s=subs[i]; if(s.owner==="*"||s.owner===S.consumer){ try{ s.fn(EV); }catch(e){ if(!S.__subErr) console.warn("SR_INPUT subscriber",e); S.__subErr=e; } } } }
+  S.subscribe=(fn,owner)=>{ const r={fn,owner:owner||"*"}; subs.push(r); return ()=>{ const i=subs.indexOf(r); if(i>=0) subs.splice(i,1); }; };
+  S.emit=(action,kind)=>emit(action,kind,false);
+  S.pushOverlay=id=>{ S.overlay.push(id); S.consumer=id; }; S.popOverlay=id=>{ const i=S.overlay.lastIndexOf(id); if(i>=0) S.overlay.splice(i,1); };
+  // ---------- frame ----------
+  function step(dt){ S.frame++; S.consumer=resolve(); lvl.fill(0); press.fill(0); rel.fill(0); rep.fill(0); NUM[0]=NUM[1]=NUM[2]=0;
+    readPad(); const xrAny=readXR(); readKeys();
+    for(let a=0;a<NA;a++){
+      if(lvl[a]&&!prev[a]){ press[a]=1; held[a]=0; next[a]=REP_D; count[a]++; logA[logI]=a; logT[logI]=0; logF[logI]=S.frame; logK[logI]=1; logI=(logI+1)%LOGN; }
+      else if(lvl[a]){ held[a]+=dt; if(repOK[a]&&held[a]>=next[a]-1e-6){ rep[a]=1; next[a]+=REP_R; if(next[a]<=held[a]) next[a]=held[a]+REP_R; count[a]++; logA[logI]=a; logT[logI]=held[a]; logF[logI]=S.frame; logK[logI]=2; logI=(logI+1)%LOGN; } }
+      else if(prev[a]){ rel[a]=1; held[a]=0; }
+      prev[a]=lvl[a]; S.state[ACTIONS[a]]=!!lvl[a]; }
+    for(let a=0;a<NA;a++){ if(press[a]) emit(a,"press",false); else if(rep[a]) emit(a,"press",true); if(rel[a]) emit(a,"release",false); }
+    // hold masks: anything held while the menu (or an overlay) consumes is masked for gameplay until released
+    const P=window.SR_PAD, menuish=S.consumer!=="gameplay"&&S.consumer!=="phone"&&S.consumer!=="map"&&S.consumer!=="gate";
+    if(P&&P.pad){ const B=P.pad.buttons||[]; for(let i=0;i<B.length&&i<32;i++){ const b=B[i], on=!!(b&&(b.pressed||((i===6||i===7)&&(b.value||0)>TRIG)));
+      relMask[i]=0; if(!on){ if(padMask[i]) relMask[i]=1; padMask[i]=0; } else if(menuish) padMask[i]=1; } } else { padMask.fill(0); relMask.fill(0); }
+    if(menuish&&xrAny) xrHold=true; else if(!xrAny) xrHold=false;
+    S.menuish=menuish; applyMask(); }
+  // SR_PAD.update assigns S.cur = the same array it stores in prevButtons. Mutating cur[i] would
+  // make the next update() see a rising edge and fire onButtonDown every held frame. wrapPad clones
+  // cur onto a reused buffer after each update so applyMask can hide buttons safely.
+  const curCopy=new Array(32).fill(false);
+  function wrapPad(){ const P=window.SR_PAD; if(!P||P.__srMask||typeof P.update!=="function") return;
+    const _u=P.update; P.update=function(){ const r=_u.apply(this,arguments); const c=P.cur;
+      if(c){ const n=c.length; for(let i=0;i<n&&i<32;i++) curCopy[i]=!!c[i]; for(let i=n;i<32;i++) curCopy[i]=false; P.cur=curCopy; }
+      return r; }; P.__srMask=1; }
+  function applyMask(){ const P=window.SR_PAD; if(P&&P.cur&&P.down){ for(let i=0;i<32&&i<P.cur.length;i++){ if(padMask[i]){ P.cur[i]=false; P.down[i]=false; } if(relMask[i]&&P.up) P.up[i]=false; } } }
+  S.pre=(dt,force)=>{ if(S.manual&&!force) return; step(+dt||.016); };
+  S.post=force=>{ if(S.manual&&!force) return; applyMask(); const P=window.SR_PAD;
+    if(typeof PAD!=="undefined"&&PAD&&PAD.cur){ for(let i=0;i<32;i++) if(padMask[i]) PAD.cur[i]=false; }
+    if(!S.menuish||!S.adapter||typeof Input==="undefined") return;
+    if(S.consumer==="menu"){
+      Input.pUp=!!(press[0]||rep[0]); Input.pDown=!!(press[1]||rep[1]); Input.pLeft=!!(press[2]||rep[2]); Input.pRight=!!(press[3]||rep[3]);
+      Input.pSelect=!!press[AI.confirm]; Input.pBack=!!press[AI.back]; Input.pStart=!!press[AI.menu]; }
+    Input.mag=0; Input.boost=false; Input.tag=false; Input.pDash=false; // swallow gameplay
+    if(typeof PAD!=="undefined"&&PAD) PAD.edge=true; // pad.js wallInput etc. skip the pad on a consuming frame (mode may flip to ride below)
+    if(P&&P.down) P.down.fill(false); }; // nothing the menu consumed reaches SR_PAD.justPressed users later this frame
+  // srXRInput mask (layer1): a Touch button held through the menu doesn't leak sel/back/tag/boost into riding until released
+  let xrWrapped=false;
+  function wrapXR(){ const f=window.srXRInput; if(typeof f!=="function") return; if(f.__srMask){ xrWrapped=true; return; } const w=function(ses){ const o=f(ses); if(xrHold&&!S.menuish){ o.sel=o.back=o.tag=o.boost=false; } return o; }; w.__srMask=1; try{ window.srXRInput=w; xrWrapped=true; }catch(e){} }
+  // ---------- queries ----------
+  const ix=n=>{ n=ALIAS[n]||n; return AI[n]; };
+  S.pressed=n=>!!press[ix(n)]; S.fired=n=>{ const i=ix(n); return !!(press[i]||rep[i]); }; S.held=n=>!!lvl[ix(n)]; S.released=n=>!!rel[ix(n)];
+  S.heldTime=n=>held[ix(n)]; S.masked=i=>!!padMask[i];
+  S.log=(n)=>{ const out=[]; n=Math.min(n||LOGN,LOGN); for(let k=n;k>0;k--){ const j=(logI-k+LOGN)%LOGN; if(!logF[j]) continue; out.push({a:ACTIONS[logA[j]],t:+(logT[j]*1000).toFixed(1),f:logF[j],rep:logK[j]===2}); } return out; };
+  S.clearLog=()=>{ logF.fill(0); logI=0; count.fill(0); };
+  S.reset=()=>{ lvl.fill(0); prev.fill(0); held.fill(0); stDir.fill(-1); stSc.fill(-1); stTab.fill(-1); padMask.fill(0); xrHold=false; };
+  S.applyMap=(m,opts)=>{ if(!m||typeof m!=="object") return false; merge(MAP,JSON.parse(JSON.stringify(m))); compile(); return true; };
+  S.saveMap=()=>{ try{ localStorage.setItem("sr_input_map_v1",JSON.stringify({pad:MAP.pad,xr:MAP.xr,keys:MAP.keys,repeat:MAP.repeat,stick:MAP.stick})); return true; }catch(e){ return false; } };
+  // Probe JSON -> map. Uses prompt-advance events ({prompt, info:{kind:'button'|'axis', i, handedness, src}}) from sr_input_probe_v1.
+  // Only rebinds where the probe saw a DIFFERENT index than the default; never invents a binding for a timeout/skip (e.g. touch-menu).
+  const PROBE={ "touch-right-a":["xr","right","confirm"],"touch-right-b":["xr","right","back"],"touch-right-trigger":["xr","right","confirm"],"touch-right-grip":["xr","right","back"],
+    "touch-left-x":["xr","left","alt1"],"touch-left-y":["xr","left","back"],"touch-left-trigger":["xr","left","confirm"],"touch-left-grip":["xr","left","back"],
+    "touch-right-stick-up":["xraxis","y"],"touch-right-stick-right":["xraxis","x"],"touch-left-stick-up":["xraxis","y"],"touch-left-stick-right":["xraxis","x"],
+    "xbox-a":["pad","confirm"],"xbox-b":["pad","back"],"xbox-x":["pad","alt1"],"xbox-y":["pad","alt2"],"xbox-lb":["pad","tabPrev"],"xbox-rb":["pad","tabNext"],
+    "xbox-lt":["pad","secPrev"],"xbox-rt":["pad","secNext"],"xbox-dpad-up":["pad","up"],"xbox-dpad-down":["pad","down"],"xbox-dpad-left":["pad","left"],"xbox-dpad-right":["pad","right"],
+    "xbox-view":["pad","view"],"xbox-menu":["pad","menu"],"xbox-ls-up":["padaxis",0],"xbox-rs-up":["padaxis",1] };
+  S.fromProbe=(j)=>{ try{ if(typeof j==="string") j=JSON.parse(j); const E=(j&&(j.events||(j.log&&j.log.events)))||[]; const got={}, out={pad:{buttons:{}},xr:{left:{buttons:{}},right:{buttons:{}}}}, notes=[];
+      for(const e of E) if(e&&e.type==="prompt-advance"&&e.info&&PROBE[e.prompt]) got[e.prompt]=e.info;
+      const pb=JSON.parse(JSON.stringify(MAP.pad.buttons)), xb={left:JSON.parse(JSON.stringify(MAP.xr.left.buttons)),right:JSON.parse(JSON.stringify(MAP.xr.right.buttons))};
+      const drop=(tbl,act)=>{ for(const k in tbl){ const v=tbl[k]; if(v===act) delete tbl[k]; else if(Array.isArray(v)){ const r=v.filter(x=>x!==act); if(r.length) tbl[k]=r.length===1?r[0]:r; else delete tbl[k]; } } };
+      const add=(tbl,i,act)=>{ const v=tbl[i]; if(v==null) tbl[i]=act; else if(Array.isArray(v)){ if(!v.includes(act)) v.push(act); } else if(v!==act) tbl[i]=[v,act]; };
+      const fixed={pad:{},left:{},right:{}};
+      for(const id in got){ const m=PROBE[id], info=got[id];
+        if(m[0]==="pad"&&info.kind==="button"){ if(!fixed.pad[m[1]]){ drop(pb,m[1]); fixed.pad[m[1]]=1; } add(pb,info.i,m[1]); }
+        else if(m[0]==="xr"&&info.kind==="button"){ const t=xb[m[1]]; t.__seen=t.__seen||{}; if(!t.__seen[m[2]]){ drop(t,m[2]); t.__seen[m[2]]=1; } add(t,info.i,m[2]); }
+        else if(m[0]==="xraxis"&&info.kind==="axis"){ if(m[1]==="x") out.xr.axes=[info.i,(out.xr.axes&&out.xr.axes[1])!=null?out.xr.axes[1]:MAP.xr.axes[1]]; else out.xr.axes=[(out.xr.axes&&out.xr.axes[0])!=null?out.xr.axes[0]:MAP.xr.axes[0],info.i]; }
+        else if(m[0]==="padaxis"&&info.kind==="axis"){ const st=JSON.parse(JSON.stringify(MAP.pad.sticks)); if(st[m[1]]){ st[m[1]].y=info.i; out.pad.sticks=st; } }
+        else notes.push(id+": unexpected "+info.kind); }
+      delete xb.left.__seen; delete xb.right.__seen; out.pad.buttons=pb; out.xr.left.buttons=xb.left; out.xr.right.buttons=xb.right;
+      // replace (not merge) the button tables so dropped defaults go away
+      MAP.pad.buttons={}; MAP.xr.left.buttons={}; MAP.xr.right.buttons={}; S.applyMap(out);
+      return {applied:Object.keys(got).length, notes, map:{pad:MAP.pad.buttons,xr:{left:MAP.xr.left.buttons,right:MAP.xr.right.buttons,axes:MAP.xr.axes}}}; }catch(e){ return {applied:0,error:String(e)}; } };
+  // ---------- debug readout (?inputdbg=1): DOM only, 0 draw calls ----------
+  S.debug=()=>{ const on=[]; for(let a=0;a<NA;a++) if(lvl[a]) on.push(ACTIONS[a]+(held[a]>0?"("+Math.round(held[a]*1000)+")":""));
+    return "SR_INPUT f"+S.frame+" consumer="+S.consumer+" src pad="+(S.src.pad?1:0)+" xr="+S.src.xr+" kb="+(S.src.kb?1:0)+" nav="+S.nav.x.toFixed(2)+","+S.nav.y.toFixed(2)+" scroll="+S.scroll.toFixed(2)+" held=["+on.join(" ")+"] mask="+Array.prototype.filter.call(padMask,(v)=>v).length; };
+  let dbgEl=null; S.debugEvery=10;
+  S.debugTick=()=>{ if(!dbgEl||S.frame%S.debugEvery) return; dbgEl.textContent=S.debug(); };
+  try{ if(/[?&]inputdbg=1/.test(location.search)) addEventListener("DOMContentLoaded",()=>{ dbgEl=document.createElement("pre"); dbgEl.id="srInputDbg"; dbgEl.style.cssText="position:fixed;left:6px;bottom:6px;z-index:99;margin:0;padding:4px 6px;font:11px monospace;color:#7ff;background:rgba(0,0,0,.6);pointer-events:none"; document.body.appendChild(dbgEl); }); }catch(e){}
+  const _pre=S.pre; S.pre=(dt,force)=>{ wrapPad(); if(!xrWrapped&&S.frame%60===0) wrapXR(); _pre(dt,force); if(dbgEl) S.debugTick(); };
+  const DEFAULTS=JSON.parse(JSON.stringify(MAP));
+  S.resetMap=()=>{ for(const k of Object.keys(MAP)) delete MAP[k]; merge(MAP,JSON.parse(JSON.stringify(DEFAULTS))); compile(); return true; };
+  // ---------- init ----------
+  try{ if(/[?&]inputmap=default/.test(location.search)){ /* ignore the stored override for this session (never deletes it) */ throw 0; } const o=localStorage.getItem("sr_input_map_v1"); if(o) merge(MAP,JSON.parse(o)); }catch(e){}
+  wrapPad();
+  compile();
+  window.SR_INPUT=S;
+})();
+
+if(/[?&]inputlayer=0/.test(location.search)) window.SR_INPUT.manual=true; // A/B: layer computes nothing, legacy menu input only
 // ===== BRAKE (Rydah Systems, brake.js via patch_brake.py) — regen power-slide brake, founder build order 2026-11-11 (Claude regen re-tune) =====
 // No boards: braking = regenerative motor braking in the Air Treck wheels. Ground riding only (off on grind / wall / air / grapple).
 // Entry : LS (camera-relative Input.yaw from pad.js) dot <= -0.70 vs TRAVEL direction (measured displacement, never heading),
@@ -6029,7 +6289,7 @@ let frame=0, VRV=null;
 
 function animate(t){
   const dt=Math.min(.05,(t-lastTime)/1000||.016); lastTime=t; clock+=dt; frame++;
-  SR_PAD.update(); poll(); try{ gatesPre(dt); }catch(e){ if(!window.__gateErr) console.warn('gates',e); window.__gateErr=e; }
+  SR_PAD.update(); if(window.SR_INPUT) SR_INPUT.pre(dt); poll(); if(window.SR_INPUT) SR_INPUT.post(); try{ gatesPre(dt); }catch(e){ if(!window.__gateErr) console.warn('gates',e); window.__gateErr=e; }
   if(State.mode==="ride"){ if(Input.pStart) pause(); }
   else if(State.mode==="pause"){ if(Input.pStart||(Input.pBack&&UI.screen==="pause")) resume(); else menuInput(); }
   else menuInput();
@@ -6050,7 +6310,7 @@ function animate(t){
     if(scene.fog){ window.__fog=scene.fog; scene.fog=null; camera.far=2000; camera.fov=60; camera.updateProjectionMatrix(); }
     camera.up.set(0,0,-1); camera.position.set(40,560,-90); camera.lookAt(40,0,-90.01);
   } else if(xr){
-    rig.position.set(p.x,p.y,p.z); rig.rotation.y=Ride.yaw+Math.PI; // rider-centred VR rig
+    srVrhTick(); rig.position.set(p.x,p.y+(RIDERS.vrh&&RIDERS.vrh.floor||0),p.z); rig.rotation.y=Ride.yaw+Math.PI; // rider-centred VR rig
   } else {
     if(!scene.fog&&window.__fog){ scene.fog=window.__fog; camera.far=600; camera.up.set(0,1,0); camera.updateProjectionMatrix(); }
     const tgt=_v.copy(p); tgt.y+=1.4;
@@ -6809,10 +7069,10 @@ function mm2Tick(dt,xr){ if(!MM2.on) return; if(xr&&!renderer.xr.isPresenting) x
   const ride=typeof State!=="undefined"&&State.mode==="ride"&&!(typeof MAP!=="undefined"&&MAP.open);
   if(!ride){ if(MM2.box){ MM2.box.style.display="none"; if(MM2.opanel) MM2.opanel.style.display="none"; MM2.quad.visible=MM2.sprite.visible=false; MM2.diam.style.display="none"; MM2.arrows.forEach(e=>e.style.display="none"); } MM2.xrCam=null; return; }
   if(!MM2.cv) mm2Build(); MM2.box.style.display=xr?"none":"";
-  MM2.vr=!!xr; MM2.dtLast=dt; mm2Heading(dt); mm2Draw(); MM2.acc+=dt; if(MM2.acc>=1/MM2.hz){ MM2.acc=0; let cam=camera; if(xr) cam=renderer.xr.getCamera(camera); mm2Indicators(xr,cam); }
+  MM2.vr=!!xr; MM2.dtLast=dt; mm2Heading(dt); mm2Draw(); MM2.acc+=dt; if(MM2.acc>=1/MM2.hz){ MM2.acc=0; const cam=(xr&&renderer.xr&&renderer.xr.isPresenting&&renderer.xr.getSession&&renderer.xr.getSession())?renderer.xr.getCamera(camera):camera; mm2Indicators(xr,cam); } // XR null guard (mirror kitTick, Palma Nov 12)
   MM2.quad.visible=!!xr;
-  // Pose is applied in mm2BeforeRender from the current-frame head matrixWorld (r128 updates the XR pose inside render(), after this tick). Cache the ArrayCamera only — never a per-eye sub-camera. No lerp.
-  MM2.xrCam=xr?renderer.xr.getCamera(camera):null; }
+  // Pose is applied in mm2BeforeRender from the current-frame head matrixWorld (r128 updates the XR pose inside render(), after this tick). Cache the ArrayCamera only — never a per-eye sub-camera. No lerp. Skip the VR-anchor path this frame if there is no session (faked XR).
+  MM2.xrCam=(xr&&renderer.xr&&renderer.xr.isPresenting&&renderer.xr.getSession&&renderer.xr.getSession())?renderer.xr.getCamera(camera):null; }
 window.MM2=MM2; window.MM2_VR_OFF=MM2_VR_OFF; window.mm2VrLock=mm2VrLock; window.mm2BeforeRender=mm2BeforeRender; window.mm2Fmt=mm2Fmt; window.mm2Tick=mm2Tick;
 // read-only debug state for tests (numbers, not pixels). heading uses Ride.yaw convention; rot = map canvas rotation (rad)
 window.MINIMAP={ get state(){ return Object.freeze({heading:MM2.h,rot:MM2.rot,cx:MM2.cx,cz:MM2.cz,scale:MM2.H/MM2.range,moving:MM2.moving,speed:MM2.vs,n:[MM2.nx,MM2.ny],rim:MM2.rim.map(r=>Object.assign({},r)),cops:(MM2.cops||[]).map(r=>Object.assign({},r)),obj:MM2.ot?{name:MM2.ot.name,dist:MM2.ot.dist,text:MM2.ot.text,dtext:MM2.ot.dtext,panel:MM2.opanel?MM2.opanel.textContent.trim():null}:null,W:MM2.W,H:MM2.H}); }, w2s:(x,z)=>mm2W2S(x,z) };
@@ -6837,8 +7097,7 @@ function init(){
     mm=$("minimap").getContext("2d");
     $("status").style.display="none";
     if(navigator.xr) navigator.xr.isSessionSupported("immersive-vr").then(ok=>{ if(!ok) return; const b=$("xrbtn"); b.style.display="block";
-      b.onclick=async()=>{ const s=await navigator.xr.requestSession("immersive-vr",{optionalFeatures:["local-floor"]}); renderer.xr.setReferenceSpaceType("local-floor"); await renderer.xr.setSession(s);
-        camera.position.set(0,0,0); camera.rotation.set(0,0,0); riderEnterVR(); s.addEventListener("end",()=>{ rig.position.set(0,0,0); rig.rotation.set(0,0,0); riderExitVR(); }); }; }).catch(()=>{});
+      b.onclick=async()=>{ const s=await navigator.xr.requestSession("immersive-vr",{optionalFeatures:["local-floor"]}); await srVrhAttach(s); }; /*SR_VRHEIGHT1*/ }).catch(()=>{});
     renderer.setAnimationLoop(animate); setTimeout(staticMerge,1500); if(!/nofx/.test(location.search)) loadFX();
   }catch(e){ $("status").textContent="ERROR: "+e.message; console.error(e); }
 }
@@ -7347,7 +7606,7 @@ function kitTagKeep(G,mode){ const inv=new THREE.Matrix4().copy(G.group.matrixWo
   scene.traverse(o=>{ if(!(o.isMesh||o.isLight||o.isSprite||o.isPoints||o.isLine)) return; let keep=o.isLight&&(o.isHemisphereLight||o.isAmbientLight); if(!keep) for(let a=o;a;a=a.parent) if(keepTree.has(a)){ keep=true; break; } let npc=false; for(let a=o;a;a=a.parent) if(a.userData&&(a.userData.npc||a.userData.rider)&&a!==Ride.group){ npc=true; break; } if(npc){ o.layers.disable(KIT_LAYER); return; } // roaming NPC riders never draw inside
     if(!keep&&mode==='down'){ if(o.isInstancedMesh||!o.geometry) keep=true; else { if(!o.geometry.boundingSphere) o.geometry.computeBoundingSphere(); const bs=o.geometry.boundingSphere; v.copy(bs.center).applyMatrix4(o.matrixWorld).applyMatrix4(inv); const r=bs.radius*o.matrixWorld.getMaxScaleOnAxis(); keep=r>60||v.z+r>-1; } }
     if(keep) o.layers.enable(KIT_LAYER); else o.layers.disable(KIT_LAYER); }); }
-function kitCams(on){ const cs=[camera]; if(renderer.xr&&renderer.xr.isPresenting){ const v=renderer.xr.getCamera(camera); cs.push(v); if(v.cameras) cs.push(...v.cameras); }
+function kitCams(on){ const cs=[camera]; if(renderer.xr&&renderer.xr.isPresenting&&renderer.xr.getSession&&renderer.xr.getSession()){ const v=renderer.xr.getCamera(camera); cs.push(v); if(v.cameras) cs.push(...v.cameras); }
   for(const c of cs){ if(on){ c.layers.disable(0); c.layers.enable(KIT_LAYER); } else { c.layers.enable(0); c.layers.disable(KIT_LAYER); } } }
 function kitExterior(G,inside,mode){ const key=inside?G.crew+mode:null; if(key===kitHide){ if(key&&(++KIT.tagT%30)===0) Ride.group.traverse(o=>o.layers.enable(KIT_LAYER)); if(key) kitCams(true); return; }
   kitHide=key; if(window.KIT_NOHIDE||!key){ kitCams(false); return; } kitTagKeep(G,mode); kitCams(true); }
@@ -7380,7 +7639,7 @@ function kitColGate(G){ const up=!!(G&&(KIT.up.visible||window.KIT_FLOOR==='up')
 window.kitColGate=kitColGate; window.KIT_LANE=KIT_LANE;
 // textures + GLBs (skates, Forge props) load on first approach within ~40 m of any garage, not at spawn
 const KIT_LAZY_R=40; function kitLazy(){ KIT.lazy=true; KIT.lazyT=performance.now(); try{ KIT_DEFER.splice(0).forEach(f=>f()); }catch(e){ console.warn('kit tex',e); } kitSkates(); kitSwapProps().then(()=>{ KIT.propsReady=true; }); }
-function kitTick(){ if(!KIT.root) return; const cam=(renderer.xr&&renderer.xr.isPresenting)?renderer.xr.getCamera(camera):camera; const p=new THREE.Vector3(); cam.getWorldPosition(p); const pp=(typeof Ride!=='undefined'&&Ride.group)?Ride.group.position:p; // gate on the PLAYER, floor choice on camera height
+function kitTick(){ if(!KIT.root) return; const cam=(renderer.xr&&renderer.xr.isPresenting&&renderer.xr.getSession&&renderer.xr.getSession())?renderer.xr.getCamera(camera):camera; /* XR null guard (Palma Nov 12) */ const p=new THREE.Vector3(); cam.getWorldPosition(p); const pp=(typeof Ride!=='undefined'&&Ride.group)?Ride.group.position:p; // gate on the PLAYER, floor choice on camera height
   let best=null,bd=1e9; for(const G of garages){ const c=G.group.localToWorld(_kc.set(0,0,-8)); const d=Math.hypot(c.x-pp.x,c.z-pp.z); if(d<bd){ bd=d; best=G; } } if(window.KIT_FORCE) best=garages.find(g=>g.crew===window.KIT_FORCE)||best,bd=0;
   if(!KIT.lazy&&(bd<KIT_LAZY_R||window.KIT_FORCE)) kitLazy(); kitColGate(bd<KIT_R?best:null); const on=bd<KIT_R; KIT.root.visible=on; if(!on) kitExterior(null,false); if(on&&best!==KIT.g) kitApply(best); if(!on){ if(KIT.oldMeshes) KIT.oldMeshes.forEach(m=>m.visible=true); KIT.g=null; return; }
   const ly=p.y, wasUp=KIT.up.visible; KIT.up.visible=ly-(KIT.g?0:0)>KIT_UPY-1.5||window.KIT_FLOOR==='up'; KIT.down.visible=!KIT.up.visible||window.KIT_FLOOR==='both'; if(wasUp!==KIT.up.visible) kitLights(); { const inv=new THREE.Matrix4().copy(best.group.matrixWorld).invert(); const lp=new THREE.Vector3(pp.x,0,pp.z).applyMatrix4(inv); const inside=lp.x>-6&&lp.x<6&&lp.z>-17&&lp.z<-.2; KIT.inside=inside; kitExterior(best,inside,KIT.up.visible?'up':'down'); } 
@@ -7409,6 +7668,27 @@ function kitExtMerge(geos,mat,parent,name){ const ok=geos.filter(Boolean); if(!o
   const m=new THREE.Mesh(g,mat); m.name=name||'kit_ext'; m.userData.noMerge=true; m.userData.mod='kit_ext'; m.frustumCulled=true; parent.add(m); return m; }
 function kitExtPushCol(G,boxes){ const th=G.th,[gx,gz]=G.pos; const W=(lx,lz)=>[gx+lx*Math.cos(th)+lz*Math.sin(th), gz-lx*Math.sin(th)+lz*Math.cos(th)];
   for(const [a0,a1,b0,b1] of boxes){ const a=W(a0,b0), b=W(a1,b1); colliders.push({minX:Math.min(a[0],b[0]),maxX:Math.max(a[0],b[0]),minZ:Math.min(a[1],b[1]),maxZ:Math.max(a[1],b[1]),kit_ext:1,g:G}); } }
+// far-LOD (Palma Nov 12, causeway_west budget): beyond KIT_EXT_FAR m from the camera, the opaque PBR parts of an exterior (InstancedMesh + merged
+// meshes sharing no material) are swapped for ONE pre-merged vertex-colour mesh; neon/glass stay live. Same colours, root-local space, so nothing moves.
+const KIT_EXT_FAR=150, KIT_EXT_FAR_H=12, KIT_EXT_LODS=[];
+function kitExtFarLod(root,names){ try{
+  const parts=root.children.filter(o=>names.includes(o.name)&&o.isMesh&&o.material&&o.material.isMeshStandardMaterial&&!o.material.transparent);
+  if(parts.length<2) return null; const geos=[], m4=new THREE.Matrix4(), mi=new THREE.Matrix4(); let rough=0, metal=0, nv=0;
+  for(const o of parts){ const n=o.isInstancedMesh?o.count:1; const base=o.geometry.index?o.geometry.toNonIndexed():o.geometry.clone();
+    for(const k of Object.keys(base.attributes)) if(k!=='position'&&k!=='normal') base.deleteAttribute(k);
+    const c=o.material.color, cnt=base.attributes.position.count;
+    for(let i=0;i<n;i++){ const g=base.clone(); o.updateMatrix(); if(o.isInstancedMesh){ o.getMatrixAt(i,mi); m4.multiplyMatrices(o.matrix,mi); } else m4.copy(o.matrix);
+      g.applyMatrix4(m4); const col=new Float32Array(cnt*3); for(let j=0;j<cnt;j++){ col[j*3]=c.r; col[j*3+1]=c.g; col[j*3+2]=c.b; } g.setAttribute('color',new THREE.BufferAttribute(col,3)); geos.push(g);
+      rough+=o.material.roughness*cnt; metal+=o.material.metalness*cnt; nv+=cnt; } }
+  const g=THREE.BufferGeometryUtils.mergeBufferGeometries(geos,false); if(!g) return null;
+  const mat=new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:rough/nv,metalness:metal/nv});
+  const far=new THREE.Mesh(g,mat); far.name=root.name+'_far'; far.userData.noMerge=true; far.userData.mod='kit_ext'; far.visible=false; root.add(far);
+  const L={root,parts,far,isFar:false}; KIT_EXT_LODS.push(L); return far; }catch(e){ console.warn('kitExtFarLod',e); return null; } }
+const _kfl=new THREE.Vector3(), _kfc=new THREE.Vector3();
+function kitExtLodTick(){ if(!KIT_EXT_LODS.length||typeof camera==='undefined') return; if(/[?&]kitlod=0\b/.test(location.search)) return; camera.getWorldPosition(_kfc);
+  for(const L of KIT_EXT_LODS){ L.root.getWorldPosition(_kfl); const d=_kfl.distanceTo(_kfc); const f=L.isFar?d>KIT_EXT_FAR-KIT_EXT_FAR_H:d>KIT_EXT_FAR;
+    if(f!==L.isFar){ L.isFar=f; L.far.visible=f; for(const o of L.parts) o.visible=!f; } } }
+window.KIT_EXT_LODS=KIT_EXT_LODS;
 function kitExtVolt(G){ // EV charging plaza: canopy + glass kiosk + bollards + neon (target ~6 draws)
   // Canopy underside clearance >=3.5 m (deck y=3.85, th=.18 -> underside 3.76). No footprint AABB (2D colliders would block under-pass); posts+kiosk+bollards already collide. Thin deck is non-walkable (no ground height).
   // Ani 14:00: underside was a blown-out 0xffe600 MeshBasic slab — dark PBR deck + thin tone-mapped emissive strips only.
@@ -7439,6 +7719,7 @@ function kitExtVolt(G){ // EV charging plaza: canopy + glass kiosk + bollards + 
   root.add(boll);
   // kiosk + bollard row only (canopy footprint intentionally NOT an xz collider — would block the 3.76 m under-pass)
   kitExtPushCol(G,[[-6.3,-4.1,5.5,7.6],[-2.5,3.5,3.9,4.6]]);
+  kitExtFarLod(root,['kit_ext_volt_dark','kit_ext_volt_steel','kit_ext_volt_bollards']);
   G.extVariant=root; return root; }
 function kitExtRustClaw(G){ // corrugated salvage shed + marina salvage (target ~6 draws)
   const M=kitExtMats(), root=new THREE.Group(); root.name='kit_ext_rustclaw'; root.userData.noMerge=true; G.group.add(root);
@@ -7469,6 +7750,7 @@ function kitExtRustClaw(G){ // corrugated salvage shed + marina salvage (target 
   // hook torus can't easily merge with boxes of different type into same draw with different mat — add as part of steel already? Add separate chain mesh would be draw 7.
   // Fold hook into steel draw by approximating with small boxes already in steel merge; skip torus to hold budget.
   kitExtPushCol(G,[[-5.8,-3.2,5.0,7.4],[3.4,5.8,5.2,7.2],[2.8,3.8,0,.6]]);
+  kitExtFarLod(root,['kit_ext_rc_panels','kit_ext_rc_steel','kit_ext_rc_crates','kit_ext_rc_plates','kit_ext_rc_buoys']);
   G.extVariant=root; return root; }
 function kitPaintEmblem(crew,css){ // black disc + neon ring + kit_logos atlas slot (matches world.js emblemTex frame)
   const c=document.createElement('canvas'); c.width=c.height=512; const x=c.getContext('2d');
@@ -7506,7 +7788,7 @@ function kitExtVariant(G){ if(!G||KIT_EXT.done[G.crew]) return; KIT_EXT.done[G.c
 function kitExtAll(){ if(typeof garages==='undefined'||!garages.length) return; if(!(THREE.BufferGeometryUtils&&THREE.BufferGeometryUtils.mergeBufferGeometries)) return setTimeout(kitExtAll,250); for(const G of garages) kitExtVariant(G); }
 window.kitExtVariant=kitExtVariant; window.kitExtAll=kitExtAll; window.kitExtVolt=kitExtVolt; window.kitExtRustClaw=kitExtRustClaw; window.kitFixEmblems=kitFixEmblems;
 function kitInit(){ if(typeof garages==='undefined'||!garages.length||typeof scene==='undefined'||!THREE.GLTFLoader||typeof animated==='undefined'){ return setTimeout(kitInit,300); }
-  if(/nokit/.test(location.search)) return; try{ kitExtAll(); kitBuild(); kitFixEmblems(); animated.push(kitTick); window.KIT_READY=true; }catch(e){ console.warn('crewhouse kit failed',e); } }
+  if(/nokit/.test(location.search)) return; try{ kitExtAll(); kitBuild(); kitFixEmblems(); animated.push(kitTick); animated.push(kitExtLodTick); window.KIT_READY=true; }catch(e){ console.warn('crewhouse kit failed',e); } }
 setTimeout(kitInit,0);
 })();
 
@@ -7852,6 +8134,89 @@ function tickDemo(dt){ if(!DEMO.on) return; if(typeof State!=="undefined"&&State
 })();
 
 /* /patch_combat_fx */</script>
+<script>/*SR_RIDERLOD1*//* far-NPC hide + leaked Scene-parented NPC meshes; hysteresis 70/55 m; never the player */
+(function(){
+  if(/[?&]riderslod=0(?:&|$)/.test(location.search)){ window.SR_RIDERLOD={on:0}; return; }
+  const FAR=70, NEAR=55, CLUSTER=3;
+  const _v=new THREE.Vector3(), _p=new THREE.Vector3();
+  window.SR_RIDERLOD={on:1, far:FAR, near:NEAR, hid:0, ver:2};
+  function under(o, root){ if(!root) return false; for(let a=o;a;a=a.parent) if(a===root) return true; return false; }
+  function isPlayerObj(o){
+    try{
+      if(typeof Ride!=='undefined'&&Ride.group&&under(o,Ride.group)) return true;
+      if(typeof RIDERS!=='undefined'){
+        if(RIDERS.player&&under(o,RIDERS.player)) return true;
+        if(RIDERS.fp&&under(o,RIDERS.fp)) return true;
+      }
+      for(let a=o;a;a=a.parent){ if(a.name==='SR_VRBODY1'||(a.userData&&a.userData.SR_VRBODY1)) return true; }
+    }catch(e){}
+    return false;
+  }
+  function recs(){
+    const o=[];
+    try{
+      if(typeof RIDERS==='undefined') return o;
+      const add=(e,role)=>{ if(e&&e.holder&&e.holder.isObject3D) o.push({e:e,role:role,holder:e.holder,r:e.r}); };
+      for(const n of (RIDERS.npcs||[])) add(n,'npc');
+      add(RIDERS.ikkiNpc,'ikkiNpc');
+      add(RIDERS.npcX2,'x2');
+    }catch(e){}
+    return o;
+  }
+  function booted(){ try{ return typeof RIDERS!=='undefined'&&!!RIDERS.ready; }catch(e){ return false; } }
+  function leaks(rec){
+    // Only Scene-parented leaks NOT under the holder. Flipping descendant .visible
+    // breaks THREE.LOD and can stall mid-load wardrobe (pass2: Ikki NPC vanished, player became CodeE).
+    const out=[];
+    if(typeof scene==='undefined'||!scene) return out;
+    rec.holder.getWorldPosition(_v);
+    scene.traverse(function(o){
+      if(!(o.isMesh||o.isSkinnedMesh||o.isSprite||o.isLine||o.isPoints)) return;
+      if(isPlayerObj(o)) return;
+      if(under(o, rec.holder) || (rec.r && under(o, rec.r))) return;
+      if(rec.role==='x2'){
+        const nm=o.name||'';
+        
+        o.getWorldPosition(_p);
+        if(_p.distanceTo(_v)<CLUSTER && /^(ATSkate|CrewPatch_)/.test(nm)) out.push(o);
+      }
+    });
+    return out;
+  }
+  function tick(){
+    if(!booted()||typeof camera==='undefined'||!camera||typeof THREE==='undefined') return;
+    let hid=0;
+    for(const rec of recs()){
+      rec.holder.getWorldPosition(_v);
+      const d=camera.position.distanceTo(_v);
+      const was=!!rec.holder.userData.srLodFar;
+      let hide=was;
+      if(!was && d>=FAR) hide=true;
+      if(was && d<=NEAR) hide=false;
+      if(hide){
+        if(!was) rec.holder.userData.srLodHolderWas=rec.holder.visible;
+        rec.holder.visible=false;
+        rec.holder.userData.srLodFar=1;
+        hid++;
+        for(const m of leaks(rec)){
+          if(isPlayerObj(m)) continue;
+          if(m.visible && !m.userData.srLodHid){ m.userData.srLodHid=1; m.visible=false; }
+        }
+      } else if(was){
+        rec.holder.visible=rec.holder.userData.srLodHolderWas!==false;
+        rec.holder.userData.srLodFar=0;
+        for(const m of leaks(rec)){
+          if(m.userData.srLodHid){ m.visible=true; delete m.userData.srLodHid; }
+        }
+      }
+    }
+    window.SR_RIDERLOD.hid=hid;
+  }
+  function loop(){ try{ tick(); }catch(e){} requestAnimationFrame(loop); }
+  requestAnimationFrame(loop);
+  window.SR_RIDERLOD.tick=tick;
+})();</script>
+
 <button id="pwaInstall" style="display:none;position:fixed;right:12px;bottom:12px;z-index:99999;padding:8px 14px;font:bold 13px sans-serif;background:#FFD700;color:#000;border:2px solid #000;border-radius:6px;cursor:pointer">&#9889; Install app</button>
 <script>
 (function(){var b=document.getElementById('pwaInstall'),dp=null;
