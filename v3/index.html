@@ -115,29 +115,36 @@ body:not(.showctl) #objective{display:none!important}
   function wrapK(Orig){ if(!Orig||Orig.__srK2) return Orig;
     class SRK2GLTFLoader extends Orig{
       load(url,onLoad,onProg,onErr){
-        const self=this, orig=S.orig(url);
+        const self=this, orig=S.orig(url); /*SR_RIDER_RETRY1*/const _q=!!(window.SR_LOAD_QUIET&&SR_LOAD_QUIET[url]), _bz=(window.SR_LOAD_BUST&&SR_LOAD_BUST[url])?"#sr-retry":"", B=function(x){ return (_bz&&typeof x==="string")?x+_bz:x; };
         const wantK=S.on&&!S.failed; const u=wantK?S.url(url):orig;
         let tAnchor=0; // starts at first rdr(), not at load() or page start (slow init must not expire early)
         const fromQuestKtx2=/\.quest-ktx2\.glb$/.test(url)||/\.quest-ktx2\.glb$/.test(u);
         let bareTried=false; // if .quest-ktx2 fell back to .quest and that file is missing, retry the bare .glb once
-        let settled=false, toT=0;
+        let settled=false, toT=0, due=0, drift=0; /*SR_KTX2_WDDRIFT*/
         const settle=function(){ settled=true; if(toT){ clearTimeout(toT); toT=0; } };
         const armTimeout=function(){
           if(toT||settled||!tAnchor) return;
           const left=Math.max(0, 20000-(performance.now()-tAnchor));
-          toT=setTimeout(function(){
+          due=performance.now()+left;
+          const fire=function(){
             if(settled) return;
+            // SR_KTX2_WDDRIFT: a timer that fires >1.5 s late means the MAIN THREAD was blocked (shader compile / world build),
+            // not the network: give the load a fresh 20 s of responsive time (max 3 re-arms). tAnchor is untouched, so the
+            // 2 s KTX2-loader deadline and onP idle reset behave as before; an on-time timer (real network hang) times out as before.
+            const late=performance.now()-due;
+            if(late>1500&&drift<3){ drift++; S.wdDrift=(S.wdDrift||0)+1; console.info("SR_KTX2 watchdog: main-thread stall "+Math.round(late)+" ms, re-armed 20 s "+urlTail(orig||u||url)); due=performance.now()+20000; toT=setTimeout(fire,20000); return; }
             const isD=window.SR_DRACO_INFO&&SR_DRACO_INFO.failed;
             const why=isD?(String(SR_DRACO_INFO.failed).indexOf("draco:")===0?String(SR_DRACO_INFO.failed):("draco:"+SR_DRACO_INFO.failed)):("load:timeout "+urlTail(orig||u||url));
             onOrigErr({message:why, type:"timeout"});
-          }, left);
+          };
+          toT=setTimeout(fire, left);
         };
         const onP=function(ev){ if(toT){clearTimeout(toT);toT=0;} tAnchor=performance.now(); armTimeout(); if(onProg) onProg(ev); };
         const onOk=function(gltf){ if(settled){console.warn("late load ignored");return;} settle(); if(onLoad) onLoad(gltf); };
         const onOrigErr=function(e){
           if(!bareTried&&fromQuestKtx2&&/\.quest\.glb$/.test(orig)){
             bareTried=true; const bare=orig.replace(/\.quest\.glb$/, ".glb");
-            if(bare!==orig) return Orig.prototype.load.call(self, bare, onOk, onP, onOrigErr);
+            if(bare!==orig) return Orig.prototype.load.call(self, B(bare), onOk, onP, onOrigErr);
           }
           settle();
           const t=errText(e), tail=urlTail(orig||u||url);
@@ -150,17 +157,17 @@ body:not(.showctl) #objective{display:none!important}
           } else {
             why=raw.indexOf("load:timeout")===0?raw:("load:"+t+(tail?" "+tail:""));
           }
-          try{ if(typeof RIDERS!=="undefined") RIDERS.fail=RIDERS.fail||why; }catch(x){}
-          try{ window.srLoadHud&&window.srLoadHud(why); }catch(x){}
+          if(!_q) try{ if(typeof RIDERS!=="undefined") RIDERS.fail=RIDERS.fail||why; }catch(x){}
+          if(!_q) try{ window.srLoadHud&&window.srLoadHud(why); }catch(x){}
           if(isDraco) S.failed=S.failed||why;
           if(onErr) onErr(e);
         };
         const fallback=function(why){ S.on=false; S.fellBack=(S.fellBack||0)+1; if(why) S.reason(why);
-          return Orig.prototype.load.call(self, orig, onOk, onP, onOrigErr); };
+          return Orig.prototype.load.call(self, B(orig), onOk, onP, onOrigErr); };
         const go=function(){
           if(!S.on||S.failed){
             if(wantK) return fallback(S.failed||"ktx2:disabled");
-            return Orig.prototype.load.call(self, orig, onOk, onP, onOrigErr);
+            return Orig.prototype.load.call(self, B(orig), onOk, onP, onOrigErr);
           }
           const hasR=!!rdr(), hasL=typeof THREE!=="undefined"&&!!THREE.KTX2Loader;
           if(hasR&&!tAnchor) tAnchor=performance.now();
@@ -174,8 +181,8 @@ body:not(.showctl) #objective{display:none!important}
             return requestAnimationFrame(go);
           }
           if(self.setKTX2Loader&&!self.ktx2Loader) self.setKTX2Loader(k);
-          if(u===orig) return Orig.prototype.load.call(self, orig, onOk, onP, onOrigErr);
-          Orig.prototype.load.call(self, u, onOk, onP, function(e){
+          if(u===orig) return Orig.prototype.load.call(self, B(orig), onOk, onP, onOrigErr);
+          Orig.prototype.load.call(self, B(u), onOk, onP, function(e){
             console.warn("SR_KTX2 load failed "+u+", retrying original");
             fallback("ktx2:"+errText(e)+" "+urlTail(u));
           });
@@ -801,7 +808,7 @@ function rMerge(meshes,mat){ const names=[]; for(const m of meshes) for(const n 
     sm.userData.expr={ names, weights:w, set(name,val){ const t=names.indexOf(name); if(t<0) return; w[t]=val; for(let k=0;k<idx.length;k++) for(let c=0;c<3;c++){ let p=bP[k*3+c], n=bN[k*3+c]; for(let j=0;j<w.length;j++) if(w[j]){ p+=dP[j][k*3+c]*w[j]; n+=dN[j][k*3+c]*w[j]; } pos.array[idx[k]*3+c]=p; nor.array[idx[k]*3+c]=n; } pos.needsUpdate=true; nor.needsUpdate=true; } }; }
   return sm; }
 const _rGLTF={};
-function rLoad(url){ return _rGLTF[url]||(_rGLTF[url]=new Promise((res,rej)=>new THREE.GLTFLoader().setMeshoptDecoder(window.MeshoptDecoder).load(url,res,undefined,rej)).catch(e=>{delete _rGLTF[url]; try{ const t=(e&&(e.message||e.type))||"load"; const tail=String(url||"").split("/").pop()||""; const isD=/draco|DRACO|draco_decoder/i.test(t)||(window.SR_DRACO_INFO&&SR_DRACO_INFO.failed); const why=(isD?"draco:":"load:")+t+(tail?" "+tail:""); if(typeof RIDERS!=="undefined") RIDERS.fail=RIDERS.fail||why; window.srLoadHud&&window.srLoadHud(why); }catch(x){} throw e;})); }
+function rLoad(url){ return _rGLTF[url]||(_rGLTF[url]=new Promise((res,rej)=>new THREE.GLTFLoader().setMeshoptDecoder(window.MeshoptDecoder).load(url,res,undefined,rej)).catch(e=>{delete _rGLTF[url]; try{ const t=(e&&(e.message||e.type))||"load"; const tail=String(url||"").split("/").pop()||""; const isD=/draco|DRACO|draco_decoder/i.test(t)||(window.SR_DRACO_INFO&&SR_DRACO_INFO.failed); const why=(isD?"draco:":"load:")+t+(tail?" "+tail:""); if(!(window.SR_LOAD_QUIET&&SR_LOAD_QUIET[url])){ if(typeof RIDERS!=="undefined") RIDERS.fail=RIDERS.fail||why; window.srLoadHud&&window.srLoadHud(why); } }catch(x){} throw e;})); }
 async function loadRiderR128(parent,url,crewColors,opts){ opts=opts||{}; const fp=!!opts.fp; const c=rResolve(opts.defaults||{},crewColors||{});
   const gltf=await rLoad(url); const root=fp||!opts.clone?gltf.scene:gltf.scene; // one instance per crew file
   const rim=Object.assign({},RRIM,opts.slotRim||{}), spec=Object.assign({},RSPEC,opts.slotSpec||{});
@@ -1551,7 +1558,7 @@ function initRiders(){
         if(cr.garage==="codee"&&cr.dir==="caali"){ const r=await loadRiderR128(Ride.group,CHAR_BASE+cr.dir+"/"+cr.file+"-rider.glb",{wheelGlow:0xffd700},Object.assign({defaults:cr.defaults,crewName:cr.crew},cr.opts)); RIDERS.player=r;
           for(const ch of Ride.group.children) if(ch!==r&&ch!==Ride.aura) ch.visible=false; Ride.useGLB=true; continue; }
         const g=garages.find(q=>q.crew===cr.garage); if(!g) continue; const holder=new THREE.Group(); scene.add(holder);
-        const r=await loadRiderR128(holder,SR_CREW_GLB(cr),{wheelGlow:new THREE.Color(g.color).getHex()},Object.assign({defaults:cr.defaults,crewName:cr.crew},cr.opts));
+        /*SR_RIDER_RETRY1*/const _ru=SR_CREW_GLB(cr), _ra=()=>loadRiderR128(holder,_ru,{wheelGlow:new THREE.Color(g.color).getHex()},Object.assign({defaults:cr.defaults,crewName:cr.crew},cr.opts)); let r; const _Q=(window.SR_LOAD_QUIET=window.SR_LOAD_QUIET||{}), _B=(window.SR_LOAD_BUST=window.SR_LOAD_BUST||{}); try{ _Q[_ru]=1; r=await _ra(); }catch(e0){ delete _Q[_ru]; const t0=String((e0&&(e0.message||e0.type))||"load"); if(/draco/i.test(t0)||(window.SR_DRACO_INFO&&SR_DRACO_INFO.failed)||holder.children.length) throw e0; console.warn("rider retry once "+cr.dir+" after: "+t0); (RIDERS.retried=RIDERS.retried||[]).push(cr.dir); _B[_ru]=1; try{ r=await _ra(); }finally{ delete _B[_ru]; } console.warn("rider retry ok "+cr.dir); }finally{ delete _Q[_ru]; }
         RIDERS.npcs.push({r,holder,g,ph:Math.random()*6,mode:RIDERS.npcs.length%2}); }catch(e){ const _rt=(e&&(e.message||e.type))||"load"; const _rm="rider load failed "+cr.dir+": "+_rt; console.warn(_rm); try{ const why=(/draco|DRACO|draco_decoder/i.test(_rt)||(window.SR_DRACO_INFO&&SR_DRACO_INFO.failed))?"draco:"+_rt+" "+cr.dir:"load:"+cr.dir+":"+_rt; if(typeof RIDERS!=="undefined") RIDERS.fail=RIDERS.fail||why; window.srLoadHud&&window.srLoadHud(why); }catch(x){} } }
     try{ const h=RIDERS.ref?RIDERS.ref.h:(RIDERS.player&&!RIDERS.player.userData.ikki?riderHeight(RIDERS.player):null); const holder=new THREE.Group(); scene.add(holder);
       RIDERS.ikkiNpc={r:await loadIkki(holder,h,PLAYER_MODE==="ikki"),holder,ph:0}; }catch(e){ console.warn("ikki npc failed: "+(e&&e.message||e)); }
@@ -6177,6 +6184,496 @@ let frame=0, VRV=null;
 })();
 
 if(/[?&]inputlayer=0/.test(location.search)) window.SR_INPUT.manual=true; // A/B: layer computes nothing, legacy menu input only
+/*SR_MENU_PANEL_V1*/
+// ===== SR_PANEL: world-locked recenterable menu panel (Rydah Systems, menu build order step 3, 2026-11-12). =====
+// Founder order (Anika, 2026-11-11, Claude's design pass), verbatim:
+//   "MENU PANEL: one world-locked panel, recenterable, never head-locked; starting size ~60° × 35° at ~1.5 m;
+//    minimum text ~1.0° primary / 0.6° smallest; ALL spec percentages are PANEL percentages. Focused tiles also
+//    lift slightly toward the player."
+// VR is a translation layer, not a redesign — layouts do not change. Desktop / non-XR keeps the existing
+// camera-child placement and SCREENS[s].w×h. F2: percentages are measured against this panel.
+// Recenter: on openMenu, on XR session start, and on XRReferenceSpace 'reset' (Quest system recenter).
+// Does NOT touch rider facing (rotation.y = yaw+PI), spawn, or any save key (skyrydahs / skyrydahs_cp).
+(function(){
+  if(window.SR_PANEL&&window.SR_PANEL.__v) return;
+  const DIST=1.5, FOV_W=60*Math.PI/180, FOV_H=35*Math.PI/180, LIFT=0.05, EYE_DROP=0.05, CAM_Z=-2.2;
+  const _fwd=new THREE.Vector3(), _pos=new THREE.Vector3(), _up=new THREE.Vector3(0,1,0), _look=new THREE.Vector3();
+  const _q=new THREE.Quaternion(), _m=new THREE.Matrix4(), _camPos=new THREE.Vector3(), _savedPos=new THREE.Vector3(), _savedQ=new THREE.Quaternion();
+  let boundXR=false, boundSpace=null, lastReason="", worldPlaced=false; // worldPlaced: a world pose is stored (_savedPos/_savedQ)
+  function presenting(){ try{ return !!(renderer&&renderer.xr&&renderer.xr.isPresenting); }catch(e){ return false; } }
+  function headCam(){ try{ if(presenting()&&renderer.xr.getCamera){ const c=renderer.xr.getCamera(camera); if(c) return c; } }catch(e){} return camera; }
+  const P={
+    __v:1, DIST, FOV_W, FOV_H, LIFT, EYE_DROP, CAM_Z,
+    manualDesktop:false,
+    // Reserved for shell step 7 (Claude v1 addendum). Default OFF keeps today's single plate;
+    // the shell flips this so XR drops the plate and places per-region head-facing quads on the 1.5 m arc.
+    xrDropPlate:false,
+    worldActive(){ return presenting()&&!P.manualDesktop; },
+    sizeFor(S){
+      const scr=S||(typeof SCREENS!=="undefined"&&UI&&SCREENS[UI.screen])||{w:1.8,h:1.1};
+      const w=2*DIST*Math.tan(FOV_W*0.5);
+      const aspect=(scr.w&&scr.h)?(scr.w/scr.h):(60/35);
+      const h=w/aspect; // keep the existing canvas aspect so the layout is not stretched
+      return {w,h,aspect,fovH:2*Math.atan((h*0.5)/DIST)};
+    },
+    canvasSize(){ const S=(typeof SCREENS!=="undefined"&&UI&&SCREENS[UI.screen])||{w:1.8,h:1.1}; const W=1024, H=Math.round(1024*S.h/S.w); return {W,H,S}; },
+    // Angular size (degrees) of a vertical run of `px` canvas pixels at the panel centre.
+    pxToDeg(px){ const {W}=P.canvasSize(), sz=P.sizeFor(); const m=(px/W)*sz.w; return 2*Math.atan((m*0.5)/DIST)*180/Math.PI; },
+    degToPx(deg){ const {W}=P.canvasSize(), sz=P.sizeFor(); const m=2*DIST*Math.tan((deg*Math.PI/180)*0.5); return (m/sz.w)*W; },
+    // Panel-space percentage (F2): x,y in [0,1] from the top-left of the panel.
+    panelPct(x01,y01){ const sz=P.sizeFor(); return {x:x01*sz.w, y:y01*sz.h, x01,y01}; },
+    headPose(){
+      const cam=headCam(); if(!cam) return null;
+      cam.updateMatrixWorld(true);
+      cam.getWorldPosition(_camPos);
+      _fwd.set(0,0,-1).transformDirection(cam.matrixWorld);
+      // Horizontal forward so a downward glance at open doesn't plant the panel on the floor.
+      _fwd.y=0; if(_fwd.lengthSq()<1e-6) _fwd.set(0,0,-1); else _fwd.normalize();
+      return {pos:_camPos, fwd:_fwd};
+    },
+    reparent(to){
+      const m=UI&&UI.mesh; if(!m||!to||m.parent===to) return;
+      if(m.parent) m.parent.remove(m);
+      to.add(m);
+    },
+    mount(){
+      if(!UI||!UI.mesh) return;
+      if(!UI.lift){
+        const mat=new THREE.MeshBasicMaterial({color:0xffd24a,transparent:true,opacity:0,depthTest:false,depthWrite:false,side:THREE.DoubleSide});
+        const lift=new THREE.Mesh(new THREE.PlaneGeometry(1,1),mat);
+        lift.name="SR_MENU_LIFT"; lift.renderOrder=1001; lift.visible=false; lift.frustumCulled=false;
+        UI.mesh.add(lift); UI.lift=lift;
+      }
+      P.bindXR();
+      P.place("mount");
+    },
+    bindXR(){
+      if(boundXR||!renderer||!renderer.xr||!renderer.xr.addEventListener) return;
+      boundXR=true;
+      renderer.xr.addEventListener("sessionstart",function(){ P.onSession(renderer.xr.getSession&&renderer.xr.getSession()); P.place("sessionstart"); });
+      renderer.xr.addEventListener("sessionend",function(){ P.bindSpace(null); P.place("sessionend"); });
+      try{ if(presenting()) P.onSession(renderer.xr.getSession&&renderer.xr.getSession()); }catch(e){}
+    },
+    onSession(ses){ if(!ses) return; const ask=n=>ses.requestReferenceSpace&&ses.requestReferenceSpace(n);
+      const hook=rs=>P.bindSpace(rs);
+      const p=ask("local-floor"); if(p&&p.then) p.then(hook,function(){ const q=ask("local"); if(q&&q.then) q.then(hook,function(){}); });
+    },
+    bindSpace(space){
+      if(boundSpace&&boundSpace.removeEventListener) try{ boundSpace.removeEventListener("reset",P._onReset); }catch(e){}
+      boundSpace=space||null;
+      if(boundSpace&&boundSpace.addEventListener) boundSpace.addEventListener("reset",P._onReset);
+    },
+    _onReset(){ P.place("reset"); },
+    // Explicit placement (mount / open / sessionstart / reset / xr-on ...). In XR this computes a NEW world pose from the
+    // head and stores it; per-frame applyFrame() only re-applies the stored pose, so the panel never follows the head.
+    place(reason){
+      lastReason=reason||lastReason;
+      if(!UI||!UI.mesh||typeof scene==="undefined"||typeof camera==="undefined") return false;
+      const S=(typeof SCREENS!=="undefined"&&UI.screen&&SCREENS[UI.screen])||{w:1.8,h:1.1};
+      const fade=(UI.fade==null?1:UI.fade), e=1-Math.pow(1-Math.min(1,fade),3), k=.94+.06*e;
+      if(!P.worldActive()){
+        P.reparent(camera);
+        UI.mesh.position.set(0,-EYE_DROP,CAM_Z);
+        UI.mesh.quaternion.identity();
+        UI.mesh.scale.set(S.w*k,S.h*k,1);
+        worldPlaced=false;
+        P.updateLift();
+        return true;
+      }
+      P.reparent(scene);
+      const hp=P.headPose(); if(!hp) return false;
+      const sz=P.sizeFor(S);
+      _pos.copy(hp.pos).addScaledVector(hp.fwd,DIST); _pos.y-=EYE_DROP;
+      _look.copy(_pos).sub(hp.fwd); // look back at the player
+      _m.lookAt(_pos,_look,_up); _q.setFromRotationMatrix(_m);
+      UI.mesh.position.copy(_pos); UI.mesh.quaternion.copy(_q);
+      _savedPos.copy(_pos); _savedQ.copy(_q); worldPlaced=true;
+      UI.mesh.scale.set(sz.w*k,sz.h*k,1);
+      UI.mesh.updateMatrixWorld(true);
+      P.updateLift();
+      return true;
+    },
+    // Per-frame world hold: re-apply the stored world pose (UIanim writes camera-space y/scale each frame) and the
+    // fade scale. Does NOT read the head and does NOT change lastReason. First XR frame with no stored pose places once.
+    hold(){
+      if(!worldPlaced||!UI.mesh.parent||UI.mesh.parent!==scene) return P.place("xr-enter");
+      const S=(typeof SCREENS!=="undefined"&&UI.screen&&SCREENS[UI.screen])||{w:1.8,h:1.1};
+      const fade=(UI.fade==null?1:UI.fade), e=1-Math.pow(1-Math.min(1,fade),3), k=.94+.06*e, sz=P.sizeFor(S);
+      UI.mesh.position.copy(_savedPos); UI.mesh.quaternion.copy(_savedQ); UI.mesh.scale.set(sz.w*k,sz.h*k,1);
+      P.updateLift();
+      return true;
+    },
+    applyFrame(dt){
+      if(window.SR_FOCUS&&SR_FOCUS.tickAnim) SR_FOCUS.tickAnim(dt||0);
+      if(!UI||!UI.mesh) return;
+      if(P.worldActive()){
+        // UIanim writes camera-space position.y/scale; put the STORED world pose back (never re-aim at the head).
+        P.hold();
+      } else {
+        P.updateLift();
+      }
+    },
+    // Row layout in canvas pixels (mirrors drawMenu). Used for the lift quad and lock icons.
+    rowLayout(){
+      if(typeof SCREENS==="undefined"||!UI||!UI.screen||!SCREENS[UI.screen]) return null;
+      const S=SCREENS[UI.screen], W=1024, H=Math.round(1024*S.h/S.w);
+      let opts; try{ opts=(window.SR_FOCUS&&SR_FOCUS.labels)?SR_FOCUS.labels():S.opts(); }catch(e){ opts=S.opts(); }
+      if(!opts) return null;
+      let y=40+130; if(S.sub) y+=40;
+      const rowH=UI.screen==="pause"?66:Math.min(78,(H-y-70)/Math.max(1,opts.length));
+      return {W,H,y,rowH,opts,n:opts.length};
+    },
+    updateLift(){
+      const lift=UI&&UI.lift; if(!lift) return;
+      const on=!!(UI.mesh&&UI.mesh.visible&&UI.screen!=null);
+      if(!on){ lift.visible=false; lift.material.opacity=0; return; }
+      const L=P.rowLayout(); if(!L||!L.n){ lift.visible=false; return; }
+      const st=(window.SR_FOCUS&&SR_FOCUS.style)||{};
+      const liftM=st.lift!=null?st.lift:LIFT;
+      const glow=st.glow!=null?st.glow:0.22;
+      const sc=st.scale!=null?st.scale:1;
+      const raw=(window.SR_FOCUS&&SR_FOCUS.visY!=null)?SR_FOCUS.visY:(UI.selY!=null?UI.selY:UI.sel);
+      const i=Math.max(0,Math.min(L.n-1, raw));
+      const cy=L.y+i*L.rowH+(L.rowH-8)*0.5;
+      // Plane is 1×1, origin at centre; +Y is canvas top; +Z faces the player once lookAt is applied.
+      // scale / glow / lift come from SR_FOCUS.style so the shell can restyle later (thick border + scale/glow).
+      lift.position.set(0, 0.5-(cy/L.H), liftM);
+      lift.scale.set(((L.W-80)/L.W)*sc, Math.max(0.04,(L.rowH-8)/L.H)*sc, 1);
+      lift.visible=true;
+      const e=1-Math.pow(1-Math.min(1,UI.fade==null?1:UI.fade),3);
+      lift.material.opacity=glow*e;
+      if(st.color!=null&&lift.material.color) lift.material.color.setHex(st.color);
+    },
+    // World-space distance from the head to the panel centre.
+    distance(){ const hp=P.headPose(); if(!hp||!UI||!UI.mesh) return 0; UI.mesh.getWorldPosition(_pos); return hp.pos.distanceTo(_pos); },
+    // Parent check used by tests: 'scene' | 'camera' | 'other'
+    parentKind(){ const m=UI&&UI.mesh; if(!m||!m.parent) return "none"; if(m.parent===scene) return "scene"; if(m.parent===camera) return "camera"; if(typeof rig!=="undefined"&&m.parent===rig) return "rig"; return m.parent.name||"other"; },
+    lastReason(){ return lastReason; },
+    textMins(){
+      // Title 92px is primary; prompt 22px and sub 24px are the smallest on-surface sizes in drawMenu.
+      return {primary:P.pxToDeg(92), smallest:P.pxToDeg(22), row:P.pxToDeg(39), sub:P.pxToDeg(24)};
+    }
+  };
+  window.SR_PANEL=P;
+})();
+
+if(/[?&]menupanel=0/.test(location.search)) { try{ SR_PANEL.manualDesktop=true; }catch(e){} }
+(function(){
+  if(typeof createMenuPanel==="function"&&!createMenuPanel.__srPanel){
+    const _c=createMenuPanel; createMenuPanel=function(){ _c(); if(window.SR_PANEL) SR_PANEL.mount(); }; createMenuPanel.__srPanel=1;
+  }
+  if(typeof UIanim==="function"&&!UIanim.__srPanel){
+    const _u=UIanim; UIanim=function(dt){ _u(dt); if(window.SR_PANEL) SR_PANEL.applyFrame(dt); }; UIanim.__srPanel=1;
+  }
+  if(typeof openMenu==="function"&&!openMenu.__srPanel){
+    const _o=openMenu; openMenu=function(scr){ _o(scr); if(window.SR_PANEL) SR_PANEL.place("open"); }; openMenu.__srPanel=1;
+  }
+})();
+/*SR_MENU_FOCUS_V1*/
+// ===== SR_FOCUS: menu focus engine (Rydah Systems, menu build order step 4, 2026-11-12). =====
+// Founder order (Anika, 2026-11-11, Claude's design pass), verbatim:
+//   "FOCUS ENGINE: single focus authority; one-step spatial movement; focus memory on every screen; overlays
+//    trap focus and B returns focus to the opener; absent features are HIDDEN, present-but-unavailable are
+//    greyed + focusable + lock icon; held D-pad/stick auto-repeat 400 ms delay / 120 ms repeat; stick
+//    threshold + hysteresis (drift never moves focus); B at a tab root → tab bar, B again → PLAY, B at
+//    PLAY root → nothing."
+// Repeat 400/120 and stick hysteresis stay in SR_INPUT (step 2) — this engine only consumes those edges, so
+// stick drift never moves focus. Linear canvas lists still wrap, matching the existing gamepad menu.
+// Shell chrome is step 7 / lobby step 10 (Claude v1). This engine stays FUNCTIONAL and style-driven.
+// It can do exactly one focus with a 0.4° border, glow, 1.06 scale, 5 cm lift and a 120 ms ease, plus
+// per-screen focus memory (Claude v1 point 7). Visuals remain restylable; shell layout (PLAY tile, top bar,
+// region quads) is not locked in here. Founder flags for the shell step, not wired here: laserHover OFF,
+// lobbyStickTurn ON. Consumes SR_INPUT semantic actions only (device-agnostic; Quest Touch adapter is separate).
+// Does NOT touch rider facing, spawn, or any save key.
+(function(){
+  if(window.SR_FOCUS&&window.SR_FOCUS.__v) return;
+  const mem={};
+  const stack=[]; // overlays: {id, items, sel, opener:{screen,sel,scope,tabSel}, onConfirm}
+  let scope="screen"; // 'screen' | 'tabbar' | 'overlay'
+  let tabSel=0;
+  let shell={ tabs:null, play:"main", tabRoots:null };
+  let origMenuInput=null, origDrawMenu=null, origOpenMenu=null, origCloseMenu=null;
+  function screens(){ return (typeof SCREENS!=="undefined")?SCREENS:null; }
+  function norm(o){ if(o&&typeof o==="object") return {label:o.label||o.name||"", hidden:!!o.hidden, locked:!!(o.locked||o.unavailable), raw:o}; return {label:String(o), hidden:false, locked:false, raw:o}; }
+  function rawOpts(S){ if(!S||typeof S.opts!=="function") return []; try{ return S.opts()||[]; }catch(e){ return []; } }
+  function listFor(scr){
+    const SS=screens(); const S=SS&&SS[scr]; if(!S) return [];
+    return rawOpts(S).map(norm).filter(i=>!i.hidden);
+  }
+  function currentScr(){ return (typeof UI!=="undefined")?UI.screen:null; }
+  function list(){ if(scope==="overlay"&&stack.length) return stack[stack.length-1].items; if(scope==="tabbar"&&shell.tabs) return shell.tabs.map(t=>({label:String(t).toUpperCase(), hidden:false, locked:false, raw:t})); return listFor(currentScr()); }
+  function clampSel(n,s){ if(!n) return 0; const v=(s==null?0:s)|0; return v<0?0:(v>n-1?n-1:v); }
+  // Restylable highlight + layout (placeholder defaults). The shell step can raise these to the
+  // founder 7-point bar (thick border, scale/glow, always-visible A/B, named scene slots) via setStyle / setLayout / setPrompts.
+  const defaultStyle={ mode:"placeholder", borderDeg:0.4, borderPx:0, scale:1.06, glow:0.22, lift:0.05, easeMs:120, color:0xffd24a, promptH:40, promptFont:20 };
+  // Claude v1 point 7 — apply via setStyle(PRESET_V1) or as defaults above. Restylable.
+  const PRESET_V1={ borderDeg:0.4, scale:1.06, glow:0.22, lift:0.05, easeMs:120 };
+  const defaultLayout={
+    topBar:    {x:0,y:0,w:1,h:0},
+    play:      null,
+    tiles:     null,
+    quests:    {x:0,y:0,w:0,h:0},
+    list:      {x:0,y:0,w:1,h:0.92},
+    promptBar: {x:0,y:0.92,w:1,h:0.08, anchor:"bottom"}
+  };
+  const F={
+    __v:1, manual:false, wrap:true, mem, stack,
+    style:Object.assign({},defaultStyle),
+    PRESET_V1:PRESET_V1,
+    layout:JSON.parse(JSON.stringify(defaultLayout)),
+    promptExtra:[],
+    visY:0, _animFrom:0, _animTo:0, _animT:1,
+    get scope(){ return scope; },
+    get tabSel(){ return tabSel; },
+    get shell(){ return shell; },
+    setShell(s){ shell=Object.assign({tabs:null, play:"main", tabRoots:null}, s||{}); if(shell.tabs&&shell.tabRoots==null) shell.tabRoots=shell.tabs.slice(); },
+    setStyle(partial){ if(partial===null){ for(const k in F.style) delete F.style[k]; Object.assign(F.style, defaultStyle); } else Object.assign(F.style, partial||{}); if(typeof UI!=="undefined") UI.dirty=true; if(window.SR_PANEL) SR_PANEL.updateLift(); return F.style; },
+    setLayout(partial){ if(!partial) return F.layout; for(const k in partial) F.layout[k]=partial[k]; if(typeof UI!=="undefined") UI.dirty=true; return F.layout; },
+    setPrompts(extra){ F.promptExtra=Array.isArray(extra)?extra.slice():[]; if(typeof UI!=="undefined") UI.dirty=true; return F.prompts(); },
+    // Data: when a menu is up, A confirm and B back are always present (point 6). Extras are additive.
+    prompts(){
+      if(typeof UI==="undefined"||!UI.screen||!(UI.mesh&&UI.mesh.visible)) return [];
+      const out=[{id:"confirm", btn:"A", label:"confirm"},{id:"back", btn:"B", label:"back"}];
+      return out.concat(F.promptExtra||[]);
+    },
+    // World/panel-space rect for a named slot (F2: percentages vs the panel). Shell attaches 3D widgets here later.
+    slot(name){
+      const sl=F.layout&&F.layout[name]; if(!sl) return null;
+      const pct=(window.SR_PANEL&&SR_PANEL.panelPct)?{tl:SR_PANEL.panelPct(sl.x,sl.y), br:SR_PANEL.panelPct(sl.x+sl.w,sl.y+sl.h)}:null;
+      return {name, x:sl.x,y:sl.y,w:sl.w,h:sl.h, anchor:sl.anchor||null, panel:pct};
+    },
+    attach(handlers){ origMenuInput=handlers.menuInput; origDrawMenu=handlers.drawMenu; origOpenMenu=handlers.openMenu; origCloseMenu=handlers.closeMenu; F.attached=true; },
+    attached:false,
+    // Non-recursive opts getter for the swapped screen: hidden items filtered, labels only, read live from the raw opts.
+    rawLabels(raw){ return ()=>rawOpts({opts:raw}).map(norm).filter(i=>!i.hidden).map(i=>i.label); },
+    // Hook check that survives later wrappers (tickguard SR_GUARD keep-wrap, ride_ground RESET RIDER wrap) which drop __srFocus.
+    hooked(){ const g=n=>{ try{ return (0,eval)("typeof "+n+"==='function'?"+n+":null"); }catch(e){ return null; } };
+      const mi=g("menuInput"), dm=g("drawMenu"), om=g("openMenu");
+      return {attached:!!(origMenuInput&&origDrawMenu&&origOpenMenu), menuInput:!!mi&&mi!==origMenuInput, drawMenu:!!dm&&dm!==origDrawMenu, openMenu:!!om&&om!==origOpenMenu}; },
+    items:list,
+    labels(){ return list().map(i=>i.label); },
+    count(){ return list().length; },
+    current(){ return list()[F.sel()]||null; },
+    sel(){ if(scope==="overlay"&&stack.length) return stack[stack.length-1].sel; if(scope==="tabbar") return tabSel; return (typeof UI!=="undefined"?UI.sel:0)|0; },
+    remember(scr){ if(!scr) return; mem[scr]=F.selOfScreen(scr); },
+    selOfScreen(scr){ return (scr===currentScr()&&scope==="screen")?((UI&&UI.sel)|0):(mem[scr]|0); },
+    restore(scr){
+      const items=listFor(scr); const n=items.length;
+      const s=clampSel(n, mem[scr]);
+      if(typeof UI!=="undefined"){ UI.sel=s; UI.selY=s; UI.dirty=true; }
+      F.visY=s; F._animFrom=s; F._animTo=s; F._animT=1;
+      scope="screen";
+      return s;
+    },
+    move(dir){
+      const items=list(); const n=items.length; if(!n) return F.sel();
+      const step=dir>0?1:-1;
+      let s=F.sel()+step;
+      if(F.wrap){ s=(s+n)%n; } else { s=clampSel(n,s); }
+      F.setSel(s);
+      return s;
+    },
+    setSel(s){
+      const n=F.count(); s=clampSel(n,s);
+      F._animFrom=(F.visY!=null)?F.visY:F.sel();
+      F._animTo=s; F._animT=0;
+      if(scope==="overlay"&&stack.length) stack[stack.length-1].sel=s;
+      else if(scope==="tabbar") tabSel=s;
+      else if(typeof UI!=="undefined"){ UI.sel=s; UI.dirty=true; }
+      if(window.SR_PANEL) SR_PANEL.updateLift();
+      return s;
+    },
+    // 120 ms ease-out on the single highlight (visY). dt in seconds. Instant if easeMs is 0.
+    tickAnim(dt){
+      const dur=Math.max(0, (F.style&&F.style.easeMs!=null?F.style.easeMs:120)/1000);
+      if(dur<=0){ F._animT=1; F.visY=F._animTo!=null?F._animTo:F.sel(); return F.visY; }
+      if(F._animT>=1){ F.visY=F._animTo!=null?F._animTo:F.sel(); return F.visY; }
+      F._animT=Math.min(1, F._animT+(dt||0)/dur);
+      const e=1-Math.pow(1-F._animT,3);
+      const a=F._animFrom||0, b=F._animTo!=null?F._animTo:F.sel();
+      F.visY=a+(b-a)*e;
+      return F.visY;
+    },
+    isPlayRoot(){ const scr=currentScr(); return scope==="screen"&&!!scr&&scr===(shell.play||"main")&&!F.isSubScreen(scr); },
+    isTabRoot(){
+      const scr=currentScr(); if(scope!=="screen"||!scr||F.isSubScreen(scr)) return false;
+      const roots=shell.tabRoots||shell.tabs; if(!roots||!roots.length) return false;
+      return roots.indexOf(scr)>=0;
+    },
+    isSubScreen(scr){ return scr==="settings"; },
+    hasTabBar(){ return !!(shell.tabs&&shell.tabs.length); },
+    // Returns true if the back was consumed.
+    back(){
+      if(stack.length){ F.popOverlay(); return true; }
+      if(scope==="tabbar"){ scope="screen"; if(typeof openMenu==="function") openMenu(shell.play||"main"); return true; }
+      // PLAY root wins over tab root: PLAY is itself a tab, and "B at PLAY root → nothing" (founder order step 4).
+      if(F.isPlayRoot()) return true; // consumed as a no-op
+      if(F.isTabRoot()&&F.hasTabBar()){
+        const scr=currentScr(); tabSel=Math.max(0, shell.tabs.indexOf(scr)); scope="tabbar"; if(typeof UI!=="undefined") UI.dirty=true; return true;
+      }
+      return false; // let the existing screen handler run (settings → opener)
+    },
+    pushOverlay(spec){
+      const items=(spec.items||[]).map(norm).filter(i=>!i.hidden);
+      const opener={screen:currentScr(), sel:(typeof UI!=="undefined"?UI.sel:0), scope, tabSel};
+      stack.push({id:spec.id||("ov"+stack.length), items, sel:clampSel(items.length, spec.sel||0), opener, onConfirm:spec.onConfirm||null});
+      scope="overlay";
+      if(window.SR_INPUT&&SR_INPUT.pushOverlay) SR_INPUT.pushOverlay(spec.id||"dialog");
+      if(typeof UI!=="undefined") UI.dirty=true;
+      return stack[stack.length-1];
+    },
+    popOverlay(){
+      const top=stack.pop();
+      if(window.SR_INPUT&&SR_INPUT.popOverlay&&top) SR_INPUT.popOverlay(top.id);
+      if(!top){ scope="screen"; return null; }
+      const o=top.opener||{};
+      scope=o.scope||"screen"; tabSel=o.tabSel||0;
+      if(scope==="screen"&&o.screen&&typeof openMenu==="function"){
+        // Restore the opener screen and its focus (openMenu wrap will also apply memory).
+        mem[o.screen]=o.sel; openMenu(o.screen);
+      } else if(typeof UI!=="undefined") UI.dirty=true;
+      return top;
+    },
+    onOpen(scr, prev){
+      if(prev&&prev!==scr) mem[prev]=(typeof UI!=="undefined"&&prev===prev)?(mem[prev]||0):mem[prev];
+      if(stack.length){ /* overlay owns focus until popped */ return; }
+      scope="screen";
+      F.restore(scr);
+    },
+    tick(){
+      if(F.manual||!origMenuInput) return origMenuInput&&origMenuInput();
+      if(typeof UI==="undefined"||!UI.screen) return;
+      if(scope==="overlay"||scope==="tabbar"){
+        if(typeof Input!=="undefined"){
+          if(Input.pDown) F.move(1);
+          if(Input.pUp) F.move(-1);
+          if(Input.pBack){ F.back(); return; }
+          if(Input.pSelect){
+            if(scope==="overlay"){
+              const top=stack[stack.length-1], it=top&&top.items[top.sel];
+              if(it&&it.locked) return;
+              if(top&&top.onConfirm) top.onConfirm(it, top);
+            } else if(scope==="tabbar"&&shell.tabs){
+              const id=shell.tabs[tabSel]; scope="screen"; if(id&&typeof openMenu==="function") openMenu(id);
+            }
+          }
+        }
+        return; // overlays trap; tab bar does not fall through to screen actions
+      }
+      const items=list(); const n=items.length;
+      const cur=items[clampSel(n, typeof UI!=="undefined"?UI.sel:0)];
+      const up=Input&&Input.pUp, dn=Input&&Input.pDown, back=Input&&Input.pBack, sel=Input&&Input.pSelect;
+      if(dn) F.move(1);
+      if(up) F.move(-1);
+      if(Input){ Input.pUp=false; Input.pDown=false; }
+      if(cur&&cur.locked&&Input) Input.pSelect=false;
+      let consumed=false;
+      if(back) consumed=F.back();
+      if(consumed&&Input) Input.pBack=false;
+      // Swap in the filtered labels for the original handler. Must read the RAW opts, not F.labels():
+      // F.labels() -> listFor() -> S.opts() would re-enter this swapped getter (infinite recursion, A dead).
+      const S=screens()&&screens()[UI.screen], raw=S&&S.opts;
+      if(S) S.opts=F.rawLabels(raw);
+      try{ origMenuInput(); } finally { if(S) S.opts=raw; }
+    },
+    draw(){
+      const SS=screens(), S=SS&&typeof UI!=="undefined"&&SS[UI.screen];
+      const raw=S&&S.opts;
+      if(S) S.opts=F.rawLabels(raw);
+      try{ if(origDrawMenu) origDrawMenu(); } finally { if(S) S.opts=raw; }
+      F.paintLocks();
+      F.paintFocus();
+      F.paintPrompts();
+    },
+    // One focus chrome, driven by F.style. Default / PRESET_V1: 0.4° border, glow, 1.06 scale, 5 cm lift, 120 ms ease.
+    paintFocus(){
+      if(typeof UI==="undefined"||!UI.ctx||!window.SR_PANEL) return;
+      const st=F.style||defaultStyle, L=SR_PANEL.rowLayout(); if(!L||!L.n) return;
+      let bw=st.borderPx||0;
+      if(!bw&&st.borderDeg&&SR_PANEL.degToPx) bw=SR_PANEL.degToPx(st.borderDeg);
+      if(!bw) return;
+      const i=Math.max(0,Math.min(L.n-1, F.visY!=null?F.visY:F.sel()));
+      const x=UI.ctx, yy=L.y+i*L.rowH-4, xx=40, ww=L.W-80, hh=L.rowH-8;
+      const hex=(st.color||0xffd24a).toString(16).padStart(6,"0");
+      x.save(); x.strokeStyle="#"+hex; x.lineWidth=bw; x.strokeRect(xx+bw*0.5, yy+bw*0.5, ww-bw, hh-bw); x.restore();
+      F._lastBorder={count:1, px:bw, deg:st.borderDeg|| (SR_PANEL.pxToDeg&&SR_PANEL.pxToDeg(bw)), y:i};
+      if(UI.tex) UI.tex.needsUpdate=true;
+    },
+    // Placeholder prompt bar, driven by F.prompts() + F.style + F.layout.promptBar. Always draws A/B when open.
+    paintPrompts(){
+      if(typeof UI==="undefined"||!UI.ctx||!window.SR_PANEL) return;
+      const ps=F.prompts(); if(!ps.length) return;
+      const st=F.style||defaultStyle, L=SR_PANEL.rowLayout()||{W:UI.canvas.width,H:UI.canvas.height};
+      const slot=F.layout.promptBar||{y:0.92,h:0.08};
+      const H=L.H, W=L.W, barH=Math.max(st.promptH||40, Math.round(slot.h*H));
+      const y=Math.round((slot.anchor==="bottom"||slot.y==null)?(H-barH):(slot.y*H));
+      const x=UI.ctx, hex=(st.color||0xffd24a).toString(16).padStart(6,"0");
+      x.save();
+      x.fillStyle="rgba(0,0,0,.45)"; x.fillRect(0,y,W,barH);
+      x.font=`600 ${st.promptFont||20}px "Segoe UI",Arial,sans-serif`; x.textBaseline="middle"; x.textAlign="left";
+      let px=48;
+      ps.forEach(p=>{
+        x.fillStyle="#"+hex; x.fillText(String(p.btn||""), px, y+barH*0.5);
+        const bw=x.measureText(String(p.btn||"")).width;
+        x.fillStyle="rgba(255,255,255,.85)"; x.fillText(" "+String(p.label||""), px+bw, y+barH*0.5);
+        px+=bw+x.measureText(" "+String(p.label||"")+"    ").width;
+      });
+      x.restore();
+      if(UI.tex) UI.tex.needsUpdate=true;
+    },
+    paintLocks(){
+      if(typeof UI==="undefined"||!UI.ctx||!UI.canvas||!window.SR_PANEL) return;
+      const items=listFor(currentScr()); if(!items.some(i=>i.locked)) return;
+      const L=SR_PANEL.rowLayout(); if(!L) return;
+      const x=UI.ctx, W=L.W, H=L.H;
+      items.forEach((it,i)=>{
+        if(!it.locked) return;
+        const yy=L.y+i*L.rowH, fs=Math.round(L.rowH*.5);
+        x.save();
+        x.fillStyle="rgba(12,12,16,.55)"; x.fillRect(40,yy-4,W-80,L.rowH-8);
+        x.fillStyle="rgba(180,180,188,.9)"; x.font=`600 ${fs}px "Segoe UI","Helvetica Neue",Arial,sans-serif`;
+        x.textBaseline="middle"; x.textAlign="left"; x.fillText(it.label,76,yy+(L.rowH-8)/2-2);
+        // padlock (no emoji — headless fonts vary)
+        const lx=W-86, ly=yy+(L.rowH-8)/2-2, s=Math.max(8,fs*0.45);
+        x.strokeStyle="rgba(200,200,210,.95)"; x.fillStyle="rgba(200,200,210,.95)"; x.lineWidth=2;
+        x.beginPath(); x.arc(lx,ly-s*0.15,s*0.35,Math.PI,0); x.stroke();
+        x.fillRect(lx-s*0.45,ly-s*0.15,s*0.9,s*0.7);
+        x.restore();
+      });
+      if(UI.tex) UI.tex.needsUpdate=true;
+    },
+    openWrapped(scr){
+      const prev=currentScr();
+      if(prev&&typeof UI!=="undefined") mem[prev]=UI.sel|0;
+      if(origOpenMenu) origOpenMenu(scr);
+      // orig always zeros sel; restore memory for this screen (first visit stays 0).
+      if(stack.length===0) F.restore(scr);
+      if(window.SR_PANEL) SR_PANEL.place("open");
+    },
+    closeWrapped(){
+      const prev=currentScr();
+      if(prev&&typeof UI!=="undefined") mem[prev]=UI.sel|0;
+      scope="screen";
+      while(stack.length){
+        const top=stack.pop();
+        if(window.SR_INPUT&&SR_INPUT.popOverlay&&top) try{ SR_INPUT.popOverlay(top.id); }catch(e){}
+      }
+      if(origCloseMenu) origCloseMenu();
+    }
+  };
+  window.SR_FOCUS=F;
+})();
+
+if(/[?&]menufocus=0/.test(location.search)) { try{ SR_FOCUS.manual=true; }catch(e){} }
+(function(){
+  if(typeof menuInput!=="function"||typeof drawMenu!=="function"||typeof openMenu!=="function") return;
+  if(menuInput.__srFocus) return;
+  if(window.SR_FOCUS) SR_FOCUS.attach({menuInput:menuInput, drawMenu:drawMenu, openMenu:openMenu, closeMenu:typeof closeMenu==="function"?closeMenu:null});
+  menuInput=function(){ return window.SR_FOCUS?SR_FOCUS.tick():null; }; menuInput.__srFocus=1;
+  drawMenu=function(){ return window.SR_FOCUS?SR_FOCUS.draw():null; }; drawMenu.__srFocus=1;
+  openMenu=function(scr){ return window.SR_FOCUS?SR_FOCUS.openWrapped(scr):null; }; openMenu.__srFocus=1;
+  closeMenu=function(){ return window.SR_FOCUS?SR_FOCUS.closeWrapped():null; }; closeMenu.__srFocus=1;
+})();
 // ===== BRAKE (Rydah Systems, brake.js via patch_brake.py) — regen power-slide brake, founder build order 2026-11-11 (Claude regen re-tune) =====
 // No boards: braking = regenerative motor braking in the Air Treck wheels. Ground riding only (off on grind / wall / air / grapple).
 // Entry : LS (camera-relative Input.yaw from pad.js) dot <= -0.70 vs TRAVEL direction (measured displacement, never heading),
@@ -8217,6 +8714,28 @@ function tickDemo(dt){ if(!DEMO.on) return; if(typeof State!=="undefined"&&State
   window.SR_RIDERLOD.tick=tick;
 })();</script>
 
+<script>/*SR_CREW_ERR_V1*/(function(){
+  if(window.SR_CREW_ERR) return;
+  const S=window.SR_CREW_ERR={ v:2, shown:[] };
+  function crews(){ try{ return CREWS.filter(c=>c&&c.garage!=='codee'&&!c.noRider&&(typeof garages==='undefined'||garages.some(g=>g.crew===c.garage))); }catch(e){ return []; } }
+  function failedNow(){ try{ if(typeof RIDERS==='undefined'||!RIDERS.fail) return []; const C=crews(), have=new Set((RIDERS.npcs||[]).map(n=>n&&n.g&&n.g.crew));
+      let last=-1; C.forEach((c,i)=>{ if(have.has(c.garage)) last=i; }); const done=!!RIDERS.ready;
+      return C.filter((c,i)=>!have.has(c.garage)&&(done||i<last)); }catch(e){ return []; } }
+  function tick(){ try{
+      const live=failedNow(), sel=document.getElementById('srRiderSel'); S.shown=live.map(c=>c.dir);
+      let box=document.getElementById('srCrewErr');
+      if(!live.length||!sel){ if(box){ box.remove(); if(sel) sel.style.flexWrap=''; } return; }
+      if(!box||box.parentNode!==sel){ if(box) box.remove(); box=document.createElement('div'); box.id='srCrewErr';
+        box.style.cssText='flex-basis:100%;display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:2px'; sel.style.flexWrap='wrap'; sel.appendChild(box); }
+      const want=new Set(S.shown);
+      for(const r of [...box.children]) if(!want.has(r.dataset.crew)) r.remove();
+      for(const c of live){ if(box.querySelector('[data-crew="'+c.dir+'"]')) continue; const r=document.createElement('div'); r.dataset.crew=c.dir; r.dataset.err='1';
+        r.textContent='\u26a0 '+(c.crew||c.dir)+' rider failed to load';
+        r.style.cssText='padding:3px 12px;border-radius:6px;border:2px solid #ff8a80;background:#c0392b;color:#fff;font:600 13px system-ui;pointer-events:none;white-space:nowrap';
+        box.appendChild(r); }
+    }catch(e){} }
+  S.tick=tick; S.failedNow=failedNow; tick(); setInterval(tick,400);
+})();</script>
 <button id="pwaInstall" style="display:none;position:fixed;right:12px;bottom:12px;z-index:99999;padding:8px 14px;font:bold 13px sans-serif;background:#FFD700;color:#000;border:2px solid #000;border-radius:6px;cursor:pointer">&#9889; Install app</button>
 <script>
 (function(){var b=document.getElementById('pwaInstall'),dp=null;
