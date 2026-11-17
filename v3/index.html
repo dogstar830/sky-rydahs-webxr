@@ -2997,7 +2997,7 @@ function saveCheckpoint(g){
     onButtonDown:null, onButtonUp:null, onTrigger:null, onConnect:null, onDisconnect:null };
   const idx=b=>typeof b==="number"?b:BUTTONS[b];
   function applyDeadzone(x,y){ const m=Math.hypot(x,y); if(m<DEADZONE) return {x:0,y:0}; const s=Math.min(1,(m-DEADZONE)/(1-DEADZONE))/m; return {x:x*s,y:y*s}; }
-  function pads(){ try{ return navigator.getGamepads?[...navigator.getGamepads()].filter(p=>p&&p.connected!==false&&p.mapping==="standard"):[]; }catch(e){ return []; } }
+  function pads(){ let L; try{ L=navigator.getGamepads?[...navigator.getGamepads()].filter(p=>p&&p.connected!==false&&p.mapping==="standard"):[]; }catch(e){ L=[]; } /*SR_XRCTRL1 pads*/try{ if(window.SR_XRCTRL) return SR_XRCTRL.pads(L); }catch(e){} return L; }
   function isDown(p,i){ const b=p.buttons[i]; if(!b) return false; return !!b.pressed||((i===6||i===7)&&(b.value||0)>TRIGGER_PRESS); }
   function update(){ S.frame++; const list=pads(), p=list[0]||null; S.pad=p; S.connected=!!p;
     S.down.fill(false); S.up.fill(false);
@@ -3069,6 +3069,195 @@ function saveCheckpoint(g){
   addEventListener("gamepaddisconnected",e=>{ prevButtons.delete(e.gamepad.index); update(); S.onDisconnect&&S.onDisconnect(e.gamepad); });
   update(); // pick up a pad that was already connected at launch
   window.SR_PAD=S; window.SR_BUTTONS=BUTTONS;
+})();
+/*SR_XRCTRL1*/
+// ===== SR_XRCTRL: Quest Touch -> Xbox-semantics adapter + -fp arm/torso IK (Rydah Systems, 2026-11-12, founder bug 14:13 EST). =====
+// WHY: SR_PAD (gamepad.js) only reads navigator.getGamepads(); on Quest the Touch gamepads live on XRSession.inputSources and are NOT in
+// getGamepads(). So every pad.js gameplay binding (jump/attack/trick/X action/grapple/phone/map/pause/boost/LT aim) was dead in VR; only a few
+// legacy raw reads (layer1 srXRInput stick+trigger+grip, wallatk A/B/X/Y, grind stick-click, phone X/Y) worked, with overlapping meanings.
+// WHAT: ONE adapter. While riding in XR (State.mode==="ride", phone down) both Touch controllers are folded into ONE virtual "standard" pad that
+// SR_PAD.update() returns instead of (or OR-merged with) a paired Xbox pad, so every action keeps its single pad.js/wallatk binding and the
+// brake/camrel/menu masks see the same semantic input. Edges are computed once by SR_PAD on the merged pad (no double fire). The legacy raw
+// Touch reads are skipped while the adapter owns the frame (SR_XRCTRL.owns()). Menus / pause / phone keep SR_INPUT (step 2) + phXRInput raw paths.
+// TABLE (physical Touch input -> Xbox BUTTONS name; probe JSON / SR_XRCTRL.applyMap retune .i or .to):
+//   right: trigger(0)->L3 boost(press=dash, grind kick) | grip(1)->RB melee (tap light / hold heavy) | stick-click(3)->R3 crew move | A(4)->A jump | B(5)->B back/slide/dodge
+//   left : trigger(0)->LT aim/lock-on (analog) | grip(1)->DPAD_LEFT grapple | stick-click(3)->RT special | X(4)->X action/spray/tag | Y(5)->DPAD_UP phone | menu(7)->MENU pause
+//   left stick -> LS (move/steer, camera(head)-relative via pad.js camrel; stick-back = regen brake, entry rules untouched)
+//   right stick: X = snap turn 30 deg (or smooth), flick UP = Y trick; full RS goes to the pad only while LT aims (target flick)
+// No draws, no per-frame allocation (reused objects). ?xrctrl=0 disables (legacy behaviour). Never touches facing (rig.rotation.y=yaw+PI), spawn, saves.
+(function(){
+  if(window.SR_XRCTRL) return;
+  const OFF=/[?&]xrctrl=0\b/.test(location.search);
+  const B={A:0,B:1,X:2,Y:3,LB:4,RB:5,LT:6,RT:7,VIEW:8,MENU:9,L3:10,R3:11,DPAD_UP:12,DPAD_DOWN:13,DPAD_LEFT:14,DPAD_RIGHT:15,XBOX:16};
+  const MAP={
+    right:{ trigger:{i:0,to:"L3"}, grip:{i:1,to:"RB"}, stick:{i:3,to:"R3"}, a:{i:4,to:"A"}, b:{i:5,to:"B"} },
+    left :{ trigger:{i:0,to:"LT"}, grip:{i:1,to:"DPAD_LEFT"}, stick:{i:3,to:"RT"}, x:{i:4,to:"X"}, y:{i:5,to:"DPAD_UP"}, menu:{i:7,to:"MENU"} },
+    axes:[2,3], fallbackAxes:[0,1], deadzone:.12,
+    turn:{mode:"snap", deg:30, engage:.6, release:.3, smoothDegPerS:120},
+    trick:{engage:.7, release:.4, to:"Y"},
+    pauseOnBlur:true };
+  let T=[[],[]]; // compiled: per hand (0 left, 1 right) flat [srcIdx, padIdx, ...]
+  function compile(){ const out=[[],[]]; ["left","right"].forEach((h,k)=>{ const m=MAP[h]; for(const n in m){ const e=m[n]; if(e&&e.i>=0&&B[e.to]!=null) out[k].push(e.i|0,B[e.to]); } }); T=out; }
+  compile();
+  const N=17, VP={ id:"SR_XRCTRL Touch (xr-standard -> standard)", index:99, mapping:"standard", connected:true, timestamp:0,
+    buttons:Array.from({length:N},()=>({pressed:false,touched:false,value:0})), axes:[0,0,0,0], vibrationActuator:null, srVirtual:true };
+  const S={ __v:1, MAP, BUTTONS:B, off:OFF, own:false, feeding:false, frame:0, src:{left:null,right:null}, handOnly:false, turns:0, lastTurn:0,
+    mask:new Uint8Array(32), stTurn:0, stTrick:0, blurred:false, pauses:0, merged:false, vp:VP, ikOn:!/[?&]xrik=0\b/.test(location.search) };
+  S.owns=()=>!S.off&&(S.own||(S.hasPad&&!S.blurred&&ride())); // live: a mid-frame menu->ride flip is owned for later readers (Claude #7)
+  S.compile=compile;
+  S.applyMap=m=>{ try{ const mg=(d,s)=>{ for(const k in s){ const v=s[k]; if(v&&typeof v==="object"&&!Array.isArray(v)&&d[k]&&typeof d[k]==="object") mg(d[k],v); else d[k]=v; } }; mg(MAP,JSON.parse(JSON.stringify(m||{}))); compile(); return true; }catch(e){ return false; } };
+  // sr_input_probe_v1 JSON: prompt-advance {prompt:'touch-<hand>-<phys>', info:{kind:'button', i}} moves that physical input to index i.
+  S.fromProbe=j=>{ try{ if(typeof j==="string") j=JSON.parse(j); const E=(j&&(j.events||(j.log&&j.log.events)))||[]; let n=0; const notes=[];
+      for(const e of E){ if(!e||e.type!=="prompt-advance"||!e.info||typeof e.prompt!=="string") continue; const m=e.prompt.match(/^touch-(left|right)-(trigger|grip|a|b|x|y|menu|stick-click|stick-press)$/); if(!m) continue;
+        const ph=m[2].startsWith("stick")?"stick":m[2], ent=MAP[m[1]][ph]; if(!ent) continue; if(e.info.kind==="button"&&e.info.i>=0){ if(ent.i!==e.info.i){ notes.push(e.prompt+": "+ent.i+"->"+e.info.i); ent.i=e.info.i; } n++; } }
+      compile(); return {applied:n,notes,map:JSON.parse(JSON.stringify({left:MAP.left,right:MAP.right}))}; }catch(e){ return {applied:0,error:String(e)}; } };
+  function ses(){ try{ return (typeof renderer!=="undefined"&&renderer.xr&&renderer.xr.isPresenting&&renderer.xr.getSession)?renderer.xr.getSession():null; }catch(e){ return null; } }
+  function ride(){ try{ return typeof State!=="undefined"&&State.mode==="ride"&&!(typeof PHONE!=="undefined"&&PHONE.up); }catch(e){ return false; } }
+  function stick(g){ const A=g.axes||[], four=A.length>Math.max(MAP.axes[0],MAP.axes[1]); const x=(four?A[MAP.axes[0]]:A[MAP.fallbackAxes[0]])||0, y=(four?A[MAP.axes[1]]:A[MAP.fallbackAxes[1]])||0; return [x,y]; }
+  let _sx=0,_sy=0;
+  function wrapLegacy(){ // layer1 srXRInput: zero its gameplay outputs while the adapter owns the frame (menus keep it; SR_INPUT's wrap composes)
+    if(!S._xw&&typeof window.srXRInput==="function"){ const f=window.srXRInput; const w=function(s){ const o=f(s); if(S.owns()&&o){ o.x=0; o.z=0; o.m=0; o.tag=o.boost=o.sel=o.back=false; } return o; }; w.__srMask=f.__srMask; try{ window.srXRInput=w; S._xw=true; }catch(e){} }
+    if(!S._se){ try{ if(typeof renderer!=="undefined"&&renderer.xr&&renderer.xr.addEventListener){ renderer.xr.addEventListener("sessionend",()=>{ S.own=S.feeding=false; S.rest(); }); S._se=true; } }catch(e){ S._se=true; } }
+    if(!S._mi&&window.SR_INPUT&&SR_INPUT.applyMap&&SR_INPUT.MAP&&SR_INPUT.MAP.xr){ try{ const lb=Object.assign({},SR_INPUT.MAP.xr.left.buttons); if(lb[MAP.left.menu.i]==null) lb[MAP.left.menu.i]="menu"; SR_INPUT.applyMap({xr:{left:{buttons:lb}}}); }catch(e){} S._mi=true; } }
+  // Claude #1: no snap/smooth turn while grinding, on a wall or airborne (it would yank the locked heading); above 1.5 m/s a snap keeps only the
+  // forward component of the old velocity (speed *= cos(angle), 0.87 at 30 deg); below that as built. Facing line untouched (Ride.yaw drives it).
+  function canTurn(){ try{ if(typeof Ride!=="undefined"&&Ride.grinding) return false; if(typeof GRIND!=="undefined"&&GRIND.on) return false;
+      if(typeof WALL!=="undefined"&&(WALL.on||WALL.air)) return false; }catch(e){} return true; }
+  S.canTurn=canTurn; S.blockedTurns=0; S.SNAP_V=1.5;
+  function turn(d,snap){ try{ if(!canTurn()){ S.blockedTurns++; return false; } if(snap&&Math.abs(Ride.speed||0)>S.SNAP_V) Ride.speed*=Math.cos(d); Ride.yaw+=d; const CR=typeof PAD!=="undefined"&&PAD.camRel; if(CR&&CR.ref!=null) CR.ref+=d; S.turns++; S.lastTurn=d; return true; }catch(e){} return false; }
+  // Called from SR_PAD's pads() every SR_PAD.update(). L = real standard pads. Returns the list SR_PAD should use.
+  S.pads=function(L){ S.frame++; wrapLegacy(); const s=S.off?null:ses();
+    if(!s){ S.own=S.feeding=false; S.hasPad=false; S.handOnly=false; S.blurred=false; return L; }
+    const vis=s.visibilityState||"visible", bl=vis!=="visible";
+    if(bl&&!S.blurred&&MAP.pauseOnBlur){ try{ if(typeof State!=="undefined"&&State.mode==="ride"&&typeof pause==="function"){ pause(); S.pauses++; } }catch(e){} }
+    S.blurred=bl;
+    const IS=s.inputSources||[]; let l=null,r=null,anyPad=false,anyHand=false;
+    for(let i=0;i<IS.length;i++){ const q=IS[i]; if(!q) continue; if(q.gamepad){ anyPad=true; if(q.handedness==="left") l=q; else r=q; } else if(q.hand) anyHand=true; }
+    S.src.left=l; S.src.right=r; S.hasPad=anyPad; S.handOnly=!anyPad&&anyHand;
+    const want=anyPad&&ride()&&!bl;
+    if(!want){ S.own=false; S.feeding=false; return L; }
+    const real=L&&L.length?L[0]:null; S.merged=!!real;
+    const Bt=VP.buttons; for(let i=0;i<N;i++){ const b=Bt[i], q=real&&real.buttons[i]; b.pressed=!!(q&&q.pressed); b.touched=!!(q&&q.touched); b.value=q?(q.value||(q.pressed?1:0)):0; }
+    const RA=real&&real.axes||[]; VP.axes[0]=RA[0]||0; VP.axes[1]=RA[1]||0; VP.axes[2]=RA[2]||0; VP.axes[3]=RA[3]||0;
+    const start=!S.feeding; // first owned frame: anything already held (e.g. the B/A that resumed) is masked until released
+    for(let k=0;k<2;k++){ const q=k?r:l; if(!q) continue; const g=q.gamepad, GB=g.buttons||[], t=T[k];
+      for(let j=0;j<t.length;j+=2){ const si=t[j], pi=t[j+1], b=GB[si], on=!!(b&&b.pressed), mk=k*16+(si&15);
+        if(start&&on) S.mask[mk]=1; if(!on) S.mask[mk]=0; if(S.mask[mk]) continue;
+        const o=Bt[pi]; if(on) o.pressed=true; if(b){ if(b.touched) o.touched=true; const v=b.value||(on?1:0); if(v>o.value) o.value=v; } } }
+    // left stick -> LS (bigger of pad / Touch)
+    if(l){ const a=stick(l.gamepad); _sx=a[0]; _sy=a[1]; if(Math.hypot(_sx,_sy)>Math.hypot(VP.axes[0],VP.axes[1])){ VP.axes[0]=_sx; VP.axes[1]=_sy; } }
+    // right stick: aim -> pad RS (target flick); else snap/smooth turn on X, flick up = trick
+    if(r){ const a=stick(r.gamepad), rx=a[0], ry=a[1], aiming=VP.buttons[B.LT].value>.3;
+      if(aiming){ if(Math.hypot(rx,ry)>Math.hypot(VP.axes[2],VP.axes[3])){ VP.axes[2]=rx; VP.axes[3]=ry; } S.stTurn=0; }
+      else { const TU=MAP.turn;
+        if(TU.mode==="smooth"){ if(Math.abs(rx)>MAP.deadzone){ const now=performance.now(), dt=Math.min(.1,(now-(S._tt||now))/1000); turn(-rx*TU.smoothDegPerS*Math.PI/180*dt); } S._tt=performance.now(); }
+        else { if(S.stTurn===0&&Math.abs(rx)>TU.engage&&Math.abs(rx)>Math.abs(ry)){ S.stTurn=Math.sign(rx); turn(-S.stTurn*TU.deg*Math.PI/180,true); } else if(S.stTurn!==0&&Math.abs(rx)<TU.release) S.stTurn=0; } }
+      const TR=MAP.trick; if(!S.stTrick&&ry<-TR.engage&&Math.abs(ry)>Math.abs(rx)) S.stTrick=1; else if(S.stTrick&&ry>-TR.release) S.stTrick=0;
+      if(S.stTrick&&!aiming){ const o=Bt[B[TR.to]]; o.pressed=true; o.value=1; } }
+    VP.index=real?real.index:99; VP.timestamp=performance.now(); S.own=true; S.feeding=true;
+    const out=S._out||(S._out=[]); out.length=0; out.push(VP); if(L) for(let i=1;i<L.length;i++) out.push(L[i]); return out; };
+
+  // ---------------- IK: -fp hands follow the Touch grips, torso yaws toward the head ----------------
+  // -fp rig (caali-fp == anika-fp): hips -> forearm.L/R -> hand.L/R (-> GripL/R_Att), hips -> foot.L/R. No shoulder / upper-arm bone, so the
+  // upper segment is VIRTUAL: shoulder point S (hips-local), elbow E solved by 2-bone law-of-cosines IK (|S-E| = U, |E-wrist| = forearm length),
+  // forearm bone TRANSLATED to E (its hips-weighted skin stretches like an upper arm) and aimed at the wrist with its rest roll kept; the hand bone
+  // takes the grip orientation so the authored Grip_Att point lands on the controller grip. Works in hips-local space through matrixWorld inverses,
+  // so the SR_VRHEIGHT1 RIDERS.fp scale (eye/1.60) and Ride.group yaw are divided out automatically.
+  // v2 (Optimizer review): foot.L/R counter-transformed every frame so the hips yaw/follow never moves the feet off the skates / ride heading;
+  // grips bound by handedness ('connected'/'disconnected' data, re-validated against the live inputSources order r128 poses by).
+  const IK={ SH:[[.17,.44,-.04],[-.17,.44,-.04]], UPPER:.30, STRETCH:1.25, POLE:[[.45,-1,-.25],[-.45,-1,-.25]], DZ:15*Math.PI/180, YAW_MAX:30*Math.PI/180, RATE:6, FOLLOW:8, MAXOFF:.35, GRIP_OFF:[0,.14,-.0074] };
+  S.IK=IK;
+  const v1=new THREE.Vector3(), v2=new THREE.Vector3(), v3=new THREE.Vector3(), vT=new THREE.Vector3(), vW=new THREE.Vector3(), vE=new THREE.Vector3(), vS=new THREE.Vector3(), vP=new THREE.Vector3(), vH=new THREE.Vector3(), vF=new THREE.Vector3(), vY=new THREE.Vector3(0,1,0);
+  const q1=new THREE.Quaternion(), q2=new THREE.Quaternion(), qG=new THREE.Quaternion(), qHp=new THREE.Quaternion(), qF=new THREE.Quaternion(), qYaw=new THREE.Quaternion();
+  const m1=new THREE.Matrix4(), m2=new THREE.Matrix4(), sc=new THREE.Vector3(), UP=new THREE.Vector3(0,1,0);
+  // Claude #3: per-hand grip offset X.qo[k] (hand-bone q = grip q * qo[k].q). WebXR gripSpace: -Z along the held rod toward the thumb, +X out of
+  // the back of the RIGHT hand and out of the PALM of the LEFT hand (X mirrors per hand anatomically). Quest/three.js practice: grip -Z ~ forearm
+  // forward, so bone +Y (wrist->fingers) = grip -Z, bone +Z = grip -Y, bone +X = grip -X. This rig's L/R joint frames are NOT mirrored (same rest
+  // rotations, mirrored positions), and the spec's per-hand X flip lands on the same world side (rider-right) for both hands in the symmetric
+  // pose -> the same basis is correct for both; IK.MIRROR[k] flips that hand 180 deg about the rod (X,Y negated) if a headset check shows a palm out.
+  // Grip_Att (authored per hand) then sits at grip q * qo[k].q * GripAtt.local q; its POSITION is pinned to the grip (wrist = grip - R*offset).
+  const qBasis=new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().set(-1,0,0,0, 0,0,-1,0, 0,-1,0,0, 0,0,0,1));
+  const qMir=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,0,1),Math.PI);
+  IK.MIRROR=[false,false];
+  function offs(X){ return [0,1].map(k=>{ const b=qBasis.clone(); if(IK.MIRROR[k]) b.multiply(qMir); const g=X.gp[k];
+      const att=(g&&g.parent===X.hd[k])?g.quaternion.clone():new THREE.Quaternion(); return {q:b, att, basis:b.clone().multiply(att)}; }); } // basis = expected Grip_Att frame rel. grip
+  S.qOff=k=>{ try{ const X=RIDERS.fp.userData.srXc; return X&&X.qo?X.qo[k]:null; }catch(e){ return null; } };
+  S.reoff=()=>{ try{ const X=RIDERS.fp.userData.srXc; if(X&&X.ok) X.qo=offs(X); return !!X; }catch(e){ return false; } };
+  function norm(n){ return String(n||"").replace(/[\s._:-]/g,"").toLowerCase(); }
+  function rig_(fp){ const U=fp.userData||(fp.userData={}); if(U.srXc&&U.srXc.fp===fp) return U.srXc;
+    const want={hips:null,forearml:null,forearmr:null,handl:null,handr:null,footl:null,footr:null,gripl:null,gripr:null}; const meshes=[];
+    fp.traverse(o=>{ const n=norm(o.name); if(o.isBone&&(n in want)&&!want[n]) want[n]=o; else if(/^griplatt/.test(n)&&!want.gripl) want.gripl=o; else if(/^gripratt/.test(n)&&!want.gripr) want.gripr=o;
+      if(o.isSkinnedMesh) meshes.push(o); });
+    if(!want.hips||!want.forearml||!want.forearmr||!want.handl||!want.handr){ U.srXc={fp,ok:false}; return U.srXc; }
+    for(const m of meshes) m.frustumCulled=false; // r128 culls skinned meshes on the bind-pose sphere; IK'd hands leave it (no new draws)
+    const R=o=>({p:o.position.clone(),q:o.quaternion.clone(),s:o.scale.clone()});
+    const X={fp,ok:true,hips:want.hips,fa:[want.forearml,want.forearmr],hd:[want.handl,want.handr],gp:[want.gripl,want.gripr],meshes:meshes.length,
+      ft:[want.footl,want.footr], rest:{hips:R(want.hips),fa:[R(want.forearml),R(want.forearmr)],hd:[R(want.handl),R(want.handr)],ft:[want.footl?R(want.footl):null,want.footr?R(want.footr):null]}, yaw:0, off:new THREE.Vector2(), posed:[false,false], hidden:false, err:[0,0], tracked:[false,false], torso:false};
+    X.Lf=want.handl.position.length()||.181;   // forearm length (rest hand offset)
+    X.U=[IK.UPPER,IK.UPPER]; // virtual upper arm (rig units, ~human 0.30 at the authored 1.60 eye); may stretch to x1.25 so the hand still reaches
+    X.go=[0,1].map(k=>{ const g=X.gp[k]; return (g&&g.parent===X.hd[k])?g.position.clone():new THREE.Vector3().fromArray(IK.GRIP_OFF); }); // authored Grip_Att offset, hand-local
+    X.qo=offs(X); U.srXc=X; return X; }
+  function restArm(X,k){ const r=X.rest; X.fa[k].position.copy(r.fa[k].p); X.fa[k].quaternion.copy(r.fa[k].q); X.hd[k].quaternion.copy(r.hd[k].q); X.posed[k]=false; }
+  function restAll(X){ if(!X||!X.ok) return; restArm(X,0); restArm(X,1); X.hips.position.copy(X.rest.hips.p); X.hips.quaternion.copy(X.rest.hips.q); restFeet(X); X.yaw=0; X.off.set(0,0); X.torso=false; showHands(X,true); }
+  function showHands(X,on){ if(X.hidden===!on) return; for(let k=0;k<2;k++){ if(on) X.hd[k].scale.copy(X.rest.hd[k].s); else X.hd[k].scale.setScalar(1e-4); } X.hidden=!on; }
+  S.rest=()=>{ try{ const fp=typeof RIDERS!=="undefined"&&RIDERS.fp; if(fp&&fp.userData&&fp.userData.srXc) restAll(fp.userData.srXc); }catch(e){} };
+  function restFeet(X){ for(let k=0;k<2;k++){ const f=X.ft[k], r=X.rest.ft[k]; if(f&&r){ f.position.copy(r.p); f.quaternion.copy(r.q); } } }
+  // Optimizer must-fix: foot.L/R are hips children -> undo this frame's hips yaw + follow so the feet stay planted on the skates / ride heading.
+  // footLocal = inv(hipsNow) * hipsRest * footRest  (== rest - offset rotated by -yaw, inv(yawQ)*restQ for the identity-rest hips).
+  const mHn=new THREE.Matrix4(), mHr=new THREE.Matrix4(), mF=new THREE.Matrix4(), vFp=new THREE.Vector3(), qFp=new THREE.Quaternion(), vFs=new THREE.Vector3(), V1=new THREE.Vector3(1,1,1);
+  function plantFeet(X){ const H=X.hips, r=X.rest.hips; mHn.compose(H.position,H.quaternion,H.scale).invert(); mHr.compose(r.p,r.q,r.s);
+    for(let k=0;k<2;k++){ const f=X.ft[k], fr=X.rest.ft[k]; if(!f||!fr) continue; mF.compose(fr.p,fr.q,fr.s).premultiply(mHr).premultiply(mHn); mF.decompose(vFp,qFp,vFs); f.position.copy(vFp); f.quaternion.copy(qFp); } }
+  // Optimizer should-fix: bind grips by HANDEDNESS. r128 re-maps controllers[i] <-> inputSources[i] on every inputsourceschange and poses grip i from
+  // inputSources[i] each frame, so the source of truth is the CURRENT index of that hand. 'connected'/'disconnected' (event.data = inputSource) keep
+  // S.bind[hand] = grip index; every frame it is re-validated against the live order (a remaining source that shifts index gets no new 'connected').
+  S.bind={left:-1,right:-1}; S.rebinds=0; const _lis=[];
+  function listen(i){ if(_lis[i]) return; try{ const g=renderer.xr.getControllerGrip(i); _lis[i]=1;
+      g.addEventListener("connected",e=>{ const h=e&&e.data&&e.data.handedness; if(h==="left"||h==="right"){ S.bind[h]=i; g.userData.srHand=h; } });
+      g.addEventListener("disconnected",e=>{ const h=(e&&e.data&&e.data.handedness)||g.userData.srHand; if(h&&S.bind[h]===i) S.bind[h]=-1; g.userData.srHand=null; }); }catch(e){} }
+  S.listen=listen; for(let i=0;i<4;i++) try{ if(typeof renderer!=="undefined"&&renderer.xr) listen(i); }catch(e){}
+  function gripFor(hand){ try{ const s=ses(); if(!s) return null; const IS=s.inputSources||[]; for(let i=0;i<IS.length;i++) listen(i);
+      let i=S.bind[hand]; const q0=i>=0?IS[i]:null;
+      if(!(q0&&q0.handedness===hand&&q0.gamepad)){ let j=-1; for(let k=0;k<IS.length;k++){ const q=IS[k]; if(q&&q.handedness===hand&&q.gamepad){ j=k; break; } } if(j!==i){ if(i>=0||j>=0) S.rebinds++; S.bind[hand]=j; } i=j; }
+      if(i<0) return null; const g=renderer.xr.getControllerGrip(i); if(g&&!g.parent&&typeof rig!=="undefined") rig.add(g); return {g,src:IS[i],i}; }catch(e){} return null; }
+  S.ik=function(dt){ if(!S.ikOn) return; let X=null; try{
+      const fp=typeof RIDERS!=="undefined"&&RIDERS.fp; if(!fp) return; X=rig_(fp); if(!X.ok) return;
+      if(!fp.visible||!(renderer.xr&&renderer.xr.isPresenting)){ restAll(X); return; }
+      dt=Math.min(.1,dt||1/60);
+      rig.updateWorldMatrix(true,true); try{ renderer.xr.getCamera(camera); }catch(e){} camera.updateWorldMatrix(true,false);
+      const H=X.hips, P=H.parent; fp.updateWorldMatrix(true,false); P.updateWorldMatrix(true,false);
+      // ---- torso: yaw toward the head (deadzone + soft lag), follow the head horizontally (clamped). Never pitch/roll; Ride.group untouched.
+      m1.copy(P.matrixWorld).invert(); camera.getWorldPosition(vH).applyMatrix4(m1);
+      camera.getWorldDirection(vF); P.matrixWorld.decompose(v3,q1,sc); vF.applyQuaternion(q2.copy(q1).invert()); vF.y=0;
+      if(vF.lengthSq()>1e-6){ const hy=Math.atan2(vF.x,vF.z); let d=Math.atan2(Math.sin(hy-X.yaw),Math.cos(hy-X.yaw));
+        if(Math.abs(d)>IK.DZ){ const goal=hy-Math.sign(d)*IK.DZ; d=Math.atan2(Math.sin(goal-X.yaw),Math.cos(goal-X.yaw)); X.yaw+=d*(1-Math.exp(-dt*IK.RATE)); } X.headYaw=hy; }
+      X.yaw=THREE.MathUtils.clamp(X.yaw,-IK.YAW_MAX,IK.YAW_MAX); // Claude #2: hips carry the skates -> +-30 deg from the fp root (travel dir); arms reach the rest. plantFeet uses this clamped yaw
+      const ox=THREE.MathUtils.clamp(vH.x-X.rest.hips.p.x,-IK.MAXOFF,IK.MAXOFF), oz=THREE.MathUtils.clamp(vH.z-X.rest.hips.p.z,-IK.MAXOFF,IK.MAXOFF), kf=1-Math.exp(-dt*IK.FOLLOW);
+      X.off.x+=(ox-X.off.x)*kf; X.off.y+=(oz-X.off.y)*kf;
+      H.position.set(X.rest.hips.p.x+X.off.x,X.rest.hips.p.y,X.rest.hips.p.z+X.off.y);
+      H.quaternion.copy(X.rest.hips.q).premultiply(qYaw.setFromAxisAngle(UP,X.yaw)); X.torso=true;
+      plantFeet(X); H.updateWorldMatrix(false,false);
+      // ---- hands
+      showHands(X,!S.handOnly);
+      m2.copy(H.matrixWorld).invert(); H.matrixWorld.decompose(v3,qHp,sc); qHp.invert();
+      for(let k=0;k<2;k++){ const G=gripFor(k?"right":"left"), g=G&&G.g;
+        const tracked=!!(g&&g.visible&&G.src&&G.src.gamepad&&!S.handOnly); X.tracked[k]=tracked;
+        if(!tracked){ if(X.posed[k]) restArm(X,k); continue; }
+        g.updateWorldMatrix(true,false); g.matrixWorld.decompose(vT,qG,sc);
+        q1.copy(qHp).multiply(qG).multiply(X.qo[k].q);          // desired hand orientation, hips-local
+        vT.applyMatrix4(m2);                                                 // grip position, hips-local (scale divided out)
+        vW.copy(X.go[k]).applyQuaternion(q1); vW.subVectors(vT,vW);          // wrist = grip - R*gripAttOffset
+        vS.fromArray(IK.SH[k]); const Lf=X.Lf; v1.subVectors(vW,vS); let dist=v1.length(); const U=Math.min(X.U[k]*IK.STRETCH,Math.max(X.U[k],dist-Lf+1e-3)); if(dist<1e-5){ v1.set(0,-1,0); dist=1e-5; } v1.multiplyScalar(1/dist);
+        const dc=THREE.MathUtils.clamp(dist,Math.abs(U-Lf)+1e-4,U+Lf-1e-4), a=(U*U-Lf*Lf+dc*dc)/(2*dc), h=Math.sqrt(Math.max(0,U*U-a*a));
+        vP.fromArray(IK.POLE[k]); vP.addScaledVector(v1,-vP.dot(v1)); if(vP.lengthSq()<1e-8) vP.set(0,0,-1); vP.normalize();
+        vE.copy(vS).addScaledVector(v1,a).addScaledVector(vP,h);
+        const fa=X.fa[k], hd=X.hd[k], r=X.rest.fa[k]; fa.position.copy(vE);
+        v2.subVectors(vW,vE); if(dist>U+Lf) v2.copy(v1); v2.normalize();         // aim at the wrist (or straight out when out of reach)
+        v3.copy(vY).applyQuaternion(r.q);                                        // rest forearm axis (bone +Y)
+        qF.setFromUnitVectors(v3,v2).multiply(r.q); fa.quaternion.copy(qF);     // keep rest roll
+        hd.quaternion.copy(qF).invert().multiply(q1); X.posed[k]=true; }
+    }catch(e){ try{ if(X) restAll(X); }catch(_){} if(!S.__ikErr){ S.__ikErr=e; console.warn("SR_XRCTRL ik",e); } } };
+  S.ikState=()=>{ try{ const X=RIDERS.fp&&RIDERS.fp.userData&&RIDERS.fp.userData.srXc; return X?{ok:X.ok,yaw:X.yaw,headYaw:X.headYaw,tracked:X.tracked.slice(),posed:X.posed.slice(),hidden:X.hidden,torso:X.torso,feet:[!!X.ft[0],!!X.ft[1]],bind:Object.assign({},S.bind),rebinds:S.rebinds,meshes:X.meshes,U:X.U,Lf:X.Lf}:null; }catch(e){ return null; } };
+  window.SR_XRCTRL=S;
 })();
 
 // ===== INPUT =====
@@ -4101,12 +4290,12 @@ addEventListener("mousedown",e=>{ if(typeof State==="undefined"||State.mode!=="r
 addEventListener("contextmenu",e=>{ if(typeof State!=="undefined"&&State.mode==="ride") e.preventDefault(); });
 function wallInput(){ const I={jumpP:!!WIN.p.Space, jump:!!WIN.k.Space, a:[!!(WIN.p.KeyJ||WIN.p.MouseL),!!(WIN.p.KeyK||WIN.p.MouseR),!!WIN.p.KeyL],
     back:!!(WIN.k.KeyS||WIN.k.ArrowDown), side:(WIN.k.KeyA||WIN.k.ArrowLeft?-1:0)+(WIN.k.KeyD||WIN.k.ArrowRight?1:0), bP:!!WIN.p.KeyB }; WIN.p={};
-  try{ if(window.SR_PAD&&SR_PAD.justPressed&&!renderer.xr.isPresenting&&SR_PAD.justPressed("B")) I.bP=true; }catch(e){}   // B = dodge/cancel (combat C1)
+  try{ if(window.SR_PAD&&SR_PAD.justPressed&&(!renderer.xr.isPresenting||(window.SR_XRCTRL&&SR_XRCTRL.owns()))&&SR_PAD.justPressed("B")) I.bP=true; }catch(e){}   // B = dodge/cancel (combat C1)
   const gp=SR_PAD.active(), xr=renderer.xr.isPresenting;
   if(gp){ const b=SR_PAD.pressed, e=SR_PAD.justPressed;
     if(e("A")) I.jumpP=true; if(b("A")) I.jump=true; if(e("Y")) I.a[0]=true; if(e("RT")) I.a[1]=true; if(e("LB")) I.a[2]=true;
     const {x:lx,y:ly}=SR_PAD.stick("left"); if(ly>.5) I.back=true; if(Math.abs(lx)>.5) I.side=Math.sign(lx); }
-  const ses=xr&&renderer.xr.getSession(); if(ses){ for(const s of ses.inputSources){ const g=s.gamepad; if(!g) continue; const h=s.handedness, P=ATK.prevXR, b=i=>!!(g.buttons[i]&&g.buttons[i].pressed), e=i=>b(i)&&!P[h+i];
+  const ses=xr&&renderer.xr.getSession(); if(ses){ for(const s of ses.inputSources){ const g=s.gamepad; if(!g) continue; if(window.SR_XRCTRL&&SR_XRCTRL.owns()){ const hh=s.handedness; ATK.prevXR[hh+4]=!!(g.buttons[4]&&g.buttons[4].pressed); ATK.prevXR[hh+5]=!!(g.buttons[5]&&g.buttons[5].pressed); if(hh==="left"){ const ax=g.axes||[]; if((ax[3]||0)>.5) I.back=true; if(Math.abs(ax[2]||0)>.5) I.side=Math.sign(ax[2]); } continue; } /*SR_XRCTRL1: LS back/side kept (idempotent with the pad path; grind lean reads WALL.I.side)*/ /*SR_XRCTRL1 prev kept fresh: no stale edge when ownership drops (bench 7)*/ const h=s.handedness, P=ATK.prevXR, b=i=>!!(g.buttons[i]&&g.buttons[i].pressed), e=i=>b(i)&&!P[h+i];
       if(h==="right"){ if(e(4)) I.jumpP=true; if(b(4)) I.jump=true; if(e(5)) I.a[0]=true; } else { if(e(4)) I.a[1]=true; if(e(5)) I.a[2]=true; }
       const ax=g.axes||[]; if((ax[3]||0)>.5&&h==="left") I.back=true; if(Math.abs(ax[2]||0)>.5&&h==="left") I.side=Math.sign(ax[2]); P[h+4]=b(4); P[h+5]=b(5); }
     // swing gesture: a fast controller swing (> 2.6 m/s) throws the light attack
@@ -4523,7 +4712,7 @@ function grindInput(){ const I=WALL.I||{}, R=typeof PAD!=="undefined"?PAD.R:null
   const blocked=(typeof PHONE!=="undefined"&&PHONE.up)||(window.MAP&&MAP.open)||(typeof GATE!=="undefined"&&GATE.uiOpen);
   let lean=I.side||0; if(gp&&R.ls&&R.ls[2]>0) lean=R.ls[0]; const xr=renderer.xr.isPresenting&&renderer.xr.getSession();  // layer1: no pad lockout
   let drop=!blocked&&(!!K.KeyC||(gp&&R.e(1))), kick=!blocked&&(!!K.ShiftLeft||!!K.ShiftRight||(gp&&R.e(10)));
-  if(xr) for(const s of xr.inputSources){ const g=s.gamepad; if(g&&s.handedness==="left"&&g.buttons[3]&&g.buttons[3].pressed&&!GRIND.xrStick){ kick=true; } GRIND.xrStick=!!(g&&s.handedness==="left"&&g.buttons[3]&&g.buttons[3].pressed); }
+  if(xr&&!(window.SR_XRCTRL&&SR_XRCTRL.owns())) for(const s of xr.inputSources){ const g=s.gamepad; if(g&&s.handedness==="left"&&g.buttons[3]&&g.buttons[3].pressed&&!GRIND.xrStick){ kick=true; } GRIND.xrStick=!!(g&&s.handedness==="left"&&g.buttons[3]&&g.buttons[3].pressed); }
   if(xr&&!lean&&window.srXRInput){ const X=srXRInput(xr); if(X.m>0) lean=X.x; }  // layer1: Touch stick leans on grinds
   return { jump:!blocked&&!!I.jumpP, drop, kick, lean }; }
 // ---------- lock / ride / exit ----------
@@ -6807,7 +6996,7 @@ function animate(t){
     if(scene.fog){ window.__fog=scene.fog; scene.fog=null; camera.far=2000; camera.fov=60; camera.updateProjectionMatrix(); }
     camera.up.set(0,0,-1); camera.position.set(40,560,-90); camera.lookAt(40,0,-90.01);
   } else if(xr){
-    srVrhTick(); rig.position.set(p.x,p.y+(RIDERS.vrh&&RIDERS.vrh.floor||0),p.z); rig.rotation.y=Ride.yaw+Math.PI; // rider-centred VR rig
+    srVrhTick(); rig.position.set(p.x,p.y+(RIDERS.vrh&&RIDERS.vrh.floor||0),p.z); rig.rotation.y=Ride.yaw+Math.PI; /*SR_XRCTRL1 ik*/if(window.SR_XRCTRL) SR_XRCTRL.ik(dt); // rider-centred VR rig
   } else {
     if(!scene.fog&&window.__fog){ scene.fog=window.__fog; camera.far=600; camera.up.set(0,1,0); camera.updateProjectionMatrix(); }
     const tgt=_v.copy(p); tgt.y+=1.4;
@@ -6934,7 +7123,7 @@ addEventListener("keydown",e=>{ if(typeof State==="undefined"||State.mode==="men
   if(m){ e.preventDefault(); e.stopImmediatePropagation(); if(!e.repeat) phoneNav(m); } },{capture:true});
 function phXRInput(ses){ const P=PHONE.prevXR; let L=null, R=null; for(const s of ses.inputSources){ if(!s.gamepad) continue; if(s.handedness==="left") L=s; else if(s.handedness==="right") R=s; }
   const e=(src,h,i)=>{ const b=!!(src&&src.gamepad.buttons[i]&&src.gamepad.buttons[i].pressed), r=b&&!P[h+i]; P[h+i]=b; return r; };
-  const lx=e(L,"l",4), ly=e(L,"l",5), lt=e(L,"l",0), rb=e(R,"r",5);
+  const lx=e(L,"l",4), ly=e(L,"l",5), lt=e(L,"l",0), rb=e(R,"r",5); if(window.SR_XRCTRL&&SR_XRCTRL.owns()) return; /*SR_XRCTRL1 phone*/
   if(!PHONE.up){ if(lx||ly) phoneSet(true); return; }
   if(ly||rb) phoneNav("back"); else if(lx) phoneSet(false); if(lt) phoneNav("select");
   const ax=L?L.gamepad.axes:[], x=ax[2]||0, y=ax[3]||0; if(Math.hypot(x,y)<.35) PHONE.axLock=false; else if(!PHONE.axLock&&Math.hypot(x,y)>.7){ PHONE.axLock=true; phoneNav(Math.abs(x)>Math.abs(y)?(x>0?"right":"left"):(y>0?"down":"up")); phBuzz(.15,15); } }
