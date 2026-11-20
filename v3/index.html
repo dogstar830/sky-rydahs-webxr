@@ -2026,7 +2026,12 @@ function createCity(){
   for(const d of PALMA.districts){ const [x0,z0,x1,z1]=d.box; if(d.id!=="heights") asphaltGround(d,d.id==="strip"?22:26); else { const t=TEX.grass.clone(); t.needsUpdate=true; t.repeat.set((x1-x0)/26,(z1-z0)/26); flat(x1-x0,z1-z0,0,(x0+x1)/2,.01,(z0+z1)/2,makeToonMat({color:0x9ab888,map:t})); }
     // district border neon
     const tc=new THREE.Color(d.tint).getHex(); inst("glow",(x0+x1)/2,.04,z0+.5,x1-x0-2,.03,.3,tc); inst("glow",(x0+x1)/2,.04,z1-.5,x1-x0-2,.03,.3,tc); inst("glow",x0+.5,.04,(z0+z1)/2,.3,.03,z1-z0-2,tc); inst("glow",x1-.5,.04,(z0+z1)/2,.3,.03,z1-z0-2,tc); }
-  HERO=1; PALMA.garages.forEach(createGarage); HERO=0;
+  HERO=1; PALMA.garages.forEach(createGarage); HERO=0; /*SR_SEEDPIN1*/(function(){ try{ const q=location.search;
+  const k=/[?&]noseedpin(?:=(?!0(?:&|$))[^&]*)?(?:&|$)/.test(q)||/[?&]ff=[^&]*\bnoseedpin\b/.test(q);
+  const on=(_RSEED==="1")&&!k; const from=_rs>>>0;
+  if(on) _rs=1364679937;
+  window.SR_SEEDPIN={on:on,rs:1364679937,from:from,killed:k,seed:_RSEED};
+}catch(e){ window.SR_SEEDPIN={on:false,err:String(e&&e.message||e)}; } })();
   const D=id=>PALMA.districts.find(d=>d.id===id);
   // PORTSIDE TERMINAL (gold + cyan on navy) -- plaza, terminal tower, police HQ
   HERO=1; createPlaza(); HERO=0;
@@ -3935,6 +3940,19 @@ if(typeof loadIkki==='function'&&!window.__srIkkiWrap){ window.__srIkkiWrap=true
     loadIkki=function(parent,refH,fresh,opt){ try{ const u=(opt&&opt.url)||IKKI_URL, v=re(u); if(v!==u){ opt=Object.assign({},opt||{},{url:v}); T.hits.push({from:String(u).split('/').pop(),to:String(v).split('/').pop()}); } }catch(e){ T.err=String(e&&e.message||e); }
       return _l.call(this,parent,refH,fresh,opt); }; }
   else if(typeof loadIkki!=='function') T.err='no loadIkki';
+})();
+/*SR_IKKITW2*/(function(){ /* Rydah Rigger 2026-11-19 9 PM: Ikki -> Forge .twowheel.v2 GLBs; same flag as SR_TWOWHEEL1 (?ff=notwowheel kills); applied after SR_IKKITW1 */
+  const TW=window.SR_TWOWHEEL, ON=!!(TW&&TW.on);
+  const M={'meshy/ikki-meshy-skate.quest-draco.glb':'meshy/ikki-meshy-skate.quest-draco.twowheel.v2.glb','meshy/ikki-meshy-skate.s4-ktx2.glb':'meshy/ikki-meshy-skate.s4-ktx2.twowheel.v2.glb','meshy/ikki-meshy-skate.quest-draco.twowheel.glb':'meshy/ikki-meshy-skate.quest-draco.twowheel.v2.glb','meshy/ikki-meshy-skate.s4-ktx2.twowheel.glb':'meshy/ikki-meshy-skate.s4-ktx2.twowheel.v2.glb'};
+  const T=window.SR_IKKITW=window.SR_IKKITW||{hits:[],err:null}; T.on=ON; T.v2=true; T.map=Object.assign({},T.map||{},M);
+  const re=u=>{ if(typeof u!=='string') return u; for(const k in M) if(u.endsWith(k)) return u.slice(0,u.length-k.length)+M[k]; return u; }; T.re=re;
+  if(!ON) return;
+  const S=window.SR_KTX2; if(S&&S.map){ S.map['meshy/ikki-meshy-skate.quest-draco.twowheel.v2.glb']='meshy/ikki-meshy-skate.s4-ktx2.twowheel.v2.glb'; if(S.rev) S.rev['meshy/ikki-meshy-skate.s4-ktx2.twowheel.v2.glb']='meshy/ikki-meshy-skate.quest-draco.twowheel.v2.glb';
+    S.map['meshy/ikki-meshy-skate.quest-draco.twowheel.glb']='meshy/ikki-meshy-skate.s4-ktx2.twowheel.v2.glb'; if(S.rev) S.rev['meshy/ikki-meshy-skate.s4-ktx2.twowheel.glb']='meshy/ikki-meshy-skate.quest-draco.twowheel.v2.glb'; }
+  if(typeof loadIkki==='function'&&!window.__srIkkiTw2Wrap){ window.__srIkkiTw2Wrap=true; const _l=loadIkki;
+    loadIkki=function(parent,refH,fresh,opt){ try{ const u=(opt&&opt.url)||IKKI_URL, v=re(u); if(v!==u){ opt=Object.assign({},opt||{},{url:v}); T.hits.push({from:String(u).split('/').pop(),to:String(v).split('/').pop()}); } }catch(e){ T.err=String(e&&e.message||e); }
+      return _l.call(this,parent,refH,fresh,opt); }; }
+  else if(typeof loadIkki!=='function') T.err=(T.err?T.err+'; ':'')+'no loadIkki';
 })();
 // bespoke back patches for crews with reference art (base-refs/): origin = cell centre, radius ~120 px. Original shapes, not traced.
 const JACKET_LOGOS={
@@ -9803,7 +9821,27 @@ function init(){
     camera=new THREE.PerspectiveCamera(65,innerWidth/innerHeight,.1,600);
     rig=new THREE.Group(); rig.add(camera); scene.add(rig);
     renderer=new THREE.WebGLRenderer({antialias:true}); renderer.setPixelRatio(Math.min(devicePixelRatio,1.5)); renderer.setSize(innerWidth,innerHeight);
-    renderer.xr.enabled=true; document.body.appendChild(renderer.domElement);
+    renderer.xr.enabled=true; document.body.appendChild(renderer.domElement); /*SR_CTXLOST1*/(function(cv){ try{
+  if(/[?&]ff=[^&#]*\bnoctxlost\b/.test(location.search)) return;
+  const S=window.SR_CTX={lost:0,restored:0,state:"ok",t:0};
+  function box(msg,sub){ let d=document.getElementById("srCtxLost");
+    if(!d){ d=document.createElement("div"); d.id="srCtxLost"; d.setAttribute("role","alertdialog"); d.setAttribute("aria-live","assertive");
+      d.style.cssText="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2147483647;background:rgba(12,8,34,.95);color:#fff;border:2px solid #ffd700;border-radius:12px;padding:18px 22px;font:600 18px/1.35 system-ui,sans-serif;text-align:center;max-width:80vw;box-shadow:0 0 30px #000";
+      d.innerHTML='<div id="srCtxMsg"></div><div id="srCtxSub" style="font-weight:400;font-size:14px;opacity:.85;margin:8px 0 14px"></div><button id="srCtxReload" type="button" style="font:700 18px system-ui,sans-serif;padding:10px 28px;border-radius:8px;border:0;background:#ffd700;color:#120a2a;cursor:pointer">RELOAD</button>';
+      (document.body||document.documentElement).appendChild(d);
+      d.querySelector("#srCtxReload").addEventListener("click",function(){ location.reload(); }); }
+    d.querySelector("#srCtxMsg").textContent=msg; d.querySelector("#srCtxSub").textContent=sub; d.style.display="block";
+    try{ d.querySelector("#srCtxReload").focus(); }catch(_){} }
+  cv.addEventListener("webglcontextlost",function(e){ e.preventDefault(); S.lost++; S.state="lost"; S.t=Date.now();
+    console.warn("[SR_CTXLOST1] WebGL context lost");
+    try{ const xs=renderer&&renderer.xr&&renderer.xr.getSession&&renderer.xr.getSession(); if(xs) xs.end().catch(function(){}); }catch(_){}
+    box("Graphics reset: the GPU dropped the game display.","Tap RELOAD to restart the game.");
+  },false);
+  cv.addEventListener("webglcontextrestored",function(){ S.restored++; S.state="restored"; S.t=Date.now();
+    console.warn("[SR_CTXLOST1] WebGL context restored");
+    box("Graphics are back, but some textures may be missing.","Reload is recommended for a clean restart.");
+  },false);
+}catch(_){} })(renderer.domElement);
     // few lights: cool key + purple-blue hemi (shadows read cool purple-blue), gold rim
     const key=new THREE.DirectionalLight(0xdfe6ff,1.0); key.position.set(30,60,20); scene.add(key);
     scene.add(new THREE.HemisphereLight(0x5a4a9a,0x1a1440,.75));
@@ -10588,7 +10626,7 @@ window.kitExtVariant=kitExtVariant; window.kitExtAll=kitExtAll; window.kitExtVol
 function kitGroundHook(){ const WG0=window.WORLD_GROUND; if(typeof WG0!=='function'||WG0.__kit||/[?&]kitground=0\b/.test(location.search)) return;
   const f=function(x,z,yh){ if(KIT.g){ const k=KIT_GROUND(x,z,yh); if(k) return k; } return WG0(x,z,yh); }; Object.assign(f,WG0); f.__kit=true; f.base=WG0; window.WORLD_GROUND=f; }
 function kitInit(){ if(typeof garages==='undefined'||!garages.length||typeof scene==='undefined'||!THREE.GLTFLoader||typeof animated==='undefined'){ return setTimeout(kitInit,300); }
-  if(/nokit/.test(location.search)) return; try{ kitExtAll(); kitBuild(); kitGroundHook(); kitFixEmblems(); animated.push(kitTick); animated.push(kitExtLodTick); window.KIT_READY=true; }catch(e){ console.warn('crewhouse kit failed',e); } }
+  if(/[?&]nokit(?:=[^&]*)?(?:&|$)/.test(location.search)) return; /* Palma 19 Nov: exact ?nokit opt-out; was /nokit/, which also matched ?ff=nokit2w and removed the whole kit */ try{ kitExtAll(); kitBuild(); kitGroundHook(); kitFixEmblems(); animated.push(kitTick); animated.push(kitExtLodTick); window.KIT_READY=true; }catch(e){ console.warn('crewhouse kit failed',e); } }
 setTimeout(kitInit,0);
 })();
 
